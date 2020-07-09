@@ -304,7 +304,7 @@
 
     .container {
       text-align: center;
-      color: #2c3e50;
+      color: #6c7885;
       width: 100%;
       height: 100%;
       display: flex;
@@ -317,6 +317,7 @@
       form {
         transition: all 0.5s;
         position: absolute;
+        width: 90%;
         top: 0;
         /*transform: translateY(-50%);*/
 
@@ -332,7 +333,7 @@
           .finder__outer {
             display: flex;
             width: 100%;
-            padding: 0;
+            padding: 4px 0;
             border-radius: 10px;
             box-shadow: inset 2px 2px 3px -2px #c3c3c3, inset -2px -2px 3px -2px #ffffff;
 
@@ -348,17 +349,17 @@
                 border: none;
                 background-color: transparent;
                 outline: none;
-                font-size: 24px;
+                font-size: 16px;
                 padding: 6px 0;
                 letter-spacing: 0.75px;
               }
 
               .finder__icon {
-                width: 20px;
-                height: 20px;
+                width: 25px;
+                height: 25px;
                 margin: 0 10px;
                 transition: all 0.2s;
-                box-shadow: inset 0 0 0 20px #2c3e50;
+                box-shadow: inset 0 0 0 20px #6c7885;
                 border-radius: 50%;
                 position: relative;
               }
@@ -367,7 +368,7 @@
         }
 
         .active .finder__inner {
-          padding: 5px;
+          padding: 6px;
           transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
@@ -379,9 +380,9 @@
         }
 
         .finder__icon:after {
-          width: 4px;
-          height: 4px;
-          background-color: #2c3e50;
+          width: 5px;
+          height: 5px;
+          background-color: #6c7885;
           border: 3px solid #ffffff;
           top: 52%;
           position: absolute;
@@ -394,10 +395,10 @@
 
         .finder__icon:before {
           width: 4px;
-          height: 9px;
+          height: 11px;
           background-color: #ffffff;
           top: 50%;
-          left: 11px;
+          left: 14px;
           transform: rotateZ(45deg) translate(-50%, 0);
           transform-origin: 0 0;
           border-radius: 4px;
@@ -409,7 +410,7 @@
         }
 
         .active .finder__icon:before {
-          background-color: #2c3e50;
+          background-color: #6c7885;
           width: 6px;
           transform: rotateZ(45deg) translate(-50%, 15px);
         }
