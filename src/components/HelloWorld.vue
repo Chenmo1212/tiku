@@ -8,7 +8,9 @@
             <div class="finder__outer">
               <div class="finder__inner">
                 <div class="finder__icon" ref="icon"></div>
-                <input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()"/>
+                <label>
+                  <input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">
+                </label>
               </div>
             </div>
           </div>
@@ -26,16 +28,20 @@
           <!--<div id="bubble4" class="bubble"><span class="icon"><i class="fas fa-user"></i></span></div>-->
         </div>
         <div id="menuWrapper">
-          <div id="menu1" class="menuElement" @click="move('1', '62px', '#ffcc80')"><i
+          <div id="menu1" class="menuElement" @click="changeTab(1)"><i
             class="fa fa-home"></i></div>
-          <div id="menu2" class="menuElement" @click="move('2', '188px', '#81d4fa')"><i class="fa fa-music"></i>
+          <div id="menu2" class="menuElement" @click="changeTab(2)"><i class="fa fa-music"></i>
           </div>
-          <div id="menu3" class="menuElement" @click="move('3', '312px', '#c5e1a5')"><i class="fa fa-user"></i></div>
+          <div id="menu3" class="menuElement" @click="changeTab(3)"><i class="fa fa-user"></i></div>
           <!--<div id="menu4" class="menuElement" @click="move('4', '329px', '#ce93d8')"><i class="fas fa-user"></i></div>-->
         </div>
       </div>
       <div id="bgWrapper">
-        <div id="bg">哈哈哈</div>
+        <div id="bg">
+          <tiku-vue v-if="pageIndex === 1"></tiku-vue>
+          <music-vue v-if="pageIndex === 2"></music-vue>
+          <mine-vue v-if="pageIndex === 3"></mine-vue>
+        </div>
         <div id="bgBubble"></div>
       </div>
     </div>
@@ -54,44 +60,40 @@
 
 <script>
   import gsap from 'gsap'
+  import tikuVue from './tiku'
+  import musicVue from './music'
+  import mineVue from './mine'
 
   export default {
     name: 'HelloWorld',
+    components: {
+      tikuVue,
+      musicVue,
+      mineVue,
+    },
     data() {
-      return {}
+      return {
+        pageIndex: 1,
+        msg: 'Welcome to Your Vue.js App'
+      }
     },
     mounted() {
-
-      // // 输入框动画
-      // const input = document.querySelector(".finder__input");
-      // const finder = document.querySelector(".finder");
-      // const form = document.querySelector("form");
-      //
-      // input.addEventListener("focus", () => {
-      //   finder.classList.add("active");
-      // });
-      //
-      // input.addEventListener("blur", () => {
-      //   if (input.value.length === 0) {
-      //     finder.classList.remove("active");
-      //   }
-      // });
-      //
-      // form.addEventListener("submit", (ev) => {
-      //   ev.preventDefault();
-      //   finder.classList.add("processing");
-      //   finder.classList.remove("active");
-      //   input.disabled = true;
-      //   setTimeout(() => {
-      //     finder.classList.remove("processing");
-      //     input.disabled = false;
-      //     if (input.value.length > 0) {
-      //       finder.classList.add("active");
-      //     }
-      //   }, 1000);
-      // });
     },
     methods: {
+
+      changeTab(index) {
+        this.pageIndex = index;
+        if (index === 1) {
+          this.move('1', '62px', '#ffcc80');
+        }
+        if (index === 2) {
+          this.move('2', '188px', '#81d4fa');
+        }
+        if (index === 3) {
+          this.move('3', '312px', '#c5e1a5');
+        }
+      },
+      // tab 切换
       move(id, position, color) {
         var tl = gsap.timeline();
         tl.to("#bgBubble", {duration: 0.15, bottom: "-30px", ease: "ease-out"}, 0)
@@ -129,7 +131,7 @@
         console.log("blur")
       },
       searchSubmit(ev) {
-        console.log(ev)
+        console.log(ev);
         const input = document.querySelector(".finder__input");
         const finder = document.querySelector(".finder");
         ev.preventDefault();
@@ -328,7 +330,7 @@
           border-radius: 10px;
           padding: 4px;
           max-width: 375px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
 
           .finder__outer {
             display: flex;
@@ -435,8 +437,8 @@
         }
 
         /*.finder__form {*/
-          /*flex: 1;*/
-          /*height: calc(100% + 100px);*/
+        /*flex: 1;*/
+        /*height: calc(100% + 100px);*/
         /*}*/
       }
     }
