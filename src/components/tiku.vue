@@ -1,8 +1,9 @@
 <template>
   <div id="tiku">
     <swiper v-if="card_arr.length>1" :options="swiperOption" ref="mySwiper"
-            >
-      <div class="swiper-slide">
+    >
+      <div class="swiper-slide current">
+        <span class="ribbon4" :style="{backgroundColor: currentMemory.color}">当前在背</span>
         <!--封面-->
         <div class="card-cover">
           <!--<svg-icon iconClass="maogai"></svg-icon>-->
@@ -13,7 +14,8 @@
         <!--进度条-->
         <div class="card-progress">
           <div class="card-progress__back"></div>
-          <div class="card-progress__line" :style="{width:currentMemory.currentProgress, backgroundColor:currentMemory.color}"></div>
+          <div class="card-progress__line"
+               :style="{width:currentMemory.currentProgress, backgroundColor:currentMemory.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
@@ -24,7 +26,7 @@
           <button class="btn begin" @click="clickCardBtn($event)" :style="{color: currentMemory.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
-              开始答题
+              开始背题
             </span>
           </button>
         </div>
@@ -41,7 +43,8 @@
         <!--进度条-->
         <div class="card-progress">
           <div class="card-progress__back"></div>
-          <div class="card-progress__line" :style="{width:currentMemory.currentProgress, backgroundColor: item.color}"></div>
+          <div class="card-progress__line"
+               :style="{width:currentMemory.currentProgress, backgroundColor: item.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
@@ -52,7 +55,7 @@
           <button class="btn begin" @click="clickCardBtn($event)" :style="{color: item.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
-              开始答题
+              开始背题
             </span>
           </button>
         </div>
@@ -338,4 +341,43 @@
     }
   }
 
+  .current {
+    .ribbon {
+      position: relative;
+    }
+
+    .ribbon4 {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      color: #fff;
+      padding: 8px 10px;
+      box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .ribbon4:before, .ribbon4:after {
+      position: absolute;
+      content: "";
+      display: block;
+    }
+
+    .ribbon4:before {
+      width: 7px;
+      height: 100%;
+      padding: 0 0 7px;
+      top: 0;
+      left: -7px;
+      background: inherit;
+      border-radius: 5px 0 0 5px;
+    }
+
+    .ribbon4:after {
+      width: 5px;
+      height: 5px;
+      background: rgba(0, 0, 0, 0.35);
+      bottom: -5px;
+      left: -5px;
+      border-radius: 5px 0 0 5px;
+    }
+  }
 </style>
