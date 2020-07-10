@@ -3,14 +3,14 @@
     <div class="header">
       <div class="return">
         <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"></i>
-        <div>{{pageType}}</div>
+        <div>选择章节</div>
         |
         <div>{{pageName}}</div>
       </div>
     </div>
 
     <!--chapter select-->
-    <div class="chapter-select" v-if="pageMode === 'selectChapter'">
+    <div class="chapter-select">
       <div class="card-container" v-for="(item, index) in projectData">
         <div class="card">
           <div class="left">
@@ -31,11 +31,6 @@
         </div>
       </div>
     </div>
-
-    <!--chapter-detail-->
-    <div class="chapter-detail" v-if="pageMode === 'chapterDetail'">
-      <detail-vue></detail-vue>
-    </div>
   </div>
 </template>
 
@@ -49,7 +44,6 @@
     data() {
       return {
         pageName: "近代史",
-        pageType: "选择章节",                // 选择章节 / 章节刷题
         chapterColor: "#536dfe",
 
         projectData: [{
@@ -71,20 +65,15 @@
           chapterMultiNum: 35,              // 章节多选题数
           chapterJudgeNum: 0,               // 章节判断题数
         },],
-
-        pageMode: 'selectChapter',          // 页面模式，分为选择章节页面和章节答题页（selectChapter/chapterDetail）
       }
     },
     methods: {
       backHome() {
-        if (this.pageMode === "selectChapter")  this.$router.push({name: 'home'})
-        if (this.pageMode === "chapterDetail")   this.pageMode = 'selectChapter'
+        this.$router.push({name: 'home'});
       },
       clickCardBtn(index, ev) {
         ev.srcElement.classList.add("active");
-        this.pageName = this.projectData[index].chapterIndex;
-        this.pageType = '章节刷题';
-        this.pageMode = 'chapterDetail'
+        this.$router.push({name: 'detail'})
       }
     }
   }

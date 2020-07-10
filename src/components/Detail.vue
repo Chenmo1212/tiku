@@ -1,5 +1,13 @@
 <template>
   <div class="Detail">
+    <div class="header">
+      <div class="return">
+        <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+        <div>章节背题</div>
+        |
+        <div>{{projectName}} - {{chapterName}}</div>
+      </div>
+    </div>
     <div id="board"></div>
   </div>
 </template>
@@ -11,7 +19,8 @@
     name: 'Detail',
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        projectName: '马克思',
+        chapterName: '导论',
       }
     },
     mounted() {
@@ -21,11 +30,11 @@
 
         constructor(element) {
 
-          this.board = element
+          this.board = element;
 
           // add first two cards programmatically
-          this.push()
-          this.push()
+          this.push();
+          this.push();
 
           // handle gestures
           this.handle()
@@ -47,20 +56,20 @@
           if (this.cards.length > 0) {
 
             // set default top card position and scale
-            this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(1)'
+            this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(1)';
 
             // destroy previous Hammer instance, if present
-            if (this.hammer) this.hammer.destroy()
+            if (this.hammer) this.hammer.destroy();
 
             // listen for tap and pan gestures on top card
-            this.hammer = new Hammer(this.topCard)
-            this.hammer.add(new Hammer.Tap())
+            this.hammer = new Hammer(this.topCard);
+            this.hammer.add(new Hammer.Tap());
             this.hammer.add(new Hammer.Pan({position: Hammer.position_ALL, threshold: 0}))
 
             // pass events data to custom callbacks
             this.hammer.on('tap', (e) => {
               this.onTap(e)
-            })
+            });
             this.hammer.on('pan', (e) => {
               this.onPan(e)
             })
@@ -75,7 +84,7 @@
           let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth
 
           // get degree of Y rotation (+/-15 degrees)
-          let rotateY = 15 * (propX < 0.05 ? -1 : 1)
+          let rotateY = 15 * (propX < 0.05 ? -1 : 1);
 
           // change the transition property
           this.topCard.style.transition = 'transform 100ms ease-out'
@@ -138,7 +147,7 @@
           // scale next card
           if (this.nextCard) {
             this.nextCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(' + scale + ')';
-            this.nextCard.style.backgroundColor = '#fff';
+            this.nextCard.style.backgroundColor = '#f4f6f8';
           }
 
           if (e.isFinal) {
@@ -180,7 +189,7 @@
               // wait transition end
               setTimeout(() => {
                 // remove swiped card
-                this.board.removeChild(this.topCard)
+                this.board.removeChild(this.topCard);
                 // add new card
                 this.push()
                 // handle gestures on new top card
@@ -201,11 +210,15 @@
           let card = document.createElement('div');
           // var card = document.getElementById('card');
           // console.log(card);
-          card.style.backgroundColor = "#eee";
-          card.style.height = '200px';
-          card.style.width = '100%';
+          card.style.height = '85%';
+          card.style.width = '90%';
           card.style.position = 'absolute';
-          card.style.top = '0';
+          card.style.top = '5%';
+          card.style.left = '5%';
+          card.style.borderRadius = "11px";
+          card.style.background = '#f4f6f8';
+          card.style.border = "1px solid #fff";
+          card.style.boxShadow = "5px 5px 8px #ebebeb, -5px -5px 8px #ffffff";
           card.classList.add('card');
           //(parseInt(3*Math.random())+1)为随机1-3随机数，需要几的随机数改前面的数字3即可，这里images文件夹图片就放了三张，可以多放几张，这样重复率会降低
           // card.style.backgroundImage = "url('../images/" + (parseInt(6 * Math.random()) + 1) + ".jpg"
@@ -216,7 +229,6 @@
           } else {
             this.board.append(card)
           }
-
         }
 
       }
@@ -224,29 +236,65 @@
       let board = document.querySelector('#board')
 
       let carousel = new Carousel(board)
+    },
+    methods: {
+      backChapter() {
+        this.$router.push({name: 'chapter'});
+      },
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+  .header {
+    height: 60px;
+    line-height: 60px;
+    background-color: #f4f6f8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    .return {
+      float: left;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      width: 18rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      i {
+        font-size: 30px;
+        margin-right: 10px;
+        margin-bottom: 5px;
+      }
+
+      div {
+        margin: 0 10px;
+        font-size: 16px;
+      }
+
+    }
+  }
+
   #board {
     width: 100%;
-    height: 90vh;
+    height: 92vh;
     position: relative;
     overflow: hidden;
-    background-color: greenyellow;
+    background-color: #f4f6f8;
   }
 
   .card {
-    width: 320px;
-    height: 320px;
+    width: 90%;
+    height: 85%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 1%;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    top: 5%;
+    left: 5%;
+    border-radius: 11px;
+    border: 1px solid #fff;
+    box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
+    background-color: #f4f6f8;
     transform: translateX(0%) translateY(0%) scale(0.95);
   }
 </style>
