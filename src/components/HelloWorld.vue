@@ -37,12 +37,14 @@
         </div>
       </div>
       <div id="bgWrapper">
-        <div id="bg">
-          <tiku-vue v-if="pageIndex === 1"></tiku-vue>
-          <music-vue v-if="pageIndex === 2"></music-vue>
-          <mine-vue v-if="pageIndex === 3"></mine-vue>
-        </div>
+        <div id="bg"></div>
         <div id="bgBubble"></div>
+      </div>
+
+      <div id="content">
+        <tiku-vue v-if="pageIndex === 1"></tiku-vue>
+        <!--<music-vue v-if="pageIndex === 2"></music-vue>-->
+        <!--<mine-vue v-if="pageIndex === 3"></mine-vue>-->
       </div>
     </div>
 
@@ -82,9 +84,10 @@
     methods: {
 
       changeTab(index) {
+        console.log(index)
         this.pageIndex = index;
         if (index === 1) {
-          this.move('1', '62px', '#ffcc80');
+          this.move('1', '62px', '#e8e9ed');
         }
         if (index === 2) {
           this.move('2', '188px', '#81d4fa');
@@ -163,7 +166,7 @@
   }
 
   html {
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
 
   body {
@@ -175,7 +178,7 @@
     align-items: center;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
 
   #navbarContainer {
@@ -194,6 +197,7 @@
       height: 60px;
       background-color: #fff;
       position: absolute;
+      /*z-index: 999;*/
 
       #bubbleWrapper {
         position: absolute;
@@ -201,6 +205,7 @@
         justify-content: space-around;
         width: 100%;
         bottom: 25px;
+        /*z-index: 999;*/
 
         .bubble {
           background-color: #fff;
@@ -234,6 +239,7 @@
       filter: url(#goo);
       width: 100%;
       height: 100px;
+      /*height: calc(100vh - 120px - 20px);*/
       position: absolute;
       bottom: 60px;
 
@@ -272,6 +278,10 @@
           opacity: 0.5;
         }
       }
+    }
+
+    #content {
+      margin-bottom: 100px;
     }
   }
 
