@@ -170,7 +170,7 @@
   }
 
   body {
-    background: #e8e9ed;
+    background: #f4f6f8;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -183,7 +183,7 @@
 
   #navbarContainer {
     height: 100vh;
-    background-color: #e8e9ed;
+    background-color: #f4f6f8;
     /*border-radius: 20px;*/
     display: flex;
     justify-content: flex-end;
@@ -244,7 +244,7 @@
       bottom: 60px;
 
       #bg {
-        background-color: #e8e9ed;
+        background-color: #f4f6f8;
         width: 120%;
         height: 100%;
         margin-left: -10%;
@@ -252,7 +252,7 @@
 
       #bgBubble {
         position: absolute;
-        background-color: #e8e9ed;
+        background-color: #f4f6f8;
         width: 70px;
         height: 70px;
         border-radius: 50%;

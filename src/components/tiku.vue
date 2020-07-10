@@ -195,7 +195,8 @@
       clickCardBtn(ev) {
         // console.log(ev);
         ev.srcElement.classList.add("active");
-      }
+        this.$router.push({name: 'chapter'})
+      },
     }
   }
 </script>
