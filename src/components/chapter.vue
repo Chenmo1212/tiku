@@ -3,16 +3,15 @@
     <div class="header">
       <div class="return">
         <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"></i>
-        <div>选择章节</div>
+        <div>{{pageType}}</div>
         |
-        <div>{{projectName}}</div>
+        <div>{{pageName}}</div>
       </div>
     </div>
 
     <!--chapter select-->
-
-    <div class="chapter-select">
-      <div class="card-container" v-for="item in projectData">
+    <div class="chapter-select" v-if="pageMode === 'selectChapter'">
+      <div class="card-container" v-for="(item, index) in projectData">
         <div class="card">
           <div class="left">
             <div class="title">{{item.chapterIndex}}</div>
@@ -25,22 +24,32 @@
             <div class="type">单选：{{item.chapterRadioNum}}道 &nbsp;&nbsp;多选:{{item.chapterMultiNum}}道&nbsp;&nbsp;判断：{{item.chapterJudgeNum}}道</div>
           </div>
           <div class="right">
-            <div class="detail-icon" @click="clickCardBtn($event)">
+            <div class="detail-icon" @click="clickCardBtn(index, $event)">
               <i class="fa fa-angle-right" aria-hidden="true" :style="{color: chapterColor}"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!--chapter-detail-->
+    <div class="chapter-detail" v-if="pageMode === 'chapterDetail'">
+      <detail-vue></detail-vue>
+    </div>
   </div>
 </template>
 
 <script>
+  import detailVue from './Detail'
   export default {
     name: "chapter",
+    components: {
+      detailVue,
+    },
     data() {
       return {
-        projectName: "近代史",
+        pageName: "近代史",
+        pageType: "选择章节",                // 选择章节 / 章节刷题
         chapterColor: "#536dfe",
 
         projectData: [{
@@ -50,26 +59,32 @@
           chapterMultiNum: 35,              // 章节多选题数
           chapterJudgeNum: 0,               // 章节判断题数
         }, {
-          chapterIndex: "第一章",
+          chapterIndex: "第二章",
           chapterProgress: "20%",           // 当前进度
           chapterRadioNum: 65,              // 章节单选题数
           chapterMultiNum: 35,              // 章节多选题数
           chapterJudgeNum: 0,               // 章节判断题数
         }, {
-          chapterIndex: "第一章",
+          chapterIndex: "第三章",
           chapterProgress: "20%",           // 当前进度
           chapterRadioNum: 65,              // 章节单选题数
           chapterMultiNum: 35,              // 章节多选题数
           chapterJudgeNum: 0,               // 章节判断题数
-        },]
+        },],
+
+        pageMode: 'selectChapter',          // 页面模式，分为选择章节页面和章节答题页（selectChapter/chapterDetail）
       }
     },
     methods: {
-      backHome(){
-        this.$router.push({name: 'home'})
+      backHome() {
+        if (this.pageMode === "selectChapter")  this.$router.push({name: 'home'})
+        if (this.pageMode === "chapterDetail")   this.pageMode = 'selectChapter'
       },
-      clickCardBtn(){
+      clickCardBtn(index, ev) {
         ev.srcElement.classList.add("active");
+        this.pageName = this.projectData[index].chapterIndex;
+        this.pageType = '章节刷题';
+        this.pageMode = 'chapterDetail'
       }
     }
   }
