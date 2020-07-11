@@ -2,7 +2,9 @@
   <div class="Detail">
     <div class="header">
       <div class="return">
-        <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+        <div class="circle">
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+        </div>
         <div>章节背题</div>
         |
         <div>{{projectName}} - {{chapterName}}</div>
@@ -36,7 +38,7 @@
           </button>
         </div>
 
-        <div class="answer" v-if="showAnswer">
+        <div class="answer" v-if="showAnswer" :style="{color: chapterColor}">
           正确答案： {{item.Answer}}
         </div>
 
@@ -404,10 +406,20 @@
       text-overflow: ellipsis;
       white-space: nowrap;
 
+      .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: #f4f6f8;
+        margin: 0;
+        box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
+        border: 1px solid #fff;
+      }
+
       i {
         font-size: 30px;
-        margin-right: 10px;
-        margin-bottom: 5px;
+        margin-right: 4px;
+        display: block;
       }
 
       div {
@@ -487,7 +499,7 @@
         border: 1px solid #fff;
         position: relative;
         box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
-        transition: all 500ms ease-out 0s;
+        transition: all 200ms ease-out 0s;
       }
 
       button {
@@ -517,7 +529,7 @@
         -webkit-filter: blur(2px);
         filter: blur(2px);
         -webkit-transition: all 120ms ease-out 0s;
-        transition: all 500ms ease-out 0s;
+        transition: all 200ms ease-out 0s;
       }
 
       .c-button:after {
@@ -529,10 +541,11 @@
         left: 0;
         right: 0;
         -webkit-transition: all 120ms ease-out 0s;
-        transition: all 500ms ease-out 0s;
+        transition: all 200ms ease-out 0s;
       }
 
       .c-button--active {
+        border: 1px solid #536dfe;
         color: #536dfe;
         background: -webkit-gradient(linear, left bottom, left top, from(#f4f6f8), to(#fafcfd));
         background: linear-gradient(to top, #f4f6f8, #fafcfd);
@@ -588,6 +601,6 @@
   .nextCard {
     @extend .card;
     transform: translateX(328px) translateY(2px) rotate(39.36deg) rotateY(0deg) scale(1) !important;
-    transition: 500ms !important;
+    transition: 200ms !important;
   }
 </style>

@@ -42,7 +42,7 @@
       </div>
 
       <div id="content">
-        <tiku-vue v-if="pageIndex === 1"></tiku-vue>
+        <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
         <!--<music-vue v-if="pageIndex === 2"></music-vue>-->
         <!--<mine-vue v-if="pageIndex === 3"></mine-vue>-->
       </div>
@@ -76,7 +76,7 @@
     data() {
       return {
         pageIndex: 1,
-        msg: 'Welcome to Your Vue.js App'
+        showBeginBtn: true,
       }
     },
     mounted() {
@@ -84,16 +84,16 @@
     methods: {
 
       changeTab(index) {
-        console.log(index)
+        console.log(index);
         this.pageIndex = index;
         if (index === 1) {
-          this.move('1', '62px', '#e8e9ed');
+          this.move('1', '16.6%', '#e8e9ed');
         }
         if (index === 2) {
-          this.move('2', '188px', '#81d4fa');
+          this.move('2', '50%', '#81d4fa');
         }
         if (index === 3) {
-          this.move('3', '312px', '#c5e1a5');
+          this.move('3', '83.334%', '#c5e1a5');
         }
       },
       // tab 切换
@@ -123,7 +123,8 @@
       searchFocus() {
         const finder = document.querySelector(".finder");
         finder.classList.add("active");
-        console.log("focus")
+        console.log("focus");
+        this.showBeginBtn = false;
       },
       searchBlur() {
         const input = document.querySelector(".finder__input");
@@ -131,7 +132,8 @@
         if (input.value.length === 0) {
           finder.classList.remove("active");
         }
-        console.log("blur")
+        console.log("blur");
+        this.showBeginBtn = true;
       },
       searchSubmit(ev) {
         console.log(ev);
@@ -257,7 +259,7 @@
         height: 70px;
         border-radius: 50%;
         bottom: -50px;
-        left: 62px;
+        left: 16.667%;
         transform: translateX(-50%);
       }
 
@@ -282,6 +284,12 @@
 
     #content {
       margin-bottom: 100px;
+    }
+
+    @media screen and (max-width: 375px) {
+      #content {
+        margin-bottom: 22%;
+      }
     }
   }
 
@@ -339,7 +347,6 @@
           background-color: #ffffff;
           border-radius: 10px;
           padding: 4px;
-          max-width: 375px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
 
           .finder__outer {

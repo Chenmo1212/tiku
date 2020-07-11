@@ -22,7 +22,7 @@
           单选：{{currentMemory.chapterRadioNum}}道 &nbsp;&nbsp;多选:{{currentMemory.chapterMultiNum}}道&nbsp;&nbsp;判断：{{currentMemory.chapterJudgeNum}}道
         </div>
         <!--开始背题-->
-        <div class="card-btn">
+        <div class="card-btn" v-show="showBeginBtn">
           <button class="btn begin" @click="clickCardBtn($event)" :style="{color: currentMemory.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
@@ -51,7 +51,7 @@
           单选：{{item.radioNum}}道 &nbsp;&nbsp;多选:{{item.multiNum}}道&nbsp;&nbsp;判断：{{item.judgeNum}}道
         </div>
         <!--开始背题-->
-        <div class="card-btn">
+        <div class="card-btn" v-show="showBeginBtn">
           <button class="btn begin" @click="clickCardBtn($event)" :style="{color: item.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
@@ -70,6 +70,7 @@
 
   export default {
     name: "tiku",
+    props: ["showBeginBtn"],
     components: {
       Swiper,
       SwiperSlide
@@ -207,6 +208,12 @@
     overflow: hidden;
   }
 
+  @media screen and (max-width: 375px) {
+    #tiku {
+      height: calc(100vh - 140px);
+      overflow: hidden;
+    }
+  }
 
   .swiper-container {
     height: 100%;
@@ -232,6 +239,12 @@
     .swiper-slide-duplicate-prev,
     .swiper-slide-duplicate-next {
       transform: scale(0.9)
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    .swiper-slide .card-btn {
+      bottom: 3% !important;
     }
   }
 

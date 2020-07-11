@@ -2,7 +2,9 @@
   <div class="overview">
     <div class="header">
       <div class="return">
-        <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+        <div class="circle">
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+        </div>
         <div>题目总览</div>
         |
         <div>{{projectName}} - {{chapterName}}</div>
@@ -72,10 +74,20 @@
       text-overflow: ellipsis;
       white-space: nowrap;
 
+      .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: #f4f6f8;
+        margin: 0;
+        box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
+        border: 1px solid #fff;
+      }
+
       i {
         font-size: 30px;
-        margin-right: 10px;
-        margin-bottom: 5px;
+        margin-right: 4px;
+        display: block;
       }
 
       div {
