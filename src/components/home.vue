@@ -66,10 +66,14 @@
   import musicVue from './music'
   import mineVue from './mine'
 
+  // 导入vuex
   import {mapState, mapActions} from 'vuex'
 
+  // 导入数据
+  import tikudb from '../tikudb/tikudb'
+
   export default {
-    name: 'HelloWorld',
+    name: 'home',
     components: {
       tikuVue,
       musicVue,
@@ -82,6 +86,24 @@
       }
     },
     mounted() {
+      console.clear();
+      // 导入数据
+      // console.log(tikudb.tikudb);
+
+      let projectBasicData = {};
+
+      let projectColor = ['#00B0FF', '#F50057', '#00BFA6', '#536DFE', '#F9A826', '#F9A826', '#6C63FF', '#6C63FF'];
+      let projectSvgName = ['sixiu', 'jindaishi', 'makesi', 'maogai', 'C', 'C', 'junli', 'junli'];
+      let projectName = ['si_xiu', 'jin_dai_shi', 'ma_ke_si', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
+      let tikudbProjectName = ['morals_and_ethics', 'modern_history', 'marxism_principle', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
+
+      for (let i = 0; i < projectName.length; i++) {
+        projectBasicData[projectName[i]] = this.getBasicMsg(tikudb.tikudb[tikudbProjectName[i]]);
+        projectBasicData[projectName[i]].color = projectColor[i];
+        projectBasicData[projectName[i]].svg = projectSvgName[i];
+      }
+      console.log("导入后的数据：", projectBasicData);
+      this.setProjectBasicData(projectBasicData);
     },
     computed: {
       ...mapState([
@@ -91,7 +113,13 @@
     methods: {
       ...mapActions([
         'setThemeColor',
+        'setProjectBasicData',
       ]),
+
+      /**
+       * 导航切换
+       * @param index 导航下标
+       */
       changeTab(index) {
         console.log(index);
         this.pageIndex = index;
@@ -129,10 +157,13 @@
           .to("#bgBubble", {duration: 0.3, backgroundColor: color, ease: "ease-in-out"}, 0)
       },
 
+      /**
+       * 搜索框事件
+       */
       searchFocus() {
         const finder = document.querySelector(".finder");
         finder.classList.add("active");
-        console.log("focus");
+        // console.log("focus");
         this.showBeginBtn = false;
       },
       searchBlur() {
@@ -141,11 +172,11 @@
         if (input.value.length === 0) {
           finder.classList.remove("active");
         }
-        console.log("blur");
+        // console.log("blur");
         this.showBeginBtn = true;
       },
       searchSubmit(ev) {
-        console.log(ev);
+        // console.log(ev);
         const input = document.querySelector(".finder__input");
         const finder = document.querySelector(".finder");
         ev.preventDefault();
@@ -159,7 +190,69 @@
             finder.classList.add("active");
           }
         }, 1000);
-        console.log("submit")
+        // console.log("submit")
+      },
+
+      /**
+       * 获取科目题目总数
+       * @param content： 科目章节
+       * @returns {Object}： 题目总数
+       */
+      getTotalNum(content) {
+        // console.log(content);
+        let tempSum = 0;
+        let tempSigSum = 0;
+        let tempMulSum = 0;
+        let tempJudSum = 0;
+        for (let i = 0; i < content.length; i++) {
+          tempSum += content[i].radio + content[i].multiple + content[i].decide;
+          tempSigSum += content[i].radio;
+          tempMulSum += content[i].multiple;
+          tempJudSum += content[i].decide;
+        }
+        // console.log({sum: tempSum, sig: tempSigSum, mul: tempMulSum, jud: tempJudSum})
+        return {sum: tempSum, sig: tempSigSum, mul: tempMulSum, jud: tempJudSum}
+      },
+
+      /**
+       * 导入章节基本信息
+       * @param content 科目章节数组
+       * @returns {Array} 特定格式章节数组
+       */
+      getChapterBasicData(content) {
+        let tempArr = [];
+        // console.log("content:", content);
+        for (let i = 0; i < content.length; i++) {
+          let tempObj = {};
+          tempObj["title"] = content[i].title;
+          tempObj["sig"] = content[i].radio;
+          tempObj["mul"] = content[i].multiple;
+          tempObj["jud"] = content[i].decide;
+          tempObj["chapter_fill"] = 0;
+          tempArr.push(tempObj);
+        }
+        // console.log("content1:", tempArr);
+        return tempArr;
+      },
+
+      /**
+       * 导入科目基本数据
+       * @param item 科目
+       * @returns {Object} 特定科目格式
+       */
+      getBasicMsg(item) {
+        let tempObj = {};
+        console.log(item);
+        tempObj["length"] = item["length"];
+        tempObj["chinese"] = item.chinese;
+        tempObj["total_num"] = this.getTotalNum(item.content).sum;
+        tempObj["total_sig_num"] = this.getTotalNum(item.content).sig;
+        tempObj["total_mul_num"] = this.getTotalNum(item.content).mul;
+        tempObj["total_jud_num"] = this.getTotalNum(item.content).jud;
+        tempObj["total_fill_num"] = 0;
+        tempObj["content"] = this.getChapterBasicData(item.content);
+        console.log(tempObj["chinese"], "数据导入完成");
+        return tempObj
       }
     }
   }

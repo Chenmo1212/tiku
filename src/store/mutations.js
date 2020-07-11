@@ -4,51 +4,11 @@ export default {
     state.themeColor = string;
   },
 
-  CLOSE_WARNING(state, bool) {
-    state.isWarning = bool;
+   SET_PROJECT_BASIC_DATA(state, obj) {
+    state.projectBasicData = obj;
   },
 
-  // 更改Loading
-  SET_LOADING(state, bool) {
-    state.isLoading = bool;
-  },
 
-  // 更改登录状态
-  SET_LOGIN(state, boolean) {
-    state.isLogin = boolean;
-  },
-
-  // 注册账号密码
-  SET_ACCOUNT(state, obj) {
-    state.account = obj.account;
-    state.password = obj.password;
-  },
-
-  // 更改提醒登录状态
-  SET_ATTENTION(state, obj) {
-    state.ifAlert = obj.ifAlert;
-    state.at_warning = obj.at_warning;
-    state.noLogin = obj.noLogin;  // 提醒登录
-    state.newSign = obj.newSign;  // 新建签到
-    state.To_Data = obj.To_Data;  // 是在想去data的路上触发登录框
-    state.EndSign = obj.EndSign;  // 结束考勤
-  },
-
-  // 显示登录
-  SHOW_LOGIN(state, boolean) {
-    state.ifShow_login_alert = boolean;
-  },
-
-  // 显示注册
-  SHOW_REGISTER(state, boolean) {
-    state.ifShow_reg_alert = boolean;
-    console.log('ifShow_reg_alert:', state.ifShow_reg_alert);
-  },
-
-  // 遮挡二维码
-  SHOW_BLOCK(state, boolean) {
-    state.ShowBlock = boolean;
-  },
 
   // 设置提示
   setAttention(msg,obj){

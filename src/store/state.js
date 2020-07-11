@@ -15,6 +15,8 @@ export default {
     color: "#536DFE"
   },
 
+  projectBasicData: {},     // 科目基本信息
+
   // 警告框
   isWarning: false,
   warning: '',

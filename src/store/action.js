@@ -4,9 +4,9 @@ export default {
     commit('SET_THEME_COLOR', string)
   },
 
-  // 更改登录状态
-  setAccount({commit}, obj) {
-    commit('SET_ACCOUNT', obj)
+  // 设置科目基本信息
+  setProjectBasicData({commit}, obj) {
+    commit('SET_PROJECT_BASIC_DATA', obj)
   },
 
   // 显示登录

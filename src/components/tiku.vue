@@ -1,6 +1,6 @@
 <template>
   <div id="tiku">
-    <swiper v-if="card_arr.length>1" :options="swiperOption" ref="mySwiper"
+    <swiper v-if="cardArr.length>1" :options="swiperOption" ref="mySwiper"
     >
       <div class="swiper-slide current">
         <span class="ribbon4" :style="{backgroundColor: currentMemory.color}">当前在背</span>
@@ -32,27 +32,28 @@
         </div>
       </div>
 
-      <div class="swiper-slide" v-for="(item, index) in card_arr">
+      <!--科目列表-->
+      <div class="swiper-slide" v-for="(value) in projectBasicData">
         <!--封面-->
         <div class="card-cover">
           <!--<svg-icon iconClass="maogai"></svg-icon>-->
-          <svg-icon :iconClass="item.svgName"></svg-icon>
+          <svg-icon :iconClass="value.svg"></svg-icon>
         </div>
         <!--标题-->
-        <div class="card-title">{{item.title}} <span v-if="item.isCurrent">({{item.currentChapter}})</span></div>
+        <div class="card-title">{{value.chinese}}</div>
         <!--进度条-->
         <div class="card-progress">
           <div class="card-progress__back"></div>
           <div class="card-progress__line"
-               :style="{width:currentMemory.projectProgress, backgroundColor: item.color}"></div>
+               :style="{width:value.total_fill_num/value.total_num, backgroundColor: value.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          单选：{{item.radioNum}}道 &nbsp;&nbsp;多选:{{item.multiNum}}道&nbsp;&nbsp;判断：{{item.judgeNum}}道
+          单选：{{value.total_sig_num}}道 &nbsp;&nbsp;多选:{{value.total_mul_num}}道&nbsp;&nbsp;判断：{{value.total_jud_num}}道
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
-          <button class="btn begin" @click="clickCardBtn($event, item, 2)" :style="{color: item.color}">
+          <button class="btn begin" @click="clickCardBtn($event, value, 2)" :style="{color: value.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
               开始背题
@@ -106,9 +107,9 @@
           judgeNum: 0,               // 章节判断题数
           color: "#536DFE"
         },
-
+        cardObj: this.projectBasicData,
         // 卡片内容
-        card_arr: [
+        cardArr: [
           {
             svgName: "sixiu",         // 封面图名字
             title: "思修",              // 名称
@@ -187,6 +188,7 @@
     computed: {
       ...mapState([
         'themeColor',
+        'projectBasicData',
       ]),
 
       swiper() {
