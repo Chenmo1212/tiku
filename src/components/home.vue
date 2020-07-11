@@ -66,6 +66,8 @@
   import musicVue from './music'
   import mineVue from './mine'
 
+  import {mapState, mapActions} from 'vuex'
+
   export default {
     name: 'HelloWorld',
     components: {
@@ -81,8 +83,15 @@
     },
     mounted() {
     },
+    computed: {
+      ...mapState([
+        'themeColor',
+      ])
+    },
     methods: {
-
+      ...mapActions([
+        'setThemeColor',
+      ]),
       changeTab(index) {
         console.log(index);
         this.pageIndex = index;

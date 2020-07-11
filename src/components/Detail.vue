@@ -58,6 +58,7 @@
 
 <script>
   import hammer from "../js/hammer.js"
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     name: 'Detail',
@@ -120,7 +121,11 @@
 
       this.cardArr = this.cardArr.reverse();
     },
-    computed: {},
+    computed: {
+      ...mapState([
+        'themeColor',
+      ]),
+    },
     methods: {
       backChapter() {
         this.$router.push({name: 'chapter'});

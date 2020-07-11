@@ -15,15 +15,15 @@
         <div class="card-progress">
           <div class="card-progress__back"></div>
           <div class="card-progress__line"
-               :style="{width:currentMemory.currentProgress, backgroundColor:currentMemory.color}"></div>
+               :style="{width:currentMemory.chapterProgress, backgroundColor:currentMemory.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          单选：{{currentMemory.chapterRadioNum}}道 &nbsp;&nbsp;多选:{{currentMemory.chapterMultiNum}}道&nbsp;&nbsp;判断：{{currentMemory.chapterJudgeNum}}道
+          单选：{{currentMemory.radioNum}}道 &nbsp;&nbsp;多选:{{currentMemory.multiNum}}道&nbsp;&nbsp;判断：{{currentMemory.judgeNum}}道
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
-          <button class="btn begin" @click="clickCardBtn($event)" :style="{color: currentMemory.color}">
+          <button class="btn begin" @click="clickCardBtn($event, currentMemory, 1)" :style="{color: currentMemory.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
               开始背题
@@ -44,7 +44,7 @@
         <div class="card-progress">
           <div class="card-progress__back"></div>
           <div class="card-progress__line"
-               :style="{width:currentMemory.currentProgress, backgroundColor: item.color}"></div>
+               :style="{width:currentMemory.projectProgress, backgroundColor: item.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
@@ -52,7 +52,7 @@
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
-          <button class="btn begin" @click="clickCardBtn($event)" :style="{color: item.color}">
+          <button class="btn begin" @click="clickCardBtn($event, item, 2)" :style="{color: item.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
               开始背题
@@ -67,6 +67,7 @@
 <script>
   import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
   import 'swiper/swiper-bundle.css';
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     name: "tiku",
@@ -99,10 +100,10 @@
           svgName: "maogai",         // 封面图名字
           title: "毛概",              // 名称
           currentChapter: "第一章",   // 当前章节
-          currentProgress: "20%",    // 当前进度
-          chapterRadioNum: 65,              // 章节单选题数
-          chapterMultiNum: 35,              // 章节多选题数
-          chapterJudgeNum: 0,               // 章节判断题数
+          chapterProgress: "20%",    // 当前进度
+          radioNum: 65,              // 章节单选题数
+          multiNum: 35,              // 章节多选题数
+          judgeNum: 0,               // 章节判断题数
           color: "#536DFE"
         },
 
@@ -112,7 +113,7 @@
             svgName: "sixiu",         // 封面图名字
             title: "思修",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -120,8 +121,8 @@
           }, {
             svgName: "jindaishi",         // 封面图名字
             title: "近代史",              // 名称
-            currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            currentChapter: "",        // 当前章节
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -130,7 +131,7 @@
             svgName: "makesi",         // 封面图名字
             title: "马克思",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -139,7 +140,7 @@
             svgName: "maogai",         // 封面图名字
             title: "毛概",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -148,7 +149,7 @@
             svgName: "C",         // 封面图名字
             title: "C语言（上）",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -157,7 +158,7 @@
             svgName: "C",         // 封面图名字
             title: "C语言（下）",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -166,7 +167,7 @@
             svgName: "junli",         // 封面图名字
             title: "军理（上）",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -175,7 +176,7 @@
             svgName: "junli",         // 封面图名字
             title: "军理（下）",              // 名称
             currentChapter: "",   // 当前章节
-            currentProgress: "60%",    // 当前进度
+            projectProgress: "60%",    // 当前进度
             radioNum: 65,              // 章节单选题数
             multiNum: 35,              // 章节多选题数
             judgeNum: 0,               // 章节判断题数
@@ -184,6 +185,10 @@
       }
     },
     computed: {
+      ...mapState([
+        'themeColor',
+      ]),
+
       swiper() {
         return this.$refs.mySwiper.$swiper
       }
@@ -193,10 +198,27 @@
       // this.swiper.slideTo(0, 1000, false);  // 解决initialSlide失效问题
     },
     methods: {
-      clickCardBtn(ev) {
+      ...mapActions([
+        'setThemeColor',
+      ]),
+
+      /**
+       * 进入背题
+       * @param ev 事件参数（修改样式）
+       * @param item 背题的科目
+       * @param from 从哪里过来的（1：当前背题；2：科目列表）
+       */
+      clickCardBtn(ev, item, from) {
         // console.log(ev);
+        // console.log(item);
         ev.srcElement.classList.add("active");
-        this.$router.push({name: 'chapter'})
+        this.setThemeColor(item.color);
+
+        if (from === 1){
+          this.$router.push({name: 'detail'});
+        } else if(from === 2){
+          this.$router.push({name: 'chapter'});
+        }
       },
     }
   }
