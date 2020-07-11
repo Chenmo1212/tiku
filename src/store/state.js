@@ -17,6 +17,8 @@ export default {
 
   projectBasicData: {},     // 科目基本信息
 
+  selectedProject: {},      // 选择的科目
+
   // 警告框
   isWarning: false,
   warning: '',

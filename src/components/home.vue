@@ -242,7 +242,7 @@
        */
       getBasicMsg(item) {
         let tempObj = {};
-        console.log(item);
+        // console.log(item);
         tempObj["length"] = item["length"];
         tempObj["chinese"] = item.chinese;
         tempObj["total_num"] = this.getTotalNum(item.content).sum;

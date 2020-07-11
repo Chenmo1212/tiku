@@ -16,14 +16,14 @@
       <div class="card-container" v-for="(item, index) in projectData">
         <div class="card">
           <div class="left">
-            <div class="title">{{item.chapterIndex}}</div>
+            <div class="title">{{item.title}}</div>
             <div class="card-progress">
               <div class="card-progress__back"></div>
               <div class="card-progress__line"
-                   :style="{width:item.chapterProgress, backgroundColor:chapterColor}">
+                   :style="{width:item.chapter_fill/(item.jud + item.mul + item.sig), backgroundColor:chapterColor}">
               </div>
             </div>
-            <div class="type">单选：{{item.chapterRadioNum}}道 &nbsp;&nbsp;多选:{{item.chapterMultiNum}}道&nbsp;&nbsp;判断：{{item.chapterJudgeNum}}道</div>
+            <div class="type">单选：{{item.sig}}道 &nbsp;&nbsp;多选:{{item.mul}}道&nbsp;&nbsp;判断：{{item.jud}}道</div>
           </div>
           <div class="right">
             <div class="detail-icon" @click="clickCardBtn(index, $event)">
@@ -38,6 +38,7 @@
 
 <script>
   import detailVue from './Detail'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     name: "chapter",
@@ -46,29 +47,26 @@
     },
     data() {
       return {
-        pageName: "近代史",
-        chapterColor: "#536dfe",
+        pageName: '',
+        chapterColor: '',
 
-        projectData: [{
-          chapterIndex: "第一章",
-          chapterProgress: "20%",           // 当前进度
-          chapterRadioNum: 65,              // 章节单选题数
-          chapterMultiNum: 35,              // 章节多选题数
-          chapterJudgeNum: 0,               // 章节判断题数
-        }, {
-          chapterIndex: "第二章",
-          chapterProgress: "20%",           // 当前进度
-          chapterRadioNum: 65,              // 章节单选题数
-          chapterMultiNum: 35,              // 章节多选题数
-          chapterJudgeNum: 0,               // 章节判断题数
-        }, {
-          chapterIndex: "第三章",
-          chapterProgress: "20%",           // 当前进度
-          chapterRadioNum: 65,              // 章节单选题数
-          chapterMultiNum: 35,              // 章节多选题数
-          chapterJudgeNum: 0,               // 章节判断题数
-        },],
+        projectData: null,
       }
+    },
+    computed: {
+      ...mapState([
+        'themeColor',
+        'selectedProject',
+      ]),
+    },
+    created(){
+      this.pageName = this.selectedProject.chinese;
+      this.chapterColor = this.selectedProject.color;
+      this.projectData = this.selectedProject.content;
+    },
+    mounted(){
+      console.log(this.selectedProject);
+      console.log(this.selectedProject.chinese)
     },
     methods: {
       backHome() {
@@ -124,6 +122,7 @@
   }
 
   .chapter-select {
+    margin: 5% 0 10%;
     .card-container {
       .card {
         margin: 15px 15px 0;

@@ -1,6 +1,6 @@
 <template>
   <div id="tiku">
-    <swiper v-if="cardArr.length>1" :options="swiperOption" ref="mySwiper"
+    <swiper :options="swiperOption" ref="mySwiper"
     >
       <div class="swiper-slide current">
         <span class="ribbon4" :style="{backgroundColor: currentMemory.color}">当前在背</span>
@@ -107,82 +107,8 @@
           judgeNum: 0,               // 章节判断题数
           color: "#536DFE"
         },
-        cardObj: this.projectBasicData,
         // 卡片内容
-        cardArr: [
-          {
-            svgName: "sixiu",         // 封面图名字
-            title: "思修",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#00B0FF"
-          }, {
-            svgName: "jindaishi",         // 封面图名字
-            title: "近代史",              // 名称
-            currentChapter: "",        // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#F50057"
-          }, {
-            svgName: "makesi",         // 封面图名字
-            title: "马克思",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#00BFA6"
-          }, {
-            svgName: "maogai",         // 封面图名字
-            title: "毛概",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#536DFE"
-          }, {
-            svgName: "C",         // 封面图名字
-            title: "C语言（上）",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#F9A826"
-          }, {
-            svgName: "C",         // 封面图名字
-            title: "C语言（下）",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#F9A826"
-          }, {
-            svgName: "junli",         // 封面图名字
-            title: "军理（上）",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#6C63FF"
-          }, {
-            svgName: "junli",         // 封面图名字
-            title: "军理（下）",              // 名称
-            currentChapter: "",   // 当前章节
-            projectProgress: "60%",    // 当前进度
-            radioNum: 65,              // 章节单选题数
-            multiNum: 35,              // 章节多选题数
-            judgeNum: 0,               // 章节判断题数
-            color: "#6C63FF"
-          }]
+        cardObj: this.projectBasicData,
       }
     },
     computed: {
@@ -195,13 +121,10 @@
         return this.$refs.mySwiper.$swiper
       }
     },
-    mounted() {
-      // console.log('Current Swiper instance object', this.swiper);
-      // this.swiper.slideTo(0, 1000, false);  // 解决initialSlide失效问题
-    },
     methods: {
       ...mapActions([
         'setThemeColor',
+        'setSelectedProject',
       ]),
 
       /**
@@ -219,6 +142,7 @@
         if (from === 1){
           this.$router.push({name: 'detail'});
         } else if(from === 2){
+          this.setSelectedProject(item);
           this.$router.push({name: 'chapter'});
         }
       },

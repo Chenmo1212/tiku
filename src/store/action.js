@@ -9,9 +9,9 @@ export default {
     commit('SET_PROJECT_BASIC_DATA', obj)
   },
 
-  // 显示登录
-  showLogin({commit}, obj) {
-    commit('SHOW_LOGIN', obj)
+  // 设置已选择的科目
+  setSelectedProject({commit}, obj) {
+    commit('SET_SELECTED_PROJECT', obj)
   },
 
   // 显示注册
