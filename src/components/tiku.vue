@@ -49,7 +49,7 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          单选：{{value.total_sig_num}}道 &nbsp;&nbsp;多选:{{value.total_mul_num}}道&nbsp;&nbsp;判断：{{value.total_jud_num}}道
+          单选：{{value.total_sig_num}}道 &nbsp;多选:{{value.total_mul_num}}道&nbsp;判断：{{value.total_jud_num}}道&nbsp;填空：{{value.total_bla_num}}道
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
@@ -243,7 +243,7 @@
     }
 
     .card-question_type {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .card-btn {

@@ -88,9 +88,10 @@
     mounted() {
       console.clear();
       // 导入数据
-      // console.log(tikudb.tikudb);
+      console.log(tikudb.tikudb);
 
       let projectBasicData = {};
+      let questionData = {};
 
       let projectColor = ['#00B0FF', '#F50057', '#00BFA6', '#536DFE', '#F9A826', '#F9A826', '#6C63FF', '#6C63FF'];
       let projectSvgName = ['sixiu', 'jindaishi', 'makesi', 'maogai', 'C', 'C', 'junli', 'junli'];
@@ -101,9 +102,12 @@
         projectBasicData[projectName[i]] = this.getBasicMsg(tikudb.tikudb[tikudbProjectName[i]]);
         projectBasicData[projectName[i]].color = projectColor[i];
         projectBasicData[projectName[i]].svg = projectSvgName[i];
+        projectBasicData[projectName[i]].id = projectName[i];
+        questionData[projectName[i]] = tikudb.tikudb[tikudbProjectName[i]].content;
       }
-      console.log("导入后的数据：", projectBasicData);
+      console.log("导入后的数据：", projectBasicData, '\n 题目数据：', questionData);
       this.setProjectBasicData(projectBasicData);
+      this.setProjectQuestionData(questionData);
     },
     computed: {
       ...mapState([
@@ -114,6 +118,7 @@
       ...mapActions([
         'setThemeColor',
         'setProjectBasicData',
+        'setProjectQuestionData',
       ]),
 
       /**
@@ -204,14 +209,16 @@
         let tempSigSum = 0;
         let tempMulSum = 0;
         let tempJudSum = 0;
+        let tempBlaSum = 0;
         for (let i = 0; i < content.length; i++) {
           tempSum += content[i].radio + content[i].multiple + content[i].decide;
           tempSigSum += content[i].radio;
           tempMulSum += content[i].multiple;
           tempJudSum += content[i].decide;
+          tempBlaSum += content[i].fill;
         }
         // console.log({sum: tempSum, sig: tempSigSum, mul: tempMulSum, jud: tempJudSum})
-        return {sum: tempSum, sig: tempSigSum, mul: tempMulSum, jud: tempJudSum}
+        return {sum: tempSum, sig: tempSigSum, mul: tempMulSum, jud: tempJudSum, bla: tempBlaSum}
       },
 
       /**
@@ -228,6 +235,7 @@
           tempObj["sig"] = content[i].radio;
           tempObj["mul"] = content[i].multiple;
           tempObj["jud"] = content[i].decide;
+          tempObj["bla"] = content[i].fill;
           tempObj["chapter_fill"] = 0;
           tempArr.push(tempObj);
         }
@@ -249,6 +257,7 @@
         tempObj["total_sig_num"] = this.getTotalNum(item.content).sig;
         tempObj["total_mul_num"] = this.getTotalNum(item.content).mul;
         tempObj["total_jud_num"] = this.getTotalNum(item.content).jud;
+        tempObj["total_bla_num"] = this.getTotalNum(item.content).bla;
         tempObj["total_fill_num"] = 0;
         tempObj["content"] = this.getChapterBasicData(item.content);
         console.log(tempObj["chinese"], "数据导入完成");

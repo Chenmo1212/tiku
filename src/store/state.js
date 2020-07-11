@@ -19,6 +19,10 @@ export default {
 
   selectedProject: {},      // 选择的科目
 
+  selectedChapter: {},      // 已选择的章节
+
+  projectQuestionData: {},  // 科目题目
+
   // 警告框
   isWarning: false,
   warning: '',

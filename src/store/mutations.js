@@ -14,6 +14,19 @@ export default {
     state.selectedProject = obj;
   },
 
+  // 设置已选择的章节
+  SET_SELECTED_CHAPTER(state, obj){
+    // console.log(state.projectQuestionData[obj.id][obj.index].data)
+    state.selectedChapter = state.projectQuestionData[obj.id][obj.index];
+  },
+
+  // 设置已选择的章节
+  SET_PROJECT_QUESTION_DATA(state, obj){
+    state.projectQuestionData = obj;
+  },
+
+
+
   // 设置提示
     setAttention(msg, obj)
 {

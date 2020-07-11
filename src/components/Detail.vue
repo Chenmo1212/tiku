@@ -14,20 +14,31 @@
       <div class="card" v-for="(item, index) in cardArr">
         <div class="card-head">
           <div class="question-type" :style="{color: chapterColor}">
-            <span v-if="item.Mode === 'sig'">单选题</span>
-            <span v-if="item.Mode === 'mul'">多选题</span>
-            <span v-if="item.Mode === 'jud'">判断题</span>
+            <span v-if="item.type === 0">单选题</span>
+            <span v-if="item.type === 1">多选题</span>
+            <span v-if="item.type === 2">填空题</span>
+            <span v-if="item.type === 3">判断题</span>
           </div>
-          <div class="question-num"><span :style="{color: chapterColor}">1</span>/65</div>
+          <div class="question-num">
+            <span :style="{color: chapterColor}" v-if="item.type === 0">{{selectedChapter.fill + selectedChapter.radio + selectedChapter.multiple + selectedChapter.decide - index}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 1">{{selectedChapter.fill + selectedChapter.decide - index}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 2">{{selectedChapter.fill +selectedChapter.multiple + selectedChapter.decide - index}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 3">{{selectedChapter.decide - index}}</span>
+            /
+            <span v-if="item.type === 0">{{selectedChapter.radio}}</span>
+            <span v-if="item.type === 1">{{selectedChapter.multiple}}</span>
+            <span v-if="item.type === 2">{{selectedChapter.fill}}</span>
+            <span v-if="item.type === 3">{{selectedChapter.decide}}</span>
+          </div>
         </div>
         <div class="card-question">
-          社会存在是指( )
+          {{item.question}}
         </div>
         <div class="card-answer-list">
           <button class="c-button answer-item"
                   :class="{'c-button--active': checkIndex === answerIndex}"
                   @click="submitAns(answerIndex)"
-                  v-for="(answerItem, answerIndex) in cardArr[index].ChooseList">
+                  v-for="(answerItem, answerIndex) in cardArr[index].options">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
               <span v-if="answerIndex === 1">B.</span>
@@ -39,8 +50,9 @@
         </div>
 
         <div class="answer" v-if="showAnswer" :style="{color: chapterColor}">
-          正确答案： {{item.Answer}}
+          正确答案：
         </div>
+        {{answerList[index]}}
 
         <div class="menu-card" :style="{color: chapterColor}">
           <div class="all-question" @click="toOverview">
@@ -69,52 +81,27 @@
         chapterColor: "#536dfe",
         checkIndex: -1,
         showAnswer: false,
-        cardArr: [
-          {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 1,
-            Mode: "sig"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 2,
-            Mode: "mul"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 3,
-            Mode: "mul"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 4,
-            Mode: "sig"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 5,
-            Mode: "jud"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 6,
-            Mode: "sig"
-          }, {
-            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
-            Answer: "B",
-            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
-            ID: 7,
-            Mode: "jud"
-          },
-        ],
+        cardArr: [],
+        answerList: []
       }
+    },
+    created() {
+      this.chapterColor = this.themeColor;
+      console.log(this.selectedChapter);
+      this.cardArr = this.selectedChapter.data;
+      this.chapterName = this.selectedChapter.title;
+      this.projectName = this.projectName.chinese;
+
+      let dataList = this.selectedChapter.data;
+      console.log(dataList)
+      for (let i = 0; i < dataList.length; i++) {
+        console.log(dataList[i].answer)
+        if (dataList[i].answer === 0) this.answerList.push("A");
+        if (dataList[i].answer === 1) this.answerList.push("B");
+        if (dataList[i].answer === 2) this.answerList.push("C");
+        if (dataList[i].answer === 3) this.answerList.push("D");
+      }
+      console.log(this.answerList);
     },
     mounted() {
       this.cardInit();
@@ -124,14 +111,20 @@
     computed: {
       ...mapState([
         'themeColor',
+        'selectedChapter',
+        'selectedProject',
       ]),
     },
     methods: {
+      ...mapActions([
+        'setSelectedChapter'
+      ]),
+
       backChapter() {
         this.$router.push({name: 'chapter'});
       },
 
-      toOverview(){
+      toOverview() {
         this.$router.push({name: 'overview'})
       },
 

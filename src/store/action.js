@@ -14,6 +14,16 @@ export default {
     commit('SET_SELECTED_PROJECT', obj)
   },
 
+  // 设置已选择的科目
+  setSelectedChapter({commit}, obj) {
+    commit('SET_SELECTED_CHAPTER', obj)
+  },
+
+  // 设置已选择的科目
+  setProjectQuestionData({commit}, obj) {
+    commit('SET_PROJECT_QUESTION_DATA', obj)
+  },
+
   // 显示注册
   showRegister({commit}, obj) {
     commit('SET_ACCOUNT', obj)

@@ -14,7 +14,7 @@
     <!--chapter select-->
     <div class="chapter-select">
       <div class="card-container" v-for="(item, index) in projectData">
-        <div class="card">
+        <div class="card" @click="clickCardBtn(index, 1, $event)">
           <div class="left">
             <div class="title">{{item.title}}</div>
             <div class="card-progress">
@@ -23,10 +23,12 @@
                    :style="{width:item.chapter_fill/(item.jud + item.mul + item.sig), backgroundColor:chapterColor}">
               </div>
             </div>
-            <div class="type">单选：{{item.sig}}道 &nbsp;&nbsp;多选:{{item.mul}}道&nbsp;&nbsp;判断：{{item.jud}}道</div>
+            <div class="type">
+              单选：{{item.sig}}道 &nbsp;多选:{{item.mul}}道
+              判断：{{item.jud}}道&nbsp;填空：{{item.bla}}道</div>
           </div>
           <div class="right">
-            <div class="detail-icon" @click="clickCardBtn(index, $event)">
+            <div class="detail-icon" @click.stop="clickCardBtn(index, 2, $event)">
               <i class="fa fa-angle-right" aria-hidden="true" :style="{color: chapterColor}"></i>
             </div>
           </div>
@@ -66,14 +68,28 @@
     },
     mounted(){
       console.log(this.selectedProject);
-      console.log(this.selectedProject.chinese)
+      console.log(this.selectedProject.chinese);
     },
     methods: {
+      ...mapActions([
+        'setSelectedChapter',
+      ]),
+
       backHome() {
         this.$router.push({name: 'home'});
       },
-      clickCardBtn(index, ev) {
-        ev.srcElement.classList.add("active");
+      /**
+       * 开始背题
+       * @param index 章节下标
+       * @param type 点击类型（1：整个卡片，2：点击icon)
+       * @param ev 事件函数
+       */
+      clickCardBtn(index, type, ev) {
+        if (type === 2){
+          ev.srcElement.classList.add("active");
+          // console.log(index);
+        }
+        this.setSelectedChapter({id: this.selectedProject.id, index: index})  // 科目id，章节序号
         this.$router.push({name: 'detail'})
       }
     }
@@ -170,7 +186,7 @@
           }
 
           .type {
-            font-size: 13px;
+            font-size: 12px;
             margin-top: 10px;
           }
         }
