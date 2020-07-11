@@ -41,7 +41,9 @@
         </div>
 
         <div class="menu-card" :style="{color: chapterColor}">
-          <div class="all-question"><i class="fa fa-th" aria-hidden="true"></i></div>
+          <div class="all-question" @click="toOverview">
+            <i class="fa fa-th" aria-hidden="true"></i>
+          </div>
           <div class="show-answer" @click="showAnswer = !showAnswer">
             <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
             <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
@@ -120,6 +122,10 @@
     methods: {
       backChapter() {
         this.$router.push({name: 'chapter'});
+      },
+
+      toOverview(){
+        this.$router.push({name: 'overview'})
       },
 
       submitAns(index) {
@@ -565,10 +571,12 @@
       display: flex;
       line-height: 60px;
       justify-content: center;
+
       .all-question {
         flex: 1;
         border-right: 1px solid #eee;
       }
+
       .show-answer {
         border-left: 1px solid #eee;
         flex: 1;

@@ -286,7 +286,11 @@
     }
 
     .card-btn {
-      margin-top: 10%;
+      /*margin-top: 10%;*/
+      position: absolute;
+      bottom: 6%;
+      width: 90%;
+      left: 5%;
 
       button {
         border: 0;
