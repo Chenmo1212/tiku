@@ -10,8 +10,43 @@
     </div>
     <div id="board">
       <div class="card" v-for="(item, index) in cardArr">
-        {{item.title}}
-        <!--<span @click="cardPre()">回来</span>-->
+        <div class="card-head">
+          <div class="question-type" :style="{color: chapterColor}">
+            <span v-if="item.Mode === 'sig'">单选题</span>
+            <span v-if="item.Mode === 'mul'">多选题</span>
+            <span v-if="item.Mode === 'jud'">判断题</span>
+          </div>
+          <div class="question-num"><span :style="{color: chapterColor}">1</span>/65</div>
+        </div>
+        <div class="card-question">
+          社会存在是指( )
+        </div>
+        <div class="card-answer-list">
+          <button class="c-button answer-item"
+                  :class="{'c-button--active': checkIndex === answerIndex}"
+                  @click="submitAns(answerIndex)"
+                  v-for="(answerItem, answerIndex) in cardArr[index].ChooseList">
+            <span class="icon-item">
+              <span v-if="answerIndex === 0">A.</span>
+              <span v-if="answerIndex === 1">B.</span>
+              <span v-if="answerIndex === 2">C.</span>
+              <span v-if="answerIndex === 3">D.</span>
+            </span>
+            <span class="c-button__label">{{answerItem}}</span>
+          </button>
+        </div>
+
+        <div class="answer" v-if="showAnswer">
+          正确答案： {{item.Answer}}
+        </div>
+
+        <div class="menu-card" :style="{color: chapterColor}">
+          <div class="all-question"><i class="fa fa-th" aria-hidden="true"></i></div>
+          <div class="show-answer" @click="showAnswer = !showAnswer">
+            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
+            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -26,22 +61,54 @@
       return {
         projectName: '马克思',
         chapterName: '导论',
+        chapterColor: "#536dfe",
+        checkIndex: -1,
+        showAnswer: false,
         cardArr: [
           {
-          title: 1,
-        }, {
-          title: 2,
-        }, {
-          title: 3,
-        }, {
-          title: 4,
-        }, {
-          title: 5,
-        }, {
-          title: 6,
-        }, {
-          title: 7,
-        },],
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 1,
+            Mode: "sig"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 2,
+            Mode: "mul"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 3,
+            Mode: "mul"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 4,
+            Mode: "sig"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 5,
+            Mode: "jud"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 6,
+            Mode: "sig"
+          }, {
+            QuestionStr: "毛泽东军军事思想产生时期的时间（&nbsp;）",
+            Answer: "B",
+            ChooseList: ["1922年7月~1938年1月", "1921年7月~1935年1月", "1935年1月~1945年8月", "1945年8月~1978年"],
+            ID: 7,
+            Mode: "jud"
+          },
+        ],
       }
     },
     mounted() {
@@ -49,9 +116,20 @@
 
       this.cardArr = this.cardArr.reverse();
     },
+    computed: {},
     methods: {
       backChapter() {
         this.$router.push({name: 'chapter'});
+      },
+
+      submitAns(index) {
+        console.log(index);
+        this.checkIndex = index;
+        // console.log(buttons)
+        // for (let i = 0; i < buttons.length; i++) {
+        // buttons[i].classList = ["c-button", "answer-item"]
+        // }
+        // buttons[index].classList.toggle('c-button--active');
       },
 
       // cardPre() {
@@ -66,6 +144,7 @@
       //
       //   this.cardArr.push({title: "插入的"})
       // },
+
 
       // 卡片布局
       cardInit() {
@@ -109,7 +188,7 @@
               // listen for tap and pan gestures on top card
               this.hammer = new Hammer(this.topCard);
               this.hammer.add(new Hammer.Tap());
-              this.hammer.add(new Hammer.Pan({position: Hammer.position_ALL, threshold: 0}))
+              this.hammer.add(new Hammer.Pan({position: Hammer.position_ALL, threshold: 0}));
 
               // pass events data to custom callbacks
               this.hammer.on('tap', (e) => {
@@ -135,7 +214,7 @@
             this.topCard.style.transition = 'transform 100ms ease-out';
 
             // rotate
-            this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
+            this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)';
 
             // wait transition end
             setTimeout(() => {
@@ -187,7 +266,7 @@
             let scale = (95 + (5 * Math.abs(propX))) / 100;
 
             // move top card
-            this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
+            this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)';
 
             // scale next card
             if (this.nextCard) {
@@ -202,23 +281,23 @@
               let successful = false;
 
               // set back transition properties
-              this.topCard.style.transition = 'transform 200ms ease-out'
-              if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
+              this.topCard.style.transition = 'transform 200ms ease-out';
+              if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear';
 
               // check threshold
-              if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+              if (propX > 0.25 && e.direction === Hammer.DIRECTION_RIGHT) {
 
                 successful = true;
                 // get right border position
                 posX = this.board.clientWidth
 
-              } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+              } else if (propX < -0.25 && e.direction === Hammer.DIRECTION_LEFT) {
 
                 successful = true;
                 // get left border position
                 posX = -(this.board.clientWidth + this.topCard.clientWidth)
 
-              } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {
+              } else if (propY < -0.25 && e.direction === Hammer.DIRECTION_UP) {
 
                 successful = true;
                 // get top border position
@@ -229,13 +308,12 @@
               if (successful) {
 
                 // throw card in the chosen direction
-                this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
+                this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)';
 
                 // console.log(this.cards.length)
 
                 // 根据card的长度来判断是否留下
                 if (this.cards.length > 1) {
-                  const that = this;
                   // wait transition end
                   setTimeout(() => {
                     // remove swiped card
@@ -289,7 +367,7 @@
 
         }
 
-        let board = document.querySelector('#board')
+        let board = document.querySelector('#board');
 
         let carousel = new Carousel(board)
       }
@@ -342,8 +420,8 @@
   }
 
   .card {
-    width: 90%;
-    height: 85%;
+    width: calc(90% - 40px);
+    height: calc(90% - 40px);
     position: absolute;
     top: 5%;
     left: 5%;
@@ -352,6 +430,150 @@
     box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
     background-color: #f4f6f8;
     transform: translateX(0%) translateY(0%) scale(0.95);
+    padding: 20px;
+
+    .card-head {
+      font-size: 14px;
+      line-height: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      .question-type {
+        height: 30px;
+        width: 100px;
+        border-radius: 5px;
+        background: #f4f6f8;
+        box-shadow: inset 5px 5px 10px #eaecee,
+        inset -5px -5px 10px #feffff;
+      }
+
+      .question-num {
+        height: 30px;
+        width: 100px;
+        border-radius: 5px;
+        background: #f4f6f8;
+        box-shadow: 5px 5px 10px #eaecee,
+        -5px -5px 10px #feffff;
+      }
+    }
+
+    .card-question {
+      margin: 10% 0;
+      width: calc(100% - 20px);
+      padding: 10px;
+      background: #f4f6f8;
+      border-radius: 5px;
+      text-align: left;
+      border: 1px solid #fff;
+      box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
+    }
+
+    .card-answer-list {
+
+      .c-button {
+        font-size: 14px;
+        text-align: left;
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: #2c3e50;
+        background: transparent;
+        border: 1px solid #fff;
+        position: relative;
+        box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
+        transition: all 500ms ease-out 0s;
+      }
+
+      button {
+        cursor: pointer;
+        /*color: inherit;*/
+        font-family: inherit;
+        margin-bottom: 5%;
+      }
+
+      button:active, button:focus {
+        outline: 0;
+      }
+
+      .c-button:hover:before {
+        background: rgba(255, 255, 255, 0.24);
+      }
+
+      .c-button:before {
+        content: '';
+        position: absolute;
+        border-radius: 5px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 2px solid transparent;
+        -webkit-filter: blur(2px);
+        filter: blur(2px);
+        -webkit-transition: all 120ms ease-out 0s;
+        transition: all 500ms ease-out 0s;
+      }
+
+      .c-button:after {
+        content: '';
+        position: absolute;
+        border-radius: 5px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        -webkit-transition: all 120ms ease-out 0s;
+        transition: all 500ms ease-out 0s;
+      }
+
+      .c-button--active {
+        color: #536dfe;
+        background: -webkit-gradient(linear, left bottom, left top, from(#f4f6f8), to(#fafcfd));
+        background: linear-gradient(to top, #f4f6f8, #fafcfd);
+        box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
+      }
+
+      .c-button--active:before {
+        border-color: white;
+        box-shadow: 0 0.8px 3px white;
+      }
+
+      .c-button--active:after {
+        box-shadow: inset 0 0 3px white;
+      }
+    }
+
+    .answer {
+      padding: 10px;
+      font-size: 14px;
+      text-align: left;
+      width: calc(100% - 20px);
+      border-radius: 5px;
+      background: #f4f6f8;
+      box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+    }
+
+    .menu-card {
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      height: 60px;
+      width: 80%;
+      border-radius: 5px;
+      background: #f4f6f8;
+      box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
+      display: flex;
+      line-height: 60px;
+      justify-content: center;
+      .all-question {
+        flex: 1;
+        border-right: 1px solid #eee;
+      }
+      .show-answer {
+        border-left: 1px solid #eee;
+        flex: 1;
+      }
+    }
   }
 
   /*往右切换*/
