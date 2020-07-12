@@ -19,7 +19,11 @@
         </div>
         <div class="content">
           <div class="circle-box" v-for="index in val">
-            <div class="circle" :class="{'active': isCheck(index, key)}" :style="{backgroundColor: getColor(index, key)}">
+            <div class="circle"
+                 :class="{'active': isCheck(index, key)}"
+                 :style="{backgroundColor: getColor(index, key)}"
+                 @click="toDetail(index, key)"
+            >
               {{index}}
             </div>
           </div>
@@ -30,7 +34,8 @@
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex'
+  import {mapState} from 'vuex'
+
   export default {
     name: "overview",
     data() {
@@ -64,8 +69,7 @@
       this.questionObj = tempObj;
 
       // console.log(this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index])
-      let checkObj = this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index];
-      this.answerObj = checkObj;
+      this.answerObj = this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index];
     },
     computed: {
       ...mapState([
@@ -108,6 +112,22 @@
       },
       getColor(index, type){
         if(this.isCheck(index, type)) return this.chapterColor;
+      },
+      toDetail(index, key){
+        console.log(index);
+        console.log(key);
+        let quesIndex = 0;
+        if (key === "sigNum") quesIndex = index;
+        if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
+        if (key === "blaNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum;
+        if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
+        console.log(quesIndex);
+        this.$router.push({
+          name: 'detail',
+          params: {
+            id: quesIndex
+          }
+        })
       }
     }
   }

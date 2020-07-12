@@ -19,10 +19,10 @@
             <span v-if="item.type === 3">判断题</span>
           </div>
           <div class="question-num">
-            <span :style="{color: chapterColor}" v-if="item.type === 0">{{index + 1}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 1">{{index + 1 - selectedChapter.radio}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 - selectedChapter.radio +selectedChapter.multiple}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 - selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 0">{{index + 1 + gapIndex}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 1">{{index + 1 + gapIndex- selectedChapter.radio}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
             /
             <span v-if="item.type === 0">{{selectedChapter.radio}}</span>
             <span v-if="item.type === 1">{{selectedChapter.multiple}}</span>
@@ -96,9 +96,19 @@
         answerList: [],
 
         isError: true,
+
+        gapIndex: 0,
       }
     },
     created() {
+
+      let isOverview = false;
+      let newIndex = null;
+      // console.log(this.$route.params.id);
+      if(typeof(this.$route.params.id) !== 'undefined'){
+        newIndex= this.$route.params.id - 1;
+        isOverview = true
+      }
 
       // 处理主题色
       this.chapterColor = this.themeColor;
@@ -107,13 +117,20 @@
       // 获取全部题目数据
       this.totalCardArr = this.selectedChapter.data;
 
-      // 懒加载，先加载10个
-      if (this.totalCardArr.length > 10) {
-        this.cardArr = this.totalCardArr.slice(0, 10);
+      if (isOverview){
+        if (this.totalCardArr.length - newIndex > 10) {
+          this.cardArr = this.totalCardArr.slice(newIndex, newIndex + 10);
+        } else {
+          this.cardArr = this.totalCardArr.slice(newIndex);
+        }
       } else {
-        this.cardArr = this.totalCardArr;
+        // 懒加载，先加载10个
+        if (this.totalCardArr.length > 10) {
+          this.cardArr = this.totalCardArr.slice(0, 10);
+        } else {
+          this.cardArr = this.totalCardArr;
+        }
       }
-
       // 处理标题信息
       this.chapterName = this.selectedChapter.title;
       this.projectName = this.selectedProject.chinese;
@@ -127,6 +144,11 @@
     },
     mounted() {
       this.cardInit();
+      // console.log("mounted:", this.$route.params.id);
+      if(typeof(this.$route.params.id) !== 'undefined'){
+        this.slice_count = this.$route.params.id - 1;
+        this.gapIndex = this.$route.params.id - 1;
+      }
     },
     computed: {
       ...mapState([
