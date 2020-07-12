@@ -1,0 +1,301 @@
+[{
+  "answer": "C",
+  "ChoosenA": "31245",
+  "ChoosenB": "41325",
+  "ChoosenC": "23415",
+  "ChoosenD": "14253",
+  "ID": 141,
+  "type": "sig",
+  "question": "一个栈的输入序列是1，2，3，4，5，则下列序列中_______是栈的输出序列。&nbsp;",
+  "Unit": 7
+}, {
+  "answer": "D",
+  "ChoosenA": "1,2,3,4",
+  "ChoosenB": "4,3,2,1",
+  "ChoosenC": "1,3,4,2",
+  "ChoosenD": "4,1,2,3",
+  "ID": 142,
+  "type": "sig",
+  "question": "一个栈的入栈序列1，2，3，4，则它的不可能的输出序列是_______。",
+  "Unit": 7
+}, {
+  "answer": "C",
+  "ChoosenA": "a[--top]=x",
+  "ChoosenB": "a[top--]=x",
+  "ChoosenC": "a[++top]=x",
+  "ChoosenD": "a[top++]=x",
+  "ID": 143,
+  "type": "sig",
+  "question": "假定利用数组a[N]顺序存储一个栈，用top表示栈顶指针，top=&nbsp;=-1表示栈<br\/>空，并已知栈未满，当元素x进栈时所执行的操作为_______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "4,3,2,1",
+  "ChoosenB": "1,2,3,4",
+  "ChoosenC": "1,4,3,2",
+  "ChoosenD": "3,2,4,1",
+  "ID": 144,
+  "type": "sig",
+  "question": "一个队列的入队序列是1，2，3，4，则队列的输出序列是_______。",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "前移队首指针",
+  "ChoosenB": "后移队首指针",
+  "ChoosenC": "取出队首指针所指位置上的元素",
+  "ChoosenD": "取出队尾指针所指位置上的元素",
+  "ID": 145,
+  "type": "sig",
+  "question": "从一个顺序循环队列中删除元素时，首先需要_______。",
+  "Unit": 7
+}, {
+  "answer": "D",
+  "ChoosenA": "front+1=&nbsp;=rear",
+  "ChoosenB": "rear+1=&nbsp;=front",
+  "ChoosenC": "front=&nbsp;=0",
+  "ChoosenD": "front=&nbsp;=rear",
+  "ID": 146,
+  "type": "sig",
+  "question": "假定一个顺序循环队列的队首和队尾指针分别用front和rear表示，则判断队<br\/>列空的条件为_______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "(rear-1)%N=&nbsp;=front",
+  "ChoosenB": "(rear+1)%N=&nbsp;=front",
+  "ChoosenC": "(front-1)%N=&nbsp;=rear",
+  "ChoosenD": "(front+1)%N=&nbsp;=rear",
+  "ID": 147,
+  "type": "sig",
+  "question": "假定一个顺序循环队列存储于数组a[N]中，其队首和队尾指针分别用front和<br\/>rear表示，则判断队列满的条件为_______<br\/>",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "e3,e1,e4,e2",
+  "ChoosenB": "e2,e4,e3,e1",
+  "ChoosenC": "e3,e4,e1,e2",
+  "ChoosenD": "任意顺序",
+  "ID": 148,
+  "type": "sig",
+  "question": "如果进栈序列为e1,e2,e3,e4,则可能的出栈序列是_______。",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "ABCED",
+  "ChoosenB": "DCBEA",
+  "ChoosenC": "DBCEA",
+  "ChoosenD": "CDABE",
+  "ID": 149,
+  "type": "sig",
+  "question": "栈底至栈顶依次存放元素A、B、C、D，在第五个元素E入栈前，栈中元素<br\/>可以出栈，则出栈序列可能是_______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "C",
+  "ChoosenA": "在队列中只能插入数据",
+  "ChoosenB": "在队列中只能删除数据",
+  "ChoosenC": "队列是先进先出的线性表",
+  "ChoosenD": "队列是先进后出的线性表",
+  "ID": 150,
+  "type": "sig",
+  "question": "下列关于队列的叙述中正确的是_______。",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "栈按\"先进先出\"组织数据",
+  "ChoosenB": "栈按“先进后出”组织数据",
+  "ChoosenC": "只能在栈底插入数据",
+  "ChoosenD": "不能删除数据",
+  "ID": 151,
+  "type": "sig",
+  "question": "下列关于栈的叙述正确的是_______。",
+  "Unit": 7
+}, {
+  "answer": "A",
+  "ChoosenA": "可能是2",
+  "ChoosenB": "一定是2",
+  "ChoosenC": "可能是1",
+  "ChoosenD": "一定是1",
+  "ID": 152,
+  "type": "sig",
+  "question": "若已知一个栈的进栈序列是1，2，3，...，n，其输出序列为p1，p2，p3，…，<br\/>pn，若p1＝3，则p2为_______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "C",
+  "ChoosenA": "2",
+  "ChoosenB": "3",
+  "ChoosenC": "5",
+  "ChoosenD": "6",
+  "ID": 153,
+  "type": "sig",
+  "question": "设有一顺序栈S，元素s1,s2,s3,s4,s5,s6依次进栈，如果6个元素出栈的顺序<br\/>是s2,s3,s4,s6,s5,s1,则栈的容量至少应该是_______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "C",
+  "ChoosenA": "都是先进先出",
+  "ChoosenB": "都是先进后出",
+  "ChoosenC": "只允许在端点处插入和删除元素",
+  "ChoosenD": "没有共同点",
+  "ID": 154,
+  "type": "sig",
+  "question": "栈和队列的共同点是_______。",
+  "Unit": 7
+}, {
+  "answer": "D",
+  "ChoosenA": "rear=rear+1",
+  "ChoosenB": "rear=(rear+1)%(m-1)",
+  "ChoosenC": "rear=(rear+1)%m",
+  "ChoosenD": "rear=(rear+1)%(m+1)",
+  "ID": 155,
+  "type": "sig",
+  "question": "循环队列存储在数组A[0..m]中，则入队时的操作为_______。",
+  "Unit": 7
+}, {
+  "answer": "D",
+  "ChoosenA": "对队列中的元素排序",
+  "ChoosenB": "取出最近进队的元素",
+  "ChoosenC": "在队头元素之前插入元素",
+  "ChoosenD": "删除队头元素",
+  "ID": 156,
+  "type": "sig",
+  "question": "允许对队列进行的操作有______。",
+  "Unit": 7
+}, {
+  "answer": "C",
+  "ChoosenA": "30",
+  "ChoosenB": "29",
+  "ChoosenC": "20",
+  "ChoosenD": "19",
+  "ID": 157,
+  "type": "sig",
+  "question": "设栈的顺序存储空间为S(0:49)，栈底指针bottom=49，栈顶指针top=30（指<br\/>向栈顶元素）。则栈中的元素个数为______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "D",
+  "ChoosenA": "仅修改头指针",
+  "ChoosenB": "仅修改尾指针",
+  "ChoosenC": "头、尾指针都要修改",
+  "ChoosenD": "头、尾指针可能都要修改",
+  "ID": 158,
+  "type": "sig",
+  "question": "用链接方式存储的队列，在进行删除运算时______。",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "1和5",
+  "ChoosenB": "2和4",
+  "ChoosenC": "4和2",
+  "ChoosenD": "5和1",
+  "ID": 159,
+  "type": "sig",
+  "question": "若用一个大小为6的数组来实现循环队列，且当前rear和front的值分别为0和3，当从队列中删除一个元素，再加入两个元素后，rear和front的值分别为______。&nbsp;",
+  "Unit": 7
+}, {
+  "answer": "B",
+  "ChoosenA": "不确定",
+  "ChoosenB": "n-i+1",
+  "ChoosenC": "i",
+  "ChoosenD": "n-i",
+  "ID": 160,
+  "type": "sig",
+  "question": "一个栈的输入序列为123．.n，若输出序列的第一个元素是n，输出第i（1&lt=i&lt=n）<br\/>个元素是______。<br\/>",
+  "Unit": 7
+}, {
+  "answer": "2,3",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 311,
+  "type": "jud",
+  "question": "设有一空栈，现有输入序列1，2，3，4，5，经过push,&nbsp;push,&nbsp;pop,&nbsp;push&nbsp;,pop,push&nbsp;,push后，对应的输出序列是_______。",
+  "Unit": 7
+}, {
+  "answer": "n-1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 312,
+  "type": "jud",
+  "question": "在一个具有n个存储单元的循环队列中，当队列满时共有______个元素。",
+  "Unit": 7
+}, {
+  "answer": "线性结构",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 313,
+  "type": "jud",
+  "question": "数据结构分为线性结构和非线性结构，带链的队列属于______。",
+  "Unit": 7
+}, {
+  "answer": "循环",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 314,
+  "type": "jud",
+  "question": "普通顺序队列会出现“假满”现象，解决的办法是采取______队列。",
+  "Unit": 7
+}, {
+  "answer": "先进后出",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 315,
+  "type": "jud",
+  "question": "栈是操作受限的线性表，其运算遵循_______的原则。",
+  "Unit": 7
+}, {
+  "answer": "3 1 2",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 316,
+  "type": "jud",
+  "question": "一个栈的输入序列是：1，2，3则不可能的栈输出序列是_______。&nbsp;",
+  "Unit": 7
+}, {
+  "answer": "先进先出",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 317,
+  "type": "jud",
+  "question": "队列是限制插入只能在表的一端，而删除在表的另一端进行的线性表，其特点是_______。&nbsp;",
+  "Unit": 7
+}, {
+  "answer": "(rear-front+m)%m",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 318,
+  "type": "jud",
+  "question": "循环队列用数组A[0..m-1]存放存放其元素值，已知其头尾指针分别是front和rear，则当前队列的元素个数是_______。",
+  "Unit": 7
+}, {
+  "answer": "栈",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 319,
+  "type": "jud",
+  "question": "表达式求值是_______应用的一个典型例子。",
+  "Unit": 7
+}, {
+  "answer": "data[++top]=x",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 320,
+  "type": "jud",
+  "question": "顺序栈用data[1..n]存储数据，栈顶指针是top,则值为x的元素入栈的操作s是_______。",
+  "Unit": 7
+}]

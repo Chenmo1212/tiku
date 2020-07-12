@@ -2,7 +2,7 @@
   <div class="chapter">
     <div class="header">
       <div class="return">
-        <div class="circle">
+        <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"></i>
         </div>
         <div>选择章节</div>

@@ -1,0 +1,501 @@
+[{
+  "answer": "C",
+  "ChoosenA": "数组的大小是固定的，但可以有不同类型的数组元素",
+  "ChoosenB": "数组的大小是可变的，但所有数组元素的类型必须相同",
+  "ChoosenC": "数组的大小是固定的，所有数组元素的类型必须相同",
+  "ChoosenD": "数组的大小是可变的，可以有不同类型的数组元素",
+  "ID": 1,
+  "type": "sig",
+  "question": "以下关于数组的描述正确的是________。",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "int&nbsp;a(10);",
+  "ChoosenB": "int&nbsp;n=10,a[n];",
+  "ChoosenC": "int&nbsp;n;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;scanf(\"%d\",&n);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;int&nbsp;a[n];",
+  "ChoosenD": "#define&nbsp;&nbsp;SIZE&nbsp;&nbsp;10&nbsp;<br\/>&nbsp;&nbsp;int&nbsp;&nbsp;a[SIZE];",
+  "ID": 2,
+  "type": "sig",
+  "question": "以下对一维整型数组a的正确说明是________。",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "double&nbsp;x[5]={2.0,4.0,6.0,8.0,10.0};",
+  "ChoosenB": "int&nbsp;y[5]={0,1,3,5,7,9};",
+  "ChoosenC": "char&nbsp;c1[&nbsp;]={’1’,’2’,’3’,’4’,’5’};",
+  "ChoosenD": "char&nbsp;c2[&nbsp;]={’\\x10’,&nbsp;’\\xa’,&nbsp;’\\x8’};",
+  "ID": 3,
+  "type": "sig",
+  "question": "以下不正确的定义语句是________。",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "int&nbsp;a[5]={0,1,2,3,4,5};",
+  "ChoosenB": "char&nbsp;a[]={’0’,’1’,’2’,’3’,’4’,’5’,’\\0’};",
+  "ChoosenC": "char&nbsp;a={’A’,’B’,’C’};",
+  "ChoosenD": "int&nbsp;a[5]=\"0123\";",
+  "ID": 4,
+  "type": "sig",
+  "question": "以下能正确定义一维数组的选项是________。",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "a[2][!1]",
+  "ChoosenB": "a[2][3]",
+  "ChoosenC": "a[0][3]",
+  "ChoosenD": "a[1&gt2][!1]",
+  "ID": 5,
+  "type": "sig",
+  "question": "若有定义:int&nbsp;a[2][3];，以下选项中对a数组元素正确引用的是________。",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "3",
+  "ChoosenB": "6",
+  "ChoosenC": "10",
+  "ChoosenD": "20",
+  "ID": 6,
+  "type": "sig",
+  "question": "假定一个int型变量占用两个字节，若有定义：int?x[10]={0,2,4};?则数组x在内存中所占字节数是________。",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "不确定的值",
+  "ChoosenB": "2",
+  "ChoosenC": "1",
+  "ChoosenD": "0",
+  "ID": 7,
+  "type": "sig",
+  "question": "以下程序运行后,输出结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;int&nbsp;n[5]={0,0,0},i,k=2;<br\/>&nbsp;for(i=0;i&ltk;i++)&nbsp;<br\/>&nbsp;n[i]=n[i]+1;<br\/>&nbsp;printf(\"%d\\n\",n[k]);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "20",
+  "ChoosenB": "21",
+  "ChoosenC": "22",
+  "ChoosenD": "23",
+  "ID": 8,
+  "type": "sig",
+  "question": "以下程序运行后，输出结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;int&nbsp;i,k,a[10],p[3];<br\/>&nbsp;k=5;<br\/>&nbsp;for&nbsp;(i=0;i&lt10;i++)&nbsp;a[i]=i;<br\/>&nbsp;for&nbsp;(i=0;i&lt3;i++)&nbsp;p[i]=a[i*(i+1)];<br\/>&nbsp;for&nbsp;(i=0;i&lt3;i++)&nbsp;k+=p[i]*2;<br\/>&nbsp;printf(\"%d\\n\",k);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "2",
+  "ChoosenB": "1",
+  "ChoosenC": "0",
+  "ChoosenD": "3",
+  "ID": 9,
+  "type": "sig",
+  "question": "以下程序运行后输出结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;int&nbsp;n[3],i,j,k;<br\/>&nbsp;for(i=0;i&lt3;i++)<br\/>&nbsp;n[i]=0;<br\/>&nbsp;k=2;<br\/>&nbsp;for&nbsp;(i=0;i&ltk;i++)<br\/>&nbsp;for&nbsp;(j=0;j&ltk;j++)&nbsp;<br\/>&nbsp;n[j]=n[i]+1;<br\/>&nbsp;printf(\"%d\\n\",n[1]);&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "1&nbsp;2&nbsp;3&nbsp;4",
+  "ChoosenB": "2&nbsp;3&nbsp;4&nbsp;4",
+  "ChoosenC": "4&nbsp;3&nbsp;3&nbsp;2",
+  "ChoosenD": "1&nbsp;1&nbsp;2&nbsp;3",
+  "ID": 10,
+  "type": "sig",
+  "question": "有以下程序<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main(&nbsp;)&nbsp;<br\/>&nbsp;{&nbsp;int&nbsp;s[12]={1,2,3,4,4,3,2,1,1,1,2,3},c[5]={0},i;&nbsp;<br\/>&nbsp;for(i=0;i&lt12;i++)&nbsp;c[s[i]]++;&nbsp;<br\/>&nbsp;for(i=1;i&lt5;i++)&nbsp;printf(\"%d&nbsp;\",c[i]);&nbsp;<br\/>&nbsp;printf(\"\\n\");&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;程序的运行结果是________。<br\/>",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "7,8",
+  "ChoosenB": "8,8",
+  "ChoosenC": "7,10",
+  "ChoosenD": "8,10",
+  "ID": 11,
+  "type": "sig",
+  "question": "现有如下程序段<br\/>&nbsp;#include&nbsp;\"stdio.h\"&nbsp;<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;int&nbsp;k[30]={12,324,45,6,768,98,21,34,453,456};&nbsp;<br\/>&nbsp;int&nbsp;count=0,i=0;&nbsp;<br\/>&nbsp;while(k[i])&nbsp;<br\/>&nbsp;{&nbsp;if(k[i]%2==0||k[i]%5==0)&nbsp;count++;&nbsp;i++;&nbsp;}&nbsp;<br\/>&nbsp;printf(\"%d,%d\\n\",count,i);<br\/>&nbsp;}&nbsp;<br\/>&nbsp;则程序段的输出结果为________。<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "int&nbsp;x[&nbsp;][3]={{0},{1},{1,2,3}};",
+  "ChoosenB": "int&nbsp;x[4][3]={{1,2,3},{1,2,3},{1,2,3},{1,2,3}};",
+  "ChoosenC": "int&nbsp;x[4][&nbsp;]={{1,2,3},{1,2,3},{1,2,3},{1,2,3}};",
+  "ChoosenD": "int&nbsp;x[&nbsp;][3]={1,2,3,4};",
+  "ID": 12,
+  "type": "sig",
+  "question": "以下错误的定义语句是________。",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "t[2][4]",
+  "ChoosenB": "t[5][0]",
+  "ChoosenC": "t[0][0]",
+  "ChoosenD": "t[0,0]",
+  "ID": 13,
+  "type": "sig",
+  "question": "若有以下的定义：int&nbsp;t[5][4];能正确引用t数组的表达式是________。",
+  "Unit": 1
+}, {
+  "answer": "A",
+  "ChoosenA": "0650",
+  "ChoosenB": "1470",
+  "ChoosenC": "5430",
+  "ChoosenD": "输出值不定",
+  "ID": 14,
+  "type": "sig",
+  "question": "以下程序的输出结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;int&nbsp;a[4][4]={{1,3,5},{2,4,6},{3,5,7}};<br\/>&nbsp;printf(\"%d%d%d%d\\n\",a[0][3],a[1][2],a[2][1],a[3][0]);<br\/>&nbsp;}&nbsp;<br\/>",
+  "Unit": 1
+}, {
+  "answer": "A",
+  "ChoosenA": "3",
+  "ChoosenB": "4",
+  "ChoosenC": "1",
+  "ChoosenD": "9",
+  "ID": 15,
+  "type": "sig",
+  "question": "以下程序的输出结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;int&nbsp;b[3][3]={0,1,2,0,1,2,0,1,2},i,j,t=0;<br\/>&nbsp;for(i=0;i&lt3;i++)<br\/>&nbsp;for(j=i;j&lt=i;j++)<br\/>&nbsp;t=t+b[i][b[j][j]];<br\/>&nbsp;printf(\"%d\\n\",t);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "9",
+  "ChoosenB": "不确定值",
+  "ChoosenC": "0",
+  "ChoosenD": "18",
+  "ID": 16,
+  "type": "sig",
+  "question": "下面的程序段运行后，输出结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{<br\/>&nbsp;int&nbsp;i,j,x=0;&nbsp;<br\/>&nbsp;static&nbsp;int&nbsp;a[8][8];&nbsp;<br\/>&nbsp;for(i=0;i&lt3;i++)&nbsp;<br\/>&nbsp;for(j=0;j&lt3;j++)&nbsp;<br\/>&nbsp;a[i][j]=2*i+j;&nbsp;<br\/>&nbsp;for(i=0;i&lt8;i++)&nbsp;<br\/>&nbsp;x+=a[i][j];&nbsp;<br\/>&nbsp;printf(\"%d\",x);&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "&nbsp;1&nbsp;5&nbsp;9",
+  "ChoosenB": "&nbsp;7&nbsp;5&nbsp;3",
+  "ChoosenC": "&nbsp;3&nbsp;5&nbsp;7",
+  "ChoosenD": "&nbsp;5&nbsp;9&nbsp;1",
+  "ID": 17,
+  "type": "sig",
+  "question": "下面程序输出的结果是________。<br\/>main()&nbsp;<br\/>{&nbsp;int&nbsp;i;&nbsp;<br\/>&nbsp;int&nbsp;a[3][3]={1,2,3,4,5,6,7,8,9};&nbsp;<br\/>&nbsp;for(i=0;i&lt3;i++)&nbsp;<br\/>&nbsp;printf(\"%d&nbsp;\",a[2-i][i]);&nbsp;<br\/>}&nbsp;<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "字符型数组中可以存放字符串",
+  "ChoosenB": "可以对字符型串进行整体输入、输出",
+  "ChoosenC": "可以对整型数组进行整体输入、输出",
+  "ChoosenD": "不能在赋值语句中通过赋值运算符\"=\"对字符型数组进行整体赋值",
+  "ID": 18,
+  "type": "sig",
+  "question": "下列描述中不正确的是________。",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "字符数组可以存放字符串",
+  "ChoosenB": "字符数组中的字符串可以整体输入、输出",
+  "ChoosenC": "可以在赋值语句中通过赋值运算符\"=\"对字符数组整体赋值",
+  "ChoosenD": "不可以用关系运算符对字符数组中的字符串进行比较",
+  "ID": 19,
+  "type": "sig",
+  "question": "下述对C语言字符数组的描述中错误的是________。",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "3",
+  "ChoosenB": "4",
+  "ChoosenC": "6",
+  "ChoosenD": "12",
+  "ID": 20,
+  "type": "sig",
+  "question": "若有以下程序片段:&nbsp;<br\/>&nbsp;char&nbsp;str[&nbsp;]=\"ab\\n\\012\\\\\\\"\";<br\/>&nbsp;printf(\"%d\",strlen(str));<br\/>&nbsp;上面程序片段的输出结果是________。<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "’",
+  "ChoosenB": "1a2b3c",
+  "ChoosenC": "abc",
+  "ChoosenD": "123",
+  "ID": 42,
+  "type": "sig",
+  "question": "以下程序输出的结果是________。<br\/>&nbsp;#include&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char<br\/>&nbsp;str[]=\"1a2b3c\";<br\/>&nbsp;int&nbsp;i;<br\/>&nbsp;for(i=0;str[i]!=’\\0’;i++)<br\/>&nbsp;if(str[i]&lt’0||str[i]&gt’9’)<br\/>&nbsp;printf(\"%c\",str[i]);<br\/>&nbsp;printf(\"\\n\");}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "数组x和数组y等价",
+  "ChoosenB": "数组x和数组y的长度相同",
+  "ChoosenC": "数组x的长度大于数组y的长度",
+  "ChoosenD": "数组x的长度小于数组y的长度",
+  "ID": 43,
+  "type": "sig",
+  "question": "若给出以下定义:&nbsp;<br\/>&nbsp;char&nbsp;x[&nbsp;]=\"abcdefg\";<br\/>&nbsp;char&nbsp;y[&nbsp;]={&nbsp;’a’,&nbsp;’b’,&nbsp;’c’,&nbsp;’d’,&nbsp;’e’,&nbsp;’f’,&nbsp;’g’};&nbsp;<br\/>&nbsp;则正确的叙述为________。<br\/>",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "gets(&s[0]);",
+  "ChoosenB": "scanf(\"%s\",s+1);",
+  "ChoosenC": "gets(s);",
+  "ChoosenD": "scanf(\"%s\",s[1]);",
+  "ID": 44,
+  "type": "sig",
+  "question": "有定义语句:char&nbsp;s[10];，若要从终端给s输入5个字符,错误的输入语句是________。",
+  "Unit": 1
+}, {
+  "answer": "C",
+  "ChoosenA": "scanf()",
+  "ChoosenB": "getchar()",
+  "ChoosenC": "gets()",
+  "ChoosenD": "getc()",
+  "ID": 45,
+  "type": "sig",
+  "question": "当用户要求输入的字符串中含有空格时,应使用的输入函数是________。",
+  "Unit": 1
+}, {
+  "answer": "D",
+  "ChoosenA": "char&nbsp;a[]={’t’,’o’,’y’,’o’,’u’,’\\0’};",
+  "ChoosenB": "char&nbsp;a[]={\"toyou\\0\"};",
+  "ChoosenC": "char&nbsp;a[]=\"toyou\\0\";",
+  "ChoosenD": "char&nbsp;a[]=’toyou\\0’;",
+  "ID": 46,
+  "type": "sig",
+  "question": "下列选项中错误的说明语句是________。",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "9",
+  "ChoosenB": "6",
+  "ChoosenC": "11",
+  "ChoosenD": "7",
+  "ID": 47,
+  "type": "sig",
+  "question": "有以下程序<br\/>&nbsp;#&nbsp;include&nbsp;&ltstring.h&gt<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;char&nbsp;p[20]={‘a’,&nbsp;‘b’,&nbsp;‘c’,&nbsp;‘d’},&nbsp;q[&nbsp;]=\"abc\",&nbsp;r[&nbsp;]=\"abcde\";&nbsp;<br\/>&nbsp;strcat(p,&nbsp;r);&nbsp;strcpy(p+strlen(q),&nbsp;q);&nbsp;<br\/>&nbsp;printf(\"%d\\n\",strlen(p));&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;程序运行后的输出结果是________。<br\/>",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "输出字符数组s中ASCII码最大的字符及位置",
+  "ChoosenB": "输出字符数组s中ASCII码最小的字符及位置",
+  "ChoosenC": "输出字符数组s中ASCII码最大的字符及字符串的长度",
+  "ChoosenD": "输出字符数组s中ASCII码最小的字符及字符串的长度",
+  "ID": 48,
+  "type": "sig",
+  "question": "下面程序的功能是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char&nbsp;s[]=\"father\";<br\/>&nbsp;int&nbsp;i,j=0;<br\/>&nbsp;for(i=1;i&lt6;i++)<br\/>&nbsp;if(s[j]&gts[i])<br\/>&nbsp;j=i;<br\/>&nbsp;printf(\"%c,%d\\n\",s[j],j+1);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "A",
+  "ChoosenA": "ABC",
+  "ChoosenB": "ABC9",
+  "ChoosenC": "123456ABC",
+  "ChoosenD": "ABC456789",
+  "ID": 49,
+  "type": "sig",
+  "question": "运行下面的程序,如果从键盘上输入：ABC时，输出的结果是________。&nbsp;<br\/>&nbsp;#include&ltstring.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char&nbsp;ss[10]=\"12345\";<br\/>&nbsp;strcat(ss,&nbsp;\"6789\"&nbsp;);<br\/>&nbsp;gets(ss);<br\/>&nbsp;printf(\"%s\\n\",ss);&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "B",
+  "ChoosenA": "\"AAAA\"",
+  "ChoosenB": "\"BBB\"",
+  "ChoosenC": "\"BBBCC\"",
+  "ChoosenD": "\"CC\"",
+  "ID": 50,
+  "type": "sig",
+  "question": "以下程序运行后，输出结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char&nbsp;ch[3][5]={\"AAAA\",\"BBB\",\"CC\"};<br\/>&nbsp;printf(\"\\\"%s\\\"\\n\",ch[1]);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "A",
+  "ChoosenA": "you&me",
+  "ChoosenB": "you",
+  "ChoosenC": "me",
+  "ChoosenD": "err",
+  "ID": 51,
+  "type": "sig",
+  "question": "以下程序运行后，输出结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char&nbsp;arr[2][4];<br\/>&nbsp;strcpy(arr,\"you\");&nbsp;<br\/>&nbsp;strcpy(arr[1],\"me\");<br\/>&nbsp;arr[0][3]=;<br\/>&nbsp;printf(\"%s&nbsp;\\n\",arr);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 231,
+  "type": "jud",
+  "question": "C语言中，数组元素的下标下限为______。",
+  "Unit": 1
+}, {
+  "answer": "越界",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 232,
+  "type": "jud",
+  "question": "C程序在执行过程中，不检查数组下标是否________。",
+  "Unit": 1
+}, {
+  "answer": "5 4 3 2 1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 233,
+  "type": "jud",
+  "question": "下面程序的运行结果是______。&nbsp;<br\/>&nbsp;#define&nbsp;N&nbsp;5<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;int&nbsp;a[N]={1,2,3,4,5},i,temp;<br\/>&nbsp;for(i=0;i&ltN\/2;i++)<br\/>&nbsp;{&nbsp;temp=a[i];&nbsp;<br\/>&nbsp;a[i]=a[N-i-1];&nbsp;<br\/>&nbsp;a[N-i-1]=temp;<br\/>&nbsp;}<br\/>&nbsp;printf(\"\\n\");<br\/>&nbsp;for(i=0;i&ltN;i++)&nbsp;<br\/>&nbsp;printf(\"%d&nbsp;\",&nbsp;a[i]);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "&a[i]或a+i@i%4==0",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 234,
+  "type": "jud",
+  "question": "以下程序以每一行输出4个数据的形式输出a数组，请填空。<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;int&nbsp;a[20],i;<br\/>&nbsp;for(i=0;i&lt20;i++)&nbsp;<br\/>&nbsp;scanf(\"%d\",&nbsp;________);<br\/>&nbsp;for(i=0;i&lt20;i++)<br\/>&nbsp;{&nbsp;if&nbsp;(________&nbsp;)&nbsp;printf(\"\\n\");<br\/>&nbsp;printf(\"%3d\",a[i]);<br\/>&nbsp;}<br\/>&nbsp;printf(\"\\n\");<br\/>&nbsp;}&nbsp;<br\/>",
+  "Unit": 1
+}, {
+  "answer": "a[1][3]",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 235,
+  "type": "jud",
+  "question": "若有定义语句“int&nbsp;a[3][6];”，按在内存中的存放顺序，a数组的第10个元素是______。&nbsp;",
+  "Unit": 1
+}, {
+  "answer": "-850,2,0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 236,
+  "type": "jud",
+  "question": "下列程序的输出结果是______。<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;int&nbsp;i,&nbsp;j,&nbsp;row,&nbsp;column,m;<br\/>&nbsp;static&nbsp;int&nbsp;array[3][3]={{100,200,300},{28,72,-30},{-850,2,6}};<br\/>&nbsp;m=array[0][0];<br\/>&nbsp;for&nbsp;(i=0;&nbsp;i&lt3;&nbsp;i++)<br\/>&nbsp;for&nbsp;(j=0;&nbsp;j&lt3;&nbsp;j++)<br\/>&nbsp;if&nbsp;(array[i][j]&ltm)<br\/>&nbsp;{&nbsp;m=array[i][j];&nbsp;row=i;&nbsp;column=j;}<br\/><br\/>&nbsp;printf(\"%d,%d,%d\\n\",m,row,column);<br\/>&nbsp;}&nbsp;<br\/>&nbsp;",
+  "Unit": 1
+}, {
+  "answer": "6个字节",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 237,
+  "type": "jud",
+  "question": "设有数组定义“char&nbsp;array[&nbsp;]=\"china\";”，则数组array所占的空间为&nbsp;______&nbsp;个字节。",
+  "Unit": 1
+}, {
+  "answer": "18",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 238,
+  "type": "jud",
+  "question": "以下程序的输出结果是______。<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;int&nbsp;a[3][3]={{1,2},{3,4},{5,6}},i,j,s=0;<br\/>&nbsp;for(i=1;i&lt3;i++)<br\/>&nbsp;for(j=0;j&lt=i;j++)<br\/>&nbsp;s+=a[i][j];<br\/>&nbsp;printf(\"%d\\n\",s);<br\/>&nbsp;return&nbsp;0;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "'\\0'或0@strl[i]-str2[i]",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 239,
+  "type": "jud",
+  "question": "以下程序用来对从键盘上输入的两个字符串进行比较,然后输出两个字符串中第一个不相同字符的ASCII码之差。例如:输入的两个字符串分别为abcdef和abceef,则输出为-1。请填空。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;<br\/>&nbsp;char&nbsp;str1[100],str2[100],c;<br\/>&nbsp;int&nbsp;i,s;<br\/>&nbsp;printf(\"\\n&nbsp;input&nbsp;string&nbsp;1:\\n\");&nbsp;<br\/>&nbsp;gets(str1);<br\/>&nbsp;printf(\"\\n&nbsp;input&nbsp;string&nbsp;2:\\n\");&nbsp;<br\/>&nbsp;gets(str2);<br\/>&nbsp;i=0;<br\/>&nbsp;while((strl[i]==str2[i])&&(str1[i]!=&nbsp;________))<br\/>&nbsp;i++;<br\/>&nbsp;s=&nbsp;________&nbsp;;<br\/>&nbsp;printf(\"%d\\n\",s);<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "How are you? How",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 240,
+  "type": "jud",
+  "question": "以下程序运行时从键盘输入：How&nbsp;are&nbsp;you?&lt回车&gt，则输出结果为______。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;char&nbsp;a[20]=&nbsp;\"How&nbsp;are&nbsp;you?&nbsp;\",b[20];<br\/>&nbsp;scanf(\"%s\",b);<br\/>&nbsp;printf(\"%s&nbsp;%s\\n\",a,b);<br\/>&nbsp;}",
+  "Unit": 1
+}, {
+  "answer": "int i,flag@str1[i]!=str[i]",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 241,
+  "type": "jud",
+  "question": "从键盘输入由5个字符组成的单词，判断此单词是不是hello，并显示结果，请填空。<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;static&nbsp;char&nbsp;str[&nbsp;]={&nbsp;’h’,&nbsp;’e’,&nbsp;’l’,&nbsp;’l’,&nbsp;’o’};<br\/>&nbsp;char&nbsp;str1[5];<br\/>&nbsp;________&nbsp;;<br\/>&nbsp;for(i=0;i&lt5;i++)<br\/>&nbsp;scanf(\"%c\",&str1[i]);<br\/>&nbsp;flag=0;<br\/>&nbsp;for(i=0;i&lt5;i++)<br\/>&nbsp;if&nbsp;（________）&nbsp;<br\/>&nbsp;{flag=1;&nbsp;break;}<br\/>&nbsp;if(flag)&nbsp;<br\/>&nbsp;printf(\"this&nbsp;word&nbsp;is&nbsp;not&nbsp;hello\");<br\/>&nbsp;else&nbsp;<br\/>&nbsp;printf(\"this&nbsp;word&nbsp;is&nbsp;hello\");<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "Hello",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 242,
+  "type": "jud",
+  "question": "以下程序段的输出结果是______。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;char&nbsp;b[]=\"Hello,you\";<br\/>&nbsp;b[5]=0;<br\/>&nbsp;printf(\"%s\\n\",&nbsp;b&nbsp;);&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "s[i++]",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 243,
+  "type": "jud",
+  "question": "若定义语句“char&nbsp;s[100]d[100];&nbsp;int&nbsp;j=0;i=0;”，且s中已赋字符串，请填空以实现字符串的复制。(注：不得使用逗号表达式）<br\/>&nbsp;while(s[i])&nbsp;{&nbsp;d[j]=______;j++;&nbsp;｝<br\/>&nbsp;d&nbsp;[j]=0;<br\/>",
+  "Unit": 1
+}, {
+  "answer": "i=1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 244,
+  "type": "jud",
+  "question": "下列程序的功能是：求出数组X中各相邻两个元素的和并依次存放到a数组中，然后输出。请填空。<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;int&nbsp;x[10],a[9],i;<br\/>&nbsp;for(i=0;&nbsp;i&lt10;&nbsp;i++）scanf(\"%d\",&x[i]);<br\/>&nbsp;for(______;i&lt10;i++)<br\/>&nbsp;a[i-1]=x[i]+&nbsp;x[i-1];<br\/>&nbsp;for(i=0;&nbsp;i&lt9;&nbsp;i++）&nbsp;printf&nbsp;(\"%d\",a[i]);<br\/>&nbsp;printf&nbsp;(\"\\n\");<br\/>&nbsp;return&nbsp;0;&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "a*b*c*d*",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 245,
+  "type": "jud",
+  "question": "下列程序运行时输入“abcd&lt回车&gt”，程序的输出结果是______。<br\/>&nbsp;#include\"stdio.h\"<br\/>&nbsp;#include\"string.h\"<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;char&nbsp;str[40];int&nbsp;i;<br\/>&nbsp;scanf(\"%s\",str);<br\/>&nbsp;i=strlen(str);<br\/>&nbsp;while(i&gt0)<br\/>&nbsp;{&nbsp;str[2*i]=str[i];str[2*i-1]=’*’;i--;&nbsp;}<br\/>&nbsp;printf(\"%s\\n\",str);<br\/>&nbsp;return&nbsp;0;&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "5",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 246,
+  "type": "jud",
+  "question": "以下程序的输出结果是______。<br\/>main(&nbsp;)<br\/>{&nbsp;static&nbsp;char&nbsp;str[&nbsp;]=\"Beijing\";<br\/>&nbsp;printf(\"%d\\n\",&nbsp;strlen(strcpy(str,\"China\")));<br\/>}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "&a[i]@a[i]",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 247,
+  "type": "jud",
+  "question": "以下程序从键盘读入20个数据到数组中，统计其中正数的个数，并计算它们之和，请填空。<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;int&nbsp;i,a[20],sum,count;<br\/>&nbsp;sum=count=0;<br\/>&nbsp;for(i=0;&nbsp;i&lt20;&nbsp;i++）&nbsp;scanf(\"%d\",________);<br\/>&nbsp;for(i=0;&nbsp;i&lt20;&nbsp;i++）<br\/>&nbsp;if(a[i]&gt0)&nbsp;<br\/>&nbsp;{&nbsp;count++;<br\/>&nbsp;sum+=________;}<br\/>&nbsp;printf&nbsp;(\"sum=%d,count=%d\\n\",sum,count）；<br\/>&nbsp;return&nbsp;0；&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "24",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 248,
+  "type": "jud",
+  "question": "以下程序的输出结果是______。<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;int&nbsp;p[7]={11,13,14,15,16,17,18};<br\/>&nbsp;int&nbsp;i=0,j=0;<br\/>&nbsp;while(i&lt7&&p[i]%2==1)&nbsp;j+=p[i++];<br\/>&nbsp;printf(\"%d\\n\",j);<br\/>&nbsp;return&nbsp;0;&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "break",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 249,
+  "type": "jud",
+  "question": "输入一个正整数n(1&ltn≤10),再输入n个整数，将他们存在数组a中，再输入一个数x,然后在数组中查找x,&nbsp;如果找到，输出相应的最小下标；否则，输出“Not&nbsp;Found”。&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;int&nbsp;i,index,n,x,a[10];&nbsp;<br\/>&nbsp;scanf(\"%d\",&n);<br\/>&nbsp;for(i=0;&nbsp;i&ltn;i++）<br\/>&nbsp;scanf(\"%d\",&a[i]);<br\/>&nbsp;scanf(\"%d\",&x);<br\/>&nbsp;index=-1;<br\/>&nbsp;for(i=0;i&ltn;i++）<br\/>&nbsp;if(a[i]==x)<br\/>&nbsp;{&nbsp;index=i;<br\/>&nbsp;______&nbsp;;&nbsp;}<br\/>&nbsp;if（index!=-1)&nbsp;printf&nbsp;(\"%d\\n\",idex);<br\/>&nbsp;else&nbsp;printf&nbsp;(\"Not&nbsp;found\\n\");<br\/>&nbsp;return&nbsp;0;&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}, {
+  "answer": "aver+=x[i]",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 250,
+  "type": "jud",
+  "question": "以下是个评分统计程序，共有8个评委打分，统计时，去掉一个最高分和一个最低分，其余6个分数的平均分即最后得分，程序最后应显示这个得分，显示精度为2位小数，程序如下，请填空。<br\/>&nbsp;int&nbsp;main(void)<br\/>&nbsp;{&nbsp;float&nbsp;x[8]&nbsp;={9,2,9,5,9,8,7,4,&nbsp;5,9,1,9,0};<br\/>&nbsp;float&nbsp;aver=0,max,min;&nbsp;int&nbsp;i;<br\/>&nbsp;for(i=0;i&lt8;i++）______&nbsp;;<br\/>&nbsp;max=x[0];&nbsp;min=x[0];<br\/>&nbsp;for(i=0;&nbsp;i&lt8;&nbsp;i++）<br\/>&nbsp;{&nbsp;if（max&nbsp;&ltx[i])max=x[i];<br\/>&nbsp;if（min&nbsp;&gtx[i])min=x[i];&nbsp;}<br\/>&nbsp;aver=(aver-max-min)\/6;<br\/>&nbsp;printf&nbsp;(\"Average%.2f\\n\",aver);<br\/>&nbsp;return&nbsp;0;&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 1
+}]

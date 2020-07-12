@@ -2,7 +2,7 @@
   <div class="Detail">
     <div class="header">
       <div class="return">
-        <div class="circle">
+        <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
         <div class="page-title">章节背题 | {{projectName}} - {{chapterName}}</div>
@@ -613,8 +613,6 @@
       }
 
       .c-button--active {
-        border: 1px solid #536dfe;
-        color: #536dfe;
         background: -webkit-gradient(linear, left bottom, left top, from(#f4f6f8), to(#fafcfd));
         background: linear-gradient(to top, #f4f6f8, #fafcfd);
         box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
