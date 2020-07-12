@@ -5,7 +5,8 @@
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div class="page-title">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
+        <div class="page-title">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span>
+        </div>
       </div>
     </div>
     <div id="board">
@@ -121,14 +122,8 @@
       let dataList = this.selectedChapter.data;
       // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
-        // this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
-        // console.log(dataList[i].answer);
-        // if (dataList[i].answer === 0) this.answerList.push("A");
-        // if (dataList[i].answer === 1) this.answerList.push("B");
-        // if (dataList[i].answer === 2) this.answerList.push("C");
-        // if (dataList[i].answer === 3) this.answerList.push("D");
+        this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
       }
-      // console.log(this.answerList);
     },
     mounted() {
       this.cardInit();
@@ -193,12 +188,58 @@
         tempObj['index'] = quesIndex;
         tempObj['userAns'] = userAns;
 
-        // 科目id-章节下标-题目下标-用户答案
-        this.setSelectedAnswer({projectId: projectId, chapterIndex: chapterIndex, quesObj: tempObj, quesType: item.type});
-
-        // console.log(typeof index)
-        // console.log(this.selectedAnswer)
+        // console.log(this.selectedAnswer[projectId][chapterIndex]);
+        if (item.type === 0) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'sigArr');
+        if (item.type === 1) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'mulArr');
+        if (item.type === 2) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'blaArr');
+        if (item.type === 3) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'judArr');
       },
+
+
+      // 判断是否需要替换已选择的答案
+      judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr){
+        let tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
+        let obj = this.isHasObj(tempArr, quesIndex);
+        console.log(obj.flag);
+        if (obj.flag) {
+          // 科目id-章节下标-题目下标-用户答案
+          this.setSelectedAnswer({
+            projectId: projectId,
+            chapterIndex: chapterIndex,
+            quesObj: tempObj,
+            quesType: type,
+            isReplace: true,
+            replaceIndex: obj.index
+          });
+        } else {
+          // 科目id-章节下标-题目下标-用户答案
+          this.setSelectedAnswer({
+            projectId: projectId,
+            chapterIndex: chapterIndex,
+            quesObj: tempObj,
+            quesType: type,
+            isReplace: false,
+          });
+        }
+      },
+      // 判断是否已经选择过该题
+      isHasObj(arr, val) {
+        let flag = false; // true为有 false为没有
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i].index === val) {
+            flag = true;
+            console.log("重复值下标为：", i);
+            return {flag: true, index: i};
+          }
+        }
+        return {flag: false, index: -1};
+      },
+
+      getAnsStyle(bool) {
+        if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+        return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
+      }
+      ,
 
       /**
        * 将答案序号改成文字
@@ -230,10 +271,11 @@
           }
           return tempAns;
         } else if (type === 3) { // 判断题
-          if (ans === 0)  return "对";
-          if (ans === 0)  return "错";
+          if (ans === 0) return "对";
+          if (ans === 0) return "错";
         }
-      },
+      }
+      ,
 
       /**
        * 懒加载加入数据
@@ -266,7 +308,8 @@
           // 重新渲染v-for
           this.$forceUpdate();
         }
-      },
+      }
+      ,
 
       // 卡片布局
       cardInit() {
@@ -450,10 +493,12 @@
                 if (this.cards.length > 1) {
                   // wait transition end
                   setTimeout(() => {
+                    that.isError = true;
+                    that.showAnswer = false;
+                    that.checkIndex = -1;
+
                     // remove swiped card
                     this.board.removeChild(this.topCard);
-
-                    // that.cardArr.pop();
                     // console.log("remove:",that.cardArr.length);
                     // console.log("remove:",that.cardArr);
                     // add new card
@@ -508,7 +553,8 @@
         let board = document.querySelector('#board');
 
         let carousel = new Carousel(board)
-      },
+      }
+      ,
     }
   }
 </script>
