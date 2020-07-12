@@ -7,7 +7,7 @@
         </div>
         <div>选择章节</div>
         |
-        <div>{{pageName}}</div>
+        <div :style="{color: chapterColor}">{{pageName}}</div>
       </div>
     </div>
 
@@ -24,8 +24,11 @@
               </div>
             </div>
             <div class="type">
-              单选：{{item.sig}}道 &nbsp;多选:{{item.mul}}道
-              判断：{{item.jud}}道&nbsp;填空：{{item.bla}}道</div>
+              <span v-if="item.sig"> 单选: <span :style="{color: chapterColor}">{{item.sig}}</span> 道</span>&nbsp;
+              <span v-if="item.mul"> 多选: <span :style="{color: chapterColor}">{{item.mul}}</span> 道</span>&nbsp;
+              <span v-if="item.jud"> 判断: <span :style="{color: chapterColor}">{{item.jud}}</span> 道</span>&nbsp;
+              <span v-if="item.bla"> 填空: <span :style="{color: chapterColor}">{{item.bla}}</span> 道</span>&nbsp;
+            </div>
           </div>
           <div class="right">
             <div class="detail-icon" @click.stop="clickCardBtn(index, 2, $event)">
@@ -61,12 +64,12 @@
         'selectedProject',
       ]),
     },
-    created(){
+    created() {
       this.pageName = this.selectedProject.chinese;
       this.chapterColor = this.selectedProject.color;
       this.projectData = this.selectedProject.content;
     },
-    mounted(){
+    mounted() {
       console.log(this.selectedProject);
       console.log(this.selectedProject.chinese);
     },
@@ -85,7 +88,7 @@
        * @param ev 事件函数
        */
       clickCardBtn(index, type, ev) {
-        if (type === 2){
+        if (type === 2) {
           ev.srcElement.classList.add("active");
           // console.log(index);
         }
@@ -138,7 +141,8 @@
   }
 
   .chapter-select {
-    margin: 5% 0 10%;
+    padding: 5% 0 10%;
+
     .card-container {
       .card {
         margin: 15px 15px 0;
@@ -188,6 +192,8 @@
           .type {
             font-size: 12px;
             margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
           }
         }
 

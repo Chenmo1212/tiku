@@ -19,7 +19,10 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          单选：{{currentMemory.radioNum}}道 &nbsp;&nbsp;多选:{{currentMemory.multiNum}}道&nbsp;&nbsp;判断：{{currentMemory.judgeNum}}道
+          <span v-if="currentMemory.radioNum"> 单选:{{currentMemory.radioNum}}道</span>&nbsp;
+          <span v-if="currentMemory.multiNum"> 多选:{{currentMemory.multiNum}}道</span>&nbsp;
+          <span v-if="currentMemory.judgeNum"> 判断:{{currentMemory.judgeNum}}道</span>&nbsp;
+          <span v-if="currentMemory.fillNum"> 填空:{{currentMemory.bla}}道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
@@ -49,7 +52,10 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          单选：{{value.total_sig_num}}道 &nbsp;多选:{{value.total_mul_num}}道&nbsp;判断：{{value.total_jud_num}}道&nbsp;填空：{{value.total_bla_num}}道
+          <span v-if="value.total_sig_num"> 单选: <span :style="{color: value.color}">{{value.total_sig_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_mul_num"> 多选: <span :style="{color: value.color}">{{value.total_mul_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_jud_num"> 判断: <span :style="{color: value.color}">{{value.total_jud_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_bla_num"> 填空: <span :style="{color: value.color}">{{value.total_bla_num}}</span> 道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
@@ -105,6 +111,7 @@
           radioNum: 65,              // 章节单选题数
           multiNum: 35,              // 章节多选题数
           judgeNum: 0,               // 章节判断题数
+          fillNum: 0,                // 章节填空题数
           color: "#536DFE"
         },
         // 卡片内容

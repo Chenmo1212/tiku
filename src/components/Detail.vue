@@ -5,9 +5,7 @@
         <div class="circle">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div>章节背题</div>
-        |
-        <div>{{projectName}} - {{chapterName}}</div>
+        <div class="page-title">章节背题 | {{projectName}} - {{chapterName}}</div>
       </div>
     </div>
     <div id="board">
@@ -20,15 +18,17 @@
             <span v-if="item.type === 3">判断题</span>
           </div>
           <div class="question-num">
-            <span :style="{color: chapterColor}" v-if="item.type === 0">{{selectedChapter.fill + selectedChapter.radio + selectedChapter.multiple + selectedChapter.decide - index}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 1">{{selectedChapter.fill + selectedChapter.decide - index}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 2">{{selectedChapter.fill +selectedChapter.multiple + selectedChapter.decide - index}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 3">{{selectedChapter.decide - index}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 0">{{index + 1}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 1">{{index + 1 - selectedChapter.radio}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 - selectedChapter.radio +selectedChapter.multiple}}</span>
+            <span :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 - selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
             /
             <span v-if="item.type === 0">{{selectedChapter.radio}}</span>
             <span v-if="item.type === 1">{{selectedChapter.multiple}}</span>
             <span v-if="item.type === 2">{{selectedChapter.fill}}</span>
             <span v-if="item.type === 3">{{selectedChapter.decide}}</span>
+            /
+            <span>{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
           </div>
         </div>
         <div class="card-question">
@@ -37,6 +37,7 @@
         <div class="card-answer-list">
           <button class="c-button answer-item"
                   :class="{'c-button--active': checkIndex === answerIndex}"
+                  :style="getColor(answerIndex)"
                   @click="submitAns(answerIndex)"
                   v-for="(answerItem, answerIndex) in cardArr[index].options">
             <span class="icon-item">
@@ -50,9 +51,8 @@
         </div>
 
         <div class="answer" v-if="showAnswer" :style="{color: chapterColor}">
-          正确答案：
+          正确答案：{{answerList[index]}}
         </div>
-        {{answerList[index]}}
 
         <div class="menu-card" :style="{color: chapterColor}">
           <div class="all-question" @click="toOverview">
@@ -81,32 +81,48 @@
         chapterColor: "#536dfe",
         checkIndex: -1,
         showAnswer: false,
-        cardArr: [],
+
+        cardArr: [],                    // 显示的数组
+        totalCardArr: [],               // 总的数组
+        slice_count: 10,
+
         answerList: []
       }
     },
     created() {
-      this.chapterColor = this.themeColor;
-      console.log(this.selectedChapter);
-      this.cardArr = this.selectedChapter.data;
-      this.chapterName = this.selectedChapter.title;
-      this.projectName = this.projectName.chinese;
 
+      // 处理主题色
+      this.chapterColor = this.themeColor;
+      // console.log(this.selectedChapter);
+
+      // 获取全部题目数据
+      this.totalCardArr = this.selectedChapter.data;
+
+      // 懒加载，先加载10个
+      if (this.totalCardArr.length > 10) {
+        this.cardArr = this.totalCardArr.slice(0, 10);
+      } else {
+        this.cardArr = this.totalCardArr;
+      }
+
+      // 处理标题信息
+      this.chapterName = this.selectedChapter.title;
+      this.projectName = this.selectedProject.chinese;
+
+      // 处理选项数据
       let dataList = this.selectedChapter.data;
-      console.log(dataList)
+      // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
-        console.log(dataList[i].answer)
+        // console.log(dataList[i].answer);
         if (dataList[i].answer === 0) this.answerList.push("A");
         if (dataList[i].answer === 1) this.answerList.push("B");
         if (dataList[i].answer === 2) this.answerList.push("C");
         if (dataList[i].answer === 3) this.answerList.push("D");
       }
-      console.log(this.answerList);
+      // console.log(this.answerList);
     },
     mounted() {
       this.cardInit();
-
-      this.cardArr = this.cardArr.reverse();
     },
     computed: {
       ...mapState([
@@ -120,6 +136,17 @@
         'setSelectedChapter'
       ]),
 
+      /**
+       * 更改选项颜色
+       * @param answerIndex 选项下标
+       * @returns {*} 返回颜色
+       */
+      getColor(answerIndex) {
+        if (this.checkIndex === answerIndex) {
+          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+        }
+        return {}
+      },
       backChapter() {
         this.$router.push({name: 'chapter'});
       },
@@ -151,9 +178,40 @@
       //   this.cardArr.push({title: "插入的"})
       // },
 
+      pushCardData(len) {
+        if (len > 3) return;
+        if (len <= 3) {
+          console.log("少于三个了");
+          // console.log("刚开始：", this.cardArr);
+          let newTempCard = null;
+
+          if (this.totalCardArr.length - this.slice_count > 10) {
+            // 新截取的数组
+            newTempCard = this.totalCardArr.slice(this.slice_count, this.slice_count + 10);
+            // console.log("刚开始2：", newTempCard);
+
+            this.slice_count += 10;
+          } else {
+            // 新截取的数组
+            newTempCard = this.totalCardArr.slice(this.slice_count, this.totalCardArr.length);
+            // console.log("刚开始2：", newTempCard);
+
+            this.slice_count = this.totalCardArr.length;
+          }
+
+          this.cardArr = this.cardArr.concat(newTempCard);
+          // console.log("合并后：", this.cardArr);
+
+          // 重新渲染v-for
+          this.$forceUpdate();
+        }
+      },
 
       // 卡片布局
       cardInit() {
+
+        const that = this;
+
         /* LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */
 
         class Carousel {
@@ -172,15 +230,24 @@
           }
 
           handle() {
-
             // list all cards
             this.cards = this.board.querySelectorAll('.card');
 
+            // console.log(this.cards.length);
+            // console.log("滑动了");
+            that.pushCardData(this.cards.length);
+
             // get top card
-            this.topCard = this.cards[this.cards.length - 1];
+            // this.topCard = this.cards[this.cards.length - 1];
+            this.topCard = this.cards[0];
+            // console.log("top:",this.topCard);
+            this.topCard.style.zIndex = "99";
 
             // get next card
-            this.nextCard = this.cards[this.cards.length - 2];
+            // this.nextCard = this.cards[this.cards.length - 2];
+            this.nextCard = this.cards[1];
+            // console.log("next:", this.nextCard);
+            if (this.cards.length > 1) this.nextCard.style.zIndex = "98";
 
             // if at least one card is present
             if (this.cards.length > 0) {
@@ -324,6 +391,10 @@
                   setTimeout(() => {
                     // remove swiped card
                     this.board.removeChild(this.topCard);
+
+                    // that.cardArr.pop();
+                    // console.log("remove:",that.cardArr.length);
+                    // console.log("remove:",that.cardArr);
                     // add new card
                     // this.push()
                     // handle gestures on new top card
@@ -396,13 +467,9 @@
 
     .return {
       float: left;
-      margin-left: 20px;
       display: flex;
       align-items: center;
-      width: 18rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      padding-left: 20px;
 
       .circle {
         height: 30px;
@@ -420,9 +487,12 @@
         display: block;
       }
 
-      div {
-        margin: 0 10px;
-        font-size: 16px;
+      .page-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 80%;
+        margin-left: 2%;
       }
 
     }
@@ -593,12 +663,5 @@
         flex: 1;
       }
     }
-  }
-
-  /*往右切换*/
-  .nextCard {
-    @extend .card;
-    transform: translateX(328px) translateY(2px) rotate(39.36deg) rotateY(0deg) scale(1) !important;
-    transition: 200ms !important;
   }
 </style>
