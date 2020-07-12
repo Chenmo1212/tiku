@@ -2,21 +2,20 @@
   <div class="overview">
     <div class="header">
       <div class="return">
-        <div class="circle">
+        <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div>题目总览</div>
-        |
-        <div>{{projectName}} - {{chapterName}}</div>
+        <div>题目总览 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
       </div>
     </div>
 
     <div class="container">
-      <div class="question-type" v-for="(val, key, i) in questionArr">
+      <div class="question-type" v-for="(val, key, i) in questionObj">
         <div class="title" :style="{color: chapterColor}">
-          <span v-if="key === 'sigNum'">单选题</span>
-          <span v-if="key === 'mulNum'">多选题</span>
-          <span v-if="key === 'judNum'">判断题</span>
+          <span v-if="val && key === 'sigNum'">单选题</span>
+          <span v-if="val && key === 'mulNum'">多选题</span>
+          <span v-if="val && key === 'judNum'">判断题</span>
+          <span v-if="val && key === 'blaNum'">填空题</span>
         </div>
         <div class="content">
           <div class="circle-box" v-for="index in val">
@@ -31,6 +30,7 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
   export default {
     name: "overview",
     data() {
@@ -38,12 +38,31 @@
         projectName: '马克思',
         chapterName: '导论',
         chapterColor: "#536dfe",
-        questionArr: {
+        questionObj: {
           sigNum: 43,
           mulNum: 23,
           judNum: 19,
+          blaNum: 19,
         }
       }
+    },
+    created(){
+      this.chapterColor = this.themeColor;
+      let tempObj = {};
+      // console.log(this.selectedChapter);
+      if(this.selectedChapter.radio) tempObj['sigNum'] = this.selectedChapter.radio;
+      if(this.selectedChapter.multiple) tempObj['mulNum'] = this.selectedChapter.multiple;
+      if(this.selectedChapter.decide) tempObj['judNum'] = this.selectedChapter.decide;
+      if(this.selectedChapter.fill) tempObj['blaNum'] = this.selectedChapter.fill;
+
+      this.questionObj = tempObj;
+    },
+    computed: {
+      ...mapState([
+        'themeColor',
+        'selectedChapter',
+        'selectedProject',
+      ]),
     },
     methods: {
       backChapter() {

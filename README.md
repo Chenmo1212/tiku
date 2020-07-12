@@ -41,6 +41,7 @@ mao_gai: {
   total_sig_num: null,   // sig总数
   total_mul_num: null,   // mul总数
   total_jud_num: null,   // jud总数
+  total_bla_num: null,   // bla总数
   content: [{            // 章节详情
     title: null,         // 章节标题
     sig: null,           // 单选题数目
