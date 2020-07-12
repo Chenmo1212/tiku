@@ -92,7 +92,7 @@
           ev.srcElement.classList.add("active");
           // console.log(index);
         }
-        this.setSelectedChapter({id: this.selectedProject.id, index: index})  // 科目id，章节序号
+        this.setSelectedChapter({id: this.selectedProject.id, index: index});  // 科目id，章节序号
         this.$router.push({name: 'detail'})
       }
     }

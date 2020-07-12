@@ -14,15 +14,29 @@ export default {
     commit('SET_SELECTED_PROJECT', obj)
   },
 
-  // 设置已选择的科目
+  // 设置已选择的章节
   setSelectedChapter({commit}, obj) {
     commit('SET_SELECTED_CHAPTER', obj)
   },
 
-  // 设置已选择的科目
+  // 设置已选择的科目问题数据
   setProjectQuestionData({commit}, obj) {
     commit('SET_PROJECT_QUESTION_DATA', obj)
   },
+  // 定义已选择的答案
+  defineSelectedAnswer({commit}, obj) {
+    commit('DEFINE_SELECTED_ANSWER', obj)
+  },
+
+  // 设置已选择的答案
+  setSelectedAnswer({commit}, obj) {
+    commit('SET_SELECTED_ANSWER', obj)
+  },
+
+
+
+
+
 
   // 显示注册
   showRegister({commit}, obj) {

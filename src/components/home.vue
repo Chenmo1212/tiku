@@ -108,10 +108,14 @@
       console.log("导入后的数据：", projectBasicData, '\n 题目数据：', questionData);
       this.setProjectBasicData(projectBasicData);
       this.setProjectQuestionData(questionData);
+
+      // 定义已选择答案模板
+      this.setDefineSelectedAnswer()
     },
     computed: {
       ...mapState([
         'themeColor',
+        'projectBasicData',
       ])
     },
     methods: {
@@ -119,6 +123,7 @@
         'setThemeColor',
         'setProjectBasicData',
         'setProjectQuestionData',
+        'defineSelectedAnswer',
       ]),
 
       /**
@@ -262,6 +267,51 @@
         tempObj["content"] = this.getChapterBasicData(item.content);
         console.log(tempObj["chinese"], "数据导入完成");
         return tempObj
+      },
+
+      /**
+       * 定义已选择答案模板
+       */
+      setDefineSelectedAnswer(){
+        // console.log(this.projectBasicData);
+        let totalData = this.projectBasicData;
+
+        // 创建临时对象
+        let tempObj = {};
+
+        // 定义每个题内容
+        // let quesObj = {index: null, userAns: null}
+
+        // 定义每一个题目类型数组
+        let sigArr = [];
+        let mulArr = [];
+        let judArr = [];
+        let blaArr = [];
+
+        // 定义章节对象
+        let chapterObj = {};
+        chapterObj['sigArr'] = sigArr;
+        chapterObj['mulArr'] = mulArr;
+        chapterObj['blaArr'] = blaArr;
+        chapterObj['judArr'] = judArr;
+
+        // 定义每一个科目
+        // console.log(Object.keys(totalData))
+        for(let item in Object.keys(totalData)){
+          // console.log(Object.values(totalData)[item])
+          // console.log(totalData[key])
+          // 每个科目章节数
+          let chapterLen = Object.values(totalData)[item].content.length;
+
+          // 该为数组
+          tempObj[Object.keys(totalData)[item]] = [];
+          for (let i = 0; i<chapterLen; i++){
+            // 将章节对象放入科目里
+            tempObj[Object.keys(totalData)[item]].push(chapterObj)
+          }
+        }
+        // console.log(tempObj)
+        this.defineSelectedAnswer(tempObj)
       }
     }
   }

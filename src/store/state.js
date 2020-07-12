@@ -23,6 +23,29 @@ export default {
 
   projectQuestionData: {},  // 科目题目
 
+  selectedAnswer: {         // 已经选择过的答案
+    mao_gai: [
+      {                     // 第一章
+        chapterIndex: null, // 章节下标
+        sigArr: [{
+          index: null,
+          userAns: null,
+        }],
+        mulArr: [{
+          index: null,
+          userAns: null,
+        }]
+      },
+    ],
+    jin_dai_shi: [],
+    si_xiu: [],
+    ma_ke_si: [],
+    jun_li_1: [],
+    jun_li_2: [],
+    lang_c_1: [],
+    lang_c_2: [],
+  },
+
   // 警告框
   isWarning: false,
   warning: '',

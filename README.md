@@ -56,5 +56,5 @@ ma_ke_si: {},
 jun_li_1: {},
 jun_li_2: {},
 lang_c_1: {},
-la
+lang_c_2: {},
 ```

@@ -5,7 +5,7 @@
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div class="page-title">章节背题 | {{projectName}} - {{chapterName}}</div>
+        <div class="page-title">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
       </div>
     </div>
     <div id="board">
@@ -31,27 +31,31 @@
             <span>{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
           </div>
         </div>
-        <div class="card-question">
-          {{item.question}}
-        </div>
-        <div class="card-answer-list">
-          <button class="c-button answer-item"
-                  :class="{'c-button--active': checkIndex === answerIndex}"
-                  :style="getColor(answerIndex)"
-                  @click="submitAns(answerIndex)"
-                  v-for="(answerItem, answerIndex) in cardArr[index].options">
+        <div class="card-content">
+          <div class="card-question">
+            {{item.question}}
+          </div>
+          <div class="card-answer-list">
+            <button class="c-button answer-item"
+                    :class="{'c-button--active': checkIndex === answerIndex}"
+                    :style="getColor(answerIndex)"
+                    @click="submitAns(item, answerIndex, index)"
+                    v-for="(answerItem, answerIndex) in cardArr[index].options">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
               <span v-if="answerIndex === 1">B.</span>
               <span v-if="answerIndex === 2">C.</span>
               <span v-if="answerIndex === 3">D.</span>
             </span>
-            <span class="c-button__label">{{answerItem}}</span>
-          </button>
-        </div>
+              <span class="c-button__label">{{answerItem}}</span>
+            </button>
+          </div>
 
-        <div class="answer" v-if="showAnswer" :style="{color: chapterColor}">
-          正确答案：{{answerList[index]}}
+          <div class="answer" v-if="showAnswer"
+               :style="getAnsStyle(isError)"
+          >
+            正确答案：{{answerList[index]}}
+          </div>
         </div>
 
         <div class="menu-card" :style="{color: chapterColor}">
@@ -82,11 +86,15 @@
         checkIndex: -1,
         showAnswer: false,
 
+        userAns: null,
+
         cardArr: [],                    // 显示的数组
         totalCardArr: [],               // 总的数组
         slice_count: 10,
 
-        answerList: []
+        answerList: [],
+
+        isError: true,
       }
     },
     created() {
@@ -113,11 +121,12 @@
       let dataList = this.selectedChapter.data;
       // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
+        // this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
         // console.log(dataList[i].answer);
-        if (dataList[i].answer === 0) this.answerList.push("A");
-        if (dataList[i].answer === 1) this.answerList.push("B");
-        if (dataList[i].answer === 2) this.answerList.push("C");
-        if (dataList[i].answer === 3) this.answerList.push("D");
+        // if (dataList[i].answer === 0) this.answerList.push("A");
+        // if (dataList[i].answer === 1) this.answerList.push("B");
+        // if (dataList[i].answer === 2) this.answerList.push("C");
+        // if (dataList[i].answer === 3) this.answerList.push("D");
       }
       // console.log(this.answerList);
     },
@@ -129,11 +138,13 @@
         'themeColor',
         'selectedChapter',
         'selectedProject',
+        'selectedAnswer',
       ]),
     },
     methods: {
       ...mapActions([
-        'setSelectedChapter'
+        'setSelectedChapter',
+        'setSelectedAnswer',
       ]),
 
       /**
@@ -155,29 +166,79 @@
         this.$router.push({name: 'overview'})
       },
 
-      submitAns(index) {
-        console.log(index);
-        this.checkIndex = index;
-        // console.log(buttons)
-        // for (let i = 0; i < buttons.length; i++) {
-        // buttons[i].classList = ["c-button", "answer-item"]
-        // }
-        // buttons[index].classList.toggle('c-button--active');
+      /**
+       * 选择选项并记录用户答案
+       * @param item 题目信息
+       * @param answerIndex 选项下标（用户答案）
+       * @param index 题目下标
+       * @returns {*} 返回颜色
+       */
+      submitAns(item, answerIndex, index) {
+        // console.log(index);
+        // console.log(item.answer);
+        // 默认答案为错
+        this.isError = true;
+        item.answer === answerIndex ? this.isError = false : this.isError = true;
+
+        // 更改选项样式
+        this.checkIndex = answerIndex;
+
+        // 记录答题情况
+        let projectId = this.selectedProject.id;         // 科目id
+        let chapterIndex = this.selectedChapter.index;   // 章节下标
+        let quesIndex = index;                           // 题目下标
+        let userAns = answerIndex;                       // 用户答案
+
+        let tempObj = {};
+        tempObj['index'] = quesIndex;
+        tempObj['userAns'] = userAns;
+
+        // 科目id-章节下标-题目下标-用户答案
+        this.setSelectedAnswer({projectId: projectId, chapterIndex: chapterIndex, quesObj: tempObj, quesType: item.type});
+
+        // console.log(typeof index)
+        // console.log(this.selectedAnswer)
       },
 
-      // cardPre() {
-      //   // const board = document.getElementById("board");
-      //   // const cards = board.querySelectorAll('.card');
-      //   // console.log(cards.length);
-      //   // let tempArr = this.cardArr.slice(0, cards.length + 1);
-      //   // console.log(tempArr);
-      //   // this.cardArr = tempArr;
-      //   // console.log(this.cardArr);
-      //   // // this.cardInit();
-      //
-      //   this.cardArr.push({title: "插入的"})
-      // },
+      /**
+       * 将答案序号改成文字
+       * @param ans 题目答案序号
+       * @param type 题目类型
+       * @returns {String} 返回答案字符串
+       */
+      shiftAns(ans, type) {
+        if (type === 0) { // 单选题
+          if (ans === 0) return "A";
+          if (ans === 1) return "B";
+          if (ans === 2) return "C";
+          if (ans === 3) return "D";
+        } else if (type === 1) { // 多选题
+          let tempAns = '';
+          for (let i = 0; i < ans.length; i++) {
+            if (ans[i] === 0) tempAns += "A";
+            if (ans[i] === 1) tempAns += "B";
+            if (ans[i] === 2) tempAns += "C";
+            if (ans[i] === 3) tempAns += "D";
+            if (ans.length - i > 1) tempAns += '、';
+          }
+          return tempAns;
+        } else if (type === 2) { // 填空题
+          let tempAns = '';
+          for (let i = 0; i < ans.length; i++) {
+            tempAns += ans[i];
+            if (ans.length - i > 1) tempAns += '、';
+          }
+          return tempAns;
+        } else if (type === 3) { // 判断题
+          if (ans === 0)  return "对";
+          if (ans === 0)  return "错";
+        }
+      },
 
+      /**
+       * 懒加载加入数据
+       * @param len 剩余卡片数目
+       */
       pushCardData(len) {
         if (len > 3) return;
         if (len <= 3) {
@@ -447,7 +508,7 @@
         let board = document.querySelector('#board');
 
         let carousel = new Carousel(board)
-      }
+      },
     }
   }
 </script>

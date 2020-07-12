@@ -10,35 +10,49 @@ export default {
   },
 
   // 设置已选择的科目
-  SET_SELECTED_PROJECT(state, obj){
+  SET_SELECTED_PROJECT(state, obj) {
     state.selectedProject = obj;
   },
 
   // 设置已选择的章节
-  SET_SELECTED_CHAPTER(state, obj){
-    // console.log(state.projectQuestionData[obj.id][obj.index].data)
+  SET_SELECTED_CHAPTER(state, obj) {
+    // console.log(obj.index);
     state.selectedChapter = state.projectQuestionData[obj.id][obj.index];
+    state.selectedChapter['index'] = obj.index;
   },
 
   // 设置已选择的章节
-  SET_PROJECT_QUESTION_DATA(state, obj){
+  SET_PROJECT_QUESTION_DATA(state, obj) {
     state.projectQuestionData = obj;
   },
 
+  // 定义已选择过的答案
+  DEFINE_SELECTED_ANSWER(state, obj) {
+    state.selectedAnswer = obj;
+  },
+
+  // 设置已选择过的答案
+  SET_SELECTED_ANSWER(state, obj) {
+    console.log(obj.quesObj);
+    if (obj.quesType === 0) state.selectedAnswer[obj.projectId][obj.chapterIndex].sigArr.push(obj.quesObj);
+    if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr.push(obj.quesObj);
+    if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr.push(obj.quesObj);
+    if (obj.quesType === 3) state.selectedAnswer[obj.projectId][obj.chapterIndex].judArr.push(obj.quesObj);
+    console.log(state.selectedAnswer)
+  },
 
 
   // 设置提示
-    setAttention(msg, obj)
-{
-  this.$store.commit('SET_ATTENTION', {
-    ifAlert: true,  // 提示窗口
-    at_warning: msg, // 提示语
-    EndSign: obj.EndSign,
-    noLogin: obj.noLogin,
-    To_Data: obj.To_Data,
-  });
-}
-,
+  setAttention(msg, obj) {
+    this.$store.commit('SET_ATTENTION', {
+      ifAlert: true,  // 提示窗口
+      at_warning: msg, // 提示语
+      EndSign: obj.EndSign,
+      noLogin: obj.noLogin,
+      To_Data: obj.To_Data,
+    });
+  }
+  ,
 
 // 前往数据管理
 // TO_DATA(state, boolean){
@@ -46,8 +60,7 @@ export default {
 // }
 
 // 当前考勤结束时考勤状态信息
-SET_ATTENDED(state, obj)
-{
-  state.attended = obj;
-}
+  SET_ATTENDED(state, obj) {
+    state.attended = obj;
+  }
 }
