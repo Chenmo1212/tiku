@@ -19,7 +19,7 @@
         </div>
         <div class="content">
           <div class="circle-box" v-for="index in val">
-            <div class="circle" :class="{'active': key === 'sigNum'}">
+            <div class="circle" :class="{'active': isCheck(index, key)}" :style="{backgroundColor: getColor(index, key)}">
               {{index}}
             </div>
           </div>
@@ -43,31 +43,72 @@
           mulNum: 23,
           judNum: 19,
           blaNum: 19,
-        }
+        },
+        answerObj: {
+          sigArr: [],
+          mulArr: [],
+          judArr: [],
+          blaArr: [],
+        },
       }
     },
     created(){
       this.chapterColor = this.themeColor;
       let tempObj = {};
-      // console.log(this.selectedChapter);
+      console.log(this.selectedChapter);
       if(this.selectedChapter.radio) tempObj['sigNum'] = this.selectedChapter.radio;
       if(this.selectedChapter.multiple) tempObj['mulNum'] = this.selectedChapter.multiple;
       if(this.selectedChapter.decide) tempObj['judNum'] = this.selectedChapter.decide;
       if(this.selectedChapter.fill) tempObj['blaNum'] = this.selectedChapter.fill;
 
       this.questionObj = tempObj;
+
+      // console.log(this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index])
+      let checkObj = this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index];
+      this.answerObj = checkObj;
     },
     computed: {
       ...mapState([
         'themeColor',
         'selectedChapter',
         'selectedProject',
+        'selectedAnswer',
       ]),
     },
     methods: {
       backChapter() {
         this.$router.push({name: 'chapter'});
       },
+      isCheck(index, type){
+        if (type === "sigNum") {
+          for (let i = 0; i < this.answerObj.sigArr.length; i++){
+            if (this.answerObj.sigArr[i].index === index){
+              return true
+            }
+          }
+        } else if(type === "mulNum") {
+          for (let i = 0; i < this.answerObj.mulArr.length; i++){
+            if (this.answerObj.mulArr[i].index === index){
+              return true
+            }
+          }
+        } else if(type === "blaNum") {
+          for (let i = 0; i < this.answerObj.blaArr.length; i++){
+            if (this.answerObj.blaArr[i].index === index){
+              return true
+            }
+          }
+        } else if(type === "judNum") {
+          for (let i = 0; i < this.answerObj.judArr.length; i++){
+            if (this.answerObj.judArr[i].index === index){
+              return true
+            }
+          }
+        }
+      },
+      getColor(index, type){
+        if(this.isCheck(index, type)) return this.chapterColor;
+      }
     }
   }
 </script>
@@ -162,7 +203,6 @@
 
         .active {
           border: 2px solid #fff;
-          background: #536dfe;
           box-shadow: 5px 5px 10px #eaecee,
           -5px -5px 10px #feffff;
           color: #fff;

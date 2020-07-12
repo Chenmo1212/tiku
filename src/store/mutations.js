@@ -19,6 +19,7 @@ export default {
     // console.log(obj.index);
     state.selectedChapter = state.projectQuestionData[obj.id][obj.index];
     state.selectedChapter['index'] = obj.index;
+    state.selectedChapter['id'] = obj.id;
   },
 
   // 设置已选择的章节
