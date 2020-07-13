@@ -19,9 +19,9 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          <span v-if="currentMemoryMsg.radioNum"> 单选:{{currentMemoryMsg.radioNum}}道</span>&nbsp;
-          <span v-if="currentMemoryMsg.multiNum"> 多选:{{currentMemoryMsg.multiNum}}道</span>&nbsp;
-          <span v-if="currentMemoryMsg.judgeNum"> 判断:{{currentMemoryMsg.judgeNum}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.radioNum"> 单选:{{currentMemoryMsg.radioNum}}道</span>
+          <span v-if="currentMemoryMsg.multiNum"> 多选:{{currentMemoryMsg.multiNum}}道</span>
+          <span v-if="currentMemoryMsg.judgeNum"> 判断:{{currentMemoryMsg.judgeNum}}道</span>
           <span v-if="currentMemoryMsg.fillNum"> 填空:{{currentMemoryMsg.fillNum}}道</span>&nbsp;
         </div>
         <!--开始背题-->

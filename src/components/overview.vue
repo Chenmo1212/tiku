@@ -144,7 +144,8 @@
         this.$router.push({
           name: 'detail',
           params: {
-            id: quesIndex
+            id: quesIndex,
+            type: key
           }
         })
       }

@@ -106,16 +106,34 @@
       let isOverview = false;
       let newIndex = null;
 
-      if (typeof (this.$route.params.id) !== 'undefined') {
-        newIndex = this.$route.params.id - 1;
-        isOverview = true
-      }
-
       // 获取全部题目数据
-      this.totalCardArr = JSON.parse(localStorage.selectedChapter).data;
+
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
       this.defineSelectedAnswer(JSON.parse(localStorage.selectedAnswer));
       this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
+
+      let selectedChapter = JSON.parse(localStorage.selectedChapter);
+      this.totalCardArr = selectedChapter.data;
+
+      if (typeof (this.$route.params.id) !== 'undefined') {
+        newIndex = this.$route.params.id - 1;
+        // console.log(this.selectedAnswer);
+        // console.log(this.selectedChapter);
+
+        let projectId = this.selectedChapter.id;
+        let chapterIndex = this.selectedChapter.index;
+        // console.log(this.$route.params.type);
+        let type = this.$route.params.type.slice(0, 3) + 'Arr';
+        let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
+
+        // 匹配用户答案
+        for(let i = 0; i<ansArr.length;i++){
+          if (ansArr[i].index === newIndex+1 ) {
+            this.checkIndex = ansArr[i].userAns;
+          }
+        }
+        isOverview = true;
+      }
 
       // 处理主题色
       this.chapterColor = JSON.parse(localStorage.themeColor);
@@ -128,8 +146,8 @@
         }
       } else {
 
-        let projectId = JSON.parse(localStorage.selectedChapter).id;
-        let chapterIndex = JSON.parse(localStorage.selectedChapter).index;
+        let projectId = selectedChapter.id;
+        let chapterIndex = selectedChapter.index;
         let localIndex = JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex].currentIndex;
         // console.log("localIndex", JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex]);
         // console.log("localIndex", localIndex);
@@ -144,11 +162,11 @@
         this.gapIndex = localIndex;
       }
       // 处理标题信息
-      this.chapterName = JSON.parse(localStorage.selectedChapter).title;
+      this.chapterName = selectedChapter.title;
       this.projectName = JSON.parse(localStorage.selectedProject).chinese;
 
       // 处理选项数据
-      let dataList = JSON.parse(localStorage.selectedChapter).data;
+      let dataList = selectedChapter.data;
       // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
@@ -250,6 +268,7 @@
         localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
         localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData));
         localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
+        localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       },
 
 
