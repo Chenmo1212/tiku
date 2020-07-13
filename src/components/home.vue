@@ -267,7 +267,7 @@
         tempObj["total_bla_num"] = this.getTotalNum(item.content).bla;
         tempObj["total_fill_num"] = 0;
         tempObj["content"] = this.getChapterBasicData(item.content);
-        console.log(tempObj["chinese"], "数据导入完成");
+        // console.log(tempObj["chinese"], "数据导入完成");
         return tempObj
       },
 

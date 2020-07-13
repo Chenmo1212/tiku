@@ -34,8 +34,8 @@ export default {
   },
 
   // 设置答案填充数目
-  setFillNum({commit}, obj) {
-    commit('SET_FILL_NUM', obj)
+  setCurrentMemory({commit}, obj) {
+    commit('SET_CURRENT_MEMORY', obj)
   },
 
 

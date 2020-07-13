@@ -3,30 +3,30 @@
     <swiper :options="swiperOption" ref="mySwiper"
     >
       <div class="swiper-slide current">
-        <span class="ribbon4" :style="{backgroundColor: currentMemory.color}">当前在背</span>
+        <span class="ribbon4" :style="{backgroundColor: currentMemoryMsg.color}">当前在背</span>
         <!--封面-->
         <div class="card-cover">
           <!--<svg-icon iconClass="maogai"></svg-icon>-->
-          <svg-icon :iconClass="currentMemory.svgName"></svg-icon>
+          <svg-icon :iconClass="currentMemoryMsg.svgName"></svg-icon>
         </div>
         <!--标题-->
-        <div class="card-title">{{currentMemory.title}} <span>({{currentMemory.currentChapter}})</span></div>
+        <div class="card-title">{{currentMemoryMsg.title}} <span>({{currentMemoryMsg.currentChapter}})</span></div>
         <!--进度条-->
         <div class="card-progress">
           <div class="card-progress__back"></div>
           <div class="card-progress__line"
-               :style="{width:currentMemory.chapterProgress, backgroundColor:currentMemory.color}"></div>
+               :style="{width:currentMemoryMsg.chapterProgress, backgroundColor:currentMemoryMsg.color}"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          <span v-if="currentMemory.radioNum"> 单选:{{currentMemory.radioNum}}道</span>&nbsp;
-          <span v-if="currentMemory.multiNum"> 多选:{{currentMemory.multiNum}}道</span>&nbsp;
-          <span v-if="currentMemory.judgeNum"> 判断:{{currentMemory.judgeNum}}道</span>&nbsp;
-          <span v-if="currentMemory.fillNum"> 填空:{{currentMemory.bla}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.radioNum"> 单选:{{currentMemoryMsg.radioNum}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.multiNum"> 多选:{{currentMemoryMsg.multiNum}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.judgeNum"> 判断:{{currentMemoryMsg.judgeNum}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.fillNum"> 填空:{{currentMemoryMsg.bla}}道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
-          <button class="btn begin" @click="clickCardBtn($event, currentMemory, 1)" :style="{color: currentMemory.color}">
+          <button class="btn begin" @click="clickCardBtn($event, currentMemoryMsg, 1)" :style="{color: currentMemoryMsg.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
               开始背题
@@ -103,11 +103,11 @@
         },
 
         // 当前在背
-        currentMemory: {
+        currentMemoryMsg: {
           svgName: "maogai",         // 封面图名字
           title: "毛概",              // 名称
           currentChapter: "第一章",   // 当前章节
-          chapterProgress: "20%",    // 当前进度
+          chapterProgress: "2%",    // 当前进度
           radioNum: 65,              // 章节单选题数
           multiNum: 35,              // 章节多选题数
           judgeNum: 0,               // 章节判断题数
@@ -122,10 +122,17 @@
       ...mapState([
         'themeColor',
         'projectBasicData',
+        'currentMemory',
       ]),
 
       swiper() {
         return this.$refs.mySwiper.$swiper
+      }
+    },
+    created(){
+      if (JSON.stringify(this.currentMemory) !== "{}") {
+        console.log(this.currentMemory)
+        this.currentMemoryMsg = this.currentMemory;
       }
     },
     methods: {

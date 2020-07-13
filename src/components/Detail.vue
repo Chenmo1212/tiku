@@ -37,10 +37,10 @@
             {{item.question}}
           </div>
           <div class="card-answer-list">
-            <button class="c-button answer-item"
+            <div class="btn c-button answer-item"
                     :class="{'c-button--active': checkIndex === answerIndex}"
                     :style="getColor(answerIndex)"
-                    @click="submitAns(item, answerIndex, index)"
+                    @click.stop.prevent="submitAns(item, answerIndex, index)"
                     v-for="(answerItem, answerIndex) in cardArr[index].options">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
@@ -49,7 +49,7 @@
               <span v-if="answerIndex === 3">D.</span>
             </span>
               <span class="c-button__label">{{answerItem}}</span>
-            </button>
+            </div>
           </div>
 
           <div class="answer" v-if="showAnswer"
@@ -162,6 +162,7 @@
       ...mapActions([
         'setSelectedChapter',
         'setSelectedAnswer',
+        'setCurrentMemory',
       ]),
 
       /**
@@ -215,6 +216,11 @@
         if (item.type === 1) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'mulArr');
         if (item.type === 2) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'blaArr');
         if (item.type === 3) this.judgeReplace(projectId, chapterIndex, tempObj, item.type, quesIndex, 'judArr');
+
+        this.setCurrentMemory({
+          projectId: projectId,
+          chapterIndex: chapterIndex,
+        })
       },
 
 
@@ -402,6 +408,8 @@
           }
 
           onTap(e) {
+
+            console.log("tap")
 
             // get finger position on top card
             let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth;
@@ -600,6 +608,8 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
+      width: 90vw;
+      overflow: hidden;
 
       .circle {
         height: 30px;
@@ -623,6 +633,7 @@
         text-overflow: ellipsis;
         width: 80%;
         margin-left: 2%;
+        text-align: left;
       }
 
     }
@@ -700,16 +711,17 @@
         transition: all 200ms ease-out 0s;
       }
 
-      button {
+      div {
         cursor: pointer;
         /*color: inherit;*/
         font-family: inherit;
         margin-bottom: 5%;
+        box-sizing:border-box;
       }
 
-      button:active, button:focus {
-        outline: 0;
-      }
+      /*.btn:active, .btn:focus {*/
+        /*outline: 0;*/
+      /*}*/
 
       .c-button:hover:before {
         background: rgba(255, 255, 255, 0.24);
@@ -772,13 +784,13 @@
       position: absolute;
       bottom: 0;
       left: 10%;
-      height: 60px;
+      height: 40px;
       width: 80%;
       border-radius: 5px;
       background: #f4f6f8;
       box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
       display: flex;
-      line-height: 60px;
+      line-height: 40px;
       justify-content: center;
 
       .all-question {

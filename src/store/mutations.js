@@ -40,7 +40,7 @@ export default {
       if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
       if (obj.quesType === 3) state.selectedAnswer[obj.projectId][obj.chapterIndex].judArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
     } else {
-      console.log(obj.quesObj);
+      // console.log(obj.quesObj);
       if (obj.quesType === 0) state.selectedAnswer[obj.projectId][obj.chapterIndex].sigArr.push(obj.quesObj);
       if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr.push(obj.quesObj);
       if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr.push(obj.quesObj);
@@ -50,13 +50,37 @@ export default {
       // console.log(state.projectBasicData)
       state.projectBasicData[obj.projectId].total_fill_num += 1;
     }
-    console.log(state.selectedAnswer)
+    // console.log(state.selectedAnswer)
   },
 
-  // 设置答案填充数目
-  SET_FILL_NUM(state, obj) {
-    // console.log(state.selectedProject.content[obj.chapterIndex])
-    // console.log(state.selectedProject.content[obj.chapterIndex].chapter_fill)
+  // 设置当前在背
+  SET_CURRENT_MEMORY(state, obj) {
+    // console.log(state.projectBasicData);
+    // console.log(state.projectBasicData[obj.projectId]);
+
+    let tempObj = {};
+    tempObj["title"] = state.projectBasicData[obj.projectId]['chinese'];
+    tempObj["radioNum"] = state.projectBasicData[obj.projectId]['total_sig_num'];
+    tempObj["multiNum"] = state.projectBasicData[obj.projectId]['total_mul_num'];
+    tempObj["judgeNum"] = state.projectBasicData[obj.projectId]['total_jud_num'];
+    tempObj["fillNum"] = state.projectBasicData[obj.projectId]['total_bla_num'];
+    tempObj["color"] = state.projectBasicData[obj.projectId]['color'];
+
+    let chaObj = state.projectBasicData[obj.projectId].content[obj.chapterIndex];
+
+    // 进度条
+    let result = 100 * chaObj.chapter_fill / (chaObj.bla + chaObj.jud + chaObj.sig + chaObj.mul);
+    tempObj["chapterProgress"] = result > 1 ?'1%' : result + '%';
+    tempObj["currentChapter"] = chaObj.title.slice(0,3);
+    for (let i=0;i<state.projectName.length;i++){
+      // console.log(state.projectName[i])
+      if (state.projectName[i] === obj.projectId) {
+        tempObj["svgName"] = state.projectSvgName[i];
+        break;
+      }
+    }
+
+    state.currentMemory = tempObj;
   },
 
 
