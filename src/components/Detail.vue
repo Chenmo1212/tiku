@@ -20,7 +20,8 @@
           </div>
           <div class="question-num">
             <span :style="{color: chapterColor}" v-if="item.type === 0">{{index + 1 + gapIndex}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 1">{{index + 1 + gapIndex- selectedChapter.radio}}</span>
+            <span :style="{color: chapterColor}"
+                  v-if="item.type === 1">{{index + 1 + gapIndex- selectedChapter.radio}}</span>
             <span :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple}}</span>
             <span :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
             /
@@ -38,7 +39,7 @@
           </div>
           <div class="card-answer-list">
             <div class="btn c-button answer-item"
-                 :class="{'c-button--active': checkIndex === answerIndex}"
+                 :class="getActiveStyle(answerIndex)"
                  :style="getColor(answerIndex)"
                  @click.stop.prevent="submitAns(item, answerIndex, index)"
                  v-for="(answerItem, answerIndex) in cardArr[index].options">
@@ -98,6 +99,8 @@
         isError: true,
 
         gapIndex: 0,
+        itemIndex: null,               // 题目序号
+        currentType: null,             // 题目类型
 
         selectedChapter: JSON.parse(localStorage.selectedChapter),
       }
@@ -116,6 +119,8 @@
       this.totalCardArr = selectedChapter.data;
 
       if (typeof (this.$route.params.id) !== 'undefined') {
+        this.itemIndex = this.$route.params.id;
+        this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
         newIndex = this.$route.params.id - 1;
         // console.log(this.selectedAnswer);
         // console.log(this.selectedChapter);
@@ -127,8 +132,8 @@
         let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
 
         // 匹配用户答案
-        for(let i = 0; i<ansArr.length;i++){
-          if (ansArr[i].index === newIndex+1 ) {
+        for (let i = 0; i < ansArr.length; i++) {
+          if (ansArr[i].index === newIndex + 1) {
             this.checkIndex = ansArr[i].userAns;
           }
         }
@@ -211,12 +216,49 @@
         }
         return {}
       },
+      getActiveStyle(answerIndex) {
+        // console.log(this.checkIndex);
+        if (this.checkIndex === answerIndex) {
+          // console.log("getActiveStyle:", this.checkIndex);
+          return 'c-button--active'
+        }
+        return ""
+      },
       backChapter() {
         this.$router.push({name: 'chapter'});
       },
 
       toOverview() {
         this.$router.push({name: 'overview'})
+      },
+
+      isFinished() {
+        // 重新渲染v-for
+        // this.$forceUpdate();
+
+        console.log("isFinished");
+        console.log("checkIndex",this.checkIndex)
+        console.log("题目下标",this.itemIndex);
+        // console.log(this.selectedChapter);
+        let projectId = this.selectedChapter.id;         // 科目id
+        let chapterIndex = this.selectedChapter.index;   // 章节下标
+        let quesIndex = this.itemIndex;                  // 题目下标
+
+        let flag = true;
+        let answerList = this.selectedAnswer[projectId][chapterIndex][this.currentType];
+        // console.log(answerList)
+        for (let i = 0; i < answerList.length; i++) {
+          if (answerList[i].index === quesIndex) {
+            console.log(answerList[i].index);
+            console.log(quesIndex)
+            this.checkIndex = answerList[i].userAns;
+            flag = false;
+            break;
+          }
+        }
+
+        if (flag) this.checkIndex = -1;
+        console.log("checkIndex",this.checkIndex)
       },
 
       /**
@@ -232,6 +274,8 @@
           index += this.gapIndex;
           console.log("newIndex", index)
         }
+        // console.log("index", index);
+        this.itemIndex = index;
 
         // console.log(index);
         // console.log(item.answer);
@@ -261,7 +305,7 @@
         this.setCurrentMemory({
           projectId: projectId,
           chapterIndex: chapterIndex,
-          quesIndex: quesIndex,
+          itemIndex: quesIndex,
         });
 
         // console.log(this.currentMemory);
@@ -388,6 +432,9 @@
           // 重新渲染v-for
           this.$forceUpdate();
         }
+      },
+      show1(){
+        console.log(this.checkIndex)
       },
 
       // 卡片布局
@@ -564,6 +611,7 @@
 
               }
 
+              // if (false) {
               if (successful) {
 
                 // throw card in the chosen direction
@@ -577,7 +625,11 @@
                   setTimeout(() => {
                     that.isError = true;
                     that.showAnswer = false;
-                    that.checkIndex = -1;
+                    that.itemIndex += 1;
+
+                    that.isFinished();
+
+                    // that.checkIndex = -1;
 
                     // remove swiped card
                     this.board.removeChild(this.topCard);

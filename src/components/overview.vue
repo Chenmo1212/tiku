@@ -100,27 +100,32 @@
         this.$router.push({name: 'detail'});
       },
       isCheck(index, type){
+        let itemIndex = null;
         if (type === "sigNum") {
           for (let i = 0; i < this.answerObj.sigArr.length; i++){
-            if (this.answerObj.sigArr[i].index === index){
+            itemIndex = this.answerObj.sigArr[i].index;
+            if (itemIndex === index){
               return true
             }
           }
         } else if(type === "mulNum") {
           for (let i = 0; i < this.answerObj.mulArr.length; i++){
-            if (this.answerObj.mulArr[i].index === index){
+            itemIndex = this.answerObj.mulArr[i].index - this.questionObj.sigNum;
+            if (itemIndex === index){
               return true
             }
           }
         } else if(type === "blaNum") {
           for (let i = 0; i < this.answerObj.blaArr.length; i++){
-            if (this.answerObj.blaArr[i].index === index){
+            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum;
+            if (itemIndex === index){
               return true
             }
           }
         } else if(type === "judNum") {
           for (let i = 0; i < this.answerObj.judArr.length; i++){
-            if (this.answerObj.judArr[i].index === index){
+            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum - this.questionObj.blaNum;
+            if (itemIndex === index){
               return true
             }
           }
@@ -128,7 +133,7 @@
       },
       getColor(index, type){
         if(this.isCheck(index, type)) {
-          console.log("true")
+          // console.log("true")
           return this.chapterColor;
         }
       },
@@ -140,7 +145,7 @@
         if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
         if (key === "blaNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum;
         if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
-        console.log(quesIndex);
+        // console.log(itemIndex);
         this.$router.push({
           name: 'detail',
           params: {

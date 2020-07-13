@@ -20,7 +20,7 @@ export default {
   // chapterJudgeNum: 0,               // 章节判断题数
   // chapterBlankNum: 0,               // 章节判断题数
   // color: "#536DFE"
-  // quesIndex: null,
+  // itemIndex: null,
   // chapterIndex: null,
   // projectId: null,
 
