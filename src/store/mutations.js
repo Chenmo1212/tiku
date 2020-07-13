@@ -45,8 +45,18 @@ export default {
       if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr.push(obj.quesObj);
       if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr.push(obj.quesObj);
       if (obj.quesType === 3) state.selectedAnswer[obj.projectId][obj.chapterIndex].judArr.push(obj.quesObj);
+
+      state.selectedProject.content[obj.chapterIndex].chapter_fill += 1;
+      // console.log(state.projectBasicData)
+      state.projectBasicData[obj.projectId].total_fill_num += 1;
     }
     console.log(state.selectedAnswer)
+  },
+
+  // 设置答案填充数目
+  SET_FILL_NUM(state, obj) {
+    // console.log(state.selectedProject.content[obj.chapterIndex])
+    // console.log(state.selectedProject.content[obj.chapterIndex].chapter_fill)
   },
 
 

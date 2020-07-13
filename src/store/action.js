@@ -33,6 +33,11 @@ export default {
     commit('SET_SELECTED_ANSWER', obj)
   },
 
+  // 设置答案填充数目
+  setFillNum({commit}, obj) {
+    commit('SET_FILL_NUM', obj)
+  },
+
 
 
 

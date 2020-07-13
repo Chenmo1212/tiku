@@ -20,7 +20,7 @@
             <div class="card-progress">
               <div class="card-progress__back"></div>
               <div class="card-progress__line"
-                   :style="{width:item.chapter_fill/(item.jud + item.mul + item.sig), backgroundColor:chapterColor}">
+                   :style="getProgressStyle(item)">
               </div>
             </div>
             <div class="type">
@@ -94,6 +94,15 @@
         }
         this.setSelectedChapter({id: this.selectedProject.id, index: index});  // 科目id，章节序号
         this.$router.push({name: 'detail'})
+      },
+
+      // 进度条样式
+      getProgressStyle(item){
+        // console.log(item);
+        // console.log(item.chapter_fill/(item.jud + item.mul + item.sig + item.bla));
+        let result = item.chapter_fill/(item.jud + item.mul + item.sig + item.bla);
+        result = result * 100;
+        return {width:result + "%", backgroundColor:this.chapterColor}
       }
     }
   }

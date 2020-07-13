@@ -407,7 +407,8 @@
             let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth;
 
             // get degree of Y rotation (+/-15 degrees)
-            let rotateY = 15 * (propX < 0.05 ? -1 : 1);
+            // let rotateY = 15 * (propX < 0.05 ? -1 : 1);
+            let rotateY = 0;
 
             // change the transition property
             this.topCard.style.transition = 'transform 100ms ease-out';
@@ -689,7 +690,7 @@
         font-size: 14px;
         text-align: left;
         width: 100%;
-        padding: 5px 10px;
+        padding: 10px;
         border-radius: 5px;
         color: #2c3e50;
         background: transparent;

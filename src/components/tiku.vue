@@ -48,7 +48,7 @@
         <div class="card-progress">
           <div class="card-progress__back"></div>
           <div class="card-progress__line"
-               :style="{width:value.total_fill_num/value.total_num, backgroundColor: value.color}"></div>
+               :style="getProgressStyle(value)"></div>
         </div>
         <!--题目类型-->
         <div class="card-question_type">
@@ -153,6 +153,12 @@
           this.$router.push({name: 'chapter'});
         }
       },
+      getProgressStyle(value){
+        let result = 100 * value.total_fill_num / value.total_num;
+        // console.log(result);
+        if (result < 2 && result > 0)  result = 2;
+        return {width:result + "%", backgroundColor: value.color}
+      }
     }
   }
 </script>
