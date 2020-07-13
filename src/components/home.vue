@@ -91,27 +91,42 @@
       // console.log(tikudb.tikudb);
       // console.log(this.projectBasicData);
       if (JSON.stringify(this.projectBasicData) === "{}") {
-        let projectBasicData = {};
-        let questionData = {};
+        // console.log(typeof(localStorage.globalConfig) === 'undefined');
 
-        let projectColor = ['#00B0FF', '#F50057', '#00BFA6', '#536DFE', '#F9A826', '#F9A826', '#6C63FF', '#6C63FF'];
-        let projectSvgName = ['sixiu', 'jindaishi', 'makesi', 'maogai', 'C', 'C', 'junli', 'junli'];
-        let projectName = ['si_xiu', 'jin_dai_shi', 'ma_ke_si', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
-        let tikudbProjectName = ['morals_and_ethics', 'modern_history', 'marxism_principle', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
+        // 判断本地是否有存储数据
+        if(typeof(localStorage.projectBasicData) === 'undefined'){
+          console.log("第一次加载");
+          let projectBasicData = {};
+          let questionData = {};
 
-        for (let i = 0; i < projectName.length; i++) {
-          projectBasicData[projectName[i]] = this.getBasicMsg(tikudb.tikudb[tikudbProjectName[i]]);
-          projectBasicData[projectName[i]].color = projectColor[i];
-          projectBasicData[projectName[i]].svg = projectSvgName[i];
-          projectBasicData[projectName[i]].id = projectName[i];
-          questionData[projectName[i]] = tikudb.tikudb[tikudbProjectName[i]].content;
+          let projectColor = ['#00B0FF', '#F50057', '#00BFA6', '#536DFE', '#F9A826', '#F9A826', '#6C63FF', '#6C63FF'];
+          let projectSvgName = ['sixiu', 'jindaishi', 'makesi', 'maogai', 'C', 'C', 'junli', 'junli'];
+          let projectName = ['si_xiu', 'jin_dai_shi', 'ma_ke_si', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
+          let tikudbProjectName = ['morals_and_ethics', 'modern_history', 'marxism_principle', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
+
+          for (let i = 0; i < projectName.length; i++) {
+            projectBasicData[projectName[i]] = this.getBasicMsg(tikudb.tikudb[tikudbProjectName[i]]);
+            projectBasicData[projectName[i]].color = projectColor[i];
+            projectBasicData[projectName[i]].svg = projectSvgName[i];
+            projectBasicData[projectName[i]].id = projectName[i];
+            questionData[projectName[i]] = tikudb.tikudb[tikudbProjectName[i]].content;
+          }
+          // console.log("导入后的数据：", projectBasicData, '\n 题目数据：', questionData);
+          this.setProjectBasicData(projectBasicData);
+          this.setProjectQuestionData(questionData);
+
+          localStorage.setItem('projectBasicData', JSON.stringify(projectBasicData));
+          localStorage.setItem('projectQuestionData', JSON.stringify( questionData));
+          // console.log(JSON.parse(localStorage.getItem('globalConfig')));
+        } else {
+          // 本地有了数据，直接赋值给本地
+          // console.log(JSON.parse(localStorage.projectBasicData))
+          // console.log(JSON.parse(localStorage.projectQuestionData))
+          this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
+          this.setProjectQuestionData(JSON.parse(localStorage.projectQuestionData));
         }
-        // console.log("导入后的数据：", projectBasicData, '\n 题目数据：', questionData);
-        this.setProjectBasicData(projectBasicData);
-        this.setProjectQuestionData(questionData);
-
         // 定义已选择答案模板
-        this.setDefineSelectedAnswer()
+        this.setDefineSelectedAnswer();
       }
     },
     computed: {

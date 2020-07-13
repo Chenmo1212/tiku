@@ -65,9 +65,17 @@
       ]),
     },
     created() {
-      this.pageName = this.selectedProject.chinese;
-      this.chapterColor = this.selectedProject.color;
-      this.projectData = this.selectedProject.content;
+      if (typeof(localStorage.selectedProject) === 'undefined') {
+        console.log("不存在");
+        this.pageName = this.selectedProject.chinese;
+        this.chapterColor = this.selectedProject.color;
+        this.projectData = this.selectedProject.content;
+        localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
+      } else {
+        this.pageName = JSON.parse(localStorage.selectedProject).chinese;
+        this.chapterColor = JSON.parse(localStorage.selectedProject).color;
+        this.projectData = JSON.parse(localStorage.selectedProject).content;
+      }
     },
     mounted() {
       console.log(this.selectedProject);

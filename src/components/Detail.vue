@@ -220,6 +220,7 @@
         this.setCurrentMemory({
           projectId: projectId,
           chapterIndex: chapterIndex,
+          quesIndex: quesIndex,
         })
       },
 

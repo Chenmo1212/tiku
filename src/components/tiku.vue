@@ -22,7 +22,7 @@
           <span v-if="currentMemoryMsg.radioNum"> 单选:{{currentMemoryMsg.radioNum}}道</span>&nbsp;
           <span v-if="currentMemoryMsg.multiNum"> 多选:{{currentMemoryMsg.multiNum}}道</span>&nbsp;
           <span v-if="currentMemoryMsg.judgeNum"> 判断:{{currentMemoryMsg.judgeNum}}道</span>&nbsp;
-          <span v-if="currentMemoryMsg.fillNum"> 填空:{{currentMemoryMsg.bla}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.fillNum"> 填空:{{currentMemoryMsg.fillNum}}道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
@@ -110,8 +110,8 @@
           chapterProgress: "2%",    // 当前进度
           radioNum: 65,              // 章节单选题数
           multiNum: 35,              // 章节多选题数
-          judgeNum: 0,               // 章节判断题数
-          fillNum: 0,                // 章节填空题数
+          judgeNum: 33,               // 章节判断题数
+          fillNum: 23,                // 章节填空题数
           color: "#536DFE"
         },
         // 卡片内容
@@ -123,6 +123,7 @@
         'themeColor',
         'projectBasicData',
         'currentMemory',
+        'selectedProject',
       ]),
 
       swiper() {
@@ -131,7 +132,7 @@
     },
     created(){
       if (JSON.stringify(this.currentMemory) !== "{}") {
-        console.log(this.currentMemory)
+        console.log(this.currentMemory);
         this.currentMemoryMsg = this.currentMemory;
       }
     },
@@ -159,6 +160,9 @@
           this.setSelectedProject(item);
           this.$router.push({name: 'chapter'});
         }
+
+        localStorage.setItem('themeColor', JSON.stringify(item.color));
+        localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       },
       getProgressStyle(value){
         let result = 100 * value.total_fill_num / value.total_num;

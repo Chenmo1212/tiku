@@ -20,6 +20,9 @@ export default {
   // chapterJudgeNum: 0,               // 章节判断题数
   // chapterBlankNum: 0,               // 章节判断题数
   // color: "#536DFE"
+  // quesIndex: null,
+  // chapterIndex: null,
+  // projectId: null,
 
   projectBasicData: {},     // 科目基本信息
 

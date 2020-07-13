@@ -65,6 +65,9 @@ export default {
     tempObj["judgeNum"] = state.projectBasicData[obj.projectId]['total_jud_num'];
     tempObj["fillNum"] = state.projectBasicData[obj.projectId]['total_bla_num'];
     tempObj["color"] = state.projectBasicData[obj.projectId]['color'];
+    tempObj["quesIndex"] = obj.quesIndex;
+    tempObj["projectId"] = obj.projectId;
+    tempObj["chapterIndex"] = obj.chapterIndex;
 
     let chaObj = state.projectBasicData[obj.projectId].content[obj.chapterIndex];
 
