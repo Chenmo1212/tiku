@@ -38,10 +38,10 @@
           </div>
           <div class="card-answer-list">
             <div class="btn c-button answer-item"
-                    :class="{'c-button--active': checkIndex === answerIndex}"
-                    :style="getColor(answerIndex)"
-                    @click.stop.prevent="submitAns(item, answerIndex, index)"
-                    v-for="(answerItem, answerIndex) in cardArr[index].options">
+                 :class="{'c-button--active': checkIndex === answerIndex}"
+                 :style="getColor(answerIndex)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index)"
+                 v-for="(answerItem, answerIndex) in cardArr[index].options">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
               <span v-if="answerIndex === 1">B.</span>
@@ -98,45 +98,57 @@
         isError: true,
 
         gapIndex: 0,
+
+        selectedChapter: JSON.parse(localStorage.selectedChapter),
       }
     },
     created() {
-
       let isOverview = false;
       let newIndex = null;
-      // console.log(this.$route.params.id);
-      if(typeof(this.$route.params.id) !== 'undefined'){
-        newIndex= this.$route.params.id - 1;
+
+      if (typeof (this.$route.params.id) !== 'undefined') {
+        newIndex = this.$route.params.id - 1;
         isOverview = true
       }
 
-      // 处理主题色
-      this.chapterColor = this.themeColor;
-      // console.log(this.selectedChapter);
-
       // 获取全部题目数据
-      this.totalCardArr = this.selectedChapter.data;
+      this.totalCardArr = JSON.parse(localStorage.selectedChapter).data;
+      this.setSelectedProject(JSON.parse(localStorage.selectedProject));
+      this.defineSelectedAnswer(JSON.parse(localStorage.selectedAnswer));
+      this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
 
-      if (isOverview){
+      // 处理主题色
+      this.chapterColor = JSON.parse(localStorage.themeColor);
+
+      if (isOverview) {
         if (this.totalCardArr.length - newIndex > 10) {
           this.cardArr = this.totalCardArr.slice(newIndex, newIndex + 10);
         } else {
           this.cardArr = this.totalCardArr.slice(newIndex);
         }
       } else {
+
+        let projectId = JSON.parse(localStorage.selectedChapter).id;
+        let chapterIndex = JSON.parse(localStorage.selectedChapter).index;
+        let localIndex = JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex].currentIndex;
+        // console.log("localIndex", JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex]);
+        // console.log("localIndex", localIndex);
+
         // 懒加载，先加载10个
         if (this.totalCardArr.length > 10) {
-          this.cardArr = this.totalCardArr.slice(0, 10);
+          this.cardArr = this.totalCardArr.slice(localIndex, localIndex + 10);
         } else {
           this.cardArr = this.totalCardArr;
         }
+
+        this.gapIndex = localIndex;
       }
       // 处理标题信息
-      this.chapterName = this.selectedChapter.title;
-      this.projectName = this.selectedProject.chinese;
+      this.chapterName = JSON.parse(localStorage.selectedChapter).title;
+      this.projectName = JSON.parse(localStorage.selectedProject).chinese;
 
       // 处理选项数据
-      let dataList = this.selectedChapter.data;
+      let dataList = JSON.parse(localStorage.selectedChapter).data;
       // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
@@ -145,7 +157,7 @@
     mounted() {
       this.cardInit();
       // console.log("mounted:", this.$route.params.id);
-      if(typeof(this.$route.params.id) !== 'undefined'){
+      if (typeof (this.$route.params.id) !== 'undefined') {
         this.slice_count = this.$route.params.id - 1;
         this.gapIndex = this.$route.params.id - 1;
       }
@@ -153,9 +165,11 @@
     computed: {
       ...mapState([
         'themeColor',
-        'selectedChapter',
+        // 'selectedChapter',
         'selectedProject',
         'selectedAnswer',
+        'currentMemory',
+        'projectBasicData',
       ]),
     },
     methods: {
@@ -163,6 +177,9 @@
         'setSelectedChapter',
         'setSelectedAnswer',
         'setCurrentMemory',
+        'setSelectedProject',
+        'defineSelectedAnswer',
+        'setProjectBasicData',
       ]),
 
       /**
@@ -192,6 +209,12 @@
        * @returns {*} 返回颜色
        */
       submitAns(item, answerIndex, index) {
+
+        if (this.gapIndex) {
+          index += this.gapIndex;
+          console.log("newIndex", index)
+        }
+
         // console.log(index);
         // console.log(item.answer);
         // 默认答案为错
@@ -221,13 +244,23 @@
           projectId: projectId,
           chapterIndex: chapterIndex,
           quesIndex: quesIndex,
-        })
+        });
+
+        // console.log(this.currentMemory);
+        localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
+        localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData))
       },
 
 
       // 判断是否需要替换已选择的答案
-      judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr){
-        let tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
+      judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
+        let tempArr = null;
+        console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
+        if (typeof (localStorage.selectedAnswer) === 'undefined') {
+          tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
+        } else {
+          tempArr = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][typeArr];
+        }
         let obj = this.isHasObj(tempArr, quesIndex);
         console.log(obj.flag);
         if (obj.flag) {
@@ -267,8 +300,7 @@
       getAnsStyle(bool) {
         if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
         return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
-      }
-      ,
+      },
 
       /**
        * 将答案序号改成文字
@@ -303,8 +335,7 @@
           if (ans === 0) return "对";
           if (ans === 0) return "错";
         }
-      }
-      ,
+      },
 
       /**
        * 懒加载加入数据
@@ -337,8 +368,7 @@
           // 重新渲染v-for
           this.$forceUpdate();
         }
-      }
-      ,
+      },
 
       // 卡片布局
       cardInit() {
@@ -410,10 +440,10 @@
 
           onTap(e) {
 
-            console.log("tap")
+            console.log("tap");
 
             // get finger position on top card
-            let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth;
+            // let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth;
 
             // get degree of Y rotation (+/-15 degrees)
             // let rotateY = 15 * (propX < 0.05 ? -1 : 1);
@@ -585,8 +615,7 @@
         let board = document.querySelector('#board');
 
         let carousel = new Carousel(board)
-      }
-      ,
+      },
     }
   }
 </script>
@@ -717,11 +746,11 @@
         /*color: inherit;*/
         font-family: inherit;
         margin-bottom: 5%;
-        box-sizing:border-box;
+        box-sizing: border-box;
       }
 
       /*.btn:active, .btn:focus {*/
-        /*outline: 0;*/
+      /*outline: 0;*/
       /*}*/
 
       .c-button:hover:before {

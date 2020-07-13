@@ -116,7 +116,7 @@
           this.setProjectQuestionData(questionData);
 
           localStorage.setItem('projectBasicData', JSON.stringify(projectBasicData));
-          localStorage.setItem('projectQuestionData', JSON.stringify( questionData));
+          localStorage.setItem('projectQuestionData', JSON.stringify(questionData));
           // console.log(JSON.parse(localStorage.getItem('globalConfig')));
         } else {
           // 本地有了数据，直接赋值给本地
@@ -127,12 +127,14 @@
         }
         // 定义已选择答案模板
         this.setDefineSelectedAnswer();
+        localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
       }
     },
     computed: {
       ...mapState([
         'themeColor',
         'projectBasicData',
+        'selectedAnswer',
       ])
     },
     methods: {
@@ -259,6 +261,7 @@
           tempObj["jud"] = content[i].decide;
           tempObj["bla"] = content[i].fill;
           tempObj["chapter_fill"] = 0;
+          tempObj["currentIndex"] = 0;
           tempArr.push(tempObj);
         }
         // console.log("content1:", tempArr);

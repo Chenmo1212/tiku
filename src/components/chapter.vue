@@ -62,10 +62,11 @@
       ...mapState([
         'themeColor',
         'selectedProject',
+        'selectedChapter',
       ]),
     },
     created() {
-      if (typeof(localStorage.selectedProject) === 'undefined') {
+      if (typeof (localStorage.selectedProject) === 'undefined') {
         console.log("不存在");
         this.pageName = this.selectedProject.chinese;
         this.chapterColor = this.selectedProject.color;
@@ -75,15 +76,17 @@
         this.pageName = JSON.parse(localStorage.selectedProject).chinese;
         this.chapterColor = JSON.parse(localStorage.selectedProject).color;
         this.projectData = JSON.parse(localStorage.selectedProject).content;
+        this.setProjectQuestionData(JSON.parse(localStorage.projectQuestionData))
       }
     },
     mounted() {
-      console.log(this.selectedProject);
-      console.log(this.selectedProject.chinese);
+      console.log(JSON.parse(localStorage.selectedProject));
+      console.log(JSON.parse(localStorage.selectedProject).chinese);
     },
     methods: {
       ...mapActions([
         'setSelectedChapter',
+        'setProjectQuestionData',
       ]),
 
       backHome() {
@@ -100,17 +103,24 @@
           ev.srcElement.classList.add("active");
           // console.log(index);
         }
-        this.setSelectedChapter({id: this.selectedProject.id, index: index});  // 科目id，章节序号
+        if (typeof (localStorage.selectedChapter) === 'undefined') {
+          this.setSelectedChapter({id: this.selectedProject.id, index: index});  // 科目id，章节序号
+          localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter));
+        } else {
+          // console.log(JSON.parse(localStorage.selectedProject).id);
+          // console.log(index)
+          this.setSelectedChapter({id: JSON.parse(localStorage.selectedProject).id, index: index});  // 科目id，章节序号
+        }
         this.$router.push({name: 'detail'})
       },
 
       // 进度条样式
-      getProgressStyle(item){
+      getProgressStyle(item) {
         // console.log(item);
         // console.log(item.chapter_fill/(item.jud + item.mul + item.sig + item.bla));
-        let result = item.chapter_fill/(item.jud + item.mul + item.sig + item.bla);
+        let result = item.chapter_fill / (item.jud + item.mul + item.sig + item.bla);
         result = result * 100;
-        return {width:result + "%", backgroundColor:this.chapterColor}
+        return {width: result + "%", backgroundColor: this.chapterColor}
       }
     }
   }
