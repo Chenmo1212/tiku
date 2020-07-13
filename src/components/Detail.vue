@@ -5,8 +5,12 @@
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div class="page-title">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span>
+        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span>
         </div>
+      </div>
+      <div class="full-screen" :style="{color: chapterColor}">
+        <span @click="setFullScreen" v-if="!ifFullscreen"><i class="fa fa-expand"></i></span>
+        <span @click="exitFull" v-if="ifFullscreen"><i class="fa fa-compress"></i></span>
       </div>
     </div>
     <div id="board">
@@ -39,7 +43,7 @@
           </div>
           <div class="card-answer-list">
             <div class="btn c-button answer-item"
-                 :class="getActiveStyle(answerIndex)"
+                 :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex)"
                  @click.stop.prevent="submitAns(item, answerIndex, index)"
                  v-for="(answerItem, answerIndex) in cardArr[index].options">
@@ -97,6 +101,9 @@
         answerList: [],
 
         isError: true,
+
+        ifFullscreen: false,
+        ifExitScreen: false,
 
         gapIndex: 0,
         itemIndex: null,               // 题目序号
@@ -216,7 +223,20 @@
         }
         return {}
       },
-      getActiveStyle(answerIndex) {
+      getActiveStyle(answerIndex, type) {
+        if (this.currentType === null) {
+          if (type === 0) this.currentType = 'sigArr';
+          if (type === 1) this.currentType = 'mulArr';
+          if (type === 2) this.currentType = 'blaArr';
+          if (type === 3) this.currentType = 'judArr';
+        }
+        if (this.currentType !== type) {
+          if (type === 0) this.currentType = 'sigArr';
+          if (type === 1) this.currentType = 'mulArr';
+          if (type === 2) this.currentType = 'blaArr';
+          if (type === 3) this.currentType = 'judArr';
+        }
+
         // console.log(this.checkIndex);
         if (this.checkIndex === answerIndex) {
           // console.log("getActiveStyle:", this.checkIndex);
@@ -232,21 +252,53 @@
         this.$router.push({name: 'overview'})
       },
 
+      setFullScreen() {
+        let ele = document.body
+        if (ele.requestFullscreen) {
+          ele.requestFullscreen();
+        } else if (ele.mozRequestFullScreen) {
+          ele.mozRequestFullScreen();
+        } else if (ele.webkitRequestFullscreen) {
+          ele.webkitRequestFullscreen();
+        } else if (ele.msRequestFullscreen) {
+          ele.msRequestFullscreen();
+        }
+        this.ifFullscreen = true;
+      },
+      exitFull() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        } else {
+          window.parent.showTopBottom();
+        }
+        this.ifFullscreen = false;
+      },
       isFinished() {
         // 重新渲染v-for
         // this.$forceUpdate();
 
         console.log("isFinished");
-        console.log("checkIndex",this.checkIndex)
-        console.log("题目下标",this.itemIndex);
+        console.log("checkIndex", this.checkIndex)
+        console.log("题目下标", this.itemIndex);
         // console.log(this.selectedChapter);
         let projectId = this.selectedChapter.id;         // 科目id
         let chapterIndex = this.selectedChapter.index;   // 章节下标
         let quesIndex = this.itemIndex;                  // 题目下标
 
         let flag = true;
-        let answerList = this.selectedAnswer[projectId][chapterIndex][this.currentType];
-        // console.log(answerList)
+
+        console.log(projectId)
+        console.log(chapterIndex)
+        console.log(this.currentType)
+        console.log(JSON.parse(localStorage.selectedAnswer))
+        let answerList = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
+        console.log(answerList)
         for (let i = 0; i < answerList.length; i++) {
           if (answerList[i].index === quesIndex) {
             console.log(answerList[i].index);
@@ -258,7 +310,7 @@
         }
 
         if (flag) this.checkIndex = -1;
-        console.log("checkIndex",this.checkIndex)
+        console.log("checkIndex", this.checkIndex)
       },
 
       /**
@@ -433,7 +485,7 @@
           this.$forceUpdate();
         }
       },
-      show1(){
+      show1() {
         console.log(this.checkIndex)
       },
 
@@ -710,7 +762,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      width: 90vw;
+      width: 80vw;
       overflow: hidden;
 
       .circle {
@@ -737,7 +789,11 @@
         margin-left: 2%;
         text-align: left;
       }
+    }
 
+    .full-screen {
+      float: right;
+      width: 10vw;
     }
   }
 
