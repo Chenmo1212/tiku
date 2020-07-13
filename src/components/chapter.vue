@@ -105,13 +105,13 @@
         }
         if (typeof (localStorage.selectedChapter) === 'undefined') {
           this.setSelectedChapter({id: this.selectedProject.id, index: index});  // 科目id，章节序号
-          localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter));
         } else {
           // console.log(JSON.parse(localStorage.selectedProject).id);
           // console.log(index)
           this.setSelectedChapter({id: JSON.parse(localStorage.selectedProject).id, index: index});  // 科目id，章节序号
         }
-        this.$router.push({name: 'detail'})
+        localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
+        this.$router.push({name: 'detail'});
       },
 
       // 进度条样式

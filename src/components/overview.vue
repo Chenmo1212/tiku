@@ -3,9 +3,9 @@
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backDetail"></i>
         </div>
-        <div>题目总览 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
+        <div class="page-title">题目总览 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
       </div>
     </div>
 
@@ -34,8 +34,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-
+  import {mapState, mapActions} from 'vuex'
   export default {
     name: "overview",
     data() {
@@ -55,33 +54,50 @@
           judArr: [],
           blaArr: [],
         },
+
+        selectedChapter: JSON.parse(localStorage.selectedChapter)
       }
     },
     created(){
+      let selectedChapter = JSON.parse(localStorage.selectedChapter);
+      this.setThemeColor(JSON.parse(localStorage.themeColor));
+      this.setSelectedProject(JSON.parse(localStorage.selectedProject));
+      this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
+
+      console.log(this.selectedProject);
+
+      this.projectName = this.selectedProject.chinese;
+      this.chapterName = this.selectedChapter.title;
       this.chapterColor = this.themeColor;
       let tempObj = {};
-      console.log(this.selectedChapter);
-      if(this.selectedChapter.radio) tempObj['sigNum'] = this.selectedChapter.radio;
-      if(this.selectedChapter.multiple) tempObj['mulNum'] = this.selectedChapter.multiple;
-      if(this.selectedChapter.decide) tempObj['judNum'] = this.selectedChapter.decide;
-      if(this.selectedChapter.fill) tempObj['blaNum'] = this.selectedChapter.fill;
+      if(selectedChapter.radio) tempObj['sigNum'] = selectedChapter.radio;
+      if(selectedChapter.multiple) tempObj['mulNum'] = selectedChapter.multiple;
+      if(selectedChapter.decide) tempObj['judNum'] = selectedChapter.decide;
+      if(selectedChapter.fill) tempObj['blaNum'] = selectedChapter.fill;
 
       this.questionObj = tempObj;
 
       // console.log(this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index])
-      this.answerObj = this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index];
+      this.answerObj = JSON.parse(localStorage.selectedAnswer)[selectedChapter.id][selectedChapter.index];
+      console.log(this.answerObj)
     },
     computed: {
       ...mapState([
         'themeColor',
-        'selectedChapter',
         'selectedProject',
-        'selectedAnswer',
       ]),
     },
     methods: {
-      backChapter() {
-        this.$router.push({name: 'chapter'});
+      ...mapActions([
+        'setThemeColor',
+        'setSelectedAnswer',
+        'setCurrentMemory',
+        'setSelectedProject',
+        'defineSelectedAnswer',
+        'setProjectBasicData',
+      ]),
+      backDetail() {
+        this.$router.push({name: 'detail'});
       },
       isCheck(index, type){
         if (type === "sigNum") {
@@ -111,7 +127,10 @@
         }
       },
       getColor(index, type){
-        if(this.isCheck(index, type)) return this.chapterColor;
+        if(this.isCheck(index, type)) {
+          console.log("true")
+          return this.chapterColor;
+        }
       },
       toDetail(index, key){
         console.log(index);
@@ -146,13 +165,11 @@
 
     .return {
       float: left;
-      margin-left: 20px;
       display: flex;
       align-items: center;
-      width: 18rem;
+      padding-left: 20px;
+      width: 90vw;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
 
       .circle {
         height: 30px;
@@ -160,7 +177,7 @@
         border-radius: 50%;
         background-color: #f4f6f8;
         margin: 0;
-        box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
+        box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
         border: 1px solid #fff;
       }
 
@@ -170,9 +187,13 @@
         display: block;
       }
 
-      div {
-        margin: 0 10px;
-        font-size: 16px;
+      .page-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 80%;
+        margin-left: 2%;
+        text-align: left;
       }
 
     }

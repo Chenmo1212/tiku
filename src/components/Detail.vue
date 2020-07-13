@@ -248,7 +248,8 @@
 
         // console.log(this.currentMemory);
         localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
-        localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData))
+        localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData));
+        localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
       },
 
 
