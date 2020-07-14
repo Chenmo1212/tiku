@@ -4,7 +4,6 @@ import home from '@/components/home'
 import chapter from '@/components/chapter'
 import detail from '@/components/Detail'
 import overview from '@/components/overview'
-import test from '@/components/test'
 
 Vue.use(Router);
 
@@ -27,10 +26,5 @@ export default new Router({
       name: 'overview',
       component: overview,
     },
-    {
-      path: '/test',
-      name: 'test',
-      component: test,
-    }
   ]
 })
