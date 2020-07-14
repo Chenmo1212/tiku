@@ -43,7 +43,7 @@
 
       <div id="content">
         <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
-        <music-vue v-if="pageIndex === 2"></music-vue>
+        <music-vue v-if="pageIndex === 2" class="a-fadein"></music-vue>
         <!--<mine-vue v-if="pageIndex === 3"></mine-vue>-->
       </div>
     </div>
@@ -94,7 +94,7 @@
         // console.log(typeof(localStorage.globalConfig) === 'undefined');
 
         // 判断本地是否有存储数据
-        if(typeof(localStorage.projectBasicData) === 'undefined'){
+        if (typeof (localStorage.projectBasicData) === 'undefined') {
           console.log("第一次加载");
           let projectBasicData = {};
           let questionData = {};
@@ -292,7 +292,7 @@
       /**
        * 定义已选择答案模板
        */
-      setDefineSelectedAnswer(){
+      setDefineSelectedAnswer() {
         // console.log(this.projectBasicData);
         let totalData = this.projectBasicData;
 
@@ -317,7 +317,7 @@
 
         // 定义每一个科目
         // console.log(Object.keys(totalData))
-        for(let item in Object.keys(totalData)){
+        for (let item in Object.keys(totalData)) {
           // console.log(Object.values(totalData)[item])
           // console.log(totalData[key])
           // 每个科目章节数
@@ -325,7 +325,7 @@
 
           // 该为数组
           tempObj[Object.keys(totalData)[item]] = [];
-          for (let i = 0; i<chapterLen; i++){
+          for (let i = 0; i < chapterLen; i++) {
             // 将章节对象放入科目里
             tempObj[Object.keys(totalData)[item]].push(chapterObj)
           }
@@ -641,5 +641,29 @@
       }
     }
   }
+  /* 淡入 */
+  .a-fadein{
+    animation: 1s ease-out backwards;
+    animation-name: fadein;
+  }
+  /* 淡入 */
+  @-webkit-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+  }
+  @-moz-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+  }
+  @-ms-keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+  }
+  @keyframes fadein{
+    0%{opacity:0;}
+    100%{opacity:1;}
+  }
+
+
 
 </style>

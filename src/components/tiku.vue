@@ -124,6 +124,7 @@
         'projectBasicData',
         'currentMemory',
         'selectedProject',
+        'selectedChapter',
       ]),
 
       swiper() {
@@ -131,15 +132,20 @@
       }
     },
     created(){
+      if (typeof(localStorage.currentMemory) !== 'undefined'){
+        this.currentMemoryMsg = JSON.parse(localStorage.currentMemory);
+      }
       if (JSON.stringify(this.currentMemory) !== "{}") {
         console.log(this.currentMemory);
         this.currentMemoryMsg = this.currentMemory;
+        localStorage.setItem('currentMemory', this.currentMemory);
       }
     },
     methods: {
       ...mapActions([
         'setThemeColor',
         'setSelectedProject',
+        'setSelectedChapter',
       ]),
 
       /**
@@ -150,17 +156,21 @@
        */
       clickCardBtn(ev, item, from) {
         // console.log(ev);
-        // console.log(item);
+        console.log(item);
         ev.srcElement.classList.add("active");
         this.setThemeColor(item.color);
 
         if (from === 1){
+          if (typeof(localStorage.selectedChapter) === 'undefined') {
+            this.setSelectedProject(this.projectBasicData['mao_gai']);
+            this.setSelectedChapter({id: 'mao_gai', index: 0});
+            localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
+          }
           this.$router.push({name: 'detail'});
         } else if(from === 2){
           this.setSelectedProject(item);
           this.$router.push({name: 'chapter'});
         }
-
         localStorage.setItem('themeColor', JSON.stringify(item.color));
         localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       },

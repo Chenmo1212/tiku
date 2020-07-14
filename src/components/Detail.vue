@@ -109,7 +109,7 @@
         itemIndex: null,               // 题目序号
         currentType: null,             // 题目类型
 
-        selectedChapter: JSON.parse(localStorage.selectedChapter),
+        selectedChapter: '',
       }
     },
     created() {
@@ -123,6 +123,8 @@
       this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
 
       let selectedChapter = JSON.parse(localStorage.selectedChapter);
+      this.selectedChapter = selectedChapter;
+
       this.totalCardArr = selectedChapter.data;
 
       if (typeof (this.$route.params.id) !== 'undefined') {

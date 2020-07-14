@@ -48,7 +48,7 @@
       }
       this.fetch163Playlist(2111679838)
         .then(res =>{
-          console.log(res);
+          // console.log(res);
           that.musicList = res;
           that.setMusicMsg(res);
           if (flag) {

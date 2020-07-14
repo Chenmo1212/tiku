@@ -73,7 +73,7 @@ export default {
 
     // 进度条
     let result = 100 * chaObj.chapter_fill / (chaObj.bla + chaObj.jud + chaObj.sig + chaObj.mul);
-    tempObj["chapterProgress"] = result > 1 ?'1%' : result + '%';
+    tempObj["chapterProgress"] = result < 1 ? '2%' : result + '%';
     tempObj["currentChapter"] = chaObj.title.slice(0,3);
     for (let i=0;i<state.projectName.length;i++){
       // console.log(state.projectName[i])

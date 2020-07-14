@@ -73,6 +73,7 @@
         this.projectData = this.selectedProject.content;
         localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       } else {
+        console.log("存在")
         this.pageName = JSON.parse(localStorage.selectedProject).chinese;
         this.chapterColor = JSON.parse(localStorage.selectedProject).color;
         this.projectData = JSON.parse(localStorage.selectedProject).content;
@@ -111,6 +112,7 @@
           this.setSelectedChapter({id: JSON.parse(localStorage.selectedProject).id, index: index});  // 科目id，章节序号
         }
         localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
+        console.log("selectedChapter",this.selectedChapter)
         this.$router.push({name: 'detail'});
       },
 
