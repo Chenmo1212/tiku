@@ -42,12 +42,21 @@
       window.preSong = this.preSong;
 
       const that = this;
+      let flag = false;
+      if (typeof(localStorage.currentMusicBasicMsg) !== 'undefined'){
+        flag = true
+      }
       this.fetch163Playlist(2111679838)
         .then(res =>{
           console.log(res);
           that.musicList = res;
           that.setMusicMsg(res);
-          that.musicUrl = res[0].url;
+          if (flag) {
+            that.musicUrl = JSON.parse(localStorage.currentMusicBasicMsg).url;
+            that.index = JSON.parse(localStorage.currentMusicBasicMsg).index;
+          } else {
+            that.musicUrl = res[0].url;
+          }
           console.log("音乐数据加载完成")
         })
         .catch(err =>{
@@ -107,6 +116,7 @@
           duration: duration,
           currentTime: audio.currentTime,
           url: musicData.url,
+          index: this.index,
         });
       },
 
@@ -173,7 +183,7 @@
     watch: {
       musicStatus() {
         let audio = document.getElementById('media');
-        // console.log(audio)
+        console.log(audio)
         if (this.musicStatus) {
           if (typeof(localStorage.currentMusicBasicMsg) !== 'undefined') {
             audio.currentTime = JSON.parse(localStorage.currentMusicBasicMsg).currentTime;

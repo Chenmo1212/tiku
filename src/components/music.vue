@@ -127,18 +127,41 @@
           }
         }
         let result ="";
-        if (parseInt(theTime) < 10) {
-          result = "00:0" + parseInt(theTime)
-        }
-
-        if (middle > 0) {
-          if (parseInt(theTime) < 10) {
-            result = "" + parseInt(middle) + ":0" + parseInt(theTime);
-          }
-          result = "0" + parseInt(middle) + ":" + parseInt(theTime);
-        }
         if (hour > 0) {
+          if (middle < 10){
+            if (theTime < 10){
+              result = "" + parseInt(hour) + ":0" + parseInt(middle) + ":0" + parseInt(theTime);
+            } else {
+              result = "" + parseInt(hour) + ":0" + parseInt(middle) + ":" + parseInt(theTime);
+            }
+          } else {
+            if (theTime < 10){
+              result = "" + parseInt(hour) + ":" + parseInt(middle) + ":0" + parseInt(theTime);
+            } else {
+              result = "" + parseInt(hour) + ":" + parseInt(middle) + ":" + parseInt(theTime);
+            }
+          }
           result = "" + parseInt(hour) + ":" + parseInt(middle) + ":" + parseInt(theTime);
+        } else if (middle > 0) {
+          if (middle < 10){
+            if (theTime < 10){
+              result = "0" + parseInt(middle) + ":0" + parseInt(theTime);
+            } else {
+              result = "0" + parseInt(middle) + ":" + parseInt(theTime);
+            }
+          } else {
+            if (theTime < 10){
+              result = parseInt(middle) + ":0" + parseInt(theTime);
+            } else {
+              result = parseInt(middle) + ":" + parseInt(theTime);
+            }
+          }
+        } else if(theTime > 0){
+          if (theTime < 10){
+            result = "00:0" + parseInt(theTime);
+          } else {
+            result = "00:" + parseInt(theTime);
+          }
         }
         return result;
       }
@@ -152,12 +175,12 @@
     text-decoration: none;
   }
   #music {
-    height: calc(100vh - 80);
+    height: calc(100vh - 80px);
   }
 
   body {
     background-color: #f4f6f8;
-    /*background-color: #EBECF0;*/
+    /*background-color: #EBECF0px;*/
     font-size: 12px;
   }
 
@@ -187,10 +210,10 @@
     --text-color: #707174;
     --title-color: #A7A9AA;
     --shadow-color: 0, 0, 0;
-    --light-color: 80, 80, 80;
+    --light-color: 80, 80, 80px;
     --border-active-color: #444;
     --main-action-left: #D43C0B;
-    --main-action-right: #BF8A10;
+    --main-action-right: #BF8A10px;
     background-color: #26282B;
   }
 
@@ -199,7 +222,7 @@
   }
 
   .neumorphic-btn {
-    padding: 10 15px;
+    padding: 10px 15px;
     border-radius: 25px;
     background-color: var(--back-color);
     border: 2px solid var(--back-color);
@@ -231,8 +254,8 @@
   }
 
   .neumorphic-btn_fab {
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     padding: 0;
   }
 
@@ -241,8 +264,8 @@
     /*width: max-content;*/
     display: flex;
     flex-direction: column;
-    width: calc(100% - 40);
-    padding: 5% 20;
+    width: calc(100% - 40px);
+    padding: 5% 20px;
 
     .d-flex {
       display: flex;
@@ -268,19 +291,19 @@
   }
 
   .neumorphic-text_title {
-    font-size: 20;
+    font-size: 20px;
     color: var(--title-color);
   }
 
   .neumorphic-card__body {
     padding: 10% 0 0;
     position: relative;
-    height: calc(81vh - 60);
+    height: calc(81vh - 60px);
   }
 
   .neumorphic-image-wrapper {
-    width: 250;
-    height: 250;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 10%;
@@ -290,9 +313,9 @@
 
 
   .neumorphic-slider {
-    width: 400;
+    width: 400px;
     max-width: 100%;
-    height: 30;
+    height: 30px;
     position: relative;
   }
 
@@ -302,7 +325,7 @@
     border-radius: 3px;
     border: none;
     position: absolute;
-    bottom: 10;
+    bottom: 10px;
     cursor: pointer;
     box-shadow: inset 2px 2px 3px -2px rgba(var(--shadow-color), .3), inset -2px -2px 3px 0 rgba(var(--light-color), .5);
   }
@@ -319,8 +342,8 @@
   }
 
   .neumorphic-slider__thumb {
-    width: 30;
-    height: 30;
+    width: 30px;
+    height: 30px;
     border-radius: 15px;
     margin-left: -15px;
     background-color: var(--back-color);
@@ -356,26 +379,26 @@
   .neumorphic-slider__text {
     color: var(--text-color);
     font-family: 'Rubik', sans-serif;
-    font-size: 10;
+    font-size: 10px;
     font-weight: 600;
   }
 
   .neumorphic-slider__text_left {
     position: absolute;
-    bottom: 30;
+    bottom: 30px;
     left: 0;
   }
 
   .neumorphic-slider__text_right {
     position: absolute;
-    bottom: 30;
+    bottom: 30px;
     right: 0;
   }
 
   .player-controls {
     position: absolute;
     bottom: 0;
-    width: calc(100vw - 40);
+    width: calc(100vw - 40px);
     left: 0;
     z-index: 3;
 
@@ -387,10 +410,10 @@
   }
 
   .player-controls .btn {
-    width: 70;
-    height: 70;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    font-size: 20;
+    font-size: 20px;
     box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset -1px -1px 2px 0 rgba(var(--shadow-color), .3), inset 1px 1px 2px 0 rgba(var(--light-color), 1);
   }
 
