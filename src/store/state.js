@@ -55,6 +55,15 @@ export default {
     lang_c_2: [],
   },
 
+  musicStatus: false,
+
+  musicProgress: "0%",
+
+  // 音乐清单
+  musicList: null,
+
+  currentMusicBasicMsg: [],
+
   // 警告框
   isWarning: false,
   warning: '',

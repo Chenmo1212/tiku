@@ -5,12 +5,10 @@ import App from './App'
 import router from './router'
 import '@/icons' // svg 图标
 
-
-
 //引入vuex中的store
 import store from './store/store'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -19,4 +17,4 @@ new Vue({
   store,
   components: { App },
   template: '<App/>'
-})
+});

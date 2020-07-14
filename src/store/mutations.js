@@ -90,6 +90,20 @@ export default {
     // console.log("currentINdex", state.projectBasicData[obj.projectId].content[obj.chapterIndex].currentIndex)
   },
 
+  // 设置音乐状态
+  SET_MUSIC_STATUS(state) {
+    state.musicStatus = !state.musicStatus;
+  },
+
+  // 设置音乐状态
+  SET_MUSIC_MSG(state, obj) {
+    state.musicList = obj;
+  },
+
+  // 设置当前播放音乐状态
+  CURRENT_MUSIC_BASIC_MSG(state, obj) {
+    state.currentMusicBasicMsg = obj;
+  },
 
   // 设置提示
   setAttention(msg, obj) {

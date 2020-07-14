@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
 
-    <div class="search">
+    <div class="search" v-if="pageIndex === 1">
       <div class="container">
         <form autocomplete="off" @submit="searchSubmit($event)">
           <div class="finder">
@@ -43,7 +43,7 @@
 
       <div id="content">
         <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
-        <!--<music-vue v-if="pageIndex === 2"></music-vue>-->
+        <music-vue v-if="pageIndex === 2"></music-vue>
         <!--<mine-vue v-if="pageIndex === 3"></mine-vue>-->
       </div>
     </div>
@@ -150,13 +150,13 @@
        * @param index 导航下标
        */
       changeTab(index) {
-        console.log(index);
+        // console.log(index);
         this.pageIndex = index;
         if (index === 1) {
           this.move('1', '16.6%', '#e8e9ed');
         }
         if (index === 2) {
-          this.move('2', '50%', '#81d4fa');
+          this.move('2', '50%', '#f4f6f8');
         }
         if (index === 3) {
           this.move('3', '83.334%', '#c5e1a5');
@@ -353,7 +353,7 @@
   }
 
   body {
-    background: #f4f6f8;
+    /*background: #f4f6f8;*/
     width: 100vw;
     height: 100vh;
     display: flex;

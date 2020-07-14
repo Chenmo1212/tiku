@@ -38,9 +38,19 @@ export default {
     commit('SET_CURRENT_MEMORY', obj)
   },
 
+  // 设置音乐播放状态
+  setMusicStatus({commit}) {
+    commit('SET_MUSIC_STATUS')
+  },
 
+  // 设置音乐信息
+  setMusicMsg({commit}, obj) {
+    commit('SET_MUSIC_MSG', obj)
+  },
 
-
+  setCurrentBasicMsg({commit}, obj){
+    commit('CURRENT_MUSIC_BASIC_MSG', obj)
+  },
 
 
   // 显示注册
