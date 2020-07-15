@@ -55,9 +55,9 @@ export default {
     lang_c_2: [],
   },
 
-  musicStatus: false,
+  cardMode: true,
 
-  musicProgress: "0%",
+  musicStatus: false,
 
   // 音乐清单
   musicList: null,

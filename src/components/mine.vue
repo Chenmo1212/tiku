@@ -35,8 +35,8 @@
         <i class="fa fa-clone left"></i>
         <span>卡片模式</span>
         <span class="switch-container">
-         <label class="switch">
-          <input type="checkbox">
+         <label class="switch" @click="setTikuMode">
+          <input type="checkbox" :checked="cardMode">
         </label>
         </span>
       </div>
@@ -44,8 +44,8 @@
         <i class="fa fa-expand left"></i>
         <span>全屏模式</span>
         <span class="switch-container">
-         <label class="switch">
-          <input type="checkbox">
+         <label class="switch" @click="setFullScreen">
+          <input type="checkbox" :checked="isFullScreen">
         </label>
         </span>
       </div>
@@ -64,12 +64,26 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
   export default {
     name: "mine",
     data() {
-      return {}
+      return {
+        isFullScreen: false,
+      }
+    },
+    computed: {
+      ...mapState([
+        'cardMode',
+      ]),
     },
     methods: {
+      ...mapActions([
+        'setTikuMode',
+      ]),
+      /**
+       * 设置水波纹效果
+       */
       playBtnWave(e) {
         const play = document.querySelector('.play');
         const pause = document.querySelector('.pause');
@@ -82,7 +96,40 @@
         playBtn.classList.toggle('shadow');
         wave1.classList.toggle('paused');
         wave2.classList.toggle('paused');
-      }
+      },
+      /**
+       * 设置全屏
+       */
+      setFullScreen() {
+        // console.log(this.isFullScreen);
+        if (this.isFullScreen) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+          } else {
+            window.parent.showTopBottom();
+          }
+          this.isFullScreen = false;
+        } else {
+          // console.log("退出");
+          let ele = document.body;
+          if (ele.requestFullscreen) {
+            ele.requestFullscreen();
+          } else if (ele.mozRequestFullScreen) {
+            ele.mozRequestFullScreen();
+          } else if (ele.webkitRequestFullscreen) {
+            ele.webkitRequestFullscreen();
+          } else if (ele.msRequestFullscreen) {
+            ele.msRequestFullscreen();
+          }
+          this.isFullScreen = true;
+        }
+      },
     }
   }
 </script>

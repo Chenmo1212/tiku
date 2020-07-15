@@ -181,7 +181,7 @@
 
       // 处理选项数据
       let dataList = selectedChapter.data;
-      console.log(dataList);
+      // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
       }

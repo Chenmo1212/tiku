@@ -154,14 +154,25 @@
         if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
         if (key === "blaNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum;
         if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
-        console.log(this.questionObj.blaNum);
-        this.$router.push({
-          name: 'detail',
-          params: {
-            id: quesIndex,
-            type: key
-          }
-        })
+        // console.log(this.questionObj.blaNum);
+
+        if (this.cardMode) {
+          this.$router.push({
+            name: 'detail',
+            params: {
+              id: quesIndex,
+              type: key
+            }
+          })
+        } else {
+          this.$router.push({
+            name: 'cardDetail',
+            params: {
+              id: quesIndex,
+              type: key
+            }
+          })
+        }
       }
     }
   }

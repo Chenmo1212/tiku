@@ -125,6 +125,7 @@
         'currentMemory',
         'selectedProject',
         'selectedChapter',
+        'cardMode',
       ]),
 
       swiper() {
@@ -165,7 +166,8 @@
             this.setSelectedChapter({id: 'mao_gai', index: 0});
             localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
           }
-          this.$router.push({name: 'detail'});
+          this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
+
         } else if(from === 2){
           this.setSelectedProject(item);
           this.$router.push({name: 'chapter'});

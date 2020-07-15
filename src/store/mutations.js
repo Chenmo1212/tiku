@@ -95,7 +95,7 @@ export default {
     state.musicStatus = !state.musicStatus;
   },
 
-  // 设置音乐状态
+  // 设置音乐信息
   SET_MUSIC_MSG(state, obj) {
     state.musicList = obj;
   },
@@ -103,6 +103,11 @@ export default {
   // 设置当前播放音乐状态
   CURRENT_MUSIC_BASIC_MSG(state, obj) {
     state.currentMusicBasicMsg = obj;
+  },
+
+  // 设置答题模式
+  SET_TIKU_MODE(state) {
+    state.cardMode = !state.cardMode;
   },
 
   // 设置提示

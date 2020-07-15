@@ -48,10 +48,15 @@ export default {
     commit('SET_MUSIC_MSG', obj)
   },
 
+  // 设置当前播放歌曲信息
   setCurrentBasicMsg({commit}, obj){
     commit('CURRENT_MUSIC_BASIC_MSG', obj)
   },
 
+  // 设置题库答题模式
+  setTikuMode({commit}){
+    commit('SET_TIKU_MODE')
+  },
 
   // 显示注册
   showRegister({commit}, obj) {
