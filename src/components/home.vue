@@ -44,7 +44,7 @@
       <div id="content">
         <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
         <music-vue v-if="pageIndex === 2" class="a-fadein"></music-vue>
-        <mine-vue v-if="pageIndex === 3"></mine-vue>
+        <mine-vue v-if="pageIndex === 3" class="a-fadein"></mine-vue>
       </div>
     </div>
 

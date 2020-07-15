@@ -256,7 +256,7 @@
 
       .card-progress__back {
         height: 16px;
-        background-color: #6c63ff;
+        background-color: #e7e9ef;
         border-radius: 13px;
         border: 4px solid #fff;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12),

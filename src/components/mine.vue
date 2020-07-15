@@ -6,8 +6,8 @@
       <div class="bg">
         <div class="circle">
           <span class="circle__btn" @click="playBtnWave">
-            <div class="pause" name="pause"></div>
-            <div class="play" name="play"></div>
+            <div class="pause"></div>
+            <div class="play"></div>
           </span>
           <span class="circle__back-1"></span>
           <span class="circle__back-2"></span>
