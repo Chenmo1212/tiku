@@ -12,13 +12,18 @@
           <span class="circle__back-1"></span>
           <span class="circle__back-2"></span>
         </div>
-        <p class="intro">ChenMo1212</p>
+
+        <div class="wrapper">
+          <div class="typing-demo">
+            LITTLE COOKIE By ChenMo.
+          </div>
+        </div>
       </div>
     </div>
     <div class="content">
       <div class="item day-night">
-        <i class="fa fa-moon-o" aria-hidden="true"></i>
-        <span>夜间模式</span>
+        <i class="fa fa-moon-o left" aria-hidden="true"></i>
+        <span>白天模式</span>
         <div class="toggle toggle--daynight">
           <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" checked="checked">
           <label class="toggle--btn" for="toggle--daynight">
@@ -26,6 +31,34 @@
           </label>
         </div>
       </div>
+      <div class="item">
+        <i class="fa fa-clone left"></i>
+        <span>卡片模式</span>
+        <span class="switch-container">
+         <label class="switch">
+          <input type="checkbox">
+        </label>
+        </span>
+      </div>
+      <div class="item">
+        <i class="fa fa-expand left"></i>
+        <span>全屏模式</span>
+        <span class="switch-container">
+         <label class="switch">
+          <input type="checkbox">
+        </label>
+        </span>
+      </div>
+      <div class="item">
+        <i class="fa fa-pencil-square-o left"></i>
+        <span>我要反馈</span>
+        <span class="right-icon">
+          <span class="circle">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </span>
+      </div>
+
     </div>
   </div>
 </template>
@@ -37,7 +70,7 @@
       return {}
     },
     methods: {
-      playBtnWave(e){
+      playBtnWave(e) {
         const play = document.querySelector('.play');
         const pause = document.querySelector('.pause');
         const playBtn = document.querySelector('.circle__btn');
@@ -65,7 +98,8 @@
     height: calc(100vh - 80px);
     background: #f4f6f8;
     padding: 0 20px;
-    width: calc(100vw - 40px)
+    width: calc(100vw - 40px);
+    position: relative;
   }
 
   :root {
@@ -91,6 +125,7 @@
     display: grid;
     grid-template-rows: 1fr;
   }
+
   .circle__btn {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -105,7 +140,7 @@
     color: #6d5dfc;
     z-index: 300;
     /*background: #E4EBF5;*/
-    box-shadow: 3px 3px 6px hsla(215,  46%, 78%, 0.8), -3px -3px 6px hsla(215, 46%, 108%, 0.8);
+    box-shadow: 3px 3px 6px hsla(215, 46%, 78%, 0.8), -3px -3px 6px hsla(215, 46%, 108%, 0.8);
     cursor: pointer;
     position: relative;
     background: url("../assets/avatar.png");
@@ -113,21 +148,26 @@
     background-size: cover;
     border: 2px solid #fff;
   }
+
   .circle__btn .play {
     position: absolute;
     opacity: 0;
     transition: all .2s linear;
   }
+
   .circle__btn .play.visibility {
     opacity: 1;
   }
+
   .circle__btn .pause {
     position: absolute;
     transition: all .2s linear;
   }
+
   .circle__btn .pause.visibility {
     opacity: 0;
   }
+
   .circle__back-1, .circle__back-2 {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -137,21 +177,26 @@
     filter: blur(1px);
     z-index: 100;
   }
+
   .circle__back-1 {
     box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
     background: linear-gradient(to bottom right, #c8d0e7 0%, #fff 100%);
     animation: waves 4s linear infinite;
   }
+
   .circle__back-1.paused {
     animation-play-state: paused;
   }
+
   .circle__back-2 {
     box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
     animation: waves 4s linear 2s infinite;
   }
+
   .circle__back-2.paused {
     animation-play-state: paused;
   }
+
   @keyframes waves {
     0% {
       transform: scale(1);
@@ -169,10 +214,138 @@
   .intro {
     margin-top: 50px;
   }
+
+
+  .contact-wrapper {
+    position: fixed;
+    right: 0;
+    bottom: 80px;
+    transform: translateX(100%);
+    -webkit-transition: transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .contact-wrapper.contact-wrapper--open {
+    transform: translateX(-10px);
+  }
+
+  .contact-panel {
+    background-color: #fff;
+    border: 1px solid #101845;
+    max-width: 500px;
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+  }
+
+  .contact-panel__header {
+    position: relative;
+    background-color: #101845;
+    color: #fff;
+    font-size: 21px;
+    line-height: 16px;
+    padding: 15px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .contact-panel ul {
+    list-style-type: none;
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+  }
+
+  .contact-panel ul li {
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  .contact-panel ul li a {
+    border-radius: 50%;
+    color: #101845;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    line-height: 50px;
+    text-decoration: none;
+    box-shadow: 0 1px 2px 1px rgba(170, 170, 170, 0.2);
+    -webkit-transition: box-shadow 0.4s ease-in-out;
+    transition: box-shadow 0.4s;
+  }
+
+  .contact-panel ul li a:hover {
+    box-shadow: 0 2px 5px 1px rgba(170, 170, 170, 0.6);
+  }
+
+  .contact-close {
+    border: 0;
+    color: #ccc;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    line-height: 48px;
+  }
+
+  .contact-close:focus {
+    outline: none;
+  }
+
+  .contact-button {
+    border: 0;
+    background-color: #101845;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 16px;
+    -webkit-transition: background-color 0.4s ease-in-out;
+    transition: background-color 0.4s ease-in-out;
+    font-size: 16px;
+    line-height: 20px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 4px;
+  }
+
+  .contact-button:hover {
+    background-color: #212b63;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .typing-demo {
+    width: 24ch;
+    animation: typing 3s steps(24), blink 0.5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: Poppins, serif;
+    font-size: 16px;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+
   .content {
     width: 100%;
 
     .item {
+      margin-bottom: 20px;
       height: 40px;
       line-height: 40px;
       text-align: left;
@@ -183,6 +356,32 @@
       border-radius: 10px;
       border: 2px solid #fff;
       box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
+
+      .left {
+        margin-right: 10px;
+      }
+
+      .right-icon {
+        float: right;
+        height: 40px;
+        display: inline-block;
+        font-size: 30px;
+
+        .circle {
+          margin-top: 4px;
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.12);
+          border: 1px solid #fff;
+
+          i {
+            display: block;
+            margin-left: 3px;
+            margin-top: -2px;
+          }
+        }
+      }
     }
 
     .day-night {
@@ -365,5 +564,76 @@
       transform: rotate(70deg);
     }
 
+
+    .switch-container {
+      height: 40px;
+      display: flex;
+      float: right;
+      width: 54px;
+      align-items: center;
+
+      input[type="checkbox"] {
+        position: relative;
+        top: 10px;
+        width: 54px;
+        height: 32px;
+        -webkit-appearance: none;
+        background-color: #f4f6f8;
+        border-radius: 40px;
+        box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
+        transition: .5s;
+        outline: none;
+      }
+
+      input:checked[type="checkbox"] {
+        background-color: #9ee3fb;
+        border: 2px solid #86c3d7;
+        /*background-color: #fff;*/
+        /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.12);*/
+      }
+
+      input[type="checkbox"]:before {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        top: 3px;
+        left: 4px;
+        background-color: #9ee3fb;
+        border: 2px solid #fff;
+        transition: 0.5s;
+        transform: scale(1.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.12);
+      }
+
+      input:checked[type="checkbox"]:before {
+        left: 23px;
+        top: 2px;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background-color: #fff;
+      }
+
+      input:checked[type="checkbox"]:after {
+        /*content: "👋";*/
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        font-family: monospace;
+        color: white;
+        animation: animate 1s ease;
+      }
+
+      @keyframes animate {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
   }
 </style>
