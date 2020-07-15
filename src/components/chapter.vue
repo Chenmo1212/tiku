@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import detailVue from './Detail'
+  import detailVue from './cardDetail'
   import {mapState, mapActions} from 'vuex'
 
   export default {

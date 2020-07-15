@@ -431,6 +431,6 @@ export var mao_gai_unit1 = [{
   "answer": 1
 }, {
   "type": 3,
-  "question": "，党的根本工作路线是群众路线。",
+  "question": "党的根本工作路线是群众路线。",
   "answer": 1
 }]

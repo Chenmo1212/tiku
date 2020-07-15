@@ -10,7 +10,7 @@
     </div>
 
     <div class="container">
-      <div class="question-type" v-for="(val, key, i) in questionObj">
+      <div class="question-type" v-for="(val, key) in questionObj" v-if="val">
         <div class="title" :style="{color: chapterColor}">
           <span v-if="val && key === 'sigNum'">单选题</span>
           <span v-if="val && key === 'mulNum'">多选题</span>
@@ -64,16 +64,17 @@
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
       this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
 
-      console.log(this.selectedProject);
+      // console.log(this.selectedProject);
 
       this.projectName = this.selectedProject.chinese;
       this.chapterName = this.selectedChapter.title;
       this.chapterColor = this.themeColor;
       let tempObj = {};
-      if(selectedChapter.radio) tempObj['sigNum'] = selectedChapter.radio;
-      if(selectedChapter.multiple) tempObj['mulNum'] = selectedChapter.multiple;
-      if(selectedChapter.decide) tempObj['judNum'] = selectedChapter.decide;
-      if(selectedChapter.fill) tempObj['blaNum'] = selectedChapter.fill;
+      // console.log(selectedChapter)
+      tempObj['sigNum'] = selectedChapter.radio;
+      tempObj['mulNum'] = selectedChapter.multiple;
+      tempObj['judNum'] = selectedChapter.decide;
+      tempObj['blaNum'] = selectedChapter.fill;
 
       this.questionObj = tempObj;
 
@@ -99,7 +100,14 @@
       backDetail() {
         this.$router.push({name: 'detail'});
       },
+      /**
+       * 是否已经答题
+       * @param index 题目序号
+       * @param type 题目类型
+       * @returns {boolean} 返回是否
+       */
       isCheck(index, type){
+        console.log(this.questionObj);
         let itemIndex = null;
         if (type === "sigNum") {
           for (let i = 0; i < this.answerObj.sigArr.length; i++){
@@ -138,6 +146,7 @@
         }
       },
       toDetail(index, key){
+        console.log(this.questionObj);
         console.log(index);
         console.log(key);
         let quesIndex = 0;
@@ -145,7 +154,7 @@
         if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
         if (key === "blaNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum;
         if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
-        // console.log(itemIndex);
+        console.log(this.questionObj.blaNum);
         this.$router.push({
           name: 'detail',
           params: {
