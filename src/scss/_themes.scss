@@ -1,0 +1,55 @@
+// 当HTML的data-theme为dark时，样式引用dark
+// data-theme为其他值时，就采用组件库的默认样式
+// 这里我只定义了两套主题方案，想要再多只需在`$themes`里加就行了
+// 注意一点是，每套配色方案里的key可以自定义但必须一致，不然就会混乱
+
+$themes: (
+
+  light: (
+    //字体
+    active_tab_font_color: #2c3e50,
+    content_color: #6c7885,
+
+    // Mine 页面
+    //【背景】
+    bg_mine: #9ee3fb,  // mine 主题色
+    bg_mine_color1: #fff,   // mine 开关背景色
+    bg_mine_color2: #f4f6f8,   // mine 背景色
+    bg_mine_color3: #f4f6f8,   // mine 波纹背景色
+
+    //边框
+    border_color1: #fff,
+    border_mine: #86c3d7,
+
+    // 边框阴影
+    shadow_min_color1: #c8d0e7,
+    shadow_min_color2: #fff,
+
+  ),
+
+  dark: (
+    //字体
+    active_tab_font_color: #6c7885,
+    content_color: white,
+
+    //背景
+    bg_mine: #2E3237,
+    bg_mine_color1: #6c7885,  // mine 开关的颜色
+    bg_mine_color2: #6c7885,  // mine其余的背景色
+    background_color2: #283142,
+    background_color3: #2E3237, // mine全局背景色
+    background_color4: #323e4e,
+
+
+    //边框
+    border_color1: #2e3237,
+    border_mine: #6c7885,
+  )
+
+);
+
+//定义映射集合
+$theme-map: (
+  light: light,
+  dark: dark
+);

@@ -110,6 +110,11 @@ export default {
     state.cardMode = !state.cardMode;
   },
 
+  // 设置主题模式
+  SET_THEME_MODE(state, obj) {
+    state.themeMode = obj.type;
+  },
+
   // 设置提示
   setAttention(msg, obj) {
     this.$store.commit('SET_ATTENTION', {

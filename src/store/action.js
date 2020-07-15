@@ -58,6 +58,13 @@ export default {
     commit('SET_TIKU_MODE')
   },
 
+  // 设置题库答题模式
+  setThemeMode({commit}, obj){
+    commit('SET_THEME_MODE', obj)
+  },
+
+
+
   // 显示注册
   showRegister({commit}, obj) {
     commit('SET_ACCOUNT', obj)

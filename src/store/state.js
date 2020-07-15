@@ -56,6 +56,7 @@ export default {
   },
 
   cardMode: true,
+  themeMode: 'light',
 
   musicStatus: false,
 
