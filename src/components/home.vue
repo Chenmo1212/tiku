@@ -44,7 +44,7 @@
       <div id="content">
         <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
         <music-vue v-if="pageIndex === 2" class="a-fadein"></music-vue>
-        <!--<mine-vue v-if="pageIndex === 3"></mine-vue>-->
+        <mine-vue v-if="pageIndex === 3"></mine-vue>
       </div>
     </div>
 
@@ -159,7 +159,7 @@
           this.move('2', '50%', '#f4f6f8');
         }
         if (index === 3) {
-          this.move('3', '83.334%', '#c5e1a5');
+          this.move('3', '83.334%', '#f4f6f8');
         }
       },
       // tab 切换

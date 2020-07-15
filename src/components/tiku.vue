@@ -134,8 +134,7 @@
     created(){
       if (typeof(localStorage.currentMemory) !== 'undefined'){
         this.currentMemoryMsg = JSON.parse(localStorage.currentMemory);
-      }
-      if (JSON.stringify(this.currentMemory) !== "{}") {
+      } else if (JSON.stringify(this.currentMemory) !== "{}") {
         console.log(this.currentMemory);
         this.currentMemoryMsg = this.currentMemory;
         localStorage.setItem('currentMemory', this.currentMemory);
