@@ -1,5 +1,5 @@
 <template>
-  <div id="music">
+  <div id="music" :class="{dark: this.themeMode === 'dark'}">
     <div class="themed-block">
       <div class="neumorphic-card d-flex flex-column mx-auto">
         <div class="d-flex">
@@ -13,7 +13,8 @@
               :src="cover"
               style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
-          <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a></div>
+          <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a>
+          </div>
           <div class="neumorphic-text text-center mt-1 mb-5">{{artist}}</div>
           <div class="neumorphic-slider slider mx-auto">
             <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime}}</div>
@@ -51,6 +52,7 @@
     computed: {
       ...mapState([
         'musicStatus',
+        'themeMode',
         'currentMusicBasicMsg',
       ]),
     },
@@ -68,7 +70,7 @@
     },
     created() {
 
-      if (typeof(localStorage.currentMusicBasicMsg) === 'undefined'){
+      if (typeof (localStorage.currentMusicBasicMsg) === 'undefined') {
         this.currentMusicMsg = this.currentMusicBasicMsg;
         this.duration = this.formatSeconds(this.currentMusicMsg.duration);
         // console.log(this.duration);
@@ -87,8 +89,8 @@
       this.url = this.currentMusicMsg.url;
       // console.log(this.cover);
     },
-    watch:{
-      currentMusicBasicMsg(){
+    watch: {
+      currentMusicBasicMsg() {
         this.currentTime = this.formatSeconds(this.currentMusicBasicMsg.currentTime);
         this.duration = this.formatSeconds(this.currentMusicBasicMsg.duration);
         this.songName = this.currentMusicBasicMsg.name;
@@ -126,16 +128,16 @@
             middle = parseInt(middle % 60);
           }
         }
-        let result ="";
+        let result = "";
         if (hour > 0) {
-          if (middle < 10){
-            if (theTime < 10){
+          if (middle < 10) {
+            if (theTime < 10) {
               result = "" + parseInt(hour) + ":0" + parseInt(middle) + ":0" + parseInt(theTime);
             } else {
               result = "" + parseInt(hour) + ":0" + parseInt(middle) + ":" + parseInt(theTime);
             }
           } else {
-            if (theTime < 10){
+            if (theTime < 10) {
               result = "" + parseInt(hour) + ":" + parseInt(middle) + ":0" + parseInt(theTime);
             } else {
               result = "" + parseInt(hour) + ":" + parseInt(middle) + ":" + parseInt(theTime);
@@ -143,21 +145,21 @@
           }
           result = "" + parseInt(hour) + ":" + parseInt(middle) + ":" + parseInt(theTime);
         } else if (middle > 0) {
-          if (middle < 10){
-            if (theTime < 10){
+          if (middle < 10) {
+            if (theTime < 10) {
               result = "0" + parseInt(middle) + ":0" + parseInt(theTime);
             } else {
               result = "0" + parseInt(middle) + ":" + parseInt(theTime);
             }
           } else {
-            if (theTime < 10){
+            if (theTime < 10) {
               result = parseInt(middle) + ":0" + parseInt(theTime);
             } else {
               result = parseInt(middle) + ":" + parseInt(theTime);
             }
           }
-        } else if(theTime > 0){
-          if (theTime < 10){
+        } else if (theTime > 0) {
+          if (theTime < 10) {
             result = "00:0" + parseInt(theTime);
           } else {
             result = "00:" + parseInt(theTime);
@@ -170,16 +172,20 @@
 </script>
 
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
+
   a {
     color: #6C7A92;
     text-decoration: none;
   }
+
   #music {
     height: calc(100vh - 80px);
   }
 
   body {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background("music_bg_color1");
     /*background-color: #EBECF0px;*/
     font-size: 12px;
   }
@@ -193,7 +199,39 @@
     z-index: 1;
   }
 
-  .themed-block:first-of-type {
+  .dark {
+    .themed-block {
+      --back-color: #2E3237 !important;
+      --text-color: #707174 !important;
+      --title-color: #A7A9AA !important;
+      --shadow-color: 0, 0, 0 !important;
+      --light-color: 80, 80, 80px !important;
+      --border-active-color: #444 !important;
+      --main-action-left: #D43C0B !important;
+      --main-action-right: #BF8A10px !important;
+      background-color: #26282B !important;
+    }
+    .neumorphic-image-wrapper {
+      box-shadow: 7px 7px 15px 5px rgba(0,0,0, .3), -4px -4px 5px 7px rgba(80,80,80, 1);
+    }
+    .player-controls .btn {
+      box-shadow: 7px 7px 15px 0 rgba(0, 0, 0, .3), -7px -7px 15px 0px rgba(80, 80, 80, 1), inset -1px -1px 2px 0px rgba(0,0,0, .3), inset 1px 1px 2px 0px rgba(80, 80, 80, 1);
+    }
+    .neumorphic-btn[data-v-e2d5c076] {
+      box-shadow: 7px 7px 15px 0 rgba(0,0,0, 0.3),-7px -7px 15px 0px rgba(80,80,80, 1),inset 0px 0px 0px 0px rgba(0,0,0, 0),inset 0px 0px 0px 0px rgba(80,80,80, 0);
+    }
+    .neumorphic-btn_primary[data-v-e2d5c076] {
+      background: linear-gradient(90deg, #D43C0B, #BF8A10);
+    }
+    .neumorphic-slider__line[data-v-e2d5c076] {
+      background: linear-gradient(90deg, #D43C0B, #BF8A10);
+    }
+    .neumorphic-slider__back {
+      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0, .3), inset -2px -2px 3px 0px rgba(80,80,80, .5);
+    }
+  }
+
+  .themed-block {
     --back-color: #f4f6f8;
     --text-color: #A2B1CA;
     --title-color: #6C7A92;
@@ -205,17 +243,17 @@
     background-color: #ddd;
   }
 
-  .themed-block:nth-of-type(2) {
-    --back-color: #2E3237;
-    --text-color: #707174;
-    --title-color: #A7A9AA;
-    --shadow-color: 0, 0, 0;
-    --light-color: 80, 80, 80px;
-    --border-active-color: #444;
-    --main-action-left: #D43C0B;
-    --main-action-right: #BF8A10px;
-    background-color: #26282B;
-  }
+  /*.themed-block:nth-of-type(2) {*/
+  /*--back-color: #2E3237;*/
+  /*--text-color: #707174;*/
+  /*--title-color: #A7A9AA;*/
+  /*--shadow-color: 0, 0, 0;*/
+  /*--light-color: 80, 80, 80px;*/
+  /*--border-active-color: #444;*/
+  /*--main-action-left: #D43C0B;*/
+  /*--main-action-right: #BF8A10px;*/
+  /*background-color: #26282B;*/
+  /*}*/
 
   .btn:focus {
     outline: none;
@@ -226,7 +264,7 @@
     border-radius: 25px;
     background-color: var(--back-color);
     border: 2px solid var(--back-color);
-    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 0 0 0 0 rgba(var(--shadow-color), 0), inset 0 0 0 0 rgba(var(--light-color), 0);
+    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0px 0px 0px 0px rgba(var(--shadow-color), 0), inset 0px 0px 0px 0px rgba(var(--light-color), 0);
     transition: all .25s ease;
     color: var(--text-color);
     font-size: 12px;
@@ -234,12 +272,12 @@
   }
 
   .neumorphic-btn:focus {
-    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 0 0 0 0 rgba(var(--shadow-color), 0), inset 0 0 0 0 rgba(var(--light-color), 0);
+    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0 0 0 0 rgba(var(--shadow-color), 0), inset 0 0 0 0 rgba(var(--light-color), 0);
     text-shadow: 0 0 2px rgba(var(--text-color), 0);
   }
 
   .neumorphic-btn:active {
-    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 8px 0 rgba(var(--shadow-color), .3), inset -4px -4px 8px 0 rgba(var(--light-color), 1) !important;
+    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 4px 4px 8px 0px rgba(var(--shadow-color), .3), inset -4px -4px 8px 0px rgba(var(--light-color), 1) !important;
     border: 2px solid var(--border-active-color);
     text-shadow: 0 0 2px rgba(var(--text-color), .3);
   }
@@ -250,7 +288,7 @@
   }
 
   .neumorphic-btn_primary:active {
-    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 20 0 rgba(0, 0, 0, .3) !important;
+    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, .3) !important;
   }
 
   .neumorphic-btn_fab {
@@ -259,8 +297,11 @@
     padding: 0;
   }
 
+
   .neumorphic-card {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background('music_bg_color1');
+    /*background-color: var(--back-color);*/
     /*width: max-content;*/
     display: flex;
     flex-direction: column;
@@ -306,7 +347,7 @@
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto 10%;
+    margin: 0 auto 10px;
     border: 5px solid var(--back-color);
     box-shadow: 7px 7px 15px 5px rgba(var(--shadow-color), .3), -4px -4px 5px 7px rgba(var(--light-color), 1);
   }

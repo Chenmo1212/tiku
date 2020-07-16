@@ -36,7 +36,7 @@
           <!--<div id="menu4" class="menuElement" @click="move('4', '329px', '#ce93d8')"><i class="fas fa-user"></i></div>-->
         </div>
       </div>
-      <div id="bgWrapper" :class="{mine: pageIndex === 3}">
+      <div id="bgWrapper" :class="{mine: pageIndex === 3, music: pageIndex === 2}">
         <div id="bg"></div>
         <div id="bgBubble"></div>
       </div>
@@ -699,6 +699,16 @@
         background-color: #2e3237!important;
       }
     }
+
+    .music {
+      #bg {
+        background-color: #26282b!important;
+      }
+      #bgBubble {
+        background-color: #26282b!important;
+      }
+    }
+
     .finder__icon {
       box-shadow: inset 0 0 0 20px #9a9a9a!important;
     }
