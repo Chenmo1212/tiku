@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" :class="{dark: themeMode==='dark'}">
 
     <div class="search" v-if="pageIndex === 1">
       <div class="container">
@@ -36,7 +36,7 @@
           <!--<div id="menu4" class="menuElement" @click="move('4', '329px', '#ce93d8')"><i class="fas fa-user"></i></div>-->
         </div>
       </div>
-      <div id="bgWrapper">
+      <div id="bgWrapper" :class="{mine: pageIndex === 3}">
         <div id="bg"></div>
         <div id="bgBubble"></div>
       </div>
@@ -135,6 +135,7 @@
         'themeColor',
         'projectBasicData',
         'selectedAnswer',
+        'themeMode',
       ])
     },
     methods: {
@@ -339,6 +340,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
   svg {
     display: block;
   }
@@ -378,7 +380,7 @@
     #navbar {
       width: 100%;
       height: 60px;
-      background-color: #fff;
+      @include background('home_bg_color1');
       position: absolute;
       /*z-index: 999;*/
 
@@ -391,7 +393,8 @@
         /*z-index: 999;*/
 
         .bubble {
-          background-color: #fff;
+          /*background-color: #fff;*/
+          @include background('home_bg_color1');
           width: 50px;
           height: 50px;
           bottom: 85px;
@@ -524,8 +527,7 @@
 
         .finder {
           margin-top: 10px;
-          /*border: 1px solid #fff;*/
-          background-color: #ffffff;
+          @include background('home_bg_color1');
           border-radius: 10px;
           padding: 4px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
@@ -583,6 +585,7 @@
           width: 5px;
           height: 5px;
           background-color: #6c7885;
+          /*<!--@include background('home_bg_color2');-->*/
           border: 3px solid #ffffff;
           top: 52%;
           position: absolute;
@@ -596,7 +599,8 @@
         .finder__icon:before {
           width: 4px;
           height: 11px;
-          background-color: #ffffff;
+          /*<!--@include background('home_bg_color2');-->*/
+          background: #fff;
           top: 50%;
           left: 14px;
           transform: rotateZ(45deg) translate(-50%, 0);
@@ -610,7 +614,8 @@
         }
 
         .active .finder__icon:before {
-          background-color: #6c7885;
+          /*background-color: #6c7885;*/
+          @include background("home_bg_color3");
           width: 6px;
           transform: rotateZ(45deg) translate(-50%, 15px);
         }
@@ -641,29 +646,63 @@
       }
     }
   }
+
   /* 淡入 */
-  .a-fadein{
+  .a-fadein {
     animation: 1s ease-out backwards;
     animation-name: fadein;
   }
+
   /* 淡入 */
-  @-webkit-keyframes fadein{
-    0%{opacity:0;}
-    100%{opacity:1;}
-  }
-  @-moz-keyframes fadein{
-    0%{opacity:0;}
-    100%{opacity:1;}
-  }
-  @-ms-keyframes fadein{
-    0%{opacity:0;}
-    100%{opacity:1;}
-  }
-  @keyframes fadein{
-    0%{opacity:0;}
-    100%{opacity:1;}
+  @-webkit-keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
+  @-moz-keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @-ms-keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .dark {
+    .mine {
+      #bg {
+        background-color: #2e3237 !important;
+      }
+      #bgBubble {
+        background-color: #2e3237!important;
+      }
+    }
+    .finder__icon {
+      box-shadow: inset 0 0 0 20px #9a9a9a!important;
+    }
+  }
 
 
 </style>

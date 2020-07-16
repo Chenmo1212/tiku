@@ -6,11 +6,10 @@
 $themes: (
 
   light: (
+    // Mine 页面
     //字体
     active_tab_font_color: #2c3e50,
     content_color: #6c7885,
-
-    // Mine 页面
     //【背景】
     bg_mine: #9ee3fb,  // mine 主题色
     bg_mine_color1: #fff,   // mine 开关背景色
@@ -25,13 +24,19 @@ $themes: (
     shadow_min_color1: #c8d0e7,
     shadow_min_color2: #fff,
 
+    // home 页面
+    home_bg_color1: #fff,
+    home_bg_color2: #fff,  // 搜索框的icon背景色
+    home_bg_color3: #6c7885,  // 搜索框的icon背景色
+    home_border_color1: #fff, //
+
   ),
 
   dark: (
+    // mine 页面
     //字体
     active_tab_font_color: #6c7885,
     content_color: white,
-
     //背景
     bg_mine: #2E3237,
     bg_mine_color1: #6c7885,  // mine 开关的颜色
@@ -39,11 +44,15 @@ $themes: (
     background_color2: #283142,
     background_color3: #2E3237, // mine全局背景色
     background_color4: #323e4e,
-
-
     //边框
     border_color1: #2e3237,
     border_mine: #6c7885,
+
+    // home 页面
+    home_bg_color1: #6c7885,
+    home_bg_color2: #9a9a9a,
+    home_bg_color3: #9a9a9a,
+    //home_border_color1：#000000,
   )
 
 );
