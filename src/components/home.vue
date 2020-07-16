@@ -85,6 +85,13 @@
         showBeginBtn: true,
       }
     },
+    created(){
+      if (typeof(localStorage.themeMode) !== 'undefined'){
+        let type = JSON.parse(localStorage.themeMode);
+        window.document.documentElement.setAttribute("data-theme", type);
+        this.setThemeMode({type: type});
+      }
+    },
     mounted() {
       // console.clear();
       // 导入数据
@@ -144,6 +151,7 @@
         'setProjectBasicData',
         'setProjectQuestionData',
         'defineSelectedAnswer',
+        'setThemeMode',
       ]),
 
       /**
@@ -378,6 +386,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
     #navbar {
+      @include font_color('home_font_color1');
       width: 100%;
       height: 60px;
       @include background('home_bg_color1');
@@ -712,6 +721,10 @@
 
     .finder__icon {
       box-shadow: inset 0 0 0 20px #9a9a9a!important;
+    }
+
+    .finder__outer {
+      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
     }
   }
 

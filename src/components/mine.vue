@@ -72,6 +72,15 @@
         ifLight: true,
       }
     },
+    created(){
+      if (typeof(localStorage.themeMode) === 'undefined'){
+        localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
+      } else {
+        this.ifLight = JSON.parse(localStorage.themeMode) === "light";
+        let type = JSON.parse(localStorage.themeMode);
+        this.setThemeMode({type: type});
+      }
+    },
     computed: {
       ...mapState([
         'cardMode',
@@ -142,11 +151,13 @@
           this.ifLight = false;
         }
         // this.ifLight = !this.ifLight;
-        console.log(this.themeMode);
+        // console.log(this.themeMode);
         this.setThemeMode({type: type});
         window.document.documentElement.setAttribute("data-theme", type);
-        console.log(this.themeMode);
-        console.log(this.ifLight);
+        // console.log(this.themeMode);
+        // console.log(this.ifLight);
+
+        localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       }
     }
   }
