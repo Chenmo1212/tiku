@@ -716,9 +716,9 @@
         /*outline: 0;*/
         /*}*/
 
-        .c-button:hover:before {
-          background: rgba(255, 255, 255, 0.24);
-        }
+        /*.c-button:hover:before {*/
+          /*background: rgba(255, 255, 255, 0.24);*/
+        /*}*/
 
         .c-button:before {
           content: '';

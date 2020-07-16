@@ -1,11 +1,11 @@
 <template>
-  <div class="Detail">
+  <div class="Detail" :class="{dark: this.themeMode === 'dark'}">
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span>
+        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}" class="pageName">{{projectName}} - {{chapterName}}</span>
         </div>
       </div>
       <div class="full-screen" :style="{color: chapterColor}">
@@ -23,18 +23,19 @@
             <span v-if="item.type === 3">判断题</span>
           </div>
           <div class="question-num">
-            <span :style="{color: chapterColor}" v-if="item.type === 0">{{index + 1 + gapIndex}}</span>
-            <span :style="{color: chapterColor}"
+            <span class="question-index" :style="{color: chapterColor}"
+                  v-if="item.type === 0">{{index + 1 + gapIndex}}</span>
+            <span class="question-index" :style="{color: chapterColor}"
                   v-if="item.type === 1">{{index + 1 + gapIndex- selectedChapter.radio}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple}}</span>
-            <span :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
+            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple}}</span>
+            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
             /
-            <span v-if="item.type === 0">{{selectedChapter.radio}}</span>
-            <span v-if="item.type === 1">{{selectedChapter.multiple}}</span>
-            <span v-if="item.type === 2">{{selectedChapter.fill}}</span>
-            <span v-if="item.type === 3">{{selectedChapter.decide}}</span>
+            <span class="question-item" v-if="item.type === 0">{{selectedChapter.radio}}</span>
+            <span class="question-item" v-if="item.type === 1">{{selectedChapter.multiple}}</span>
+            <span class="question-item" v-if="item.type === 2">{{selectedChapter.fill}}</span>
+            <span class="question-item" v-if="item.type === 3">{{selectedChapter.decide}}</span>
             /
-            <span>{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
+            <span class="question-item">{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
           </div>
         </div>
         <div class="card-content">
@@ -198,6 +199,7 @@
     computed: {
       ...mapState([
         'themeColor',
+        'themeMode',
         // 'selectedChapter',
         'selectedProject',
         'selectedAnswer',
@@ -286,9 +288,9 @@
         // 重新渲染v-for
         // this.$forceUpdate();
 
-        console.log("isFinished");
-        console.log("checkIndex", this.checkIndex)
-        console.log("题目下标", this.itemIndex);
+        // console.log("isFinished");
+        // console.log("checkIndex", this.checkIndex)
+        // console.log("题目下标", this.itemIndex);
         // console.log(this.selectedChapter);
         let projectId = this.selectedChapter.id;         // 科目id
         let chapterIndex = this.selectedChapter.index;   // 章节下标
@@ -296,16 +298,16 @@
 
         let flag = true;
 
-        console.log(projectId)
-        console.log(chapterIndex)
-        console.log(this.currentType)
-        console.log(JSON.parse(localStorage.selectedAnswer))
+        // console.log(projectId)
+        // console.log(chapterIndex)
+        // console.log(this.currentType)
+        // console.log(JSON.parse(localStorage.selectedAnswer))
         let answerList = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
-        console.log(answerList)
+        // console.log(answerList)
         for (let i = 0; i < answerList.length; i++) {
           if (answerList[i].index === quesIndex) {
-            console.log(answerList[i].index);
-            console.log(quesIndex)
+            // console.log(answerList[i].index);
+            // console.log(quesIndex)
             this.checkIndex = answerList[i].userAns;
             flag = false;
             break;
@@ -313,7 +315,7 @@
         }
 
         if (flag) this.checkIndex = -1;
-        console.log("checkIndex", this.checkIndex)
+        // console.log("checkIndex", this.checkIndex)
       },
 
       /**
@@ -327,13 +329,12 @@
 
         if (this.gapIndex) {
           index += this.gapIndex;
-          console.log("newIndex", index)
+          // console.log("newIndex", index)
         }
         // console.log("index", index);
         this.itemIndex = index;
 
         // console.log(index);
-        console.log();
         // 默认答案为错
         this.isError = true;
         item.answer === answerIndex ? this.isError = false : this.isError = true;
@@ -374,16 +375,16 @@
       // 判断是否需要替换已选择的答案
       judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
         let tempArr = null;
-        console.log(projectId);
-        console.log(JSON.parse(localStorage.selectedAnswer));
-        console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
+        // console.log(projectId);
+        // console.log(JSON.parse(localStorage.selectedAnswer));
+        // console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
         if (typeof (localStorage.selectedAnswer) === 'undefined') {
           tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
         } else {
           tempArr = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][typeArr];
         }
         let obj = this.isHasObj(tempArr, quesIndex);
-        console.log(obj.flag);
+        // console.log(obj.flag);
         if (obj.flag) {
           // 科目id-章节下标-题目下标-用户答案
           this.setSelectedAnswer({
@@ -751,9 +752,52 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
 
   .Detail {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background("detail_bg_color1");
+  }
+
+  .dark {
+    .card,
+    .circle,
+    .question-num,
+    .card-question,
+    .menu-card {
+      box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
+    }
+
+    .question-num,
+    .pageName {
+      color: #A7A9AA !important;
+    }
+
+    .card .card-answer-list .c-button {
+      border: none !important;
+      color: #A7A9AA !important;
+      box-shadow: 1px 1px 5px 0 black, -2px -2px 5px 0 #636363 !important;
+    }
+
+    .answer {
+      color: #BF8A10 !important;
+      border: none !important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363 !important;
+    }
+
+    .full-screen,
+    .question-index,
+    .question-type,
+    .circle,
+    .menu-card {
+      color: #BF8A10 !important;
+    }
+
+    .question-type,
+    .card .card-answer-list .c-button--active {
+      background: #2d3135 !important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363 !important;
+    }
   }
 
   /*box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;*/
@@ -761,7 +805,7 @@
   .header {
     height: 60px;
     line-height: 60px;
-    background-color: #f4f6f8;
+    @include background("detail_bg_color1");
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .return {
@@ -776,10 +820,11 @@
         height: 30px;
         width: 30px;
         border-radius: 50%;
-        background-color: #f4f6f8;
+        @include background("detail_bg_color1");
         margin: 0;
         box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color("detail_border_color1");
       }
 
       i {
@@ -818,9 +863,9 @@
     top: 5%;
     left: 5%;
     border-radius: 11px;
-    border: 1px solid #fff;
+    @include border_color("detail_border_color1");
     box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
-    background-color: #f4f6f8;
+    @include background("detail_bg_color2");
     transform: translateX(0%) translateY(0%) scale(0.95);
     padding: 20px;
 
@@ -834,7 +879,7 @@
         height: 30px;
         width: 100px;
         border-radius: 5px;
-        background: #f4f6f8;
+        @include background("detail_bg_color2");
         box-shadow: inset 5px 5px 10px #eaecee,
         inset -5px -5px 10px #feffff;
       }
@@ -843,20 +888,22 @@
         height: 30px;
         width: 100px;
         border-radius: 5px;
-        background: #f4f6f8;
+        @include background("detail_bg_color");
         box-shadow: 5px 5px 10px #eaecee,
         -5px -5px 10px #feffff;
       }
     }
 
     .card-question {
+      @include font_color("detail_font_color1");
       margin: 10% 0;
       width: calc(100% - 20px);
       padding: 10px;
-      background: #f4f6f8;
+      @include background("detail_bg_color2");
       border-radius: 5px;
       text-align: left;
-      border: 1px solid #fff;
+      border: 1px solid;
+      @include border_color("detail_border_color1");
       box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
     }
 
@@ -870,7 +917,8 @@
         border-radius: 5px;
         color: #2c3e50;
         background: transparent;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color("detail_border_color1");
         position: relative;
         box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
         transition: all 200ms ease-out 0s;
@@ -887,10 +935,6 @@
       /*.btn:active, .btn:focus {*/
       /*outline: 0;*/
       /*}*/
-
-      .c-button:hover:before {
-        background: rgba(255, 255, 255, 0.24);
-      }
 
       .c-button:before {
         content: '';
@@ -925,14 +969,14 @@
         box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
       }
 
-      .c-button--active:before {
-        border-color: white;
-        box-shadow: 0 0.8px 3px white;
-      }
+      /*.c-button--active:before {*/
+      /*border-color: white;*/
+      /*box-shadow: 0 0.8px 3px white;*/
+      /*}*/
 
-      .c-button--active:after {
-        box-shadow: inset 0 0 3px white;
-      }
+      /*.c-button--active:after {*/
+      /*box-shadow: inset 0 0 3px white;*/
+      /*}*/
     }
 
     .answer {
@@ -941,7 +985,7 @@
       text-align: left;
       width: calc(100% - 20px);
       border-radius: 5px;
-      background: #f4f6f8;
+      @include background("detail_bg_color2");
       box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
     }
 
@@ -952,7 +996,7 @@
       height: 40px;
       width: 80%;
       border-radius: 5px;
-      background: #f4f6f8;
+      @include background("detail_bg_color2");
       box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
       display: flex;
       line-height: 40px;
@@ -960,11 +1004,13 @@
 
       .all-question {
         flex: 1;
-        border-right: 1px solid #eee;
+        border-right: 1px solid;
+        @include border_color("detail_border_color2");
       }
 
       .show-answer {
-        border-left: 1px solid #eee;
+        border-left: 1px solid;
+        @include border_color("detail_border_color2");
         flex: 1;
       }
     }
