@@ -33,7 +33,7 @@
         <i class="fa fa-clone left"></i>
         <span>卡片模式</span>
         <span class="switch-container">
-         <label class="switch" @click="setTikuMode">
+         <label class="switch" @click="handleTikuMode">
           <input type="checkbox" :checked="cardMode">
         </label>
         </span>
@@ -47,7 +47,7 @@
         </label>
         </span>
       </div>
-      <div class="item">
+      <div class="item" @click="handleFeedBack">
         <i class="fa fa-pencil-square-o left"></i>
         <span>我要反馈</span>
         <span class="right-icon">
@@ -91,6 +91,7 @@
       ...mapActions([
         'setTikuMode',
         'setThemeMode',
+        'setWarning',
       ]),
       /**
        * 设置水波纹效果
@@ -126,6 +127,7 @@
             window.parent.showTopBottom();
           }
           this.isFullScreen = false;
+          this.setWarning("全屏模式关闭");
         } else {
           // console.log("退出");
           let ele = document.body;
@@ -139,8 +141,10 @@
             ele.msRequestFullscreen();
           }
           this.isFullScreen = true;
+          this.setWarning("全屏模式开启");
         }
       },
+      // 更改主题
       changeTheme() {
         let type = null;
         if(this.themeMode === 'light'){
@@ -152,12 +156,26 @@
         }
         // this.ifLight = !this.ifLight;
         // console.log(this.themeMode);
+        this.setWarning("主题切换成功");
         this.setThemeMode({type: type});
         window.document.documentElement.setAttribute("data-theme", type);
-        // console.log(this.themeMode);
-        // console.log(this.ifLight);
 
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
+      },
+
+      // 设置题库模糊
+      handleTikuMode(){
+        if (this.cardMode){
+          this.setTikuMode();
+          this.setWarning("卡片答题页面设置成功");
+        } else {
+          this.setTikuMode();
+          this.setWarning("卡片答题页面已关闭");
+        }
+      },
+
+      handleFeedBack(){
+        this.setWarning("该功能正在开发ing~");
       }
     }
   }

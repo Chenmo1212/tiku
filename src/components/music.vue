@@ -3,12 +3,12 @@
     <div class="themed-block">
       <div class="neumorphic-card d-flex flex-column mx-auto">
         <div class="d-flex">
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-arrow-left"></i></button>
-          <div class="neumorphic-text flex-grow-1 my-auto text-center">Music Player</div>
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab"><i class="fa fa-bars"></i></button>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()"><i class="fa fa-arrow-left"></i></button>
+          <div class="neumorphic-text flex-grow-1 my-auto text-center" @click="setWarning('这是一个音乐播放器~')">Music Player</div>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()"><i class="fa fa-bars"></i></button>
         </div>
         <div class="neumorphic-card__body">
-          <div class="neumorphic-image-wrapper">
+          <div class="neumorphic-image-wrapper" @click="setWarning('这里什么都没有哦~')">
             <img
               :src="cover"
               style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
@@ -103,6 +103,7 @@
     methods: {
       ...mapActions([
         'setMusicStatus',
+        'setWarning',
       ]),
       handleMusicStatus() {
         this.setMusicStatus(true);
@@ -166,6 +167,10 @@
           }
         }
         return result;
+      },
+
+      handleAlertMsg(){
+        this.setWarning("该功能正在开发ing~");
       }
     }
   }
@@ -217,13 +222,13 @@
     .player-controls .btn {
       box-shadow: 7px 7px 15px 0 rgba(0, 0, 0, .3), -7px -7px 15px 0px rgba(80, 80, 80, 1), inset -1px -1px 2px 0px rgba(0,0,0, .3), inset 1px 1px 2px 0px rgba(80, 80, 80, 1);
     }
-    .neumorphic-btn[data-v-e2d5c076] {
+    .neumorphic-btn {
       box-shadow: 7px 7px 15px 0 rgba(0,0,0, 0.3),-7px -7px 15px 0px rgba(80,80,80, 1),inset 0px 0px 0px 0px rgba(0,0,0, 0),inset 0px 0px 0px 0px rgba(80,80,80, 0);
     }
-    .neumorphic-btn_primary[data-v-e2d5c076] {
+    .neumorphic-btn_primary {
       background: linear-gradient(90deg, #D43C0B, #BF8A10);
     }
-    .neumorphic-slider__line[data-v-e2d5c076] {
+    .neumorphic-slider__line {
       background: linear-gradient(90deg, #D43C0B, #BF8A10);
     }
     .neumorphic-slider__back {

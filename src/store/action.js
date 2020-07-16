@@ -49,61 +49,24 @@ export default {
   },
 
   // 设置当前播放歌曲信息
-  setCurrentBasicMsg({commit}, obj){
+  setCurrentBasicMsg({commit}, obj) {
     commit('CURRENT_MUSIC_BASIC_MSG', obj)
   },
 
   // 设置题库答题模式
-  setTikuMode({commit}){
+  setTikuMode({commit}) {
     commit('SET_TIKU_MODE')
   },
 
   // 设置题库答题模式
-  setThemeMode({commit}, obj){
+  setThemeMode({commit}, obj) {
     commit('SET_THEME_MODE', obj)
   },
 
-
-
-  // 显示注册
-  showRegister({commit}, obj) {
-    commit('SET_ACCOUNT', obj)
-  },
-
-  // 给仓库赋值
-  setClassLists({commit}, lists) {
-    commit('change', lists)
-  },
-
-
-  // 关闭loading
-  closeWarning({commit}, bool) {
-    commit('CLOSE_WARNING', bool)
-  },
-
   // 设置提示
-  setAttention({commit}, obj) {
-    commit('SET_ATTENTION', obj)
-  },
-
-  // 遮挡二维码
-  toShowBlock({commit}, bool) {
-    commit('SHOW_BLOCK', bool)
-  },
-
-  // 设置警告
-  setWarn({commit}, msg) {
+  setWarning({commit}, msg) {
     commit('SET_WARNING', msg)
   },
 
 
-  // 显示Loading
-  setLoading({commit}, bool) {
-    commit('SET_LOADING', bool)
-  },
-
-  // 设置警告
-  setAttended({commit}, obj) {
-    commit('SET_ATTENDED', obj)
-  },
 }

@@ -116,16 +116,10 @@ export default {
   },
 
   // 设置提示
-  setAttention(msg, obj) {
-    this.$store.commit('SET_ATTENTION', {
-      ifAlert: true,  // 提示窗口
-      at_warning: msg, // 提示语
-      EndSign: obj.EndSign,
-      noLogin: obj.noLogin,
-      To_Data: obj.To_Data,
-    });
-  }
-  ,
+  SET_WARNING(state, msg) {
+    state.isAlert = !state.isAlert;
+    state.warning = msg;
+  },
 
 // 前往数据管理
 // TO_DATA(state, boolean){

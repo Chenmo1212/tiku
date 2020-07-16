@@ -56,6 +56,12 @@ $themes: (
     over_bg_color1: #f4f6f8,
     over_border_color1: #fff,
     over_font_color1: #2c3e50,
+
+    // App 页面
+    app_bg_color1: #fff,
+    app_shadow_color1: #d1d3db,
+    app_shadow_color2: #f4f4f6,
+    app_font_color1: #82a5ff,
   ),
 
   dark: (
@@ -106,6 +112,12 @@ $themes: (
     over_bg_color1: #26282b,
     over_border_color1: #2d3135,
     over_font_color1: #A7A9AA,
+
+    // App 页面
+    app_bg_color1: #2d3135,
+    app_shadow_color1: rgba(0,0,0,0.3),
+    app_shadow_color2: rgba(0,0,0,0.5),
+    app_font_color1: #BF8A10,
   )
 
 );

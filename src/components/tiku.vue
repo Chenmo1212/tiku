@@ -193,7 +193,7 @@
     overflow: hidden;
   }
   .dark {
-    .swiper-container .swiper-slide[data-v-53e2332f] {
+    .swiper-container .swiper-slide {
       box-shadow: 7px 7px 15px 0 rgba(0,0,0,0.3), -7px -7px 15px 0px #505050, inset 0px 0px 0px 0px rgba(0,0,0,0), inset 0px 0px 0px 0px rgba(80,80,80,0) !important;
     }
     .swiper-slide .card-progress .card-progress__back {

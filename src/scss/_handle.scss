@@ -50,8 +50,9 @@
 }
 
 //获取边框颜色
-@mixin outline($color) {
+@mixin app_box_shadow($color1, $color2) {
   @include themeify {
-    outline: 1px solid themed($color) !important;
+    box-shadow: 5px 5px 6px themed($color1), -5px -5px 6px themed($color2);
   }
 }
+

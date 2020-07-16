@@ -153,6 +153,7 @@
         'setProjectQuestionData',
         'defineSelectedAnswer',
         'setThemeMode',
+        'setWarning',
       ]),
 
       /**
@@ -204,6 +205,7 @@
         finder.classList.add("active");
         // console.log("focus");
         this.showBeginBtn = false;
+        this.setWarning("现在还不能搜索哦~");
       },
       searchBlur() {
         const input = document.querySelector(".finder__input");
