@@ -37,6 +37,12 @@ $themes: (
     tiku_bg_color1: #fff,
     tiku_font_color1: #2c3e50,
 
+    //chapter 页面
+    chapter_bg_color1: #f4f6f8,
+    chapter_bg_color2: #f4f6f8,
+    chapter_border_color1: #fff,
+    chapter_font_color1: #2c3e50,
+
   ),
 
   dark: (
@@ -67,6 +73,12 @@ $themes: (
     // tiku 页面
     tiku_bg_color1: #2d3135,
     tiku_font_color1: #A7A9AA,
+
+    //chapter 页面
+    chapter_bg_color1: #26282b,
+    chapter_bg_color2: #2d3135,
+    chapter_border_color1: #2d3135,
+    chapter_font_color1: #A7A9AA,
   )
 
 );

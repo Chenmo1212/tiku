@@ -1,5 +1,5 @@
 <template>
-  <div class="chapter">
+  <div class="chapter"  :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
@@ -7,7 +7,7 @@
         </div>
         <div>选择章节</div>
         |
-        <div :style="{color: chapterColor}">{{pageName}}</div>
+        <div :style="{color: chapterColor}" class="pageName">{{pageName}}</div>
       </div>
     </div>
 
@@ -24,10 +24,10 @@
               </div>
             </div>
             <div class="type">
-              <span v-if="item.sig"> 单选: <span :style="{color: chapterColor}">{{item.sig}}</span> 道</span>&nbsp;
-              <span v-if="item.mul"> 多选: <span :style="{color: chapterColor}">{{item.mul}}</span> 道</span>&nbsp;
-              <span v-if="item.jud"> 判断: <span :style="{color: chapterColor}">{{item.jud}}</span> 道</span>&nbsp;
-              <span v-if="item.bla"> 填空: <span :style="{color: chapterColor}">{{item.bla}}</span> 道</span>&nbsp;
+              <span v-if="item.sig"> 单选: <span :style="{color: chapterColor}" class="typeNum">{{item.sig}}</span> 道</span>&nbsp;
+              <span v-if="item.mul"> 多选: <span :style="{color: chapterColor}" class="typeNum">{{item.mul}}</span> 道</span>&nbsp;
+              <span v-if="item.jud"> 判断: <span :style="{color: chapterColor}" class="typeNum">{{item.jud}}</span> 道</span>&nbsp;
+              <span v-if="item.bla"> 填空: <span :style="{color: chapterColor}" class="typeNum">{{item.bla}}</span> 道</span>&nbsp;
             </div>
           </div>
           <div class="right">
@@ -61,6 +61,7 @@
     computed: {
       ...mapState([
         'themeColor',
+        'themeMode',
         'selectedProject',
         'selectedChapter',
       ]),
@@ -129,15 +130,43 @@
 </script>
 
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
   .chapter {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background('chapter_bg_color1');
     min-height: 100vh;
+  }
+
+  .dark {
+    .chapter-select .card-container .card {
+      box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black!important;
+    }
+    .card-progress .card-progress__back {
+      border: 4px solid #2e3237!important;
+      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3), inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+    }
+    .card-progress__line {
+      background: linear-gradient(90deg, #D43C0B, #BF8A10)!important;
+    }
+    .detail-icon {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+      .fa {
+        color: #BF8A10!important;
+      }
+    }
+    .header .circle {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+    }
+    .header .circle, .header .pageName, .type .typeNum {
+      color: #BF8A10!important;
+    }
   }
 
   .header {
     height: 60px;
     line-height: 60px;
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background('chapter_bg_color1');
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .return {
@@ -150,10 +179,12 @@
         height: 30px;
         width: 30px;
         border-radius: 50%;
-        background-color: #f4f6f8;
+        /*background-color: #f4f6f8;*/
+        @include background('chapter_bg_color2');
         margin: 0;
         box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color('chapter_border_color1');
       }
 
       i {
@@ -171,13 +202,16 @@
 
   .chapter-select {
     padding: 5% 0 10%;
+    @include font_color('chapter_font_color1');
 
     .card-container {
       .card {
         margin: 15px 15px 0;
         border-radius: 11px;
-        background: #f4f6f8;
-        border: 1px solid #fff;
+        /*background: #f4f6f8;*/
+        @include background("chapter_bg_color2");
+        border: 1px solid;
+        @include border_color('chapter_border_color1');
         box-shadow: 5px 5px 8px #ebebeb,
         -5px -5px 8px #ffffff;
         padding: 10px;
@@ -199,12 +233,12 @@
 
             .card-progress__back {
               height: 11px;
-              background-color: #6c63ff;
+              /*background-color: #6c63ff;*/
               border-radius: 13px;
               border: 4px solid #fff;
               box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12),
               inset 0 0 4px rgba(255, 255, 255, 0), inset 2px 2px 2px rgba(55, 84, 170, 0.15),
-              inset 35px 28px 64px #fff !important;
+              inset 35px 28px 64px #fff;
             }
 
             .card-progress__line {
@@ -238,10 +272,12 @@
             height: 30px;
             /*margin-top: 50%;*/
             vertical-align: center;
-            background-color: #f4f6f8;
+            /*background-color: #f4f6f8;*/
+            @include background('chapter_bg_color2');
             box-shadow: 5px 5px 8px #ebebeb,
             -5px -5px 8px #ffffff;
-            border: 1px solid #fff;
+            border: 1px solid;
+            @include border_color('chapter_border_color1');
             border-radius: 50%;
 
             display: flex;
