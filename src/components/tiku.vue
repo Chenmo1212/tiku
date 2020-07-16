@@ -163,10 +163,10 @@
 
         if (from === 1){
           if (typeof(localStorage.selectedChapter) === 'undefined') {
-            this.setSelectedProject(this.projectBasicData['mao_gai']);
             this.setSelectedChapter({id: 'mao_gai', index: 0});
             localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
           }
+          this.setSelectedProject(this.projectBasicData['mao_gai']);
           this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
 
         } else if(from === 2){

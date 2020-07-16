@@ -75,7 +75,15 @@
               <span v-if="answerIndex === 0">A</span>
               <span v-if="answerIndex === 1">B</span>
             </span>
-          <span class="c-button__label">{{answerItem}}</span>
+            <span class="c-button__label">{{answerItem}}</span>
+          </div>
+
+          <!--填空题-->
+          <div class="btn c-button answer-item"
+               v-if="totalQuesArr[questionIndex].type === 2"
+               :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
+               :style="getColor(answerIndex)"
+               @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)">
           </div>
         </div>
         <div class="answer" v-if="showAnswer"
@@ -583,6 +591,9 @@
     .answer {
       box-shadow: inset 1px 1px 5px 0 black,inset -2px -2px 5px 0 #636363 !important;
     }
+    .menu-card {
+      color: #BF8A10!important;
+    }
   }
 
   .header {
@@ -764,7 +775,6 @@
 
     .content-btn-group {
       .menu-card {
-        @include font_color("detail_font_color2");
         position: absolute;
         bottom: 0;
         box-sizing: border-box;

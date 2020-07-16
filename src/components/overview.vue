@@ -80,11 +80,13 @@
 
       // console.log(this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index])
       this.answerObj = JSON.parse(localStorage.selectedAnswer)[selectedChapter.id][selectedChapter.index];
-      console.log(this.answerObj)
+      // console.log(this.answerObj)
     },
     computed: {
       ...mapState([
         'themeColor',
+        'themeMode',
+        'cardMode',
         'selectedProject',
       ]),
     },
@@ -107,7 +109,7 @@
        * @returns {boolean} 返回是否
        */
       isCheck(index, type){
-        console.log(this.questionObj);
+        // console.log(this.questionObj);
         let itemIndex = null;
         if (type === "sigNum") {
           for (let i = 0; i < this.answerObj.sigArr.length; i++){
@@ -146,9 +148,9 @@
         }
       },
       toDetail(index, key){
-        console.log(this.questionObj);
-        console.log(index);
-        console.log(key);
+        // console.log(this.questionObj);
+        // console.log(index);
+        // console.log(key);
         let quesIndex = 0;
         if (key === "sigNum") quesIndex = index;
         if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
@@ -156,9 +158,11 @@
         if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
         // console.log(this.questionObj.blaNum);
 
+        // console.log(this.cardMode);
+
         if (this.cardMode) {
           this.$router.push({
-            name: 'detail',
+            name: 'cardDetail',
             params: {
               id: quesIndex,
               type: key
@@ -166,7 +170,7 @@
           })
         } else {
           this.$router.push({
-            name: 'cardDetail',
+            name: 'detail',
             params: {
               id: quesIndex,
               type: key

@@ -116,6 +116,7 @@
       let isOverview = false;
       let newIndex = null;
 
+      console.log(JSON.parse(localStorage.selectedProject))
       // 获取全部题目数据
 
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
@@ -332,7 +333,7 @@
         this.itemIndex = index;
 
         // console.log(index);
-        // console.log(item.answer);
+        console.log();
         // 默认答案为错
         this.isError = true;
         item.answer === answerIndex ? this.isError = false : this.isError = true;
@@ -373,6 +374,8 @@
       // 判断是否需要替换已选择的答案
       judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
         let tempArr = null;
+        console.log(projectId);
+        console.log(JSON.parse(localStorage.selectedAnswer));
         console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
         if (typeof (localStorage.selectedAnswer) === 'undefined') {
           tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
@@ -752,6 +755,8 @@
   .Detail {
     background-color: #f4f6f8;
   }
+
+  /*box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;*/
 
   .header {
     height: 60px;

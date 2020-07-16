@@ -23,7 +23,7 @@
         <i class="fa fa-moon-o left" aria-hidden="true"></i>
         <span>白天模式</span>
         <div class="toggle toggle--daynight">
-          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" checked="checked">
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
           <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
             <span class="toggle--feature"></span>
           </label>
@@ -69,6 +69,7 @@
     data() {
       return {
         isFullScreen: false,
+        ifLight: true,
       }
     },
     computed: {
@@ -133,10 +134,19 @@
       },
       changeTheme() {
         let type = null;
-        this.themeMode === 'light' ? type = 'dark' : type = 'light';
+        if(this.themeMode === 'light'){
+          type = 'dark';
+          this.ifLight = true;
+        } else {
+          type = 'light';
+          this.ifLight = false;
+        }
+        // this.ifLight = !this.ifLight;
         console.log(this.themeMode);
         this.setThemeMode({type: type});
         window.document.documentElement.setAttribute("data-theme", type);
+        console.log(this.themeMode);
+        console.log(this.ifLight);
       }
     }
   }
@@ -521,6 +531,7 @@
         float: right;
         width: 54px;
         align-items: center;
+        margin-right: 5px;
 
         input[type="checkbox"] {
           position: relative;
