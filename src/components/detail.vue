@@ -1,11 +1,11 @@
 <template>
-  <div class="Detail">
+  <div class="Detail" :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
         </div>
-        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span>
+        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}" class="pageName">{{projectName}} - {{chapterName}}</span>
         </div>
       </div>
       <div class="full-screen" :style="{color: chapterColor}">
@@ -23,21 +23,21 @@
           <span v-if="totalQuesArr[questionIndex].type === 3">判断题</span>
         </div>
         <div class="question-num">
-          <span :style="{color: chapterColor}"
+          <span class="question-index" :style="{color: chapterColor}"
                 v-if="totalQuesArr[questionIndex].type === 0">{{questionIndex + 1}}</span>
-          <span :style="{color: chapterColor}"
+          <span class="question-index" :style="{color: chapterColor}"
                 v-if="totalQuesArr[questionIndex].type === 1">{{questionIndex + 1- selectedChapter.radio}}</span>
-          <span :style="{color: chapterColor}"
+          <span class="question-index" :style="{color: chapterColor}"
                 v-if="totalQuesArr[questionIndex].type === 2">{{questionIndex + 1- selectedChapter.radio +selectedChapter.multiple}}</span>
-          <span :style="{color: chapterColor}"
+          <span class="question-index" :style="{color: chapterColor}"
                 v-if="totalQuesArr[questionIndex].type === 3">{{questionIndex + 1- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
           /
-          <span v-if="totalQuesArr[questionIndex].type === 0">{{selectedChapter.radio}}</span>
-          <span v-if="totalQuesArr[questionIndex].type === 1">{{selectedChapter.multiple}}</span>
-          <span v-if="totalQuesArr[questionIndex].type === 2">{{selectedChapter.fill}}</span>
-          <span v-if="totalQuesArr[questionIndex].type === 3">{{selectedChapter.decide}}</span>
+          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 0">{{selectedChapter.radio}}</span>
+          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 1">{{selectedChapter.multiple}}</span>
+          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 2">{{selectedChapter.fill}}</span>
+          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 3">{{selectedChapter.decide}}</span>
           /
-          <span>{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
+          <span class="question-num-item">{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
         </div>
       </div>
       <div class="content-question">
@@ -81,7 +81,8 @@
         <div class="answer" v-if="showAnswer"
              :style="getAnsStyle(isError)"
         >
-          正确答案：{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}
+          正确答案：
+          <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
         </div>
       </div>
       <div class="content-btn-group">
@@ -226,6 +227,7 @@
       ...
         mapState([
           'themeColor',
+          'themeMode',
           // 'selectedChapter',
           'selectedProject',
           'selectedAnswer',
@@ -541,17 +543,53 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
 
   .Detail {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background('detail_bg_color1');
     overflow: hidden;
     height: 100vh;
+  }
+
+  .dark {
+    .content .content-answer .card-answer-list .c-button,
+    .content-question,
+    .circle,
+    .menu-card,
+    .question-num {
+      box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;
+    }
+    .question-num-item {
+      color: #A7A9AA!important;
+    }
+    .pageName,
+    .full-screen,
+    .question-index {
+      color: #BF8A10!important;
+    }
+    .question-type {
+      color: #BF8A10!important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363!important;
+    }
+    .content .content-answer .card-answer-list .c-button--active {
+      background: #26282b!important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363!important;
+    }
+    .c-button {
+      border: none!important;
+      color: #A7A9AA!important;
+    }
+    .answer {
+      box-shadow: inset 1px 1px 5px 0 black,inset -2px -2px 5px 0 #636363 !important;
+    }
   }
 
   .header {
     height: 60px;
     line-height: 60px;
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background('detail_bg_color1');
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .return {
@@ -566,10 +604,12 @@
         height: 30px;
         width: 30px;
         border-radius: 50%;
-        background-color: #f4f6f8;
+        @include font_color("detail_font_color2");
+        @include background("detail_bg_color1");
         margin: 0;
         box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color("detail_border_color1");
       }
 
       i {
@@ -608,7 +648,7 @@
         height: 30px;
         width: 100px;
         border-radius: 5px;
-        background: #f4f6f8;
+        @include background("detail_bg_color1");
         box-shadow: inset 5px 5px 10px #eaecee,
         inset -5px -5px 10px #feffff;
       }
@@ -617,34 +657,35 @@
         height: 30px;
         width: 100px;
         border-radius: 5px;
-        background: #f4f6f8;
+        /*background: #f4f6f8;*/
+        @include background("detail_bg_color1");
         box-shadow: 5px 5px 10px #eaecee,
         -5px -5px 10px #feffff;
       }
     }
 
     .content-question {
+      @include font_color("detail_font_color1");
       margin: 10% 0;
       width: calc(100% - 20px);
       padding: 10px;
-      background: #f4f6f8;
+      @include background("detail_bg_color1");
       border-radius: 5px;
       text-align: left;
-      border: 1px solid #fff;
+      border: 1px solid;
+      @include border_color("detail_border_color1");
       box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
     }
 
     .content-answer {
-
       .card-answer-list {
-
         .c-button {
           font-size: 14px;
           text-align: left;
           width: 100%;
           padding: 10px;
           border-radius: 5px;
-          color: #2c3e50;
+          /*color: #2c3e50;*/
           background: transparent;
           border: 1px solid #fff;
           position: relative;
@@ -696,18 +737,17 @@
         }
 
         .c-button--active {
-          background: -webkit-gradient(linear, left bottom, left top, from(#f4f6f8), to(#fafcfd));
           background: linear-gradient(to top, #f4f6f8, #fafcfd);
           box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
         }
 
         .c-button--active:before {
-          border-color: white;
-          box-shadow: 0 0.8px 3px white;
+          /*border-color: white;*/
+          /*box-shadow: 0 0.8px 3px white;*/
         }
 
         .c-button--active:after {
-          box-shadow: inset 0 0 3px white;
+          /*box-shadow: inset 0 0 3px white;*/
         }
       }
 
@@ -717,20 +757,21 @@
         text-align: left;
         width: calc(100% - 20px);
         border-radius: 5px;
-        background: #f4f6f8;
+        @include background("detail_bg_color1");
         box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
       }
     }
 
     .content-btn-group {
       .menu-card {
+        @include font_color("detail_font_color2");
         position: absolute;
         bottom: 0;
         box-sizing: border-box;
         height: 50px;
         width: 90%;
         border-radius: 5px;
-        background: #f4f6f8;
+        @include background("detail_bg_color1");
         box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
         display: flex;
         line-height: 50px;
@@ -738,23 +779,27 @@
 
         .all-question {
           flex: 1;
-          border-right: 1px solid #eee;
+          border-right: 1px solid;
+          @include border_color("detail_border_color2");
         }
 
         .show-answer {
-          border-left: 1px solid #eee;
-          border-right: 1px solid #eee;
+          border-left: 1px solid;
+          border-right: 1px solid;
+          @include border_color("detail_border_color2");
           flex: 1;
         }
 
         .pre-question {
           flex: 1;
-          border-left: 1px solid #eee;
-          border-right: 1px solid #eee;
+          border-left: 1px solid;
+          border-right: 1px solid;
+          @include border_color("detail_border_color2");
         }
 
         .next-question {
-          border-left: 1px solid #eee;
+          border-left: 1px solid;
+          @include border_color("detail_border_color2");
           flex: 1;
         }
 
