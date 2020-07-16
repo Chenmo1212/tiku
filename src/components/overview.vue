@@ -1,11 +1,12 @@
 <template>
-  <div class="overview">
+  <div class="overview" :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backDetail"></i>
         </div>
-        <div class="page-title">题目总览 | <span :style="{color: chapterColor}">{{projectName}} - {{chapterName}}</span></div>
+        <div class="page-title">题目总览 | <span :style="{color: chapterColor}" class="pageName">{{projectName}} - {{chapterName}}</span>
+        </div>
       </div>
     </div>
 
@@ -35,6 +36,7 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
+
   export default {
     name: "overview",
     data() {
@@ -58,7 +60,7 @@
         selectedChapter: JSON.parse(localStorage.selectedChapter)
       }
     },
-    created(){
+    created() {
       let selectedChapter = JSON.parse(localStorage.selectedChapter);
       this.setThemeColor(JSON.parse(localStorage.themeColor));
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
@@ -88,6 +90,7 @@
         'themeMode',
         'cardMode',
         'selectedProject',
+        'themeMode',
       ]),
     },
     methods: {
@@ -108,46 +111,46 @@
        * @param type 题目类型
        * @returns {boolean} 返回是否
        */
-      isCheck(index, type){
+      isCheck(index, type) {
         // console.log(this.questionObj);
         let itemIndex = null;
         if (type === "sigNum") {
-          for (let i = 0; i < this.answerObj.sigArr.length; i++){
+          for (let i = 0; i < this.answerObj.sigArr.length; i++) {
             itemIndex = this.answerObj.sigArr[i].index;
-            if (itemIndex === index){
+            if (itemIndex === index) {
               return true
             }
           }
-        } else if(type === "mulNum") {
-          for (let i = 0; i < this.answerObj.mulArr.length; i++){
+        } else if (type === "mulNum") {
+          for (let i = 0; i < this.answerObj.mulArr.length; i++) {
             itemIndex = this.answerObj.mulArr[i].index - this.questionObj.sigNum;
-            if (itemIndex === index){
+            if (itemIndex === index) {
               return true
             }
           }
-        } else if(type === "blaNum") {
-          for (let i = 0; i < this.answerObj.blaArr.length; i++){
+        } else if (type === "blaNum") {
+          for (let i = 0; i < this.answerObj.blaArr.length; i++) {
             itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum;
-            if (itemIndex === index){
+            if (itemIndex === index) {
               return true
             }
           }
-        } else if(type === "judNum") {
-          for (let i = 0; i < this.answerObj.judArr.length; i++){
+        } else if (type === "judNum") {
+          for (let i = 0; i < this.answerObj.judArr.length; i++) {
             itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum - this.questionObj.blaNum;
-            if (itemIndex === index){
+            if (itemIndex === index) {
               return true
             }
           }
         }
       },
-      getColor(index, type){
-        if(this.isCheck(index, type)) {
+      getColor(index, type) {
+        if (this.isCheck(index, type)) {
           // console.log("true")
           return this.chapterColor;
         }
       },
-      toDetail(index, key){
+      toDetail(index, key) {
         // console.log(this.questionObj);
         // console.log(index);
         // console.log(key);
@@ -183,14 +186,35 @@
 </script>
 
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
+
   .overview {
-    background-color: #f4f6f8;
+    /*background-color: #f4f6f8;*/
+    @include background("over_bg_color1");
+  }
+
+  .dark {
+    .header .return .circle,
+    .container .title {
+      color: #BF8A10!important;
+      box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
+    }
+    .container .content .circle-box .circle {
+      box-shadow: inset 1px 1px 5px 0 black,inset -2px -2px 5px 0 #636363 !important;
+    }
+    .container .content .circle-box .circle.active {
+      box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
+      background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
+    }
+    .pageName {
+      color: #BF8A10!important;
+    }
   }
 
   .header {
     height: 60px;
     line-height: 60px;
-    background-color: #f4f6f8;
+    @include background("over_bg_color1");
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .return {
@@ -205,10 +229,11 @@
         height: 30px;
         width: 30px;
         border-radius: 50%;
-        background-color: #f4f6f8;
+        @include background("over_bg_color1");
         margin: 0;
         box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color("over_border_color1")
       }
 
       i {
@@ -242,7 +267,8 @@
       line-height: 30px;
       width: 100px;
       border-radius: 5px;
-      border: 1px solid #fff;
+      border: 1px solid;
+      @include border_color("over_border_color1");
       box-shadow: 5px 5px 10px #eaecee,
       -5px -5px 10px #feffff;
       margin-bottom: 5%;
@@ -262,12 +288,13 @@
         justify-content: center;
 
         .circle {
+          @include font_color('over_font_color1');
           height: 40px;
           width: 40px;
           line-height: 40px;
           border-radius: 50%;
-          background: #fff;
-          border: 2px solid #fff;
+          border: 2px solid;
+          @include border_color("over_border_color1");
           box-shadow: inset 3px 3px 10px #eaecee,
           inset -3px -3px 10px #feffff;
         }

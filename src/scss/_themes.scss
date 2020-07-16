@@ -52,6 +52,10 @@ $themes: (
     detail_border_color2: #eee,
     detail_border_color3: #eee,
 
+    // overview 页面
+    over_bg_color1: #f4f6f8,
+    over_border_color1: #fff,
+    over_font_color1: #2c3e50,
   ),
 
   dark: (
@@ -97,6 +101,11 @@ $themes: (
     detail_font_color2: #BF8A10,
     detail_border_color1: #2d3135,
     detail_border_color2: #2d3135,
+
+    // overview 页面
+    over_bg_color1: #26282b,
+    over_border_color1: #2d3135,
+    over_font_color1: #A7A9AA,
   )
 
 );

@@ -86,6 +86,7 @@
       }
     },
     created(){
+      // 调整主题模式
       if (typeof(localStorage.themeMode) !== 'undefined'){
         let type = JSON.parse(localStorage.themeMode);
         window.document.documentElement.setAttribute("data-theme", type);
@@ -173,7 +174,7 @@
       },
       // tab 切换
       move(id, position, color) {
-        var tl = gsap.timeline();
+        let tl = gsap.timeline();
         tl.to("#bgBubble", {duration: 0.15, bottom: "-30px", ease: "ease-out"}, 0)
           .to("#bubble1", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
           .to("#bubble2", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
