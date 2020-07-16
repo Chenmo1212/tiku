@@ -61,7 +61,11 @@
           <div class="answer" v-if="showAnswer"
                :style="getAnsStyle(isError)"
           >
-            正确答案：{{answerList[index]}}
+            <span>正确答案：</span>
+            <span>{{answerList[index]}}</span>
+            <span class="stick-box" :class="{active: isStick}" @click="handleStick">
+                <i class="fa fa-thumb-tack stick"></i>
+          </span>
           </div>
         </div>
 
@@ -111,6 +115,7 @@
         currentType: null,             // 题目类型
 
         selectedChapter: '',
+        isStick: false,                // 固定显示答案
       }
     },
     created() {
@@ -215,6 +220,7 @@
         'setSelectedProject',
         'defineSelectedAnswer',
         'setProjectBasicData',
+        'setWarning',
       ]),
 
       /**
@@ -491,8 +497,10 @@
           this.$forceUpdate();
         }
       },
-      show1() {
-        console.log(this.checkIndex)
+      // 固定答案
+      handleStick(){
+        this.isStick = !this.isStick;
+        this.isStick ? this.setWarning("答案固定显示"): this.setWarning("答案取消固定");
       },
 
       // 卡片布局
@@ -682,7 +690,8 @@
                   // wait transition end
                   setTimeout(() => {
                     that.isError = true;
-                    that.showAnswer = false;
+                    // 如果固定显示答案，则显示答案，如果不固定，则隐藏答案
+                    that.showAnswer = that.isStick;
                     that.itemIndex += 1;
 
                     that.isFinished();
@@ -987,6 +996,16 @@
       border-radius: 5px;
       @include background("detail_bg_color2");
       box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+      .stick-box {
+        float: right;
+        margin-top: -7px;
+        .stick {
+          padding: 10px;
+        }
+      }
+      .active {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      }
     }
 
     .menu-card {

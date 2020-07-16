@@ -89,8 +89,11 @@
         <div class="answer" v-if="showAnswer"
              :style="getAnsStyle(isError)"
         >
-          正确答案：
+          <span>正确答案：</span>
           <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
+          <span class="stick-box" :class="{active: isStick}" @click="handleStick">
+                <i class="fa fa-thumb-tack stick"></i>
+          </span>
         </div>
       </div>
       <div class="content-btn-group">
@@ -154,6 +157,8 @@
         currentType: null,             // 题目类型
 
         selectedChapter: '',
+
+        isStick: false,               // 是否始终显示答案
       }
     },
     created() {
@@ -252,6 +257,7 @@
           'setSelectedProject',
           'defineSelectedAnswer',
           'setProjectBasicData',
+          'setWarning',
         ]),
 
       /**
@@ -336,7 +342,8 @@
         } else if (index === -1){
           if (this.questionIndex >= 0) this.questionIndex -= 1;
         }
-        this.showAnswer = false;
+        // 如果固定显示答案，则显示答案，如果不固定，则隐藏答案
+        this.showAnswer = this.isStick;
         this.checkIndex = -1;
       },
 
@@ -371,8 +378,7 @@
         }
 
         if (flag) this.checkIndex = -1;
-      }
-      ,
+      },
 
       /**
        * 选择选项并记录用户答案
@@ -419,9 +425,7 @@
         localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData));
         localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
         localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
-      }
-      ,
-
+      },
 
       // 判断是否需要替换已选择的答案
       judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
@@ -454,8 +458,7 @@
             isReplace: false,
           });
         }
-      }
-      ,
+      },
       // 判断是否已经选择过该题
       isHasObj(arr, val) {
         let flag = false; // true为有 false为没有
@@ -467,14 +470,12 @@
           }
         }
         return {flag: false, index: -1};
-      }
-      ,
+      },
 
       getAnsStyle(bool) {
         if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
         return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
-      }
-      ,
+      },
 
       /**
        * 将答案序号改成文字
@@ -509,8 +510,7 @@
           if (ans === 0) return "对";
           if (ans === 1) return "错";
         }
-      }
-      ,
+      },
 
       /**
        * 懒加载加入数据
@@ -543,8 +543,13 @@
           // 重新渲染v-for
           this.$forceUpdate();
         }
+      },
+
+      // 固定答案
+      handleStick(){
+        this.isStick = !this.isStick;
+        this.isStick ? this.setWarning("答案固定显示"): this.setWarning("答案取消固定");
       }
-      ,
     }
   }
 </script>
@@ -770,6 +775,17 @@
         border-radius: 5px;
         @include background("detail_bg_color1");
         box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+
+        .stick-box {
+          float: right;
+          margin-top: -7px;
+          .stick {
+            padding: 10px;
+          }
+        }
+        .active {
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
       }
     }
 

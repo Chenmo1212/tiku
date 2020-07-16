@@ -167,10 +167,10 @@
       handleTikuMode(){
         if (this.cardMode){
           this.setTikuMode();
-          this.setWarning("卡片答题页面设置成功");
+          this.setWarning("卡片答题页面已关闭");
         } else {
           this.setTikuMode();
-          this.setWarning("卡片答题页面已关闭");
+          this.setWarning("卡片答题页面设置成功");
         }
       },
 
