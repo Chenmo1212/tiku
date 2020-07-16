@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div id="navbarContainer">
+    <div id="navbarContainer" :class="{home: this.themeMode === 'dark'}">
       <div id="navbar">
         <div id="bubbleWrapper">
           <div id="bubble1" class="bubble"><span class="icon"><i class="fa fa-home"
@@ -692,19 +692,20 @@
 
   .dark {
     .mine {
-      #bg {
+      #b,#bgBubble {
         background-color: #2e3237 !important;
-      }
-      #bgBubble {
-        background-color: #2e3237!important;
       }
     }
 
     .music {
-      #bg {
+      #bg,#bgBubble {
         background-color: #26282b!important;
       }
-      #bgBubble {
+    }
+
+    .home {
+      background: #26282b!important;
+      #bg,#bgBubble {
         background-color: #26282b!important;
       }
     }

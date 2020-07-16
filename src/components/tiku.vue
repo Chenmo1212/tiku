@@ -1,5 +1,5 @@
 <template>
-  <div id="tiku">
+  <div id="tiku" :class="{dark: this.themeMode === 'dark'}">
     <swiper :options="swiperOption" ref="mySwiper"
     >
       <div class="swiper-slide current">
@@ -126,6 +126,7 @@
         'selectedProject',
         'selectedChapter',
         'cardMode',
+        'themeMode',
       ]),
 
       swiper() {
@@ -186,11 +187,30 @@
 </script>
 
 <style scoped lang="scss">
+  @import "../scss/_handle.scss";
   #tiku {
     height: calc(100vh - 200px);
     overflow: hidden;
   }
-
+  .dark {
+    .swiper-container .swiper-slide[data-v-53e2332f] {
+      box-shadow: 7px 7px 15px 0 rgba(0,0,0,0.3), -7px -7px 15px 0px #505050, inset 0px 0px 0px 0px rgba(0,0,0,0), inset 0px 0px 0px 0px rgba(80,80,80,0) !important;
+    }
+    .swiper-slide .card-progress .card-progress__back {
+      background: #2d3135!important;
+      border: 4px solid #2e3237!important;
+      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3), inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+    }
+    .card-progress__line {
+      background: linear-gradient(90deg, #D43C0B, #BF8A10)!important;
+    }
+    .ribbon4, .btn.begin {
+      background: #2e3237 !important;
+    }
+    .btn.begin {
+      color: #A7A9AA!important;
+    }
+  }
   @media screen and (max-width: 375px) {
     #tiku {
       height: calc(100vh - 140px);
@@ -213,7 +233,8 @@
       /*background: #E8E9ED;*/
       box-shadow: 5px 5px 6px #d1d3db, -5px -5px 6px #f4f4f6;
 
-      background-color: #fff;
+      /*background-color: #fff;*/
+      @include background('tiku_bg_color1');
       /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
     }
 
@@ -233,6 +254,7 @@
 
   /*card*/
   .swiper-slide {
+    @include font_color('tiku_font_color1');
     .card-cover {
       display: block;
       background-color: var(--back-color);
