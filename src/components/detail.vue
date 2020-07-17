@@ -28,9 +28,9 @@
           <span class="question-index" :style="{color: chapterColor}"
                 v-if="totalQuesArr[questionIndex].type === 1">{{questionIndex + 1- selectedChapter.radio}}</span>
           <span class="question-index" :style="{color: chapterColor}"
-                v-if="totalQuesArr[questionIndex].type === 2">{{questionIndex + 1- selectedChapter.radio +selectedChapter.multiple}}</span>
+                v-if="totalQuesArr[questionIndex].type === 2">{{questionIndex + 1- selectedChapter.radio - selectedChapter.multiple}}</span>
           <span class="question-index" :style="{color: chapterColor}"
-                v-if="totalQuesArr[questionIndex].type === 3">{{questionIndex + 1- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
+                v-if="totalQuesArr[questionIndex].type === 3">{{questionIndex + 1- selectedChapter.radio - selectedChapter.multiple - selectedChapter.fill}}</span>
           /
           <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 0">{{selectedChapter.radio}}</span>
           <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 1">{{selectedChapter.multiple}}</span>
@@ -319,8 +319,8 @@
           ele.msRequestFullscreen();
         }
         this.ifFullscreen = true;
-      }
-      ,
+      },
+
       exitFull() {
         if (document.exitFullscreen) {
           document.exitFullscreen();

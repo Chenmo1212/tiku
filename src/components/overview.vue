@@ -200,6 +200,7 @@
       box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
     }
     .container .content .circle-box .circle {
+      color: #BF8A10;
       box-shadow: inset 1px 1px 5px 0 black,inset -2px -2px 5px 0 #636363 !important;
     }
     .container .content .circle-box .circle.active {
@@ -288,7 +289,6 @@
         justify-content: center;
 
         .circle {
-          @include font_color('over_font_color1');
           height: 40px;
           width: 40px;
           line-height: 40px;
@@ -303,7 +303,7 @@
           border: 2px solid #fff;
           box-shadow: 5px 5px 10px #eaecee,
           -5px -5px 10px #feffff;
-          color: #fff;
+          color: #fff!important;
         }
       }
     }

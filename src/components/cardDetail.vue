@@ -27,8 +27,8 @@
                   v-if="item.type === 0">{{index + 1 + gapIndex}}</span>
             <span class="question-index" :style="{color: chapterColor}"
                   v-if="item.type === 1">{{index + 1 + gapIndex- selectedChapter.radio}}</span>
-            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple}}</span>
-            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio +selectedChapter.multiple + selectedChapter.decide}}</span>
+            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 2">{{index + 1 + gapIndex- selectedChapter.radio -selectedChapter.multiple}}</span>
+            <span class="question-index" :style="{color: chapterColor}" v-if="item.type === 3">{{index + 1 + gapIndex- selectedChapter.radio -selectedChapter.multiple - selectedChapter.fill}}</span>
             /
             <span class="question-item" v-if="item.type === 0">{{selectedChapter.radio}}</span>
             <span class="question-item" v-if="item.type === 1">{{selectedChapter.multiple}}</span>
@@ -43,6 +43,8 @@
             {{item.question}}
           </div>
           <div class="card-answer-list">
+
+            <!--单选多选题-->
             <div class="btn c-button answer-item"
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex)"
@@ -56,13 +58,37 @@
             </span>
               <span class="c-button__label">{{answerItem}}</span>
             </div>
+
+            <!--判断题-->
+            <div class="btn c-button answer-item"
+                 v-if="item.type === 3"
+                 :class="getActiveStyle(answerIndex, item.type)"
+                 :style="getColor(answerIndex)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index)"
+                 v-for="(answerItem, answerIndex) in ['对','错']">
+              <span class="icon-item">
+                <span v-if="answerIndex === 0">A</span>
+                <span v-if="answerIndex === 1">B</span>
+              </span>
+              <span class="c-button__label">{{answerItem}}</span>
+            </div>
+
+            <!--填空题-->
+            <div class="btn c-button answer-item"
+                 v-if="item.type === 2"
+                 :class="getActiveStyle(answerIndex, item.type)"
+                 :style="getColor(answerIndex)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index)">
+            </div>
+
+
           </div>
 
           <div class="answer" v-if="showAnswer"
                :style="getAnsStyle(isError)"
           >
             <span>正确答案：</span>
-            <span>{{answerList[index]}}</span>
+            <span>{{answerList[index + gapIndex]}}</span>
             <span class="stick-box" :class="{active: isStick}" @click="handleStick">
                 <i class="fa fa-thumb-tack stick"></i>
           </span>
@@ -188,9 +214,11 @@
 
       // 处理选项数据
       let dataList = selectedChapter.data;
-      // console.log(dataList);
+      console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
+        // console.log(dataList[i].answer);
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
+        console.log(this.answerList[this.answerList.length - 1]);
       }
     },
     mounted() {
@@ -461,7 +489,7 @@
           return tempAns;
         } else if (type === 3) { // 判断题
           if (ans === 0) return "对";
-          if (ans === 0) return "错";
+          if (ans === 1) return "错";
         }
       },
 
