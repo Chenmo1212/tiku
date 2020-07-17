@@ -218,7 +218,7 @@
       for (let i = 0; i < dataList.length; i++) {
         // console.log(dataList[i].answer);
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
-        console.log(this.answerList[this.answerList.length - 1]);
+        // console.log(this.answerList[this.answerList.length - 1]);
       }
     },
     mounted() {
@@ -292,7 +292,7 @@
       },
 
       setFullScreen() {
-        let ele = document.body
+        let ele = document.body;
         if (ele.requestFullscreen) {
           ele.requestFullscreen();
         } else if (ele.mozRequestFullScreen) {
@@ -508,17 +508,17 @@
             // 新截取的数组
             newTempCard = this.totalCardArr.slice(this.slice_count, this.slice_count + 10);
             // console.log("刚开始2：", newTempCard);
-
             this.slice_count += 10;
+            this.cardArr = this.cardArr.concat(newTempCard);
           } else {
             // 新截取的数组
             newTempCard = this.totalCardArr.slice(this.slice_count, this.totalCardArr.length);
             // console.log("刚开始2：", newTempCard);
 
-            this.slice_count = this.totalCardArr.length;
-          }
+            // this.slice_count +=1 ;
 
-          this.cardArr = this.cardArr.concat(newTempCard);
+            this.cardArr = newTempCard;
+          }
           // console.log("合并后：", this.cardArr);
 
           // 重新渲染v-for
@@ -736,7 +736,11 @@
                     this.handle();
                   }, 200)
                 } else {
+                  // 只剩下最后一张了
                   setTimeout(() => {
+
+                    that.setWarning("这是最后一道题了哦~");
+
                     // handle gestures on new top card
                     this.handle()
                   }, 200)

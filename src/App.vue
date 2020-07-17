@@ -314,10 +314,10 @@
   }
 
   .a-fadeinB {
-    -webkit-animation: 1s ease-out backwards;
-    -moz-animation: 1s ease-out backwards;
-    -ms-animation: 1s ease-out backwards;
-    animation: 1s ease-out backwards;
+    -webkit-animation: 0.6s ease-out backwards;
+    -moz-animation: 0.6s ease-out backwards;
+    -ms-animation: 0.6s ease-out backwards;
+    animation: 0.6s ease-out backwards;
     -webkit-animation-name: fadeinB;
     -moz-animation-name: fadeinB;
     -ms-animation-name: fadeinB;
