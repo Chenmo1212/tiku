@@ -89,9 +89,13 @@
           >
             <span>正确答案：</span>
             <span>{{answerList[index + gapIndex]}}</span>
-            <span class="stick-box" :class="{active: isStick}" @click="handleStick">
-                <i class="fa fa-thumb-tack stick"></i>
-          </span>
+            <span class="stick-box">
+                <i class="fa fa-check-circle check" aria-hidden="true"
+                   v-if="item.type === 0 || item.type === 3"
+                   @click="handleCheck"
+                   :class="{active: isCheck}"></i>
+                <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
+            </span>
           </div>
         </div>
 
@@ -142,13 +146,14 @@
 
         selectedChapter: '',
         isStick: false,                // 固定显示答案
+        isCheck: false,                // 自动检查答案
       }
     },
     created() {
       let isOverview = false;
       let newIndex = null;
 
-      console.log(JSON.parse(localStorage.selectedProject))
+      // console.log(JSON.parse(localStorage.selectedProject))
       // 获取全部题目数据
 
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
@@ -214,7 +219,7 @@
 
       // 处理选项数据
       let dataList = selectedChapter.data;
-      console.log(dataList);
+      // console.log(dataList);
       for (let i = 0; i < dataList.length; i++) {
         // console.log(dataList[i].answer);
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
@@ -361,6 +366,10 @@
        */
       submitAns(item, answerIndex, index) {
 
+        // 自动校对答案
+        if (this.isCheck) this.showAnswer = true;
+
+        // 判断是否是跳转过来的，是跳转的，则需要加上间隔index
         if (this.gapIndex) {
           index += this.gapIndex;
           // console.log("newIndex", index)
@@ -526,9 +535,15 @@
         }
       },
       // 固定答案
-      handleStick(){
+      handleStick() {
         this.isStick = !this.isStick;
-        this.isStick ? this.setWarning("答案固定显示"): this.setWarning("答案取消固定");
+        this.isStick ? this.setWarning("答案固定显示") : this.setWarning("答案取消固定");
+      },
+
+      // 自动检测答案
+      handleCheck() {
+        this.isCheck = !this.isCheck;
+        this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
       },
 
       // 卡片布局
@@ -958,8 +973,7 @@
         border-radius: 5px;
         color: #2c3e50;
         background: transparent;
-        border: 1px solid;
-        @include border_color("detail_border_color1");
+        border: 1px solid #fff;
         position: relative;
         box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
         transition: all 200ms ease-out 0s;
@@ -1028,15 +1042,19 @@
       border-radius: 5px;
       @include background("detail_bg_color2");
       box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+
       .stick-box {
         float: right;
         margin-top: -7px;
-        .stick {
-          padding: 10px;
+
+        .stick, .check {
+          padding: 8px;
+          margin: 0 5px;
         }
       }
+
       .active {
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       }
     }
 

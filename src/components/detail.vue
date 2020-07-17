@@ -33,9 +33,11 @@
                 v-if="totalQuesArr[questionIndex].type === 3">{{questionIndex + 1- selectedChapter.radio - selectedChapter.multiple - selectedChapter.fill}}</span>
           /
           <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 0">{{selectedChapter.radio}}</span>
-          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 1">{{selectedChapter.multiple}}</span>
+          <span class="question-num-item"
+                v-if="totalQuesArr[questionIndex].type === 1">{{selectedChapter.multiple}}</span>
           <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 2">{{selectedChapter.fill}}</span>
-          <span class="question-num-item" v-if="totalQuesArr[questionIndex].type === 3">{{selectedChapter.decide}}</span>
+          <span class="question-num-item"
+                v-if="totalQuesArr[questionIndex].type === 3">{{selectedChapter.decide}}</span>
           /
           <span class="question-num-item">{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
         </div>
@@ -91,8 +93,12 @@
         >
           <span>正确答案：</span>
           <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
-          <span class="stick-box" :class="{active: isStick}" @click="handleStick">
-                <i class="fa fa-thumb-tack stick"></i>
+          <span class="stick-box" >
+             <i class="fa fa-check-circle check" aria-hidden="true"
+                v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 3"
+                @click="handleCheck"
+                :class="{active: isCheck}"></i>
+              <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
           </span>
         </div>
       </div>
@@ -159,6 +165,7 @@
         selectedChapter: '',
 
         isStick: false,               // 是否始终显示答案
+        isCheck: false,                // 自动检查答案
       }
     },
     created() {
@@ -336,10 +343,10 @@
         this.ifFullscreen = false;
       },
 
-      changeQuestion(index){
+      changeQuestion(index) {
         if (index === 1) {
           if (this.questionIndex < this.totalQuesArr.length) this.questionIndex += 1;
-        } else if (index === -1){
+        } else if (index === -1) {
           if (this.questionIndex >= 0) this.questionIndex -= 1;
         }
         // 如果固定显示答案，则显示答案，如果不固定，则隐藏答案
@@ -389,6 +396,10 @@
        */
       submitAns(item, answerIndex, index) {
 
+        // 自动校对答案
+        if (this.isCheck) this.showAnswer = true;
+
+        // 判断是否是跳转过来的，是跳转的，则需要加上间隔index
         this.itemIndex = index;
 
         // 默认答案为错,修改答案样式
@@ -546,10 +557,16 @@
       },
 
       // 固定答案
-      handleStick(){
+      handleStick() {
         this.isStick = !this.isStick;
-        this.isStick ? this.setWarning("答案固定显示"): this.setWarning("答案取消固定");
-      }
+        this.isStick ? this.setWarning("答案固定显示") : this.setWarning("答案取消固定");
+      },
+
+      // 自动检测答案
+      handleCheck() {
+        this.isCheck = !this.isCheck;
+        this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
+      },
     }
   }
 </script>
@@ -571,33 +588,40 @@
     .circle,
     .menu-card,
     .question-num {
-      box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;
+      box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
     }
+
     .question-num-item {
-      color: #A7A9AA!important;
+      color: #A7A9AA !important;
     }
+
     .pageName,
     .full-screen,
     .question-index {
-      color: #BF8A10!important;
+      color: #BF8A10 !important;
     }
+
     .question-type {
-      color: #BF8A10!important;
-      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363!important;
+      color: #BF8A10 !important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363 !important;
     }
+
     .content .content-answer .card-answer-list .c-button--active {
-      background: #26282b!important;
-      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363!important;
+      background: #26282b !important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363 !important;
     }
+
     .c-button {
-      border: none!important;
-      color: #A7A9AA!important;
+      border: none !important;
+      color: #A7A9AA !important;
     }
+
     .answer {
-      box-shadow: inset 1px 1px 5px 0 black,inset -2px -2px 5px 0 #636363 !important;
+      box-shadow: inset 1px 1px 5px 0 black, inset -2px -2px 5px 0 #636363 !important;
     }
+
     .menu-card {
-      color: #BF8A10!important;
+      color: #BF8A10 !important;
     }
   }
 
@@ -722,7 +746,7 @@
         /*}*/
 
         /*.c-button:hover:before {*/
-          /*background: rgba(255, 255, 255, 0.24);*/
+        /*background: rgba(255, 255, 255, 0.24);*/
         /*}*/
 
         .c-button:before {
@@ -779,12 +803,15 @@
         .stick-box {
           float: right;
           margin-top: -7px;
-          .stick {
-            padding: 10px;
+
+          .stick, .check {
+            padding: 8px;
+            margin: 0 5px;
           }
         }
+
         .active {
-          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         }
       }
     }
