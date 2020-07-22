@@ -82,7 +82,7 @@
 
       // console.log(this.selectedAnswer[this.selectedChapter.id][this.selectedChapter.index])
       this.answerObj = JSON.parse(localStorage.selectedAnswer)[selectedChapter.id][selectedChapter.index];
-      // console.log(this.answerObj)
+      console.log(this.answerObj)
     },
     computed: {
       ...mapState([
@@ -112,32 +112,32 @@
        * @returns {boolean} 返回是否
        */
       isCheck(index, type) {
-        // console.log(this.questionObj);
+        // console.log(index);
         let itemIndex = null;
         if (type === "sigNum") {
           for (let i = 0; i < this.answerObj.sigArr.length; i++) {
-            itemIndex = this.answerObj.sigArr[i].index;
+            itemIndex = this.answerObj.sigArr[i].index + 1;
             if (itemIndex === index) {
               return true
             }
           }
         } else if (type === "mulNum") {
           for (let i = 0; i < this.answerObj.mulArr.length; i++) {
-            itemIndex = this.answerObj.mulArr[i].index - this.questionObj.sigNum;
+            itemIndex = this.answerObj.mulArr[i].index - this.questionObj.sigNum + 1;
             if (itemIndex === index) {
               return true
             }
           }
         } else if (type === "blaNum") {
           for (let i = 0; i < this.answerObj.blaArr.length; i++) {
-            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum;
+            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum + 1;
             if (itemIndex === index) {
               return true
             }
           }
         } else if (type === "judNum") {
           for (let i = 0; i < this.answerObj.judArr.length; i++) {
-            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum - this.questionObj.blaNum;
+            itemIndex = this.answerObj.blaArr[i].index - this.questionObj.sigNum - this.questionObj.mulNum - this.questionObj.blaNum + 1;
             if (itemIndex === index) {
               return true
             }

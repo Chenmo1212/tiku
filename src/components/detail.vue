@@ -9,8 +9,8 @@
         </div>
       </div>
       <div class="full-screen" :style="{color: chapterColor}">
-        <span @click="setScreen" v-if="!isFullScreen"><i class="fa fa-expand"></i></span>
-        <span @click="exitFull" v-if="isFullScreen"><i class="fa fa-compress"></i></span>
+        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"></i></span>
+        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"></i></span>
       </div>
     </div>
 
@@ -166,6 +166,8 @@
 
         isError: true,
 
+        ifFullScreen: false,
+
         gapIndex: 0,
         itemIndex: null,               // 题目序号
         currentType: null,             // 题目类型
@@ -180,11 +182,11 @@
       let isOverview = false;
       let newIndex = null;
 
-
       // 是否全屏
-      if(typeof localStorage.isFullScreen !== 'undefined'){
+      if(typeof(localStorage.isFullScreen) !== 'undefined'){
         // 如果用户已经设置过全屏了，则改成全屏
-        if (JSON.stringify(localStorage.isFullScreen)) this.setFullScreen();
+        console.log("用户已经设置过了", JSON.parse(localStorage.isFullScreen));
+        this.ifFullScreen = JSON.parse(localStorage.isFullScreen)
       }
 
       // 获取全部题目数据
@@ -201,20 +203,24 @@
         this.itemIndex = this.$route.params.id;
         this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
         newIndex = this.$route.params.id - 1;
-        console.log(newIndex)
+        // console.log("下标", newIndex);
         // console.log(this.selectedAnswer);
         // console.log(this.selectedChapter);
 
         let projectId = this.selectedChapter.id;
         let chapterIndex = this.selectedChapter.index;
-        console.log(this.$route.params.type);
+        // console.log(this.$route.params.type);
         let type = this.$route.params.type.slice(0, 3) + 'Arr';
         let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
 
         // 匹配用户答案
         for (let i = 0; i < ansArr.length; i++) {
-          if (ansArr[i].index === newIndex + 1) {
-            this.checkIndex = ansArr[i].userAns;
+          if (ansArr[i].index === newIndex) {
+            if (Array.isArray(ansArr[i].userAns)){
+              this.checkedList = ansArr[i].userAns
+            } else {
+              this.checkIndex = ansArr[i].userAns;
+            }
           }
         }
         isOverview = true;
@@ -224,7 +230,7 @@
       this.chapterColor = JSON.parse(localStorage.themeColor);
       if (isOverview) {  // 题目总览中直接跳转
         this.questionIndex = newIndex;
-        console.log(this.questionIndex)
+        // console.log(this.questionIndex)
       } else {           // 答题页面直接刷新
         let projectId = selectedChapter.id;
         let chapterIndex = selectedChapter.index;
@@ -247,7 +253,7 @@
       // 处理标题信息
       this.chapterName = selectedChapter.title;
       this.projectName = this.selectedProject.chinese;
-      console.log(this.selectedProject)
+      // console.log(this.selectedProject)
 
     },
 
@@ -362,9 +368,9 @@
         } else if (ele.msRequestFullscreen) {
           ele.msRequestFullscreen();
         }
-        this.setFullScreen();
-        localStorage.setItem('isFullScreen', JSON.parse(this.isFullScreen));
-
+        this.setFullScreen(true);
+        this.ifFullScreen = true;
+        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
       },
 
       exitFull() {
@@ -379,21 +385,48 @@
         } else {
           window.parent.showTopBottom();
         }
-        this.setFullScreen();
-        localStorage.setItem('isFullScreen', JSON.parse(this.isFullScreen));
+        this.setFullScreen(false);
+        this.ifFullScreen = false;
+        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
       },
 
       // 切换题目
       changeQuestion(index) {
         if (index === 1) {     // 下一题
           if (this.questionIndex < this.totalQuesArr.length) this.questionIndex += 1;
+
         } else if (index === -1) {  // 上一题
-          if (this.questionIndex >= 0) this.questionIndex -= 1;
+          if (this.questionIndex > 0) this.questionIndex -= 1;
         }
+
+        // console.log("当前题目序号", this.questionIndex + 1);
+
+        // 获取用户答题情况
+        // console.log(this.selectedAnswer[this.selectedProject.id][this.selectedChapter.index][this.currentType]);
+        let tempArr = this.selectedAnswer[this.selectedProject.id][this.selectedChapter.index][this.currentType];
+        let flag = false;
+
+        // 匹配用户答案
+        // console.log(tempArr);
+        for (let i = 0; i < tempArr.length; i++) {
+          if (tempArr[i].index === this.questionIndex) {
+            if (Array.isArray(tempArr[i].userAns)){
+              this.checkedList = tempArr[i].userAns
+            } else {
+              this.checkIndex = tempArr[i].userAns;
+            }
+            // console.log(tempArr[i].userAns);
+            flag = true;
+          }
+        }
+
         // 如果固定显示答案，则显示答案，如果不固定，则隐藏答案
         this.showAnswer = this.isStick;
-        this.checkIndex = -1;
-        this.checkedList = [];
+
+        if (!flag) {
+          this.checkIndex = -1;
+          this.checkedList = [];
+        }
       },
 
       isFinished() {
@@ -471,7 +504,7 @@
         let projectId = this.selectedProject.id;         // 科目id
         let chapterIndex = this.selectedChapter.index;   // 章节下标
         let quesIndex = index;                           // 题目下标
-        let userAns = answerIndex;                       // 用户答案
+        let userAns = type === 1 ? this.checkedList : answerIndex;            // 用户答案
 
         let tempObj = {};
         tempObj['index'] = quesIndex;

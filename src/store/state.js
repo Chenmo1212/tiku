@@ -57,7 +57,7 @@ export default {
     lang_c_2: [],
   },
 
-  cardMode: true,
+  cardMode: false,
   themeMode: 'light',
 
   musicStatus: false,

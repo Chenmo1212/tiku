@@ -419,7 +419,7 @@
         let projectId = this.selectedProject.id;         // 科目id
         let chapterIndex = this.selectedChapter.index;   // 章节下标
         let quesIndex = index;                           // 题目下标
-        let userAns = type === 1 ? answerIndex : this.checkedList;            // 用户答案
+        let userAns = type === 1 ? this.checkedList : answerIndex;            // 用户答案
 
         let tempObj = {};
         tempObj['index'] = quesIndex;
