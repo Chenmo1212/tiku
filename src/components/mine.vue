@@ -642,11 +642,17 @@
       box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b!important;
     }
     .item {
-      box-shadow: 2px 2px 5px rgba(0,0,0,.3), -2px -2px 5px rgba(0,0,0,.5), -0.4px -0.4px 0.4px rgba(80,80,80,.4)!important;
+      /*box-shadow: 2px 2px 5px rgba(0,0,0,.3), -2px -2px 5px rgba(0,0,0,.5), -0.4px -0.4px 0.4px rgba(80,80,80,.4)!important;*/
+      box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65)!important;
     }
     .switch-container {
       input[type="checkbox"] {
         box-shadow: inset 0.4px 0.4px 1.5px #2E3237, inset 1.5px 1.5px 3px #6c7885, inset -0.8px -0.8px 1.5px #6c7885!important;
+      }
+    }
+    .right-icon {
+      .circle {
+        box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
       }
     }
   }

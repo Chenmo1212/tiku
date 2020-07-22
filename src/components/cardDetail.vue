@@ -516,7 +516,7 @@
           if (this.totalCardArr.length - this.slice_count > 10) {
             // 新截取的数组
             newTempCard = this.totalCardArr.slice(this.slice_count, this.slice_count + 10);
-            // console.log("刚开始2：", newTempCard);
+            console.log("刚开始1：", newTempCard);
             this.slice_count += 10;
             this.cardArr = this.cardArr.concat(newTempCard);
           } else {
@@ -952,7 +952,7 @@
 
     .card-question {
       @include font_color("detail_font_color1");
-      margin: 10% 0;
+      margin: 5% 0;
       width: calc(100% - 20px);
       padding: 10px;
       @include background("detail_bg_color2");
@@ -983,7 +983,7 @@
         cursor: pointer;
         /*color: inherit;*/
         font-family: inherit;
-        margin-bottom: 5%;
+        margin-bottom: 2.4%;
         box-sizing: border-box;
       }
 
