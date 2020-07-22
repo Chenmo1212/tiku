@@ -42,8 +42,25 @@
           <div class="card-question" v-html="item.question"></div>
           <div class="card-answer-list">
 
-            <!--单选多选题-->
+            <!--单选题-->
             <div class="btn c-button answer-item"
+                 v-if="item.type === 0"
+                 :class="getActiveStyle(answerIndex, item.type)"
+                 :style="getColor(answerIndex, item.type)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
+                 v-for="(answerItem, answerIndex) in cardArr[index].options" :key="answerIndex">
+            <span class="icon-item">
+              <span v-if="answerIndex === 0">A.</span>
+              <span v-if="answerIndex === 1">B.</span>
+              <span v-if="answerIndex === 2">C.</span>
+              <span v-if="answerIndex === 3">D.</span>
+            </span>
+              <span class="c-button__label" v-html="answerItem"></span>
+            </div>
+
+            <!--多选题-->
+            <div class="btn c-button answer-item"
+                 v-if="item.type === 1"
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex, item.type)"
                  @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
@@ -174,8 +191,12 @@
 
         // 匹配用户答案
         for (let i = 0; i < ansArr.length; i++) {
-          if (ansArr[i].index === newIndex + 1) {
-            this.checkIndex = ansArr[i].userAns;
+          if (ansArr[i].index === newIndex) {
+            if (Array.isArray(ansArr[i].userAns)){
+              this.checkedList = ansArr[i].userAns
+            } else {
+              this.checkIndex = ansArr[i].userAns;
+            }
           }
         }
         isOverview = true;
@@ -358,17 +379,23 @@
         let answerList = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
         // console.log(answerList)
         for (let i = 0; i < answerList.length; i++) {
-          if (answerList[i].index === quesIndex) {
-            // console.log(answerList[i].index);
-            // console.log(quesIndex)
-            this.checkIndex = answerList[i].userAns;
+          if (answerList[i].index === quesIndex - 1) {
+            // console.log(quesIndex);
+            // console.log(answerList[i].userAns);
+            if (Array.isArray(answerList[i].userAns)){
+              this.checkedList = answerList[i].userAns
+            } else {
+              this.checkIndex = answerList[i].userAns;
+            }
             flag = false;
             break;
           }
         }
 
-        if (flag) this.checkIndex = -1;
-        this.checkedList = [];
+        if (flag) {
+          this.checkIndex = -1;
+          this.checkedList = [];
+        }
         // console.log("checkIndex", this.checkIndex)
       },
 
