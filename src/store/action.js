@@ -68,5 +68,10 @@ export default {
     commit('SET_WARNING', msg)
   },
 
+  // 设置全屏
+  setFullScreen({commit}, bool) {
+    commit('SET_FULL_SCREEN', bool)
+  },
+
 
 }

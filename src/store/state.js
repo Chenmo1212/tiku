@@ -24,6 +24,8 @@ export default {
   // chapterIndex: null,
   // projectId: null,
 
+  isFullScreen: false,
+
   projectBasicData: {},     // 科目基本信息
 
   selectedProject: {},      // 选择的科目

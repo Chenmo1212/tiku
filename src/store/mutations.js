@@ -121,6 +121,11 @@ export default {
     state.warning = msg;
   },
 
+  // 设置全屏
+  SET_FULL_SCREEN(state, bool) {
+    state.isFullScreen = bool;
+  },
+
 // 前往数据管理
 // TO_DATA(state, boolean){
 //   state.To_Data = obj.To_Data;  // 是在想去data的路上触发登录框

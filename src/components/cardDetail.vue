@@ -9,8 +9,8 @@
         </div>
       </div>
       <div class="full-screen" :style="{color: chapterColor}">
-        <span @click="setFullScreen" v-if="!ifFullscreen"><i class="fa fa-expand"></i></span>
-        <span @click="exitFull" v-if="ifFullscreen"><i class="fa fa-compress"></i></span>
+        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"></i></span>
+        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"></i></span>
       </div>
     </div>
     <div id="board">
@@ -45,8 +45,8 @@
             <!--单选多选题-->
             <div class="btn c-button answer-item"
                  :class="getActiveStyle(answerIndex, item.type)"
-                 :style="getColor(answerIndex)"
-                 @click.stop.prevent="submitAns(item, answerIndex, index)"
+                 :style="getColor(answerIndex, item.type)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
                  v-for="(answerItem, answerIndex) in cardArr[index].options" :key="answerIndex">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
@@ -61,8 +61,8 @@
             <div class="btn c-button answer-item"
                  v-if="item.type === 3"
                  :class="getActiveStyle(answerIndex, item.type)"
-                 :style="getColor(answerIndex)"
-                 @click.stop.prevent="submitAns(item, answerIndex, index)"
+                 :style="getColor(answerIndex, item.type)"
+                 @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
                  v-for="(answerItem, answerIndex) in ['对','错']" :key="answerIndex">
               <span class="icon-item">
                 <span v-if="answerIndex === 0">A</span>
@@ -123,11 +123,11 @@
         slice_count: 10,
 
         answerList: [],
+        checkedList: [],               // 多选题答案
 
         isError: true,
 
-        ifFullscreen: false,
-        ifExitScreen: false,
+        ifFullScreen: false,
 
         gapIndex: 0,
         itemIndex: null,               // 题目序号
@@ -142,9 +142,14 @@
       let isOverview = false;
       let newIndex = null;
 
+      // 是否全屏
+      if(typeof(localStorage.isFullScreen) !== 'undefined'){
+        // 如果用户已经设置过全屏了，则改成全屏
+        console.log("用户已经设置过了", JSON.parse(localStorage.isFullScreen));
+        this.ifFullScreen = JSON.parse(localStorage.isFullScreen)
+      }
       // console.log(JSON.parse(localStorage.selectedProject))
       // 获取全部题目数据
-
       this.setSelectedProject(JSON.parse(localStorage.selectedProject));
       this.defineSelectedAnswer(JSON.parse(localStorage.selectedAnswer));
       this.setProjectBasicData(JSON.parse(localStorage.projectBasicData));
@@ -243,18 +248,27 @@
         'defineSelectedAnswer',
         'setProjectBasicData',
         'setWarning',
+        'setFullScreen',
       ]),
 
       /**
        * 更改选项颜色
        * @param answerIndex 选项下标
+       * @param type 题目类型
        * @returns {*} 返回颜色
        */
-      getColor(answerIndex) {
-        if (this.checkIndex === answerIndex) {
-          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+      getColor(answerIndex, type) {
+        if (type === 1) {
+          // console.log(this.checkedList);
+          if (this.checkedList.indexOf(answerIndex) >=0){
+            return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+          }
+        } else {
+          if (this.checkIndex === answerIndex) {
+            return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+          }
+          return {}
         }
-        return {}
       },
       getActiveStyle(answerIndex, type) {
         if (this.currentType === null) {
@@ -270,12 +284,19 @@
           if (type === 3) this.currentType = 'judArr';
         }
 
-        // console.log(this.checkIndex);
-        if (this.checkIndex === answerIndex) {
-          // console.log("getActiveStyle:", this.checkIndex);
-          return 'c-button--active'
+        if (type === 1) {
+          // console.log(this.checkedList);
+          if (this.checkedList.indexOf(answerIndex) >=0){
+            return 'c-button--active';
+          }
+        } else {
+          // console.log(this.checkIndex);
+          if (this.checkIndex === answerIndex) {
+            // console.log("getActiveStyle:", this.checkIndex);
+            return 'c-button--active'
+          }
+          return ""
         }
-        return ""
       },
       backChapter() {
         this.$router.push({name: 'chapter'});
@@ -285,7 +306,7 @@
         this.$router.push({name: 'overview'})
       },
 
-      setFullScreen() {
+      setScreen() {
         let ele = document.body;
         if (ele.requestFullscreen) {
           ele.requestFullscreen();
@@ -296,7 +317,9 @@
         } else if (ele.msRequestFullscreen) {
           ele.msRequestFullscreen();
         }
-        this.ifFullscreen = true;
+        this.setFullScreen(true);
+        this.ifFullScreen = true;
+        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
       },
       exitFull() {
         if (document.exitFullscreen) {
@@ -310,7 +333,9 @@
         } else {
           window.parent.showTopBottom();
         }
-        this.ifFullscreen = false;
+        this.setFullScreen(false);
+        this.ifFullScreen = false;
+        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
       },
       isFinished() {
         // 重新渲染v-for
@@ -343,6 +368,7 @@
         }
 
         if (flag) this.checkIndex = -1;
+        this.checkedList = [];
         // console.log("checkIndex", this.checkIndex)
       },
 
@@ -351,9 +377,32 @@
        * @param item 题目信息
        * @param answerIndex 选项下标（用户答案）
        * @param index 题目下标
+       * @param type 题目类型
        * @returns {*} 返回颜色
        */
-      submitAns(item, answerIndex, index) {
+      submitAns(item, answerIndex, index, type) {
+        // 默认答案为错,修改答案样式
+        this.isError = true;
+
+        if (type === 1) {
+          // 无则添加，有则删除
+          if (this.checkedList.indexOf(answerIndex) >= 0){
+            this.checkedList.splice(this.checkedList.indexOf(answerIndex), 1);
+          } else {
+            this.checkedList.push(answerIndex);
+          }
+
+          // 判断对错，改答案样式
+          // console.log("多选题答案", item.answer.sort().toString() === this.checkedList.sort().toString());
+          item.answer.sort().toString() === this.checkedList.sort().toString() ? this.isError = false : this.isError = true;
+        } else {
+          // 更改选项样式
+          this.checkIndex = answerIndex;
+
+          // 判断对错，改答案样式
+          item.answer === answerIndex ? this.isError = false : this.isError = true;
+        }
+        // console.log("选择答案");
 
         // 自动校对答案
         if (this.isCheck) this.showAnswer = true;
@@ -366,19 +415,11 @@
         // console.log("index", index);
         this.itemIndex = index;
 
-        // console.log(index);
-        // 默认答案为错
-        this.isError = true;
-        item.answer === answerIndex ? this.isError = false : this.isError = true;
-
-        // 更改选项样式
-        this.checkIndex = answerIndex;
-
         // 记录答题情况
         let projectId = this.selectedProject.id;         // 科目id
         let chapterIndex = this.selectedChapter.index;   // 章节下标
         let quesIndex = index;                           // 题目下标
-        let userAns = answerIndex;                       // 用户答案
+        let userAns = type === 1 ? answerIndex : this.checkedList;            // 用户答案
 
         let tempObj = {};
         tempObj['index'] = quesIndex;
@@ -405,6 +446,16 @@
 
 
       // 判断是否需要替换已选择的答案
+
+      /**
+       * 选择选项并记录用户答案
+       * @param projectId 科目id
+       * @param chapterIndex 章节下标
+       * @param tempObj 用户答案
+       * @param type 题目类型
+       * @param quesIndex 题目下标
+       * @param typeArr 类型
+       */
       judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
         let tempArr = null;
         // console.log(projectId);

@@ -166,7 +166,10 @@
             this.setSelectedChapter({id: 'mao_gai', index: 0});
             localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
           }
-          this.setSelectedProject(this.projectBasicData['mao_gai']);
+          if (typeof(localStorage.selectedProject) === 'undefined') {
+            this.setSelectedProject(this.projectBasicData['mao_gai']);
+            localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
+          }
           this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
 
         } else if(from === 2){
