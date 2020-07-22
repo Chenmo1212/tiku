@@ -42,64 +42,58 @@
           <span class="question-num-item">{{selectedChapter.radio + selectedChapter.decide + selectedChapter.multiple + selectedChapter.fill}}</span>
         </div>
       </div>
-      <div class="content-question">
-        <div class="card-question">
-          {{totalQuesArr[questionIndex].question}}
+      <div class="content-container">
+        <div class="content-question">
+          <div class="card-question" v-html="totalQuesArr[questionIndex].question"></div>
         </div>
-      </div>
-      <div class="content-answer">
-        <div class="card-answer-list">
+        <div class="content-answer">
+          <div class="card-answer-list">
 
-          <!--单选多选题-->
-          <div class="btn c-button answer-item"
-               v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 1"
-               :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
-               :style="getColor(answerIndex)"
-               @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)"
-               v-for="(answerItem, answerIndex) in totalQuesArr[questionIndex].options">
+            <!--单选多选题-->
+            <div class="btn c-button answer-item 1"
+                 v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 1"
+                 :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
+                 :style="getColor(answerIndex)"
+                 @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)"
+                 v-for="(answerItem, answerIndex) in totalQuesArr[questionIndex].options">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
               <span v-if="answerIndex === 1">B.</span>
               <span v-if="answerIndex === 2">C.</span>
               <span v-if="answerIndex === 3">D.</span>
             </span>
-            <span class="c-button__label">{{answerItem}}</span>
-          </div>
+              <span class="c-button__label" v-html="answerItem"></span>
+            </div>
 
-          <!--判断题-->
-          <div class="btn c-button answer-item"
-               v-if="totalQuesArr[questionIndex].type === 3"
-               :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
-               :style="getColor(answerIndex)"
-               @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)"
-               v-for="(answerItem, answerIndex) in ['对','错']">
+            <!--判断题-->
+            <div class="btn c-button answer-item 2"
+                 v-if="totalQuesArr[questionIndex].type === 3"
+                 :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
+                 :style="getColor(answerIndex)"
+                 @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)"
+                 v-for="(answerItem, answerIndex) in ['对','错']">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A</span>
               <span v-if="answerIndex === 1">B</span>
             </span>
-            <span class="c-button__label">{{answerItem}}</span>
+              <span class="c-button__label">{{answerItem}}</span>
+            </div>
           </div>
 
-          <!--填空题-->
-          <div class="btn c-button answer-item"
-               v-if="totalQuesArr[questionIndex].type === 2"
-               :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
-               :style="getColor(answerIndex)"
-               @click.stop.prevent="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex)">
-          </div>
-        </div>
-        <div class="answer" v-if="showAnswer"
-             :style="getAnsStyle(isError)"
-        >
-          <span>正确答案：</span>
-          <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
-          <span class="stick-box" >
+          <!--答案-->
+          <div class="answer" v-if="showAnswer"
+               :style="getAnsStyle(isError)"
+          >
+            <span>正确答案：</span>
+            <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
+            <span class="stick-box" >
              <i class="fa fa-check-circle check" aria-hidden="true"
                 v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 3"
                 @click="handleCheck"
                 :class="{active: isCheck}"></i>
               <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
           </span>
+          </div>
         </div>
       </div>
       <div class="content-btn-group">
@@ -233,6 +227,7 @@
       // 处理标题信息
       this.chapterName = selectedChapter.title;
       this.projectName = JSON.parse(localStorage.selectedProject).chinese;
+      console.log(JSON.parse(localStorage.selectedProject))
 
     },
 
@@ -677,6 +672,7 @@
   .content {
     padding: 20px;
     min-height: 90vh;
+    height: 100%;
 
     .content-head {
       font-size: 14px;
@@ -704,117 +700,129 @@
       }
     }
 
-    .content-question {
-      @include font_color("detail_font_color1");
-      margin: 10% 0;
-      width: calc(100% - 20px);
-      padding: 10px;
-      @include background("detail_bg_color1");
-      border-radius: 5px;
-      text-align: left;
-      border: 1px solid;
-      @include border_color("detail_border_color1");
-      box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
-    }
+    .content-container {
+      max-height: 71%;
+      overflow-y: scroll;
+      padding:0 7px 0;
+      margin-top: 5%;
 
-    .content-answer {
-      .card-answer-list {
-        .c-button {
-          font-size: 14px;
-          text-align: left;
-          width: 100%;
-          padding: 10px;
-          border-radius: 5px;
-          /*color: #2c3e50;*/
-          background: transparent;
-          border: 1px solid #fff;
-          position: relative;
-          box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
-          transition: all 200ms ease-out 0s;
-        }
+      .content-question {
+        @include font_color("detail_font_color1");
+        margin: 0 0 10%;
+        width: calc(100% - 20px);
+        padding: 10px;
+        @include background("detail_bg_color1");
+        border-radius: 5px;
+        text-align: left;
+        border: 1px solid;
+        @include border_color("detail_border_color1");
+        box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
 
-        div {
-          cursor: pointer;
-          /*color: inherit;*/
-          font-family: inherit;
-          margin-bottom: 5%;
-          box-sizing: border-box;
-        }
-
-        /*.btn:active, .btn:focus {*/
-        /*outline: 0;*/
-        /*}*/
-
-        /*.c-button:hover:before {*/
-        /*background: rgba(255, 255, 255, 0.24);*/
-        /*}*/
-
-        .c-button:before {
-          content: '';
-          position: absolute;
-          border-radius: 5px;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          border: 2px solid transparent;
-          -webkit-filter: blur(2px);
-          filter: blur(2px);
-          -webkit-transition: all 120ms ease-out 0s;
-          transition: all 200ms ease-out 0s;
-        }
-
-        .c-button:after {
-          content: '';
-          position: absolute;
-          border-radius: 5px;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          -webkit-transition: all 120ms ease-out 0s;
-          transition: all 200ms ease-out 0s;
-        }
-
-        .c-button--active {
-          background: linear-gradient(to top, #f4f6f8, #fafcfd);
-          box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
-        }
-
-        .c-button--active:before {
-          /*border-color: white;*/
-          /*box-shadow: 0 0.8px 3px white;*/
-        }
-
-        .c-button--active:after {
-          /*box-shadow: inset 0 0 3px white;*/
+        .card-question {
+          overflow: scroll;
         }
       }
 
-      .answer {
-        padding: 10px;
-        font-size: 14px;
-        text-align: left;
-        width: calc(100% - 20px);
-        border-radius: 5px;
-        @include background("detail_bg_color1");
-        box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+      .content-answer {
+        .card-answer-list {
+          .c-button {
+            font-size: 14px;
+            text-align: left;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            /*color: #2c3e50;*/
+            background: transparent;
+            border: 1px solid #fff;
+            position: relative;
+            box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
+            transition: all 200ms ease-out 0s;
+          }
 
-        .stick-box {
-          float: right;
-          margin-top: -7px;
+          div {
+            cursor: pointer;
+            /*color: inherit;*/
+            font-family: inherit;
+            margin-bottom: 5%;
+            box-sizing: border-box;
+          }
 
-          .stick, .check {
-            padding: 8px;
-            margin: 0 5px;
+          /*.btn:active, .btn:focus {*/
+          /*outline: 0;*/
+          /*}*/
+
+          /*.c-button:hover:before {*/
+          /*background: rgba(255, 255, 255, 0.24);*/
+          /*}*/
+
+          .c-button:before {
+            content: '';
+            position: absolute;
+            border-radius: 5px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 2px solid transparent;
+            -webkit-filter: blur(2px);
+            filter: blur(2px);
+            -webkit-transition: all 120ms ease-out 0s;
+            transition: all 200ms ease-out 0s;
+          }
+
+          .c-button:after {
+            content: '';
+            position: absolute;
+            border-radius: 5px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            -webkit-transition: all 120ms ease-out 0s;
+            transition: all 200ms ease-out 0s;
+          }
+
+          .c-button--active {
+            background: linear-gradient(to top, #f4f6f8, #fafcfd);
+            box-shadow: inset 0.4px 0.4px 1.5px #f4f6f8, inset 1.5px 1.5px 3px #aec5e4, inset -0.8px -0.8px 1.5px white;
+          }
+
+          .c-button--active:before {
+            /*border-color: white;*/
+            /*box-shadow: 0 0.8px 3px white;*/
+          }
+
+          .c-button--active:after {
+            /*box-shadow: inset 0 0 3px white;*/
           }
         }
 
-        .active {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        .answer {
+          padding: 10px;
+          font-size: 14px;
+          text-align: left;
+          width: calc(100% - 20px);
+          border-radius: 5px;
+          @include background("detail_bg_color1");
+          box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
+
+          .stick-box {
+            float: right;
+            margin-top: -7px;
+
+            .stick, .check {
+              padding: 8px;
+              margin: 0 5px;
+            }
+          }
+
+          .active {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          }
         }
       }
     }
+
 
     .content-btn-group {
       .menu-card {
