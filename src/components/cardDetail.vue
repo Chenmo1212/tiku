@@ -39,9 +39,7 @@
           </div>
         </div>
         <div class="card-content">
-          <div class="card-question">
-            {{item.question}}
-          </div>
+          <div class="card-question" v-html="item.question"></div>
           <div class="card-answer-list">
 
             <!--单选多选题-->
@@ -56,7 +54,7 @@
               <span v-if="answerIndex === 2">C.</span>
               <span v-if="answerIndex === 3">D.</span>
             </span>
-              <span class="c-button__label">{{answerItem}}</span>
+              <span class="c-button__label" v-html="answerItem"></span>
             </div>
 
             <!--判断题-->
@@ -70,17 +68,8 @@
                 <span v-if="answerIndex === 0">A</span>
                 <span v-if="answerIndex === 1">B</span>
               </span>
-              <span class="c-button__label">{{answerItem}}</span>
+              <span class="c-button__label" v-html="answerItem"></span>
             </div>
-
-            <!--填空题-->
-            <div class="btn c-button answer-item"
-                 v-if="item.type === 2"
-                 :class="getActiveStyle(answerIndex, item.type)"
-                 :style="getColor(answerIndex)"
-                 @click.stop.prevent="submitAns(item, answerIndex, index)">
-            </div>
-
 
           </div>
 

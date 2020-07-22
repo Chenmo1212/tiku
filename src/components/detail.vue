@@ -216,7 +216,7 @@
         if (type === 3) type = "judArr";
 
         let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
-        console.log(ansArr)
+        // console.log(ansArr);
         // 匹配用户答案
         for (let i = 0; i < ansArr.length; i++) {
           if (ansArr[i].index === newIndex + 1) {
@@ -226,8 +226,8 @@
       }
       // 处理标题信息
       this.chapterName = selectedChapter.title;
-      this.projectName = JSON.parse(localStorage.selectedProject).chinese;
-      console.log(JSON.parse(localStorage.selectedProject))
+      this.projectName = this.selectedProject.chinese;
+      console.log(this.selectedProject)
 
     },
 
@@ -309,6 +309,9 @@
         this.$router.push({name: 'overview'})
       },
 
+      /**
+       *  全屏
+       */
       setFullScreen() {
         let ele = document.body;
         if (ele.requestFullscreen) {
@@ -390,6 +393,7 @@
        * @returns {*} 返回颜色
        */
       submitAns(item, answerIndex, index) {
+        console.log("选择答案");
 
         // 自动校对答案
         if (this.isCheck) this.showAnswer = true;
@@ -426,7 +430,7 @@
           itemIndex: quesIndex,
         });
 
-        // console.log(this.currentMemory);
+        console.log(this.currentMemory);
         localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
         localStorage.setItem('projectBasicData', JSON.stringify(this.projectBasicData));
         localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
