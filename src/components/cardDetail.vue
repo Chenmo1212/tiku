@@ -14,7 +14,7 @@
       </div>
     </div>
     <div id="board">
-      <div class="card" v-for="(item, index) in cardArr">
+      <div class="card" v-for="(item, index) in cardArr" :key="index">
         <div class="card-head">
           <div class="question-type" :style="{color: chapterColor}">
             <span v-if="item.type === 0">单选题</span>
@@ -49,7 +49,7 @@
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex)"
                  @click.stop.prevent="submitAns(item, answerIndex, index)"
-                 v-for="(answerItem, answerIndex) in cardArr[index].options">
+                 v-for="(answerItem, answerIndex) in cardArr[index].options" :key="answerIndex">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A.</span>
               <span v-if="answerIndex === 1">B.</span>
@@ -65,7 +65,7 @@
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex)"
                  @click.stop.prevent="submitAns(item, answerIndex, index)"
-                 v-for="(answerItem, answerIndex) in ['对','错']">
+                 v-for="(answerItem, answerIndex) in ['对','错']" :key="answerIndex">
               <span class="icon-item">
                 <span v-if="answerIndex === 0">A</span>
                 <span v-if="answerIndex === 1">B</span>
@@ -507,10 +507,14 @@
        * @param len 剩余卡片数目
        */
       pushCardData(len) {
+        console.log("js：", len);
+        console.log("划掉一个：", this.cardArr.length);
+        console.log("总长度：", this.totalCardArr.length);
+        console.log("当前位置：", this.slice_count);
         if (len > 3) return;
         if (len <= 3) {
           console.log("少于三个了");
-          // console.log("刚开始：", this.cardArr);
+          console.log("刚开始：", this.cardArr);
           let newTempCard = null;
 
           if (this.totalCardArr.length - this.slice_count > 10) {
@@ -522,16 +526,16 @@
           } else {
             // 新截取的数组
             newTempCard = this.totalCardArr.slice(this.slice_count, this.totalCardArr.length);
-            // console.log("刚开始2：", newTempCard);
+            console.log("还剩余", newTempCard);
 
-            // this.slice_count +=1 ;
+            this.slice_count += this.totalCardArr.length - this.slice_count ;
 
-            this.cardArr = newTempCard;
+            this.cardArr = this.cardArr.concat(newTempCard);
           }
-          // console.log("合并后：", this.cardArr);
+          console.log("合并后：", this.cardArr.length);
 
           // 重新渲染v-for
-          this.$forceUpdate();
+          // this.$forceUpdate();
         }
       },
       // 固定答案
@@ -983,7 +987,7 @@
         cursor: pointer;
         /*color: inherit;*/
         font-family: inherit;
-        margin-bottom: 2.4%;
+        margin-bottom: 4%;
         box-sizing: border-box;
       }
 
