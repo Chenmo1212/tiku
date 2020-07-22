@@ -150,13 +150,13 @@
       background: linear-gradient(90deg, #D43C0B, #BF8A10)!important;
     }
     .detail-icon {
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+      box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;
       .fa {
         color: #BF8A10!important;
       }
     }
     .header .circle {
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+      box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 black !important;
     }
     .header .circle, .header .pageName, .type .typeNum {
       color: #BF8A10!important;

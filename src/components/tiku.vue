@@ -194,7 +194,10 @@
   }
   .dark {
     .swiper-container .swiper-slide {
-      box-shadow: 7px 7px 15px 0 rgba(0,0,0,0.3), -7px -7px 15px 0px #505050, inset 0px 0px 0px 0px rgba(0,0,0,0), inset 0px 0px 0px 0px rgba(80,80,80,0) !important;
+      box-shadow: -5px -5px 5px rgba(255,255,255,0.05),5px 5px 5px rgba(0,0,0,0.65) !important;
+      .card-btn .btn {
+        box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+      }
     }
     .swiper-slide .card-progress .card-progress__back {
       background: #2d3135!important;
