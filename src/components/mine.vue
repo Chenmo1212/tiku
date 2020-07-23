@@ -97,6 +97,7 @@
        * 设置水波纹效果
        */
       playBtnWave(e) {
+        console.log("pause");
         const play = document.querySelector('.play');
         const pause = document.querySelector('.pause');
         const playBtn = document.querySelector('.circle__btn');

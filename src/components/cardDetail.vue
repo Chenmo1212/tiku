@@ -363,7 +363,7 @@
         // this.$forceUpdate();
 
         // console.log("isFinished");
-        // console.log("checkIndex", this.checkIndex)
+        // console.log("question", this.itemIndex);
         // console.log("题目下标", this.itemIndex);
         // console.log(this.selectedChapter);
         let projectId = this.selectedChapter.id;         // 科目id
@@ -440,7 +440,7 @@
           // console.log("newIndex", index)
         }
         // console.log("index", index);
-        this.itemIndex = index;
+        this.itemIndex = index + 1;  // 题目序号
 
         // 记录答题情况
         let projectId = this.selectedProject.id;         // 科目id
@@ -574,10 +574,10 @@
        * @param len 剩余卡片数目
        */
       pushCardData(len) {
-        console.log("js：", len);
-        console.log("划掉一个：", this.cardArr.length);
-        console.log("总长度：", this.totalCardArr.length);
-        console.log("当前位置：", this.slice_count);
+        // console.log("js：", len);
+        // console.log("划掉一个：", this.cardArr.length);
+        // console.log("总长度：", this.totalCardArr.length);
+        // console.log("当前位置：", this.slice_count);
         if (len > 3) return;
         if (len <= 3) {
           console.log("少于三个了");
