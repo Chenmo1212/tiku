@@ -3,13 +3,13 @@
     <div class="themed-block">
       <div class="neumorphic-card d-flex flex-column mx-auto">
         <div class="d-flex">
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()">
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab">
             <a :href="url" target="_blank">
               <i class="fa fa-download header-icon" aria-hidden="true"></i>
             </a>
           </button>
           <div class="neumorphic-text flex-grow-1 my-auto text-center" @click="setWarning('这是一个音乐播放器~')">Music Player</div>
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()">
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="setModel('music')">
             <i class="fa fa-user header-icon" aria-hidden="true"></i>
           </button>
         </div>
@@ -110,6 +110,7 @@
       ...mapActions([
         'setMusicStatus',
         'setWarning',
+        'setModel',
       ]),
       handleMusicStatus() {
         this.setMusicStatus(true);

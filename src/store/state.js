@@ -71,5 +71,9 @@ export default {
   isAlert: false,
   warning: '',
 
+  // 模态框
+  isModel: false,
+  modelType: '',
+
 
 }

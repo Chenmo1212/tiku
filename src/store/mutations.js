@@ -121,6 +121,13 @@ export default {
     state.warning = msg;
   },
 
+  // 设置模态框
+  SET_MODEL(state, type) {
+    // console.log("模式框")
+    state.isModel = !state.isModel;
+    state.modelType = type;
+  },
+
   // 设置全屏
   SET_FULL_SCREEN(state, bool) {
     state.isFullScreen = bool;

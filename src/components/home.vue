@@ -415,7 +415,6 @@
         height: 40px;
         line-height: 40px;
         border-radius: 25px;
-        background-color: #e8e9ed;
         /*border: 2px solid #f4f6f8;*/
         box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
         transition: all .2s ease;

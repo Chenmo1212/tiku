@@ -2,10 +2,10 @@
   <div id="mine"  :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="menu">
-        <div class="menu-circle fl" @click="deleteLocalStorage">
+        <div class="menu-circle fl" @click="setModel('clear')">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </div>
-        <div class="menu-circle fr">
+        <div class="menu-circle fr"  @click="setModel('data')">
           <i class="fa fa-sign-out"></i>
         </div>
       </div>
@@ -101,15 +101,8 @@
         'setTikuMode',
         'setThemeMode',
         'setWarning',
+        'setModel',
       ]),
-
-      /**
-       * 清空本地存储
-       */
-      deleteLocalStorage(){
-        localStorage.clear();
-        location.reload();
-      },
 
       /**
        * 设置水波纹效果
