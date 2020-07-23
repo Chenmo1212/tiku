@@ -15,8 +15,7 @@
         </div>
         <div class="neumorphic-card__body">
           <div class="neumorphic-image-wrapper" @click="setWarning('这里什么都没有哦~')">
-            <img
-              :src="cover"
+            <img :src="cover"
               style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
           <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a>

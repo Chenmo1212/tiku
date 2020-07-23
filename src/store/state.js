@@ -64,6 +64,7 @@ export default {
 
   // 音乐清单
   musicList: null,
+  songListId: '2111679838',
 
   currentMusicBasicMsg: [],
 
@@ -75,5 +76,6 @@ export default {
   isModel: false,
   modelType: '',
 
+  totalData: {},
 
 }

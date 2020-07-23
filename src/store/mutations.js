@@ -74,8 +74,8 @@ export default {
     // 进度条
     let result = 100 * chaObj.chapter_fill / (chaObj.bla + chaObj.jud + chaObj.sig + chaObj.mul);
     tempObj["chapterProgress"] = result < 1 ? '2%' : result + '%';
-    tempObj["currentChapter"] = chaObj.title.slice(0,3);
-    for (let i=0;i<state.projectName.length;i++){
+    tempObj["currentChapter"] = chaObj.title.slice(0, 3);
+    for (let i = 0; i < state.projectName.length; i++) {
       // console.log(state.projectName[i])
       if (state.projectName[i] === obj.projectId) {
         tempObj["svgName"] = state.projectSvgName[i];
@@ -93,6 +93,11 @@ export default {
   // 设置音乐状态
   SET_MUSIC_STATUS(state) {
     state.musicStatus = !state.musicStatus;
+  },
+
+  // 设置音乐歌单id
+  SET_SONG_LIST_ID(state, str) {
+    state.songListId = str;
   },
 
   // 设置音乐信息
@@ -133,13 +138,53 @@ export default {
     state.isFullScreen = bool;
   },
 
-// 前往数据管理
-// TO_DATA(state, boolean){
-//   state.To_Data = obj.To_Data;  // 是在想去data的路上触发登录框
-// }
+  // 导出数据
+  SET_EXPORT_TOTAL_DATA(state) {
+    // state.totalData["themeColor"] = state.themeColor;
+    // state.totalData["projectSvgName"] = state.projectSvgName;
+    // state.totalData["projectName"] = state.projectName;
+    state.totalData["currentMemory"] = state.currentMemory;
+    state.totalData["isFullScreen"] = state.isFullScreen;
+    // state.totalData["projectBasicData"] = state.projectBasicData;
+    state.totalData["selectedProject"] = state.selectedProject;
+    state.totalData["selectedChapter"] = state.selectedChapter;
+    // state.totalData["projectQuestionData"] = state.projectQuestionData;
+    state.totalData["selectedAnswer"] = state.selectedAnswer;
+    state.totalData["cardMode"] = state.cardMode;
+    state.totalData["themeMode"] = state.themeMode;
+    // state.totalData["musicStatus"] = state.musicStatus;
+    // state.totalData["musicList"] = state.musicList;
+    state.totalData["songListId"] = state.songListId;
+    state.totalData["currentMusicBasicMsg"] = state.currentMusicBasicMsg;
+    // state.totalData["isAlert"] = state.isAlert;
+    // state.totalData["warning"] = state.warning;
+    // state.totalData["isModel"] = state.isModel;
+    // state.totalData["modelType"] = state.modelType;
+  },
 
-// 当前考勤结束时考勤状态信息
-  SET_ATTENDED(state, obj) {
-    state.attended = obj;
-  }
+  // 导出数据
+  SET_IMPORT_TOTAL_DATA(state) {
+    // state.themeColor = state.totalData["themeColor"];
+    // state.projectSvgName = state.totalData["projectSvgName"];
+    // state.projectName = state.totalData["projectName"];
+    state.currentMemory = state.totalData["currentMemory"];
+    state.isFullScreen = state.totalData["isFullScreen"];
+    // state.projectBasicData = state.totalData["projectBasicData"];
+    state.selectedProject = state.totalData["selectedProject"];
+    state.selectedChapter = state.totalData["selectedChapter"];
+    // state.projectQuestionData = state.totalData["projectQuestionData"];
+    state.selectedAnswer = state.totalData["selectedAnswer"];
+    state.cardMode = state.totalData["cardMode"];
+    state.themeMode = state.totalData["themeMode"];
+    // state.musicStatus = state.totalData["musicStatus"];
+    // state.musicList = state.totalData["musicList"];
+    state.songListId = state.totalData["songListId"];
+    state.currentMusicBasicMsg = state.totalData["currentMusicBasicMsg"];
+    // state.isAlert = state.totalData["isAlert"];
+    // state.warning = state.totalData["warning"];
+    // state.isModel = state.totalData["isModel"];
+    // state.modelType = state.totalData["modelType"];
+  },
+
+
 }

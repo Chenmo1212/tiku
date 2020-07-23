@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="bg">
-        <div class="circle">
+        <div class="circle__avatar">
           <span class="circle__btn" @click="playBtnWave">
             <span class="pause"></span>
             <span class="play"></span>
@@ -229,7 +229,7 @@
         }
 
         .menu-circle:active {
-          box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1) !important;
+          box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1);
           border: 2px solid #f4f6f8;
         }
 
@@ -244,7 +244,7 @@
 
 
       /*  PLAY BUTTON  */
-      .circle {
+      .circle__avatar {
         justify-self: center;
         border-radius: 1rem;
         justify-items: center;
@@ -676,6 +676,15 @@
   }
 
   #mine.dark {
+    .menu-circle {
+      background-color: #2e3237!important;
+      box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
+      &:active {
+        border: 2px solid #2e3237!important;
+        box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+      }
+    }
+
     .circle__btn {
       box-shadow: 3px 3px 6px hsla(200, 12%, 20%, 0.89), -3px -3px 6px hsla(175, 10%, 26%, 0.8) !important;
     }

@@ -43,6 +43,11 @@ export default {
     commit('SET_MUSIC_STATUS')
   },
 
+  // 设置音乐歌单id
+  setSongListId({commit}, str) {
+    commit('SET_SONG_LIST_ID', str)
+  },
+
   // 设置音乐信息
   setMusicMsg({commit}, obj) {
     commit('SET_MUSIC_MSG', obj)
@@ -78,5 +83,14 @@ export default {
     commit('SET_FULL_SCREEN', bool)
   },
 
+  // 导出数据
+  setExportTotalData({commit}) {
+    commit('SET_EXPORT_TOTAL_DATA')
+  },
+
+  // 导入数据
+  setImportTotalData({commit}) {
+    commit('SET_IMPORT_TOTAL_DATA')
+  },
 
 }

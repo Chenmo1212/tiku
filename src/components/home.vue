@@ -25,7 +25,7 @@
         </div>
         <div class="title">Little Cookie</div>
         <div class="menu-circle">
-          <i class="fa fa-sign-out"></i>
+          <i class="fa fa-bell-o"></i>
         </div>
       </div>
     </div>
@@ -422,7 +422,7 @@
       }
 
       .menu-circle:active {
-        box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -753,6 +753,14 @@
   }
 
   .dark {
+    .menu-circle {
+      box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+
+      &:active {
+        box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+      }
+    }
+
     .mine {
       #b, #bgBubble {
         background-color: #2e3237 !important;

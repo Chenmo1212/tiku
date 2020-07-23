@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-control">
+  <div id="app" class="max-control" :class="{dark: this.themeMode === 'dark'}">
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
@@ -30,7 +30,7 @@
           <div class="input">
             <input type="text" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput">
           </div>
-          <div class="submit-btn" @click="setSongListId">
+          <div class="submit-btn" @click="handleSongListId">
             <i class="fa fa-send-o"></i>
             <span>提交</span>
           </div>
@@ -127,16 +127,16 @@
         showAlert: false,
         showLoading: false,
 
-        showModel: false,
+        showModel: true,
         musicModel: false,
         dataModel: false,
         clearModel: false,
-        freshModel: false,
+        freshModel: true,
         modelTit: "提示",
         modelMsg: "您可以在此处替换成您的歌单",
 
         // 音乐歌单id
-        songListId: '2111679838',
+        // songListId: '2111679838',
         songListInput: '',
 
         alertMsg: "卡片答题模式已开启",
@@ -145,17 +145,20 @@
     computed: {
       ...mapState([
         'musicStatus',
+        'themeMode',
         'warning',
         'isAlert',
         'isModel',
         'isLoading',
         'modelType',
+        'totalData',
+        'songListId',
       ]),
     },
     mounted() {
       // 获取本地歌单
       if (typeof (localStorage.songListId) !== 'undefined') {
-        this.songListId = JSON.parse(localStorage.songListId);
+        this.setSongListId(JSON.parse(localStorage.songListId));
       }
 
       // 将方法挂载到全局, 子组件通过访问window.nextSong() 即可调用
@@ -188,6 +191,9 @@
       ...mapActions([
         'setCurrentBasicMsg',
         'setMusicMsg',
+        'setExportTotalData',
+        'setImportTotalData',
+        'setSongListId',
       ]),
 
       /**
@@ -218,19 +224,32 @@
        * 导出数据
        */
       exportData() {
-        this.handleShowAlert("数据导出成功");
+        const that = this;
+        this.setExportTotalData();
+        this.handleShowLoading();
+        // totalData
         this.hiddenModel();
+        this.handleShowLoading();
+        clearTimeout(timeId);
+        let timeId = setTimeout(function () {
+          that.handleShowAlert("数据已导出到剪切板");
+          that.hiddenModel();
+          // console.log(that.totalData);
+          that.setClipboard(JSON.stringify(that.totalData));
+          clearTimeout(timeId);
+        }, 3000);
       },
 
       /**
        * 更改音乐歌单
        */
-      setSongListId() {
+      handleSongListId() {
         const that = this;
 
         this.hiddenModel();
-        this.songListId = this.songListInput;
+        this.setSongListId(this.songListInput);
         localStorage.setItem('songListId', JSON.stringify(this.songListId));
+
         this.handleShowLoading();
         clearTimeout(timeId);
         let timeId = setTimeout(function () {
@@ -247,8 +266,37 @@
         location.reload();
       },
 
+      /**
+       * 复制到剪切板
+       */
+      setClipboard(value) {
+        let transfer = document.createElement('input');
+        document.body.appendChild(transfer);
+        transfer.value = value;  // 这里表示想要复制的内容
+        transfer.focus();
+        transfer.select();
+        if (document.execCommand('copy')) {
+          document.execCommand('copy');
+        }
+        transfer.blur();
+        console.log('复制成功');
+        document.body.removeChild(transfer);
+      },
+
+      checkAudio(){
+        let audio = document.getElementById('media');
+        if (audio) {
+          console.log("有用");
+        } else {
+          console.log("坏了");
+          this.handleShowAlert("音乐加载失败，请刷新后重试");
+        }
+        // console.log(audio)
+      },
+
       // 下一首
       nextSong() {
+        this.checkAudio();
         console.log("next");
         if (this.index < this.musicList.length - 1) {
           this.index += 1;
@@ -260,6 +308,7 @@
 
       // 上一首
       preSong() {
+        this.checkAudio();
         console.log("pre");
         if (this.index > 0) {
           this.index -= 1;
@@ -404,6 +453,7 @@
 
     watch: {
       musicStatus() {
+        this.checkAudio();
         let audio = document.getElementById('media');
         // console.log(audio)
         if (this.musicStatus) {
@@ -441,6 +491,33 @@
 <style lang="scss">
   @import "./font/css/font-awesome.min.css";
   @import "./scss/_handle";
+
+  .dark {
+    .loading-box {
+      color: #A7A9AA !important;
+    }
+    svg.tea {
+      --secondary: #A7A9AA;
+    }
+
+    .modal {
+      color: #BF8A10!important;
+
+      .form__input,
+      .title span {
+        box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+      }
+      .submit-btn {
+        box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+        color: #BF8A10!important;
+      }
+      .clear-model .submit {
+        background-color: #26282b!important;
+        color: #fff;
+      }
+    }
+  }
+
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -522,6 +599,7 @@
     top: 0;
     z-index: 999;
     overflow: hidden;
+
     .bg {
       position: absolute;
       background-color: rgba(0, 0, 0, 0.3);
@@ -534,7 +612,7 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      background-color: #fff;
+      @include background("app_bg_color1");
       left: calc(45% - 50px);
       top: 30%;
       border-radius: 2%;
@@ -547,6 +625,7 @@
         justify-content: center;
         align-items: center;
       }
+
       .text {
         height: 20%;
       }
@@ -573,7 +652,8 @@
     .content {
       position: absolute;
       width: calc(80% - 10%);
-      background-color: #f4f6f8;
+      /*background-color: #f4f6f8;*/
+      @include background("bg_mine");
       left: 10%;
       top: 25%;
       border-radius: 2%;
@@ -613,10 +693,11 @@
         letter-spacing: .15px;
         outline: none;
         font-family: 'Montserrat', sans-serif;
-        background-color: #f4f6f8;
+        @include background("bg_mine");
         transition: .25s ease;
         border-radius: 8px;
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color('border_color1');
         box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
       }
 
@@ -625,7 +706,8 @@
       }
 
       .submit-btn {
-        border: 1px solid #fff;
+        border: 1px solid;
+        @include border_color('border_color1');
         width: 60%;
         height: 36px;
         margin: 0 auto;
@@ -637,7 +719,7 @@
         justify-content: center;
         cursor: pointer;
         transition: .3s ease;
-        color: #536dfe;
+        color: #599efb;
 
         &:active {
           box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
@@ -646,7 +728,7 @@
 
       .btn-group {
         display: flex;
-        color: #536dfe;
+        color: #599efb;
 
         .import-btn {
           @extend .submit-btn;
@@ -666,7 +748,7 @@
         }
 
         .submit {
-          background-color: #536dfe;
+          background-color: #9ee3fb;
           color: #fff;
         }
       }
@@ -736,41 +818,49 @@
   svg.tea {
     --secondary: #33406f;
   }
+
   svg.tea #teabag {
     transform-origin: top center;
     transform: rotate(3deg);
     animation: swing 2s infinite;
   }
+
   svg.tea #steamL {
     stroke-dasharray: 13;
     stroke-dashoffset: 13;
     animation: steamLarge 2s infinite;
   }
+
   svg.tea #steamR {
     stroke-dasharray: 9;
     stroke-dashoffset: 9;
     animation: steamSmall 2s infinite;
   }
+
   @-moz-keyframes swing {
     50% {
       transform: rotate(-3deg);
     }
   }
+
   @-webkit-keyframes swing {
     50% {
       transform: rotate(-3deg);
     }
   }
+
   @-o-keyframes swing {
     50% {
       transform: rotate(-3deg);
     }
   }
+
   @keyframes swing {
     50% {
       transform: rotate(-3deg);
     }
   }
+
   @-moz-keyframes steamLarge {
     0% {
       stroke-dashoffset: 13;
@@ -781,6 +871,7 @@
       opacity: 0;
     }
   }
+
   @-webkit-keyframes steamLarge {
     0% {
       stroke-dashoffset: 13;
@@ -791,6 +882,7 @@
       opacity: 0;
     }
   }
+
   @-o-keyframes steamLarge {
     0% {
       stroke-dashoffset: 13;
@@ -801,6 +893,7 @@
       opacity: 0;
     }
   }
+
   @keyframes steamLarge {
     0% {
       stroke-dashoffset: 13;
@@ -811,6 +904,7 @@
       opacity: 0;
     }
   }
+
   @-moz-keyframes steamSmall {
     10% {
       stroke-dashoffset: 9;
@@ -825,6 +919,7 @@
       opacity: 0;
     }
   }
+
   @-webkit-keyframes steamSmall {
     10% {
       stroke-dashoffset: 9;
@@ -839,6 +934,7 @@
       opacity: 0;
     }
   }
+
   @-o-keyframes steamSmall {
     10% {
       stroke-dashoffset: 9;
@@ -853,6 +949,7 @@
       opacity: 0;
     }
   }
+
   @keyframes steamSmall {
     10% {
       stroke-dashoffset: 9;
