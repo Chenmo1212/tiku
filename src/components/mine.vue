@@ -218,6 +218,7 @@
       position: relative;
 
       .menu {
+        color: #A2B1CA;
         width: 100%;
         position: absolute;
         top: 5%;

@@ -3,9 +3,15 @@
     <div class="themed-block">
       <div class="neumorphic-card d-flex flex-column mx-auto">
         <div class="d-flex">
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()"><i class="fa fa-arrow-left"></i></button>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()">
+            <a :href="url" target="_blank">
+              <i class="fa fa-download header-icon" aria-hidden="true"></i>
+            </a>
+          </button>
           <div class="neumorphic-text flex-grow-1 my-auto text-center" @click="setWarning('这是一个音乐播放器~')">Music Player</div>
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()"><i class="fa fa-bars"></i></button>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="handleAlertMsg()">
+            <i class="fa fa-user header-icon" aria-hidden="true"></i>
+          </button>
         </div>
         <div class="neumorphic-card__body">
           <div class="neumorphic-image-wrapper" @click="setWarning('这里什么都没有哦~')">
@@ -281,29 +287,33 @@
     color: var(--text-color);
     font-size: 12px;
     text-shadow: 0 0 2px rgba(var(--text-color), 0);
-  }
 
-  .neumorphic-btn:focus {
-    box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0 0 0 0 rgba(var(--shadow-color), 0), inset 0 0 0 0 rgba(var(--light-color), 0);
-    text-shadow: 0 0 2px rgba(var(--text-color), 0);
-  }
+    &:focus {
+      box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 0 0 0 0 rgba(var(--shadow-color), 0), inset 0 0 0 0 rgba(var(--light-color), 0);
+      text-shadow: 0 0 2px rgba(var(--text-color), 0);
+    }
 
-  .neumorphic-btn:active {
-    /*box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 4px 4px 8px 0px rgba(var(--shadow-color), .3), inset -4px -4px 8px 0px rgba(var(--light-color), 1) !important;*/
-    /*box-shadow: -1px -3px 5px 0px rgba(var(--light-color), 1),inset 3px 4px 5px 0px rgba(var(--shadow-color), 0.3),inset 3px 4px 5px 0px rgba(var(--light-color), 1) !important;*/
-    box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1) !important;
-    border: 2px solid var(--border-active-color);
-    text-shadow: 0 0 2px rgba(var(--text-color), .3);
+    &:active {
+      /*box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0px rgba(var(--light-color), 1), inset 4px 4px 8px 0px rgba(var(--shadow-color), .3), inset -4px -4px 8px 0px rgba(var(--light-color), 1) !important;*/
+      /*box-shadow: -1px -3px 5px 0px rgba(var(--light-color), 1),inset 3px 4px 5px 0px rgba(var(--shadow-color), 0.3),inset 3px 4px 5px 0px rgba(var(--light-color), 1) !important;*/
+      box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1) !important;
+      border: 2px solid var(--border-active-color);
+      text-shadow: 0 0 2px rgba(var(--text-color), .3);
+    }
+
+    .header-icon {
+        color: #A2B1CA!important;
+    }
   }
 
   .neumorphic-btn_primary {
     background: linear-gradient(135deg, var(--main-action-left), var(--main-action-right));
     color: #E0E0E0;
-  }
 
-  .neumorphic-btn_primary:active {
-    /*box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, .3) !important;*/
-    box-shadow: 2px 2px 6px 0 rgba(var(--shadow-color), 0.3),-2px -1px 7px 0 rgba(var(--light-color), 1),inset 4px 4px 20px 0px rgba(0,0,0,0.3) !important;
+    &:active {
+      /*box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, .3) !important;*/
+      box-shadow: 2px 2px 6px 0 rgba(var(--shadow-color), 0.3),-2px -1px 7px 0 rgba(var(--light-color), 1),inset 4px 4px 20px 0px rgba(0,0,0,0.3) !important;
+    }
   }
 
   .neumorphic-btn_fab {
@@ -410,21 +420,21 @@
     cursor: pointer;
     box-shadow: 4px 4px 5px -2px rgba(var(--shadow-color), .5), -4px -4px 5px 0 rgba(var(--light-color), .4);
     /*box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);*/
-  }
 
-  .neumorphic-slider__thumb::after {
-    content: '';
-    display: block;
-    background-color: var(--main-action-right);
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /*box-shadow: inset 2px 2px 6px 0 rgba(var(--shadow-color), .3);*/
-    box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
+    &::after {
+      content: '';
+      display: block;
+      background-color: var(--main-action-right);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      /*box-shadow: inset 2px 2px 6px 0 rgba(var(--shadow-color), .3);*/
+      box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
+    }
   }
 
   .neumorphic-slider_moving {

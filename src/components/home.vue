@@ -2,20 +2,20 @@
   <div class="hello" :class="{dark: themeMode==='dark'}">
 
     <!--<div class="search" v-if="pageIndex === 1">-->
-      <!--<div class="container">-->
-        <!--<form autocomplete="off" @submit="searchSubmit($event)">-->
-          <!--<div class="finder">-->
-            <!--<div class="finder__outer">-->
-              <!--<div class="finder__inner">-->
-                <!--<div class="finder__icon" ref="icon"></div>-->
-                <!--<label>-->
-                  <!--<input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">-->
-                <!--</label>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</form>-->
-      <!--</div>-->
+    <!--<div class="container">-->
+    <!--<form autocomplete="off" @submit="searchSubmit($event)">-->
+    <!--<div class="finder">-->
+    <!--<div class="finder__outer">-->
+    <!--<div class="finder__inner">-->
+    <!--<div class="finder__icon" ref="icon"></div>-->
+    <!--<label>-->
+    <!--<input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!--</div>-->
     <!--</div>-->
 
     <div class="header" v-if="pageIndex === 1">
@@ -97,9 +97,9 @@
         showBeginBtn: true,
       }
     },
-    created(){
+    created() {
       // 调整主题模式
-      if (typeof(localStorage.themeMode) !== 'undefined'){
+      if (typeof (localStorage.themeMode) !== 'undefined') {
         let type = JSON.parse(localStorage.themeMode);
         window.document.documentElement.setAttribute("data-theme", type);
         this.setThemeMode({type: type});
@@ -364,6 +364,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   @import "../scss/_handle.scss";
+
   svg {
     display: block;
   }
@@ -400,6 +401,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: #A2B1CA;
 
       .title {
         font-family: 'Rubik', sans-serif;
@@ -415,13 +417,13 @@
         border-radius: 25px;
         background-color: #e8e9ed;
         /*border: 2px solid #f4f6f8;*/
-        box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0,0,0,0.1);
+        box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
         transition: all .2s ease;
         font-size: 14px;
       }
 
       .menu-circle:active {
-        box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1) !important;
+        box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1) !important;
       }
     }
   }
@@ -753,30 +755,31 @@
 
   .dark {
     .mine {
-      #b,#bgBubble {
+      #b, #bgBubble {
         background-color: #2e3237 !important;
       }
     }
 
     .music {
-      #bg,#bgBubble {
-        background-color: #26282b!important;
+      #bg, #bgBubble {
+        background-color: #26282b !important;
       }
     }
 
     .home {
-      background: #26282b!important;
-      #bg,#bgBubble {
-        background-color: #26282b!important;
+      background: #26282b !important;
+
+      #bg, #bgBubble {
+        background-color: #26282b !important;
       }
     }
 
     .finder__icon {
-      box-shadow: inset 0 0 0 20px #9a9a9a!important;
+      box-shadow: inset 0 0 0 20px #9a9a9a !important;
     }
 
     .finder__outer {
-      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+      box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
     }
   }
 
