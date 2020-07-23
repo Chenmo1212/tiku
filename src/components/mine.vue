@@ -1,6 +1,14 @@
 <template>
   <div id="mine"  :class="{dark: themeMode==='dark'}">
     <div class="header">
+      <div class="menu">
+        <div class="menu-circle fl" @click="deleteLocalStorage">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+        <div class="menu-circle fr">
+          <i class="fa fa-sign-out"></i>
+        </div>
+      </div>
       <div class="bg">
         <div class="circle">
           <span class="circle__btn" @click="playBtnWave">
@@ -21,7 +29,8 @@
     <div class="content">
       <div class="item day-night">
         <i class="fa fa-moon-o left" aria-hidden="true"></i>
-        <span>白天模式</span>
+        <span v-if="themeMode === 'light'">白天模式</span>
+        <span v-if="themeMode !== 'light'">黑夜模式</span>
         <div class="toggle toggle--daynight">
           <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
           <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
@@ -93,6 +102,15 @@
         'setThemeMode',
         'setWarning',
       ]),
+
+      /**
+       * 清空本地存储
+       */
+      deleteLocalStorage(){
+        localStorage.clear();
+        location.reload();
+      },
+
       /**
        * 设置水波纹效果
        */
@@ -197,6 +215,38 @@
       justify-content: center;
       display: flex;
       align-items: center;
+      position: relative;
+
+      .menu {
+        width: 100%;
+        position: absolute;
+        top: 5%;
+        .menu-circle {
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          border-radius: 25px;
+          background-color: #f4f6f8;
+          /*border: 2px solid #f4f6f8;*/
+          box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0,0,0,0.1);
+          transition: all .2s ease;
+          font-size: 14px;
+          text-shadow: 0 0 2px rgba(var(--text-color), 0);
+        }
+
+        .menu-circle:active {
+          box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1) !important;
+          border: 2px solid #f4f6f8;
+        }
+
+        .fr {
+          float: right;
+        }
+
+        .fl {
+          float: left;
+        }
+      }
 
 
       /*  PLAY BUTTON  */

@@ -1,20 +1,32 @@
 <template>
   <div class="hello" :class="{dark: themeMode==='dark'}">
 
-    <div class="search" v-if="pageIndex === 1">
-      <div class="container">
-        <form autocomplete="off" @submit="searchSubmit($event)">
-          <div class="finder">
-            <div class="finder__outer">
-              <div class="finder__inner">
-                <div class="finder__icon" ref="icon"></div>
-                <label>
-                  <input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
+    <!--<div class="search" v-if="pageIndex === 1">-->
+      <!--<div class="container">-->
+        <!--<form autocomplete="off" @submit="searchSubmit($event)">-->
+          <!--<div class="finder">-->
+            <!--<div class="finder__outer">-->
+              <!--<div class="finder__inner">-->
+                <!--<div class="finder__icon" ref="icon"></div>-->
+                <!--<label>-->
+                  <!--<input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">-->
+                <!--</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div class="header" v-if="pageIndex === 1">
+      <div class="menu">
+        <div class="menu-circle">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+        <div class="title">Little Cookie</div>
+        <div class="menu-circle">
+          <i class="fa fa-sign-out"></i>
+        </div>
       </div>
     </div>
 
@@ -375,6 +387,43 @@
     margin: 0;
     padding: 0;
     /*overflow: hidden;*/
+  }
+
+  .header {
+    position: relative;
+    z-index: 2;
+
+    .menu {
+      width: 100%;
+      position: absolute;
+      top: 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-family: 'Rubik', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .menu-circle {
+        margin: 3% 5%;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 25px;
+        background-color: #e8e9ed;
+        /*border: 2px solid #f4f6f8;*/
+        box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0,0,0,0.1);
+        transition: all .2s ease;
+        font-size: 14px;
+      }
+
+      .menu-circle:active {
+        box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1) !important;
+      }
+    }
   }
 
   #navbarContainer {

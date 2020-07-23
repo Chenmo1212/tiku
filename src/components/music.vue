@@ -63,7 +63,7 @@
         currentTime: '',
         songName: '',
         artist: '',
-        cover: '',
+        cover: 'https://p3.music.126.net/QGb9Vtyw7qHS00uEvPfM6g==/843325418547559.jpg?param=300y300',
         url: '',
         currentMusicMsg: "",
       }

@@ -79,7 +79,7 @@
           console.log("音乐数据加载完成")
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
         });
     },
     methods: {
@@ -154,7 +154,9 @@
             })
             .then(this.fetch163Songs)
             .then(ok)
-            .catch(err);
+            .catch(err =>{
+              alert("出错了1" + err)
+            });
         });
       },
       fetch163Songs(Ids) {
@@ -193,7 +195,9 @@
               return songs;
             })
             .then(ok)
-            .catch(err);
+            .catch(err =>{
+              alert("出错了3"+err)
+            });
         });
       },
 
