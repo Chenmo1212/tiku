@@ -20,8 +20,9 @@
 
     <div class="header" v-if="pageIndex === 1">
       <div class="menu">
-        <div class="menu-circle">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <div class="menu-circle" @click="handleFullScreen()">
+          <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>
+          <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>
         </div>
         <div class="title">Little Cookie</div>
         <div class="menu-circle">
@@ -158,6 +159,7 @@
         'projectBasicData',
         'selectedAnswer',
         'themeMode',
+        'isFullScreen',
       ])
     },
     methods: {
@@ -168,8 +170,44 @@
         'defineSelectedAnswer',
         'setThemeMode',
         'setWarning',
+        'setFullScreen',
       ]),
 
+      /**
+       * 设置全屏
+       */
+      handleFullScreen() {
+        // console.log(this.isFullScreen);
+        if (this.isFullScreen) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+          } else {
+            window.parent.showTopBottom();
+          }
+          this.setFullScreen(false);
+          this.setWarning("全屏模式关闭");
+        } else {
+          // console.log("退出");
+          let ele = document.body;
+          if (ele.requestFullscreen) {
+            ele.requestFullscreen();
+          } else if (ele.mozRequestFullScreen) {
+            ele.mozRequestFullScreen();
+          } else if (ele.webkitRequestFullscreen) {
+            ele.webkitRequestFullscreen();
+          } else if (ele.msRequestFullscreen) {
+            ele.msRequestFullscreen();
+          }
+          this.setFullScreen(true);
+          this.setWarning("全屏模式开启");
+        }
+      },
       /**
        * 导航切换
        * @param index 导航下标
