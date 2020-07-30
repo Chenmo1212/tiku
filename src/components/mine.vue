@@ -77,7 +77,6 @@
     name: "mine",
     data() {
       return {
-        isFullScreen: false,
         ifLight: true,
       }
     },
@@ -94,6 +93,7 @@
       ...mapState([
         'cardMode',
         'themeMode',
+        'isFullScreen',
       ]),
     },
     methods: {
@@ -102,6 +102,7 @@
         'setThemeMode',
         'setWarning',
         'setModel',
+        'setFullScreen',
       ]),
 
       /**
@@ -138,7 +139,7 @@
           } else {
             window.parent.showTopBottom();
           }
-          this.isFullScreen = false;
+          this.setFullScreen(false);
           this.setWarning("全屏模式关闭");
         } else {
           // console.log("退出");
@@ -152,7 +153,7 @@
           } else if (ele.msRequestFullscreen) {
             ele.msRequestFullscreen();
           }
-          this.isFullScreen = true;
+          this.setFullScreen(true);
           this.setWarning("全屏模式开启");
         }
       },

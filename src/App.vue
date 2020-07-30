@@ -28,7 +28,7 @@
         <div class="music-model" v-if="musicModel">
           <div class="text">{{modelMsg}}</div>
           <div class="input">
-            <input type="text" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput">
+            <input type="number" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput">
           </div>
           <div class="submit-btn" @click="handleSongListId">
             <i class="fa fa-send-o"></i>
@@ -39,10 +39,10 @@
         <!--导入数据模态框-->
         <div class="import-model" v-if="dataModel">
           <div class="input">
-            <input type="text" class="form__input" placeholder="在此处导入您的数据">
+            <input type="text" class="form__input" placeholder="在此处导入您的数据" v-model="dataInput">
           </div>
           <div class="btn-group">
-            <div class="import-btn">
+            <div class="import-btn" @click="importData">
               <i class="fa fa-sign-in"></i>
               <span>导入</span>
             </div>
@@ -127,11 +127,13 @@
         showAlert: false,
         showLoading: false,
 
-        showModel: true,
+        dataInput: null,
+
+        showModel: false,
         musicModel: false,
         dataModel: false,
         clearModel: false,
-        freshModel: true,
+        freshModel: false,
         modelTit: "提示",
         modelMsg: "您可以在此处替换成您的歌单",
 
@@ -194,6 +196,7 @@
         'setExportTotalData',
         'setImportTotalData',
         'setSongListId',
+        'setWarning',
       ]),
 
       /**
@@ -217,7 +220,7 @@
           localStorage.clear();
           location.reload();
           clearTimeout(timeId);
-        }, 4000)
+        }, 4000);
       },
 
       /**
@@ -227,7 +230,6 @@
         const that = this;
         this.setExportTotalData();
         this.handleShowLoading();
-        // totalData
         this.hiddenModel();
         this.handleShowLoading();
         clearTimeout(timeId);
@@ -241,10 +243,33 @@
       },
 
       /**
+       * 导入数据
+       */
+      importData() {
+        const that = this;
+        this.handleShowLoading();
+        // console.log(this.dataInput);
+        this.setImportTotalData(JSON.parse(this.dataInput));
+        // this.hiddenModel();
+
+        clearTimeout(timeId);
+        let timeId = setTimeout(function () {
+          that.handleShowAlert("数据已导入");
+          that.hiddenModel();
+          clearTimeout(timeId);
+        }, 3000);
+      },
+
+      /**
        * 更改音乐歌单
        */
       handleSongListId() {
         const that = this;
+
+        if (!this.songListInput) {
+          this.setWarning("歌单id不得为空");
+          return
+        }
 
         this.hiddenModel();
         this.setSongListId(this.songListInput);
@@ -345,7 +370,6 @@
           index: this.index,
         });
       },
-
 
       // 本示例需要浏览器支持 Promise，fetch 以及 ES6 语法。
       fetch163Playlist(playlistId) {
@@ -544,6 +568,10 @@
     /*position: relative;*/
   }
 
+  #media[autoplay]:not([muted]) {
+      display: none;
+  }
+
   /*  CHIP  */
   .alert {
     position: absolute;
@@ -653,7 +681,7 @@
       position: absolute;
       width: calc(80% - 10%);
       /*background-color: #f4f6f8;*/
-      @include background("bg_mine");
+      @include background("detail_bg_color1");
       left: 10%;
       top: 25%;
       border-radius: 2%;
@@ -693,7 +721,7 @@
         letter-spacing: .15px;
         outline: none;
         font-family: 'Montserrat', sans-serif;
-        @include background("bg_mine");
+        @include background("detail_bg_color1");
         transition: .25s ease;
         border-radius: 8px;
         border: 1px solid;

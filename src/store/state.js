@@ -11,18 +11,6 @@ export default {
 
   // 当前在背
   currentMemory: {},
-  // svgName: "maogai",         // 封面图名字
-  // title: "毛概",              // 名称
-  // currentChapter: "第一章",   // 当前章节
-  // projectProgress: "20%",    // 当前进度
-  // chapterRadioNum: 65,              // 章节单选题数
-  // chapterMultiNum: 35,              // 章节多选题数
-  // chapterJudgeNum: 0,               // 章节判断题数
-  // chapterBlankNum: 0,               // 章节判断题数
-  // color: "#536DFE"
-  // itemIndex: null,
-  // chapterIndex: null,
-  // projectId: null,
 
   isFullScreen: false,
 
@@ -57,8 +45,11 @@ export default {
     lang_c_2: [],
   },
 
-  cardMode: true,
-  themeMode: 'light',
+  isStick: false,         // 显示答案
+  isCheck: false,         // 核对答案
+
+  cardMode: true,         // 卡片模式
+  themeMode: 'light',     // 主题模式
 
   musicStatus: false,
 

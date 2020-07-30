@@ -63,6 +63,16 @@ export default {
     commit('SET_TIKU_MODE')
   },
 
+  // 设置自动显示答案
+  setAutoStick({commit}) {
+    commit('SET_AUTO_STICK')
+  },
+
+  // 设置自动检查答案
+  setAutoCheck({commit}) {
+    commit('SET_AUTO_CHECK')
+  },
+
   // 设置题库答题模式
   setThemeMode({commit}, obj) {
     commit('SET_THEME_MODE', obj)
@@ -89,8 +99,8 @@ export default {
   },
 
   // 导入数据
-  setImportTotalData({commit}) {
-    commit('SET_IMPORT_TOTAL_DATA')
+  setImportTotalData({commit}, obj) {
+    commit('SET_IMPORT_TOTAL_DATA', obj)
   },
 
 }

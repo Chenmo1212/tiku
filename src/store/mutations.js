@@ -138,6 +138,16 @@ export default {
     state.isFullScreen = bool;
   },
 
+  // 设置自动显示答案
+  SET_AUTO_STICK(state) {
+    state.isStick = !state.isStick;
+  },
+
+  // 设置自动检查答案
+  SET_AUTO_CHECK(state) {
+    state.isCheck = !state.isCheck;
+  },
+
   // 导出数据
   SET_EXPORT_TOTAL_DATA(state) {
     // state.totalData["themeColor"] = state.themeColor;
@@ -163,27 +173,27 @@ export default {
   },
 
   // 导出数据
-  SET_IMPORT_TOTAL_DATA(state) {
-    // state.themeColor = state.totalData["themeColor"];
-    // state.projectSvgName = state.totalData["projectSvgName"];
-    // state.projectName = state.totalData["projectName"];
-    state.currentMemory = state.totalData["currentMemory"];
-    state.isFullScreen = state.totalData["isFullScreen"];
-    // state.projectBasicData = state.totalData["projectBasicData"];
-    state.selectedProject = state.totalData["selectedProject"];
-    state.selectedChapter = state.totalData["selectedChapter"];
-    // state.projectQuestionData = state.totalData["projectQuestionData"];
-    state.selectedAnswer = state.totalData["selectedAnswer"];
-    state.cardMode = state.totalData["cardMode"];
-    state.themeMode = state.totalData["themeMode"];
-    // state.musicStatus = state.totalData["musicStatus"];
-    // state.musicList = state.totalData["musicList"];
-    state.songListId = state.totalData["songListId"];
-    state.currentMusicBasicMsg = state.totalData["currentMusicBasicMsg"];
-    // state.isAlert = state.totalData["isAlert"];
-    // state.warning = state.totalData["warning"];
-    // state.isModel = state.totalData["isModel"];
-    // state.modelType = state.totalData["modelType"];
+  SET_IMPORT_TOTAL_DATA(state, obj) {
+    // state.themeColor = obj["themeColor"];
+    // state.projectSvgName = obj["projectSvgName"];
+    // state.projectName = obj["projectName"];
+    state.currentMemory = obj["currentMemory"];
+    state.isFullScreen = obj["isFullScreen"];
+    // state.projectBasicData = obj["projectBasicData"];
+    state.selectedProject = obj["selectedProject"];
+    state.selectedChapter = obj["selectedChapter"];
+    // state.projectQuestionData = obj["projectQuestionData"];
+    state.selectedAnswer = obj["selectedAnswer"];
+    state.cardMode = obj["cardMode"];
+    state.themeMode = obj["themeMode"];
+    // state.musicStatus = obj["musicStatus"];
+    // state.musicList = obj["musicList"];
+    state.songListId = obj["songListId"];
+    state.currentMusicBasicMsg = obj["currentMusicBasicMsg"];
+    // state.isAlert = obj["isAlert"];
+    // state.warning = obj["warning"];
+    // state.isModel = obj["isModel"];
+    // state.modelType = obj["modelType"];
   },
 
 

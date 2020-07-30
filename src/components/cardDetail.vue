@@ -151,8 +151,8 @@
         currentType: null,             // 题目类型
 
         selectedChapter: '',
-        isStick: false,                // 固定显示答案
-        isCheck: false,                // 自动检查答案
+        // isStick: false,                // 固定显示答案
+        // isCheck: false,                // 自动检查答案
       }
     },
     created() {
@@ -248,6 +248,22 @@
         this.slice_count = this.$route.params.id - 1;
         this.gapIndex = this.$route.params.id - 1;
       }
+
+      // 是否自动显示答案
+      if (typeof (localStorage.isStick) !== 'undefined') {
+        if (JSON.parse(localStorage.isStick) !== this.isStick){
+          this.setAutoStick();
+        }
+      }
+
+      if (this.isCheck) this.showAnswer = true;
+
+      // 是否自动核对答案
+      if (typeof (localStorage.isCheck) !== 'undefined') {
+        if (JSON.parse(localStorage.isCheck) !== this.isCheck){
+          this.setAutoCheck();
+        }
+      }
     },
     computed: {
       ...mapState([
@@ -258,6 +274,8 @@
         'selectedAnswer',
         'currentMemory',
         'projectBasicData',
+        'isStick',
+        'isCheck',
       ]),
     },
     methods: {
@@ -270,6 +288,8 @@
         'setProjectBasicData',
         'setWarning',
         'setFullScreen',
+        'setAutoStick',
+        'setAutoCheck',
       ]),
 
       /**
@@ -607,14 +627,16 @@
       },
       // 固定答案
       handleStick() {
-        this.isStick = !this.isStick;
+        this.setAutoStick();
         this.isStick ? this.setWarning("答案固定显示") : this.setWarning("答案取消固定");
+        localStorage.setItem("isStick", JSON.stringify(this.isStick));
       },
 
       // 自动检测答案
       handleCheck() {
-        this.isCheck = !this.isCheck;
+        this.setAutoCheck();
         this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
+        localStorage.setItem("isCheck", JSON.stringify(this.isCheck));
       },
 
       // 卡片布局

@@ -59,6 +59,24 @@ lang_c_1: {},
 lang_c_2: {},
 ```
 
+### currentMemory
+``` js
+currentMemory: {
+  svgName: "maogai",         // 封面图名字
+  title: "毛概",              // 名称
+  currentChapter: "第一章",   // 当前章节
+  projectProgress: "20%",    // 当前进度
+  chapterRadioNum: 65,              // 章节单选题数
+  chapterMultiNum: 35,              // 章节多选题数
+  chapterJudgeNum: 0,               // 章节判断题数
+  chapterBlankNum: 0,               // 章节判断题数
+  color: "#536DFE"
+  itemIndex: null,
+  chapterIndex: null,
+  projectId: null,
+},
+```
+
 
 ### TODO
 - overview显示对错
