@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/home'
-import chapter from '@/components/chapter'
-import cardDetail from '@/components/cardDetail'
-import detail from '@/components/detail'
-import overview from '@/components/overview'
 
 Vue.use(Router);
 
@@ -13,23 +8,33 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
+      //懒加载
+      component: resolve => require(['@/components/home'], resolve),
     }, {
       path: '/chapter',
       name: 'chapter',
-      component: chapter
+      //懒加载
+      component: resolve => require(['@/components/chapter'], resolve),
     }, {
       path: '/detail',
       name: 'detail',
-      component: detail,
+      //懒加载
+      component: resolve => require(['@/components/detail'], resolve),
     }, {
       path: '/cardDetail',
       name: 'cardDetail',
-      component: cardDetail,
+      //懒加载
+      component: resolve => require(['@/components/cardDetail'], resolve),
     }, {
       path: '/overview',
       name: 'overview',
-      component: overview,
+      //懒加载
+      component: resolve => require(['@/components/overview'], resolve),
+    },{
+      path: '/about',
+      name: 'about',
+      //懒加载
+      component: resolve => require(['@/components/about'], resolve),
     },
   ]
 })

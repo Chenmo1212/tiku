@@ -3,7 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
-    <audio id="media" autoplay :src="musicUrl" @timeupdate="timeupdate"></audio>
+    <audio id="media" :src="musicUrl" @timeupdate="timeupdate"></audio>
 
     <div class="alert a-fadeinB" v-if="showAlert">
       <div class="chip">
