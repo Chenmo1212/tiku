@@ -182,9 +182,6 @@ export default {
 
     // if ((JSON.stringify(obj["currentMemory"]) == "{}"))
     state.currentMemory = obj["currentMemory"];
-
-
-
     state.isFullScreen = obj["isFullScreen"];
     // state.projectBasicData = obj["projectBasicData"];
     state.selectedProject = obj["selectedProject"];

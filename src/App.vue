@@ -258,6 +258,7 @@
           this.setImportTotalData(JSON.parse(that.dataInput));
           let data = that.dataInput;
           this.hiddenModel();
+          console.log(JSON.parse(data));
 
           // 切换主题
           if (JSON.parse(data).themeMode === 'light') {
@@ -266,9 +267,22 @@
             window.document.documentElement.setAttribute("data-theme", 'dark');
           }
 
+          // 所有数据存入本地
+          localStorage.setItem("cardMode", JSON.stringify(JSON.parse(data).cardMode));
+          localStorage.setItem("currentMemory", JSON.stringify(JSON.parse(data).currentMemory));
+          localStorage.setItem("currentMusicBasicMsg", JSON.stringify(JSON.parse(data).currentMusicBasicMsg));
+          localStorage.setItem("isCheck", JSON.stringify(JSON.parse(data).isCheck));
+          localStorage.setItem("isFullScreen", JSON.stringify(JSON.parse(data).isFullScreen));
+          localStorage.setItem("isStick", JSON.stringify(JSON.parse(data).isStick));
+          localStorage.setItem("selectedAnswer", JSON.stringify(JSON.parse(data).selectedAnswer));
+          localStorage.setItem("selectedChapter", JSON.stringify(JSON.parse(data).selectedChapter));
+          localStorage.setItem("selectedProject", JSON.stringify(JSON.parse(data).selectedProject));
+          localStorage.setItem("songListId", JSON.stringify(JSON.parse(data).songListId));
+          localStorage.setItem("themeColor", JSON.stringify(JSON.parse(data).themeColor));
+          localStorage.setItem("themeMode", JSON.stringify(JSON.parse(data).themeMode));
+
           clearTimeout(timeId);
           let timeId = setTimeout(function () {
-            // console.log(that.currentMemory);
             that.handleShowAlert("数据已导入");
             that.hiddenModel();
             that.dataInput = "";

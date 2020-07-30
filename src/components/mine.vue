@@ -32,7 +32,7 @@
         <span v-if="themeMode === 'light'">白天模式</span>
         <span v-if="themeMode !== 'light'">黑夜模式</span>
         <div class="toggle toggle--daynight">
-          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="this.themeMode === 'light'">
           <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
             <span class="toggle--feature"></span>
           </label>
@@ -77,7 +77,7 @@
     name: "mine",
     data() {
       return {
-        ifLight: true,
+        // ifLight: true,
       }
     },
     created(){
@@ -86,7 +86,7 @@
       if (typeof(localStorage.themeMode) === 'undefined'){
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       } else {
-        this.ifLight = JSON.parse(localStorage.themeMode) === "light";
+        // this.ifLight = JSON.parse(localStorage.themeMode) === "light";
         let type = JSON.parse(localStorage.themeMode);
         this.setThemeMode({type: type});
       }
@@ -173,10 +173,10 @@
         let type = null;
         if(this.themeMode === 'light'){
           type = 'dark';
-          this.ifLight = true;
+          // this.ifLight = true;
         } else {
           type = 'light';
-          this.ifLight = false;
+          // this.ifLight = false;
         }
         // this.ifLight = !this.ifLight;
         // console.log(this.themeMode);
