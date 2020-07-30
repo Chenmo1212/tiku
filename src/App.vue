@@ -155,6 +155,7 @@
         'modelType',
         'totalData',
         'songListId',
+        'currentMemory',
       ]),
     },
     mounted() {
@@ -207,6 +208,7 @@
         this.musicModel = false;
         this.dataModel = false;
         this.clearModel = false;
+        this.dataInput = "";
       },
 
       /**
@@ -247,17 +249,37 @@
        */
       importData() {
         const that = this;
-        this.handleShowLoading();
-        // console.log(this.dataInput);
-        this.setImportTotalData(JSON.parse(this.dataInput));
-        // this.hiddenModel();
+        console.log(that.themeMode);
+        console.log(that.dataInput.indexOf('currentMemory') < 0);
+        console.log(that.dataInput.indexOf("selectedProject") < 0);
 
-        clearTimeout(timeId);
-        let timeId = setTimeout(function () {
-          that.handleShowAlert("数据已导入");
-          that.hiddenModel();
+        if (that.dataInput.indexOf('currentMemory') > 0 && that.dataInput.indexOf("selectedProject") > 0 && that.dataInput.indexOf("selectedChapter") > 0){
+          this.handleShowLoading();
+          this.setImportTotalData(JSON.parse(that.dataInput));
+          let data = that.dataInput;
+          this.hiddenModel();
+
+          // 切换主题
+          if (JSON.parse(data).themeMode === 'light') {
+            window.document.documentElement.setAttribute("data-theme", "light");
+          } else if(JSON.parse(data).themeMode === 'dark'){
+            window.document.documentElement.setAttribute("data-theme", 'dark');
+          }
+
           clearTimeout(timeId);
-        }, 3000);
+          let timeId = setTimeout(function () {
+            // console.log(that.currentMemory);
+            that.handleShowAlert("数据已导入");
+            that.hiddenModel();
+            that.dataInput = "";
+            clearTimeout(timeId);
+          }, 3000);
+
+        } else {
+          this.handleShowAlert("您的数据输入有误");
+          console.log("假数据");
+          this.hiddenModel();
+        }
       },
 
       /**

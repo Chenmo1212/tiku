@@ -150,7 +150,7 @@ export default {
 
   // 导出数据
   SET_EXPORT_TOTAL_DATA(state) {
-    // state.totalData["themeColor"] = state.themeColor;
+    state.totalData["themeColor"] = state.themeColor;
     // state.totalData["projectSvgName"] = state.projectSvgName;
     // state.totalData["projectName"] = state.projectName;
     state.totalData["currentMemory"] = state.currentMemory;
@@ -162,6 +162,8 @@ export default {
     state.totalData["selectedAnswer"] = state.selectedAnswer;
     state.totalData["cardMode"] = state.cardMode;
     state.totalData["themeMode"] = state.themeMode;
+    state.totalData["isStick"] = state.isStick;
+    state.totalData["isCheck"] = state.isCheck;
     // state.totalData["musicStatus"] = state.musicStatus;
     // state.totalData["musicList"] = state.musicList;
     state.totalData["songListId"] = state.songListId;
@@ -172,12 +174,17 @@ export default {
     // state.totalData["modelType"] = state.modelType;
   },
 
-  // 导出数据
+  // 导入数据
   SET_IMPORT_TOTAL_DATA(state, obj) {
-    // state.themeColor = obj["themeColor"];
+    state.themeColor = obj["themeColor"];
     // state.projectSvgName = obj["projectSvgName"];
     // state.projectName = obj["projectName"];
+
+    // if ((JSON.stringify(obj["currentMemory"]) == "{}"))
     state.currentMemory = obj["currentMemory"];
+
+
+
     state.isFullScreen = obj["isFullScreen"];
     // state.projectBasicData = obj["projectBasicData"];
     state.selectedProject = obj["selectedProject"];
@@ -186,6 +193,8 @@ export default {
     state.selectedAnswer = obj["selectedAnswer"];
     state.cardMode = obj["cardMode"];
     state.themeMode = obj["themeMode"];
+    state.isStick = obj["isStick"];
+    state.isCheck = obj["isCheck"];
     // state.musicStatus = obj["musicStatus"];
     // state.musicList = obj["musicList"];
     state.songListId = obj["songListId"];

@@ -104,6 +104,8 @@
         window.document.documentElement.setAttribute("data-theme", type);
         this.setThemeMode({type: type});
       }
+
+      // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
     },
     mounted() {
       // console.clear();

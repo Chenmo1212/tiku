@@ -10,7 +10,17 @@ export default {
   projectName: ['si_xiu', 'jin_dai_shi', 'ma_ke_si', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'],
 
   // 当前在背
-  currentMemory: {},
+  currentMemory: {
+    svgName: "maogai",         // 封面图名字
+    title: "毛概",              // 名称
+    currentChapter: "第一章",   // 当前章节
+    chapterProgress: "2%",    // 当前进度
+    radioNum: 65,              // 章节单选题数
+    multiNum: 35,              // 章节多选题数
+    judgeNum: 33,               // 章节判断题数
+    fillNum: 23,                // 章节填空题数
+    color: "#536DFE"
+  },
 
   isFullScreen: false,
 

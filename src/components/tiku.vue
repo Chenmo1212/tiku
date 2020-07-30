@@ -103,17 +103,7 @@
         },
 
         // 当前在背
-        currentMemoryMsg: {
-          svgName: "maogai",         // 封面图名字
-          title: "毛概",              // 名称
-          currentChapter: "第一章",   // 当前章节
-          chapterProgress: "2%",    // 当前进度
-          radioNum: 65,              // 章节单选题数
-          multiNum: 35,              // 章节多选题数
-          judgeNum: 33,               // 章节判断题数
-          fillNum: 23,                // 章节填空题数
-          color: "#536DFE"
-        },
+        currentMemoryMsg: {},
         // 卡片内容
         cardObj: this.projectBasicData,
       }
@@ -134,12 +124,13 @@
       }
     },
     created(){
-      if (typeof(localStorage.currentMemory) !== 'undefined'){
+      if (typeof localStorage.currentMemory !== 'undefined'){
+        console.log("本地有当前在背的内容");
         this.currentMemoryMsg = JSON.parse(localStorage.currentMemory);
       } else if (JSON.stringify(this.currentMemory) !== "{}") {
         console.log(this.currentMemory);
         this.currentMemoryMsg = this.currentMemory;
-        localStorage.setItem('currentMemory', this.currentMemory);
+        localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
       }
     },
     methods: {

@@ -81,6 +81,8 @@
       }
     },
     created(){
+
+      // 主题模式
       if (typeof(localStorage.themeMode) === 'undefined'){
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       } else {
@@ -88,6 +90,15 @@
         let type = JSON.parse(localStorage.themeMode);
         this.setThemeMode({type: type});
       }
+      // 主题模式
+      if (typeof(localStorage.cardMode) !== 'undefined'){
+        if (JSON.parse(localStorage.cardMode) !== this.cardMode){
+          this.setTikuMode();
+        }
+      }
+    },
+    mounted(){
+
     },
     computed: {
       ...mapState([
@@ -185,6 +196,7 @@
           this.setTikuMode();
           this.setWarning("卡片答题页面设置成功");
         }
+        localStorage.setItem('cardMode', JSON.stringify(this.cardMode));
       },
 
       handleFeedBack(){
