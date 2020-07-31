@@ -24,8 +24,8 @@
           <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>
           <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>
         </div>
-        <div class="title">Little Cookie</div>
-        <div class="menu-circle">
+        <div class="title" @click="setWarning('欢迎使用  Little Cookie')">Little Cookie</div>
+        <div class="menu-circle" @click="toAbout">
           <i class="fa fa-bell-o"></i>
         </div>
       </div>
@@ -396,6 +396,11 @@
         }
         // console.log(tempObj)
         this.defineSelectedAnswer(tempObj)
+      },
+
+      // 前往关于
+      toAbout(){
+        this.$router.push({name: 'about'})
       }
     }
   }

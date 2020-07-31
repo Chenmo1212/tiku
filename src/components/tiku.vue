@@ -19,10 +19,10 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          <span v-if="currentMemoryMsg.radioNum"> 单选:{{currentMemoryMsg.radioNum}}道</span>
-          <span v-if="currentMemoryMsg.multiNum"> 多选:{{currentMemoryMsg.multiNum}}道</span>
-          <span v-if="currentMemoryMsg.judgeNum"> 判断:{{currentMemoryMsg.judgeNum}}道</span>
-          <span v-if="currentMemoryMsg.fillNum"> 填空:{{currentMemoryMsg.fillNum}}道</span>&nbsp;
+          <span v-if="currentMemoryMsg.radioNum"> 单选:<span :style="{color: currentMemoryMsg.color}">{{currentMemoryMsg.radioNum}}</span>道</span>
+          <span v-if="currentMemoryMsg.multiNum"> 多选:<span :style="{color: currentMemoryMsg.color}">{{currentMemoryMsg.multiNum}}</span>道</span>
+          <span v-if="currentMemoryMsg.judgeNum"> 判断:<span :style="{color: currentMemoryMsg.color}">{{currentMemoryMsg.judgeNum}}</span>道</span>
+          <span v-if="currentMemoryMsg.fillNum"> 填空:<span :style="{color: currentMemoryMsg.color}">{{currentMemoryMsg.fillNum}}</span>道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">

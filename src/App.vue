@@ -3,7 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
-    <audio id="media" :src="musicUrl" @timeupdate="timeupdate"></audio>
+    <audio id="media" :autoplay="isPlay" :src="musicUrl" @timeupdate="timeupdate"></audio>
 
     <div class="alert a-fadeinB" v-if="showAlert">
       <div class="chip">
@@ -140,6 +140,7 @@
         // 音乐歌单id
         // songListId: '2111679838',
         songListInput: '',
+        isPlay: false,
 
         alertMsg: "卡片答题模式已开启",
       }
@@ -365,6 +366,7 @@
           this.index = 0;
         }
         this.musicUrl = this.musicList[this.index].url;
+        this.isPlay = true;
       },
 
       // 上一首
@@ -377,6 +379,7 @@
           this.index = this.musicList.length + 1;
         }
         this.musicUrl = this.musicList[this.index].url;
+        this.isPlay = true;
       },
 
       timeupdate() {
@@ -484,6 +487,7 @@
         if (type === 'music') {
           this.musicModel = true;
           this.modelTit = "更换歌单";
+          this.modelMsg = '您可以在此处替换成您的歌单';
         } else if (type === 'data') {
           this.dataModel = true;
           this.modelTit = "导入 / 导出数据";
@@ -521,8 +525,10 @@
             audio.currentTime = JSON.parse(localStorage.currentMusicBasicMsg).currentTime;
           }
           audio.play();
+          this.isPlay = true;
         } else {
           audio.pause();// 暂停
+          this.isPlay = false;
         }
       },
 

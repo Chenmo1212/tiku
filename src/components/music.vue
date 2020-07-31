@@ -115,10 +115,12 @@
         this.setMusicStatus(true);
       },
       handleNext() {
-        window.nextSong()
+        window.nextSong();
+        this.setMusicStatus(true);
       },
       handlePre() {
-        window.preSong()
+        window.preSong();
+        this.setMusicStatus(true);
       },
       //将秒数转换为时分秒格式
       formatSeconds(value) {
@@ -379,7 +381,6 @@
 
 
   .neumorphic-slider {
-    width: 400px;
     max-width: 100%;
     height: 30px;
     position: relative;

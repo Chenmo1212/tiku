@@ -32,7 +32,7 @@
         <span v-if="themeMode === 'light'">白天模式</span>
         <span v-if="themeMode !== 'light'">黑夜模式</span>
         <div class="toggle toggle--daynight">
-          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="this.themeMode === 'light'">
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
           <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
             <span class="toggle--feature"></span>
           </label>
@@ -77,7 +77,7 @@
     name: "mine",
     data() {
       return {
-        // ifLight: true,
+        ifLight: true,
       }
     },
     created(){
@@ -86,19 +86,18 @@
       if (typeof(localStorage.themeMode) === 'undefined'){
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       } else {
-        // this.ifLight = JSON.parse(localStorage.themeMode) === "light";
+        this.ifLight = JSON.parse(localStorage.themeMode) === "light";
         let type = JSON.parse(localStorage.themeMode);
         this.setThemeMode({type: type});
       }
+    },
+    mounted(){
       // 主题模式
       if (typeof(localStorage.cardMode) !== 'undefined'){
         if (JSON.parse(localStorage.cardMode) !== this.cardMode){
           this.setTikuMode();
         }
       }
-    },
-    mounted(){
-
     },
     computed: {
       ...mapState([
@@ -173,10 +172,10 @@
         let type = null;
         if(this.themeMode === 'light'){
           type = 'dark';
-          // this.ifLight = true;
+          this.ifLight = true;
         } else {
           type = 'light';
-          // this.ifLight = false;
+          this.ifLight = false;
         }
         // this.ifLight = !this.ifLight;
         // console.log(this.themeMode);
@@ -210,9 +209,9 @@
   @import "../scss/_handle.scss";
 
   #mine {
-    height: calc(100vh - 80px);
+    /*height: calc(100vh - 80px);*/
     @include background('background_color3');
-    padding: 0 20px;
+    padding: 7% 20px;
     width: calc(100vw - 40px);
     position: relative;
 
@@ -227,7 +226,7 @@
         color: #A2B1CA;
         width: 100%;
         position: absolute;
-        top: 5%;
+        top: 0;
         .menu-circle {
           width: 40px;
           height: 40px;

@@ -98,7 +98,7 @@
 
           <!--答案-->
           <div class="answer" v-if="showAnswer"
-               :style="getAnsStyle(isError, totalQuesArr[questionIndex].type)"
+               :style="getAnsStyle(isError)"
           >
             <span>正确答案：</span>
             <span>{{shiftAns(totalQuesArr[questionIndex].answer, totalQuesArr[questionIndex].type)}}</span>
@@ -362,8 +362,6 @@
           }
           return ""
         }
-
-
       },
       backChapter() {
         this.$router.push({name: 'chapter'});
@@ -593,7 +591,7 @@
         return {flag: false, index: -1};
       },
 
-      getAnsStyle(bool, type) {
+      getAnsStyle(bool) {
         if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
         return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
       },
