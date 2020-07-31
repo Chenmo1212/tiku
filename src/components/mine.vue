@@ -321,19 +321,17 @@
           box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
           background: linear-gradient(to bottom right, #c8d0e7 0%, #fff 100%);
           animation: waves 4s linear infinite;
-
-          ~ .paused {
-            animation-play-state: paused;
-          }
+        }
+        .circle__back-1.paused {
+          animation-play-state: paused;
         }
 
         .circle__back-2 {
           box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
           animation: waves 4s linear 2s infinite;
-
-          ~ .paused {
-            animation-play-state: paused;
-          }
+        }
+        .circle__back-2.paused {
+          animation-play-state: paused;
         }
 
         @keyframes waves {

@@ -69,6 +69,7 @@
   .about {
     @include background("detail_bg_color1");
     @include font_color("detail_font_color1");
+    overflow: hidden;
   }
 
   .dark {
@@ -167,4 +168,12 @@
       text-align: right;
     }
   }
+
+
+  /*html {*/
+    /*height: 100%;*/
+    /*background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);*/
+
+  /*}*/
+
 </style>
