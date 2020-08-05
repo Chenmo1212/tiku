@@ -161,7 +161,11 @@
             this.setSelectedProject(this.projectBasicData['mao_gai']);
             localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
           }
-          this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
+          if (typeof(localStorage.cardMode) !== 'undefined') {
+            JSON.parse(localStorage.cardMode) ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
+          } else {
+            this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
+          }
 
         } else if(from === 2){
           this.setSelectedProject(item);

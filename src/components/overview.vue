@@ -163,22 +163,42 @@
 
         // console.log(this.cardMode);
 
-        if (this.cardMode) {
-          this.$router.push({
-            name: 'cardDetail',
-            params: {
-              id: quesIndex,
-              type: key
-            }
-          })
+        if (typeof(localStorage.cardMode) !== 'undefined') {
+          if (JSON.parse(localStorage.cardMode)) {
+            this.$router.push({
+              name: 'cardDetail',
+              params: {
+                id: quesIndex,
+                type: key
+              }
+            })
+          } else {
+            this.$router.push({
+              name: 'detail',
+              params: {
+                id: quesIndex,
+                type: key
+              }
+            })
+          }
         } else {
-          this.$router.push({
-            name: 'detail',
-            params: {
-              id: quesIndex,
-              type: key
-            }
-          })
+          if (this.cardMode) {
+            this.$router.push({
+              name: 'cardDetail',
+              params: {
+                id: quesIndex,
+                type: key
+              }
+            })
+          } else {
+            this.$router.push({
+              name: 'detail',
+              params: {
+                id: quesIndex,
+                type: key
+              }
+            })
+          }
         }
       }
     }

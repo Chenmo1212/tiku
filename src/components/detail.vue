@@ -16,7 +16,7 @@
 
     <div class="content">
       <div class="content-head">
-        <div class="question-type" :style="{color: chapterColor}">
+        <div class="question-type" :style="{color: chapterColor}" @click="showIndex()">
           <span v-if="totalQuesArr[questionIndex].type === 0">单选题</span>
           <span v-if="totalQuesArr[questionIndex].type === 1">多选题</span>
           <span v-if="totalQuesArr[questionIndex].type === 2">填空题</span>
@@ -121,10 +121,10 @@
             <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
             <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
           </div>
-          <div class="pre-question" @click="changeQuestion(-1)" :class="{disable: questionIndex <= 0}">
+          <div class="pre-question" @click="changeQuestion(-1)" :class="{'disable': questionIndex <= 0}">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
           </div>
-          <div class="next-question" @click="changeQuestion(1)" :class="{disable: questionIndex > totalQuesArr.length}">
+          <div class="next-question" @click="changeQuestion(1)" :class="{'disable': questionIndex >= totalQuesArr.length - 1}">
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
           </div>
         </div>
@@ -270,7 +270,7 @@
         }
       }
 
-      if (this.isCheck) this.showAnswer = true;
+      // if (this.isCheck) this.showAnswer = true;
 
       // 是否自动核对答案
       if (typeof (localStorage.isCheck) !== 'undefined') {

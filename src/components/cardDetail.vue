@@ -256,7 +256,7 @@
         }
       }
 
-      if (this.isCheck) this.showAnswer = true;
+      // if (this.isCheck) this.showAnswer = true;
 
       // 是否自动核对答案
       if (typeof (localStorage.isCheck) !== 'undefined') {

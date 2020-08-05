@@ -56,7 +56,7 @@ export default {
   },
 
   isStick: false,         // 显示答案
-  isCheck: false,         // 核对答案
+  isCheck: true,         // 核对答案
 
   cardMode: true,         // 卡片模式
   themeMode: 'light',     // 主题模式
