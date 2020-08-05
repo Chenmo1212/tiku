@@ -136,36 +136,7 @@
        * 设置全屏
        */
       setFullScreen() {
-        // console.log(this.isFullScreen);
-        if (this.isFullScreen) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-          } else {
-            window.parent.showTopBottom();
-          }
-          this.setFullScreen(false);
-          this.setWarning("全屏模式关闭");
-        } else {
-          // console.log("退出");
-          let ele = document.body;
-          if (ele.requestFullscreen) {
-            ele.requestFullscreen();
-          } else if (ele.mozRequestFullScreen) {
-            ele.mozRequestFullScreen();
-          } else if (ele.webkitRequestFullscreen) {
-            ele.webkitRequestFullscreen();
-          } else if (ele.msRequestFullscreen) {
-            ele.msRequestFullscreen();
-          }
-          this.setFullScreen(true);
-          this.setWarning("全屏模式开启");
-        }
+        this.$parent.handleFullScreen();
       },
       // 更改主题
       changeTheme() {

@@ -7,6 +7,11 @@
         </div>
         <div class="page-title">关于</div>
       </div>
+      <div class="home-page">
+        <a class="circle" href="https://www.chenmo1212.site" target="_blank">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
 
     <div class="content">
@@ -90,7 +95,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      width: 80vw;
+      width: calc(80% - 20px);
       overflow: hidden;
       @include font_color("detail_font_color2");
 
@@ -118,6 +123,37 @@
         width: 80%;
         margin-left: 5%;
         text-align: left;
+      }
+    }
+
+    .home-page {
+      width: 20%;
+      height: 100%;
+      float: right;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      a {
+       text-decoration: none;
+        @include font_color("detail_font_color2");
+      }
+
+      .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        @include background("detail_bg_color1");
+        margin: 0;
+        box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
+        border: 1px solid;
+        @include border_color("detail_border_color1");
+      }
+
+      i {
+        font-size: 16px;
+        display: block;
+        line-height: 30px;
       }
     }
 
