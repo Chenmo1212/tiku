@@ -14,7 +14,7 @@
           </button>
         </div>
         <div class="neumorphic-card__body">
-          <div class="neumorphic-image-wrapper" @click="setWarning('这里什么都没有哦~')">
+          <div class="neumorphic-image-wrapper turn paused" @click="setWarning('这里什么都没有哦~')">
             <img :src="cover"
               style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
@@ -113,15 +113,33 @@
       ]),
       handleMusicStatus() {
         this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
+        const turn = document.querySelector('.turn');
+        // 如果classList中存在给定的值，删除它，否则，添加它；
+        turn.classList.toggle('paused');
       },
       handleNext() {
         window.nextSong();
         this.setMusicStatus(true);
+        const turn = document.querySelector('.neumorphic-image-wrapper');
+        // 如果classList中存在给定的值，删除它，否则，添加它；
+        turn.classList.remove('turn');
+        setTimeout(() => {
+          turn.classList.add('turn');
+        }, 500 );
+        turn.classList.remove('paused');
       },
       handlePre() {
         window.preSong();
         this.setMusicStatus(true);
+        const turn = document.querySelector('.neumorphic-image-wrapper');
+        // 如果classList中存在给定的值，删除它，否则，添加它；
+        turn.classList.remove('turn');
+        setTimeout(() => {
+          turn.classList.add('turn');
+        }, 500 );
+        turn.classList.remove('paused');
       },
+
       //将秒数转换为时分秒格式
       formatSeconds(value) {
 
@@ -177,6 +195,7 @@
         return result;
       },
 
+      // 提示信息
       handleAlertMsg(){
         this.setWarning("该功能正在开发ing~");
       }
@@ -557,5 +576,25 @@
     /*box-shadow: var(--shadow);*/
     opacity: 0;
     transition: opacity .3s ease;
+  }
+
+  /*
+  turn : 定义的动画名称
+  1s : 动画时间
+  linear : 动画以何种运行轨迹完成一个周期
+  infinite :规定动画应该无限次播放
+ */
+  .turn {
+    animation:turn 30s linear infinite;
+  }
+  .turn.paused {
+    animation-play-state: paused;
+  }
+  @keyframes turn{
+    0%{-webkit-transform:rotate(0deg);}
+    25%{-webkit-transform:rotate(90deg);}
+    50%{-webkit-transform:rotate(180deg);}
+    75%{-webkit-transform:rotate(270deg);}
+    100%{-webkit-transform:rotate(360deg);}
   }
 </style>
