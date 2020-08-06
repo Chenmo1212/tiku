@@ -643,6 +643,8 @@
       cardInit() {
 
         const that = this;
+        let flag = false;
+        let showAnswer = false;
 
         /* LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */
 
@@ -657,7 +659,7 @@
             // this.push();
 
             // handle gestures
-            this.handle()
+            this.handle();
 
           }
 
@@ -733,6 +735,14 @@
           }
 
           onPan(e) {
+            // console.log("pan");
+            if (that.showAnswer) {
+              if (that.showAnswer) {
+                that.showAnswer = false;
+                showAnswer = true;
+              }
+              flag = true;
+            }
 
             if (!this.isPanning) {
 
@@ -784,6 +794,11 @@
 
             if (e.isFinal) {
 
+              // 卡片效果切换题目会出现下一个题的答案
+              if (flag) {
+                if (showAnswer) that.showAnswer = true;
+                flag = false;
+              }
               this.isPanning = false;
 
               let successful = false;
@@ -813,7 +828,7 @@
 
               }
 
-              // if (false) {
+
               if (successful) {
 
                 // throw card in the chosen direction

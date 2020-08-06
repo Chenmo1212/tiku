@@ -77,6 +77,58 @@ currentMemory: {
 },
 ```
 
+### projectBasicData
+``` js
+projectBasicData: {
+  jin_dai_shi: Object
+  jun_li_1: Object
+  jun_li_2: Object
+  lang_c_1: Object
+  lang_c_2: Object
+  ma_ke_si: Object
+  mao_gai: Object
+  si_xiu: Object
+    chinese: "思修"
+    color: "#00B0FF"
+    content: Array(6)
+    id: "si_xiu"
+    length: 6
+    svg: "sixiu"
+    total_bla_num: 0
+    total_fill_num: 2
+    total_jud_num: 567
+    total_mul_num: 391
+    total_num: 1589
+    total_sig_num: 631
+},
+```
+
+### selectedProject
+``` js
+selectedProject: {
+  chinese: "思修"
+  color: "#00B0FF"
+  content: Array(6)
+    0:
+      bla: 0
+      chapter_fill: 4
+      currentIndex: 0
+      jud: 70
+      mul: 50
+      sig: 79
+      title: "第一章 人生的青春之问"
+  id: (...)
+  length: (...)
+  svg: (...)
+  total_bla_num: 0
+  total_fill_num: 0
+  total_jud_num: 567
+  total_mul_num: 391
+  total_num: 1589
+  total_sig_num: 631
+},
+```
+
 
 ### TODO
 - overview显示对错
