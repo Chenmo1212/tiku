@@ -113,7 +113,7 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import FloatBall from '@/components/ball';
+  import FloatBall from '@/components/tool/ball';
 
   export default {
     name: 'App',

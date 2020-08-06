@@ -9,12 +9,21 @@
          :style="{left: left + 'px',top: top + 'px',width: itemWidth + 'px',height: itemHeight + 'px'}"
          v-if="isShow">
       <nav class="nav">
-        <input type="checkbox" class="nav__cb" id="menu-cb" @click="changeWidth" :checked="isChecked">
+        <input type="checkbox" class="nav__cb" id="menu-cb" @click="clickMenu" :checked="isChecked" @blur="clickMenu">
         <div class="nav__content">
           <ul class="nav__items">
-            <li class="nav__item"> <span class="nav__item-text">  <i class="fa fa-chevron-left" aria-hidden="true"></i> </span> </li>
-            <li class="nav__item"> <span class="nav__item-text">  <i class="fa fa-pause" aria-hidden="true"></i> </span> </li>
-            <li class="nav__item"> <span class="nav__item-text">  <i class="fa fa-chevron-right" aria-hidden="true"></i> </span> </li>
+            <li class="nav__item" @click="handleSong(-1)">
+              <span class="nav__item-text">  <i class="fa fa-chevron-left" aria-hidden="true"></i> </span>
+            </li>
+            <li class="nav__item" v-if="musicStatus" @click="handleMusicStatus">
+              <span class="nav__item-text">  <i class="fa fa-pause" aria-hidden="true"></i></span>
+            </li>
+            <li class="nav__item" v-if="!musicStatus" @click="handleMusicStatus">
+              <span class="nav__item-text">  <i class="fa fa-play" aria-hidden="true"></i></span>
+            </li>
+            <li class="nav__item" @click="handleSong(1)">
+              <span class="nav__item-text">  <i class="fa fa-chevron-right" aria-hidden="true"></i> </span>
+            </li>
           </ul>
         </div>
         <label class="nav__btn" for="menu-cb"></label>
@@ -24,6 +33,8 @@
 </template>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
+
   export default {
     props: {
       itemWidth: {
@@ -50,7 +61,7 @@
       }
     },
     created() {
-      this.left = (this.clientW - this.itemWidth - 30)
+      this.left = (this.clientW - this.itemWidth - 30);
       this.top = (this.clientH / 2 - this.itemHeight / 2)
     },
     mounted() {
@@ -58,14 +69,31 @@
     },
     beforeDestroy() {
       // 记得销毁一些全局的的事件
-      this.removeScrollEvent()
+      this.removeScrollEvent();
+    },
+    computed: {
+      ...mapState([
+        'musicStatus',
+      ]),
     },
     methods: {
-      changeWidth() {
+      ...mapActions([
+        'setMusicStatus',
+      ]),
+      handleSong(index) {
+        // console.log(index);
+        this.clickMenu();
+        index < 0 ? window.preSong() : window.nextSong();
+      },
+      handleMusicStatus() {
+        this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
+        this.clickMenu();
+      },
+      clickMenu() {
         const that = this;
 
-        if (!this.isChecked){
-          console.log(1);
+        if (!this.isChecked) {
+          // console.log(1);
           if (this.left < (this.clientW / 2)) {
             this.left = 82;//不让贴边 所以设置30没设置0
           } else {
@@ -73,29 +101,23 @@
           }
           this.$refs.dragIcon.style.transition = "all .3s";
         } else {
-          console.log(2);
+          // console.log(2);
           if (this.left < (this.clientW / 2)) {
             this.left = 82;
-
             setTimeout(function () {
               that.left = 20;
               that.$refs.dragIcon.style.transition = "all 0.8s";
             }, 1000)
-
           } else {
+            this.left = this.clientW - this.itemWidth - 20;//不让贴边 所以减30
             setTimeout(function () {
-              this.left = this.clientW - this.itemWidth - 80;//不让贴边 所以减30
+              that.left = this.clientW - this.itemWidth - 80;//不让贴边 所以减30
               that.$refs.dragIcon.style.transition = "all 0.8s";
             }, 1000)
           }
           this.$refs.dragIcon.style.transition = "all .3s";
         }
-        console.log("click");
         this.isChecked = !this.isChecked;
-        console.log(this.isChecked);
-        let menu = document.getElementById('dragIcon');
-        menu.classList.add('open');
-
       },
       handleTouchStart() {
         this.startToMove = true;
@@ -104,7 +126,7 @@
       handleTouchMove(e) {
         const clientX = e.targetTouches[0].clientX;//手指相对视口的x
         const clientY = e.targetTouches[0].clientY;//手指相对视口的y
-        const isInScreen = clientX <= this.clientW && clientX >= 0 && clientY <= this.clientH && clientY >= 0
+        const isInScreen = clientX <= this.clientW && clientX >= 0 && clientY <= this.clientH && clientY >= 0;
         if (this.startToMove && e.targetTouches.length === 1) {
           if (isInScreen) {
             this.left = clientX - this.itemWidth / 2;
@@ -113,12 +135,22 @@
         }
       },
       handleTouchEnd() {
-        if (this.left < (this.clientW / 2)) {
-          this.left = 20;//不让贴边 所以设置30没设置0
-          this.handleIconY()
+        if (this.isChecked) {
+          if (this.left < (this.clientW / 2)) {
+            this.left = 82;//不让贴边 所以设置30没设置0
+            this.handleIconY()
+          } else {
+            this.left = this.clientW - this.itemWidth - 80;//不让贴边 所以减30
+            this.handleIconY()
+          }
         } else {
-          this.left = this.clientW - this.itemWidth - 20;//不让贴边 所以减30
-          this.handleIconY()
+          if (this.left < (this.clientW / 2)) {
+            this.left = 20;//不让贴边 所以设置30没设置0
+            this.handleIconY()
+          } else {
+            this.left = this.clientW - this.itemWidth - 20;//不让贴边 所以减30
+            this.handleIconY()
+          }
         }
         this.$refs.dragIcon.style.transition = "all .3s"
       },
@@ -144,7 +176,7 @@
         this.currentTop = document.documentElement.scrollTop || document.body.scrollTop
       },
       handleScrollEnd() {
-        this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         // 判断是否停止滚动的条件
         if (this.scrollTop === this.currentTop) {
           this.isShow = true
@@ -155,7 +187,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../../scss/handle";
 
   .dragIcon {
     position: fixed;
@@ -190,6 +222,7 @@
     transform: translate3d(-50%, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
   }
+
   .nav__cb {
     z-index: -1000;
     position: absolute;
@@ -198,6 +231,7 @@
     opacity: 0;
     pointer-events: none;
   }
+
   .nav__content {
     position: relative;
     width: 40px;
@@ -205,11 +239,13 @@
     -webkit-transition: width 1s cubic-bezier(0.49, -0.3, 0.68, 1.23);
     transition: width 1s cubic-bezier(0.49, -0.3, 0.68, 1.23);
   }
+
   .nav__cb:checked ~ .nav__content {
     -webkit-transition: width 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
     transition: width 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
     width: 160px;
   }
+
   .nav__items {
     position: relative;
     width: 160px;
@@ -219,6 +255,7 @@
     padding: 0;
     text-align: right;
   }
+
   .nav__item {
     display: inline-block;
     vertical-align: top;
@@ -235,9 +272,7 @@
     transition: color 0.3s;
     cursor: pointer;
   }
-  .nav__item:hover {
-    color: #00bdea;
-  }
+
   .nav__item-text {
     display: block;
     height: 100%;
@@ -245,51 +280,47 @@
     transform: rotateY(-70deg);
     opacity: 0;
     -webkit-transition: opacity 0.7s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
-    transition: opacity 0.7s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
-    transition: transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.7s;
     transition: transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.7s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
   }
+
   .nav__cb:checked ~ .nav__content .nav__item-text {
     -webkit-transform: rotateY(0);
     transform: rotateY(0);
     opacity: 1;
     -webkit-transition: opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
-    transition: opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
-    transition: transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.2s;
     transition: transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
   }
+
   .nav__item:nth-child(1) .nav__item-text {
     -webkit-transition-delay: 0.3s;
     transition-delay: 0.3s;
   }
+
   .nav__cb:checked ~ .nav__content .nav__item:nth-child(1) .nav__item-text {
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
   }
+
   .nav__item:nth-child(2) .nav__item-text {
     -webkit-transition-delay: 0.2s;
     transition-delay: 0.2s;
   }
+
   .nav__cb:checked ~ .nav__content .nav__item:nth-child(2) .nav__item-text {
     -webkit-transition-delay: 0.1s;
     transition-delay: 0.1s;
   }
+
   .nav__item:nth-child(3) .nav__item-text {
     -webkit-transition-delay: 0.1s;
     transition-delay: 0.1s;
   }
+
   .nav__cb:checked ~ .nav__content .nav__item:nth-child(3) .nav__item-text {
     -webkit-transition-delay: 0.2s;
     transition-delay: 0.2s;
   }
-  .nav__item:nth-child(4) .nav__item-text {
-    -webkit-transition-delay: 0s;
-    transition-delay: 0s;
-  }
-  .nav__cb:checked ~ .nav__content .nav__item:nth-child(4) .nav__item-text {
-    -webkit-transition-delay: 0.3s;
-    transition-delay: 0.3s;
-  }
+
   .nav__btn {
     position: absolute;
     right: 0;
@@ -299,6 +330,7 @@
     height: 40px;
     cursor: pointer;
   }
+
   .nav__btn:before, .nav__btn:after {
     content: "";
     display: block;
@@ -309,20 +341,22 @@
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
     -webkit-transition: background-color 0.3s, -webkit-transform 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
-    transition: background-color 0.3s, -webkit-transform 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
-    transition: transform 1s cubic-bezier(0.48, 0.43, 0.29, 1.3), background-color 0.3s;
     transition: transform 1s cubic-bezier(0.48, 0.43, 0.29, 1.3), background-color 0.3s, -webkit-transform 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
   }
+
   .nav__btn:before {
     margin-bottom: 10px;
   }
+
   .nav__btn:hover:before, .nav__btn:hover:after {
     background: #A2B1CA;
   }
+
   .nav__cb:checked ~ .nav__btn:before {
     -webkit-transform: translateY(7px) rotate(-225deg);
     transform: translateY(7px) rotate(-225deg);
   }
+
   .nav__cb:checked ~ .nav__btn:after {
     -webkit-transform: translateY(-7px) rotate(225deg);
     transform: translateY(-7px) rotate(225deg);
