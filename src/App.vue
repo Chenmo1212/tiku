@@ -77,6 +77,8 @@
       </div>
     </div>
 
+    <FloatBall :text="'哈哈'"></FloatBall>
+
     <div class="stars-box">
       <div id='stars' v-if="this.themeMode === 'dark'"></div>
       <div id='stars2' v-if="this.themeMode === 'dark'"></div>
@@ -111,9 +113,13 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
+  import FloatBall from '@/components/ball';
 
   export default {
     name: 'App',
+    components:{
+      FloatBall
+    },
     data() {
       return {
         index: 0,
