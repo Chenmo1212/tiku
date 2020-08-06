@@ -87,6 +87,7 @@
       },
       handleMusicStatus() {
         this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
+        this.isChecked = true;
         this.clickMenu();
       },
       clickMenu() {
