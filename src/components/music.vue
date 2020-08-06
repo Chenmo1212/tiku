@@ -22,11 +22,11 @@
           </div>
           <div class="neumorphic-text text-center mt-1 mb-5">{{artist}}</div>
           <div class="neumorphic-slider slider mx-auto">
-            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime}}</div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime ? currentTime : '00:00'}}</div>
             <div class="neumorphic-slider__back"></div>
-            <div class="neumorphic-slider__line" :style="{width: currentMusicBasicMsg.progress}"></div>
+            <div class="neumorphic-slider__line" :style="{width: currentMusicBasicMsg.progress ? currentMusicBasicMsg.progress : 0}"></div>
             <!--<div class="neumorphic-slider__thumb"></div>-->
-            <div class="neumorphic-slider__text neumorphic-slider__text_right">{{duration}}</div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_right">{{duration ? duration : '00:00'}}</div>
           </div>
           <div class="player-controls">
             <div class="btn-group">
@@ -112,7 +112,7 @@
         'setModel',
       ]),
       handleMusicStatus() {
-        this.setMusicStatus(true);
+        this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
       },
       handleNext() {
         window.nextSong();

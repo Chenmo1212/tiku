@@ -91,8 +91,8 @@ export default {
   },
 
   // 设置音乐状态
-  SET_MUSIC_STATUS(state) {
-    state.musicStatus = !state.musicStatus;
+  SET_MUSIC_STATUS(state, bool) {
+    state.musicStatus = bool;
   },
 
   // 设置音乐歌单id

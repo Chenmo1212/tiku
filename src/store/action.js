@@ -39,8 +39,8 @@ export default {
   },
 
   // 设置音乐播放状态
-  setMusicStatus({commit}) {
-    commit('SET_MUSIC_STATUS')
+  setMusicStatus({commit}, bool) {
+    commit('SET_MUSIC_STATUS', bool)
   },
 
   // 设置音乐歌单id

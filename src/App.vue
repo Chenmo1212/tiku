@@ -3,7 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
-    <audio id="media" :autoplay="isPlay" :src="musicUrl" @timeupdate="timeupdate"></audio>
+    <audio id="media" preload="auto" :src="musicUrl" @timeupdate="timeupdate"></audio>
 
     <div class="alert a-fadeinB" v-if="showAlert">
       <div class="chip">
@@ -117,7 +117,7 @@
     data() {
       return {
         index: 0,
-        musicUrl: '',
+        musicUrl: 'http://music.163.com/song/media/outer/url?id=28828076.mp3',
         musicList: null,
         // musicList: [
         //   'http://music.163.com/song/media/outer/url?id=28828076.mp3',
@@ -205,6 +205,7 @@
         'setImportTotalData',
         'setSongListId',
         'setWarning',
+        'setMusicStatus',
       ]),
 
       /**
@@ -364,33 +365,55 @@
 
       // 下一首
       nextSong() {
-        this.checkAudio();
-        console.log("next");
+        let audio = document.getElementById('media');
+        console.log(audio.src);
+        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
+          this.setWarning("出问题啦~");
+          console.error("出问题了");
+          audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
+          audio.play();
+          return;
+        }
+
+        // console.log("next");
         if (this.index < this.musicList.length - 1) {
           this.index += 1;
         } else {
           this.index = 0;
         }
         this.musicUrl = this.musicList[this.index].url;
-        this.isPlay = true;
+        setTimeout(() => {
+          audio.play();
+        }, 10 );
       },
 
       // 上一首
       preSong() {
-        this.checkAudio();
+        let audio = document.getElementById('media');
+        console.log(audio.src);
+        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
+          this.setWarning("出问题啦~");
+          console.error("出问题了");
+          audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
+          audio.play();
+          return;
+        }
+
         console.log("pre");
-        if (this.index > 0) {
+        console.log(this.index);
+        if (this.index > 1) {
           this.index -= 1;
         } else {
-          this.index = this.musicList.length + 1;
+          this.index = this.musicList.length - 1;
         }
         this.musicUrl = this.musicList[this.index].url;
-        this.isPlay = true;
+        setTimeout(() => {
+          audio.play();
+        }, 10 );
       },
 
       timeupdate() {
         let audio = document.getElementById('media');
-
         if (audio.ended) {
           this.nextSong();
         }
@@ -532,16 +555,18 @@
       musicStatus() {
         this.checkAudio();
         let audio = document.getElementById('media');
-        // console.log(audio)
+        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
+          this.setWarning("出问题啦~");
+          console.error("出问题了");
+          return;
+        }
         if (this.musicStatus) {
           if (typeof (localStorage.currentMusicBasicMsg) !== 'undefined') {
             audio.currentTime = JSON.parse(localStorage.currentMusicBasicMsg).currentTime;
           }
           audio.play();
-          this.isPlay = true;
         } else {
           audio.pause();// 暂停
-          this.isPlay = false;
         }
       },
 
