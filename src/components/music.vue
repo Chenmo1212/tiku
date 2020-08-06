@@ -14,7 +14,9 @@
           </button>
         </div>
         <div class="neumorphic-card__body">
-          <div class="neumorphic-image-wrapper turn paused" @click="setWarning('这里什么都没有哦~')">
+          <div class="neumorphic-image-wrapper turn"
+               :class="musicStatus ? '' : 'paused'"
+               @click="setWarning('这里什么都没有哦~')">
             <img :src="cover"
               style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
