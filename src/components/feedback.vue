@@ -11,29 +11,29 @@
     <div class="main">
       <div class="title mt-0"><span class="text">反馈类型</span></div>
       <div class="type-content">
-        <label class="radio" for="improve">
+        <label class="radio" for="improve" @click.prevent="handleType(1)">
           <span class="radio-bg"></span>
           <input checked="checked" id="improve" name="type" type="radio" value="改进建议"/> 改进建议
           <span class="radio-on"></span>
         </label>
-        <label class="radio" for="bug">
+        <label class="radio" for="bug" @click.prevent="handleType(2)">
           <span class="radio-bg"></span>
           <input id="bug" name="type" type="radio" value="Bug提交"/> Bug提交
           <span class="radio-on"></span>
         </label>
-        <label class="radio" for="advice">
+        <label class="radio" for="advice" @click.prevent="handleType(3)">
           <span class="radio-bg"></span>
           <input id="advice" name="type" type="radio" value="对开发者的话"/> 对开发者的话
           <span class="radio-on"></span>
         </label>
       </div>
       <div class="title"><span class="text">反馈内容（不超过300字呦）</span></div>
-      <textarea></textarea>
+      <textarea v-model="feedCont"></textarea>
       <div class="title"><span class="text">称呼（选填）</span></div>
-      <input type="text" class="input name">
+      <input type="text" class="input name" v-model="name"/>
       <div class="title"><span class="text">邮箱</span></div>
-      <input type="text" class="input mail">
-      <button class="btn submit">
+      <input type="text" class="input mail" v-model="mail"/>
+      <button class="btn submit" @click="submitBug()">
         <span class="icon-container">
           <i class="fa fa-rocket"></i>
             立即提交
@@ -46,6 +46,7 @@
 <script>
   import detailVue from './cardDetail'
   import {mapState, mapActions} from 'vuex'
+  import axios from 'axios'
 
   export default {
     name: "chapter",
@@ -55,6 +56,11 @@
     data() {
       return {
         pageName: '意见反馈',
+
+        type: '改进建议',
+        feedCont: '',
+        mail: '',
+        name: '',
       }
     },
     computed: {
@@ -79,13 +85,100 @@
     methods: {
       ...mapActions([
         'setThemeMode',
-        'setSelectedChapter',
+        'setWarning',
         'setProjectQuestionData',
       ]),
 
       backHome() {
         this.$router.push({name: 'home'});
       },
+
+      /**
+       * 反馈类型
+       * @param index 下标
+       */
+      handleType(index){
+        switch (index) {
+          case 1:
+            this.type = '改进建议';
+            break;
+          case 2:
+            this.type = 'Bug提交';
+            break;
+          case 3:
+            this.type = '对开发者的话';
+            break;
+        }
+      },
+
+      /**
+       * 检测邮箱格式是否正确
+       * @returns {boolean} 正确与否
+       */
+      checkMail(){
+        let email = this.mail;
+        let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if(reg.test(email)){
+          console.log("邮箱格式正确");
+          return true
+        }else{
+          console.log("邮箱格式不正确");
+          this.setWarning("邮箱格式不正确");
+          return false
+        }
+      },
+      /**
+       * 检测反馈内容是否正确
+       * @returns {boolean} 正确与否
+       */
+      checkContent(){
+        let content = this.feedCont;
+        if(content){
+          console.log("反馈内容不为空");
+          return true
+        }else{
+          console.log("反馈内容为空");
+          this.setWarning("反馈内容不得为空");
+          return false
+        }
+      },
+
+      /**
+       * 提交
+       */
+      submitBug(){
+        // 检测邮箱
+        // if (!this.checkMail()) return;
+        // 检测反馈内容
+        // if (!this.checkContent()) return;
+        // console.log("")
+
+        let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
+
+        let SCKEY = 'SCU111050Tdb28e1d031b1b4a87d4cdba2f8bba1095f478da29f48a';
+        let url = 'https://sc.ftqq.com/' + SCKEY + '.send';
+
+        let params = new URLSearchParams();
+        params.append('text', 'Little cookie 用户反馈');
+        params.append('desp', content);
+
+        axios.post(url, params, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+          },
+        }).then((res) => {
+          console.log("返回的值"+res);
+          this.setWarning("提交成功！感谢您的反馈！");
+          this.type = '';
+          this.mail = '';
+          this.name = '';
+          this.feedCont = ''
+        }).catch((err) => {
+          console.log("错误"+err);
+          this.setWarning("提交失败~");
+        });
+      }
     }
   }
 </script>
@@ -100,6 +193,8 @@
       --radio-color: #BF8A10!important;
       --bg-color: #26282b;
       --bg-btn-color: #26282b;
+      --text-color: #BF8A10;
+      --text-btn-color: #BF8A10;
     }
     .chapter {
       --box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
@@ -108,10 +203,9 @@
       --radio-color: #9fe3fb;
       --bg-color: #f4f6f8;
       --text-color: #000;
+      --text-btn-color: #3ae7fb;
     }
-
   }
-
 
   .chapter {
     /*background-color: #f4f6f8;*/
@@ -279,7 +373,7 @@
     box-shadow: var(--box-shadow);
     padding: 2px 10px;
     font-size: 16px;
-    color: var(--radio-color);
+    color: var(--text-btn-color);
     outline: none;
   }
 
