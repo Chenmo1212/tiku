@@ -17,6 +17,13 @@
       </div>
     </div>
 
+    <!--遮罩层-->
+    <div class="mask" v-if="isWelcome">
+      <div class="logo-container">
+        <img src="./assets/logo.png" alt="">
+      </div>
+    </div>
+
     <!--模态框-->
     <div class="modal" v-if="showModel">
       <div class="bg" @click="hiddenModel"></div>
@@ -153,6 +160,8 @@
         // songListId: '2111679838',
         songListInput: '',
         isPlay: false,
+
+        isWelcome: true,
 
         alertMsg: "卡片答题模式已开启",
       }
@@ -451,6 +460,7 @@
        * @returns {Promise<any>}
        */
       fetch163Playlist(playlistId) {
+        let that = this;
         return new Promise((ok, err) => {
           fetch(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
             .then(response => response.json())
@@ -464,11 +474,13 @@
             .then(this.fetch163Songs)
             .then(ok)
             .catch(err => {
+              that.isWelcome = false;
               alert("出错了1" + err)
             });
         });
       },
       fetch163Songs(Ids) {
+        let that = this;
         return new Promise(function (ok, err) {
           let ids;
           switch (typeof Ids) {
@@ -500,10 +512,12 @@
                   lrc: song.lyric
                 });
               });
+              that.isWelcome = false;
               return songs;
             })
             .then(ok)
             .catch(err => {
+              that.isWelcome = false;
               alert("出错了3" + err)
             });
         });
@@ -1145,6 +1159,25 @@
     }
     to {
       transform: translateY(-2000px);
+    }
+  }
+
+  .mask {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 9999999;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logo-container {
+      width: 60%;
+      img {
+        width: 100%;
+      }
     }
   }
 
