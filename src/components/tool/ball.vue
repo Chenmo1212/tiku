@@ -58,11 +58,17 @@
         currentTop: null,
         clientW: document.documentElement.clientWidth,//视口宽
         clientH: document.documentElement.clientHeight,//视口高
+
+        screenWidth: 0
       }
     },
     created() {
       this.left = (this.clientW - this.itemWidth - 30);
-      this.top = (this.clientH / 2 - this.itemHeight / 2)
+      this.top = (this.clientH / 2 - this.itemHeight / 2);
+      this.screenWidth = window.screen.width;
+      if (this.screenWidth >= 1175){
+        this.isShow = false
+      }
     },
     mounted() {
       this.bindScrollEvent()
@@ -84,6 +90,7 @@
         this.isChecked = true;
         this.clickMenu();
         index < 0 ? window.preSong() : window.nextSong();
+        this.setMusicStatus(true);
       },
       handleMusicStatus() {
         this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
@@ -184,6 +191,11 @@
         }
       }
     },
+    watch: {
+      screenWidth(){
+        this.isShow = false;
+      }
+    }
   }
 </script>
 

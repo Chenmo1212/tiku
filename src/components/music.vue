@@ -22,7 +22,7 @@
           </div>
           <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a>
           </div>
-          <div class="neumorphic-text text-center mt-1 mb-5">{{artist}}</div>
+          <div class="neumorphic-text neumorphic-text_author text-center mt-1 mb-5">{{artist}}</div>
           <div class="neumorphic-slider slider mx-auto">
             <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime ? currentTime : '00:00'}}</div>
             <div class="neumorphic-slider__back"></div>
@@ -119,9 +119,7 @@
         // 如果classList中存在给定的值，删除它，否则，添加它；
         turn.classList.toggle('paused');
       },
-      handleNext() {
-        window.nextSong();
-        this.setMusicStatus(true);
+      pausedWrapper(){
         const turn = document.querySelector('.neumorphic-image-wrapper');
         // 如果classList中存在给定的值，删除它，否则，添加它；
         turn.classList.remove('turn');
@@ -130,16 +128,15 @@
         }, 500 );
         turn.classList.remove('paused');
       },
+      handleNext() {
+        window.nextSong();
+        this.setMusicStatus(true);
+        this.pausedWrapper()
+      },
       handlePre() {
         window.preSong();
         this.setMusicStatus(true);
-        const turn = document.querySelector('.neumorphic-image-wrapper');
-        // 如果classList中存在给定的值，删除它，否则，添加它；
-        turn.classList.remove('turn');
-        setTimeout(() => {
-          turn.classList.add('turn');
-        }, 500 );
-        turn.classList.remove('paused');
+        this.pausedWrapper()
       },
 
       //将秒数转换为时分秒格式
@@ -485,8 +482,7 @@
   .player-controls {
     position: absolute;
     bottom: 0;
-    width: calc(100vw - 40px);
-    left: 0;
+    width: 100%;
     z-index: 3;
 
     .btn-group {
@@ -508,8 +504,10 @@
 
   /*  RANGE-SLIDER  */
   .slider {
-    grid-column: 3 / 4;
-    grid-row: 5 / 6;
+    position: absolute;
+    bottom: 15%;
+    width: 100%;
+    z-index: 3;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -578,6 +576,25 @@
     /*box-shadow: var(--shadow);*/
     opacity: 0;
     transition: opacity .3s ease;
+  }
+
+  @media screen and (min-width: 1175px) {
+    .neumorphic-card {
+      .d-flex {
+        margin-top: 5%;
+      }
+      .neumorphic-image-wrapper {
+        margin: 10% auto;
+        width: 300px;
+        height: 300px;
+      }
+      .neumorphic-text_title {
+        margin: 15% auto 3%;
+      }
+      .neumorphic-text_author {
+        margin: 0 auto 15%;
+      }
+    }
   }
 
   /*

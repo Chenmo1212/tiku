@@ -575,13 +575,14 @@
 
     #content {
       margin-bottom: 100px;
+      height: calc(100vh - 100px);
     }
 
-    @media screen and (max-width: 375px) {
-      #content {
-        margin-bottom: 22%;
-      }
-    }
+    /*@media screen and (max-width: 375px) {*/
+      /*#content {*/
+        /*margin-bottom: 22%;*/
+      /*}*/
+    /*}*/
   }
 
 

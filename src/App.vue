@@ -124,7 +124,7 @@
 
   export default {
     name: 'App',
-    components:{
+    components: {
       FloatBall
     },
     data() {
@@ -190,27 +190,7 @@
       window.nextSong = this.nextSong;
       window.preSong = this.preSong;
 
-      const that = this;
-      let flag = false;
-      if (typeof (localStorage.currentMusicBasicMsg) !== 'undefined') {
-        flag = true
-      }
-      this.fetch163Playlist(this.songListId)
-        .then(res => {
-          // console.log(res);
-          that.musicList = res;
-          that.setMusicMsg(res);
-          if (flag) {
-            that.musicUrl = JSON.parse(localStorage.currentMusicBasicMsg).url;
-            that.index = JSON.parse(localStorage.currentMusicBasicMsg).index;
-          } else {
-            that.musicUrl = res[0].url;
-          }
-          console.log("音乐数据加载完成")
-        })
-        .catch(err => {
-          console.error(err)
-        });
+      this.songError();
     },
     methods: {
       ...mapActions([
@@ -378,15 +358,41 @@
         // console.log(audio)
       },
 
+      songError(){
+        const that = this;
+        let flag = false;
+        let audio = document.getElementById('media');
+        if (typeof (localStorage.currentMusicBasicMsg) !== 'undefined') {
+          flag = true
+        }
+        this.fetch163Playlist(this.songListId)
+          .then(res => {
+            // console.log(res);
+            that.musicList = res;
+            that.setMusicMsg(res);
+            if (flag) {
+              that.musicUrl = JSON.parse(localStorage.currentMusicBasicMsg).url;
+              that.index = JSON.parse(localStorage.currentMusicBasicMsg).index;
+            } else {
+              that.musicUrl = res[0].url;
+            }
+            console.log("音乐数据加载完成");
+            audio.play();
+          })
+          .catch(err => {
+            console.error(err)
+          });
+      },
+
       // 下一首
       nextSong() {
         let audio = document.getElementById('media');
         console.log(audio.src);
-        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
-          this.setWarning("出问题啦~");
+        if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
+          this.setWarning("出问题啦~尝试修复中...");
           console.error("出问题了");
           audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
-          audio.play();
+          this.songError();
           return;
         }
 
@@ -399,18 +405,18 @@
         this.musicUrl = this.musicList[this.index].url;
         setTimeout(() => {
           audio.play();
-        }, 10 );
+        }, 10);
       },
 
       // 上一首
       preSong() {
         let audio = document.getElementById('media');
         console.log(audio.src);
-        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
-          this.setWarning("出问题啦~");
+        if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
+          this.setWarning("出问题啦~尝试修复中...");
           console.error("出问题了");
           audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
-          audio.play();
+          this.songError();
           return;
         }
 
@@ -424,7 +430,7 @@
         this.musicUrl = this.musicList[this.index].url;
         setTimeout(() => {
           audio.play();
-        }, 10 );
+        }, 10);
       },
 
       timeupdate() {
@@ -457,7 +463,6 @@
       /**
        * 获取一言的网易云接口（本示例需要浏览器支持 Promise，fetch 以及 ES6 语法。）
        * @param playlistId 歌单id
-       * @returns {Promise<any>}
        */
       fetch163Playlist(playlistId) {
         let that = this;
@@ -573,11 +578,15 @@
 
     watch: {
       musicStatus() {
+        console.log("musicstatus change");
         this.checkAudio();
         let audio = document.getElementById('media');
-        if(audio.src.indexOf('v1.hitokoto.cn') < 0){
+        if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
           this.setWarning("出问题啦~");
           console.error("出问题了");
+          audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
+          this.songError();
+          audio.play();
           return;
         }
         if (this.musicStatus) {
@@ -722,7 +731,7 @@
   /*loading*/
   .loading-box {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     top: 0;
     z-index: 999;
@@ -763,7 +772,7 @@
   /* MODAL */
   .modal {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     top: 0;
     z-index: 999;
@@ -1164,7 +1173,7 @@
 
   .mask {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -1173,11 +1182,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .logo-container {
       width: 60%;
+
       img {
         width: 100%;
       }
+    }
+  }
+
+  @media screen and (min-width: 1175px) {
+    .max-control {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto !important;
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
+      -moz-box-shadow: 5px 4px 9px #333333;
+      -webkit-box-shadow: 5px 4px 9px #333333;
+      box-shadow: 5px 4px 9px #333333;
+    }
+
+    body {
+      background: #26282b url(https://pic4.zhimg.com/v2-33e02d6b40468e6cb548ca33768bced4_r.jpg?source=1940ef5c);
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+
+    .mask {
+      max-width: 500px;
     }
   }
 

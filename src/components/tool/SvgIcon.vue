@@ -33,12 +33,12 @@
 </script>
 
 <style scoped>
-  .svg-icon {
-    width: 100%;
-    /*height: 300px;*/
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    margin-top: 10%;
-  }
+  /*.svg-icon {*/
+    /*width: 100%;*/
+    /*!*height: 300px;*!*/
+    /*vertical-align: -0.15em;*/
+    /*fill: currentColor;*/
+    /*overflow: hidden;*/
+    /*margin-top: 10%;*/
+  /*}*/
 </style>

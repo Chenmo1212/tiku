@@ -183,7 +183,7 @@
     /*height: calc(100vh - 80px);*/
     @include background('background_color3');
     padding: 7% 20px;
-    width: calc(100vw - 40px);
+    width: calc(100% - 40px);
     position: relative;
 
     .header {
@@ -689,6 +689,15 @@
       .circle {
         box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
       }
+    }
+  }
+
+  @media screen and (min-width: 1175px){
+    #mine .header .circle__avatar .circle__back-1,
+    #mine .header .circle__avatar .circle__back-2,
+    #mine .header .circle__avatar .circle__btn{
+      width: 8rem;
+      height: 8rem;
     }
   }
 </style>

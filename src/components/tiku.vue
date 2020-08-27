@@ -187,8 +187,9 @@
 <style scoped lang="scss">
   @import "../scss/_handle.scss";
   #tiku {
-    height: calc(100vh - 200px);
+    height: calc(100% - 100px);
     overflow: hidden;
+    margin-top: 20%;
   }
   .dark {
     .swiper-container .swiper-slide {
@@ -214,7 +215,6 @@
   }
   @media screen and (max-width: 375px) {
     #tiku {
-      height: calc(100vh - 140px);
       overflow: hidden;
     }
   }
