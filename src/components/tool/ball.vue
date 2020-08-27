@@ -9,7 +9,7 @@
          :style="{left: left + 'px',top: top + 'px',width: itemWidth + 'px',height: itemHeight + 'px'}"
          v-if="isShow">
       <nav class="nav">
-        <input type="checkbox" class="nav__cb" id="menu-cb" @click="clickMenu" :checked="isChecked" @blur="clickMenu">
+        <input type="checkbox" class="nav__cb" id="menu-cb" :checked="isChecked"  @click="clickMenu">
         <div class="nav__content">
           <ul class="nav__items">
             <li class="nav__item" @click="handleSong(-1)">
@@ -81,7 +81,7 @@
         'setMusicStatus',
       ]),
       handleSong(index) {
-        // console.log(index);
+        this.isChecked = true;
         this.clickMenu();
         index < 0 ? window.preSong() : window.nextSong();
       },
@@ -218,7 +218,7 @@
     border-radius: 5px;
     width: auto;
     height: 40px;
-    background: #fff;
+    @include background('home_bg_color1');
     -webkit-transform: translate3d(-50%, 0, 0);
     transform: translate3d(-50%, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
@@ -262,7 +262,7 @@
     vertical-align: top;
     width: 40px;
     text-align: center;
-    color: #A2B1CA;
+    @include background('home_bg_color1');
     font-size: 16px;
     line-height: 40px;
     font-family: Helvetica, Arial, sans-serif;
@@ -272,6 +272,7 @@
     -webkit-transition: color 0.3s;
     transition: color 0.3s;
     cursor: pointer;
+    color: #A2B1CA;
   }
 
   .nav__item-text {

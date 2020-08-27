@@ -8,7 +8,7 @@
         <div class="page-title">关于</div>
       </div>
       <div class="home-page">
-        <a class="circle" href="https://www.chenmo1212.site" target="_blank">
+        <a class="circle" href="https://www.chenmo1212.cn" target="_blank">
           <i class="fa fa-home" aria-hidden="true"></i>
         </a>
       </div>
@@ -24,7 +24,7 @@
           相比与扁平化的设计，个人对<a href="https://www.zcool.com.cn/article/ZMTEwMjQ3Ng==.html"> 新拟态 </a>有着几近疯狂的爱好。正好发现学校之前吐司的题库好像瓦特了，
           就有了 <span class="highlight">利用新拟态制作一个题库</span> 的想法。</p>
         <p>嗯，菜鸡一个。捡起了一年没碰的前端，写得代码自然“十分粗糙”，因此在这里就 <span class="highlight">不开源</span>了，给自己留点脸。还有其它一些好玩的项目，
-          主页：<a href="https://chenmo1212.site">陈默的小站</a></p>
+          主页：<a href="https://chenmo1212.cn">陈默的小站</a></p>
         <p>该网站的功能有些杂，全凭自己“脑子一抽”设计的，若有使用不便之处，还望海涵。功能上目前仅仅实现了基本功能，还有一些功能将在后续阶段继续开发。现在纳入待办事项的功能有：</p>
         <ol>
           <li>意见反馈功能</li>

@@ -68,6 +68,12 @@
       ]),
     },
     created() {
+      // 调整主题模式
+      if (typeof (localStorage.themeMode) !== 'undefined') {
+        let type = JSON.parse(localStorage.themeMode);
+        window.document.documentElement.setAttribute("data-theme", type);
+        this.setThemeMode({type: type});
+      }
       if (typeof (localStorage.selectedProject) === 'undefined') {
         console.log("不存在");
         this.pageName = this.selectedProject.chinese;
@@ -88,6 +94,7 @@
     },
     methods: {
       ...mapActions([
+        'setThemeMode',
         'setSelectedChapter',
         'setProjectQuestionData',
       ]),
