@@ -1206,9 +1206,10 @@
     }
 
     body {
-      background: #26282b url(https://pic4.zhimg.com/v2-33e02d6b40468e6cb548ca33768bced4_r.jpg?source=1940ef5c);
+      background-image: url(https://pic4.zhimg.com/v2-33e02d6b40468e6cb548ca33768bced4_r.jpg?source=1940ef5c);
       -webkit-background-size: cover;
       background-size: cover;
+      background-attachment:fixed;
     }
 
     .mask {

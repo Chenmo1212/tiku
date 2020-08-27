@@ -157,7 +157,7 @@
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       },
 
-      // 设置题库模糊
+      // 设置题库模式
       handleTikuMode(){
         if (this.cardMode){
           this.setTikuMode();
@@ -170,7 +170,7 @@
       },
 
       handleFeedBack(){
-        this.setWarning("该功能正在开发ing~");
+        this.$router.push({name:'feedback'})
       }
     }
   }

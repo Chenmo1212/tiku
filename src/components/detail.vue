@@ -747,7 +747,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      width: 80vw;
+      width: 80%;
       overflow: hidden;
 
       .circle {
@@ -780,7 +780,7 @@
 
     .full-screen {
       float: right;
-      width: 10vw;
+      width: 10%;
     }
   }
 
