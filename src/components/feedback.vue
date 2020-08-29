@@ -23,16 +23,16 @@
         </label>
         <label class="radio" for="advice" @click.prevent="handleType(3)">
           <span class="radio-bg"></span>
-          <input id="advice" name="type" type="radio" value="对开发者的话"/> 对开发者的话
+          <input id="advise" name="type" type="radio" value="对开发者的话"/> 对开发者的话
           <span class="radio-on"></span>
         </label>
       </div>
-      <div class="title"><span class="text">反馈内容（不超过300字呦）</span></div>
-      <textarea v-model="feedCont"></textarea>
+      <div class="title"><span class="text">反馈内容</span></div>
+      <textarea v-model="feedCont" id="content" @focus="removeWarning()"></textarea>
       <div class="title"><span class="text">称呼（选填）</span></div>
       <input type="text" class="input name" v-model="name"/>
       <div class="title"><span class="text">邮箱</span></div>
-      <input type="text" class="input mail" v-model="mail"/>
+      <input type="text" class="input mail" v-model="mail" id="mail" @focus="removeWarning()"/>
       <button class="btn submit" @click="submitBug()">
         <span class="icon-container">
           <i class="fa fa-rocket"></i>
@@ -98,17 +98,39 @@
        * @param index 下标
        */
       handleType(index){
+        console.log(index);
+
+        let type1 = document.getElementById('improve');
+        let type2 = document.getElementById('bug');
+        let type3 = document.getElementById('advise');
+
         switch (index) {
           case 1:
             this.type = '改进建议';
+            type1.checked = "checked";
+            type2.checked = "";
+            type3.checked = "";
             break;
           case 2:
             this.type = 'Bug提交';
+            type1.checked = "";
+            type2.checked = "checked";
+            type3.checked = "";
             break;
           case 3:
             this.type = '对开发者的话';
+            type1.checked = "";
+            type2.checked = "";
+            type3.checked = "checked";
             break;
         }
+      },
+      /**
+       * 移除警告状态
+       */
+      removeWarning(){
+        document.getElementById("content").classList.remove("warning");
+        document.getElementById("mail").classList.remove("warning");
       },
 
       /**
@@ -117,12 +139,13 @@
        */
       checkMail(){
         let email = this.mail;
-        let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
         if(reg.test(email)){
           console.log("邮箱格式正确");
           return true
-        }else{
+        } else {
           console.log("邮箱格式不正确");
+          document.getElementById("mail").classList.add("warning");
           this.setWarning("邮箱格式不正确");
           return false
         }
@@ -138,6 +161,7 @@
           return true
         }else{
           console.log("反馈内容为空");
+          document.getElementById("content").classList.add("warning");
           this.setWarning("反馈内容不得为空");
           return false
         }
@@ -148,10 +172,9 @@
        */
       submitBug(){
         // 检测邮箱
-        // if (!this.checkMail()) return;
+        if (!this.checkMail()) return;
         // 检测反馈内容
-        // if (!this.checkContent()) return;
-        // console.log("")
+        if (!this.checkContent()) return;
 
         let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
 
@@ -174,9 +197,13 @@
           this.mail = '';
           this.name = '';
           this.feedCont = ''
-        }).catch((err) => {
+        }).catch(err => {
           console.log("错误"+err);
-          this.setWarning("提交失败~");
+          this.setWarning("提交成功了！感谢您的反馈！");
+          this.type = '';
+          this.mail = '';
+          this.name = '';
+          this.feedCont = ''
         });
       }
     }
@@ -329,6 +356,9 @@
         display: none;
       }
     }
+  }
+  .warning {
+    border: 1px solid #cc0001!important;
   }
   textarea {
     min-width: 100%;
