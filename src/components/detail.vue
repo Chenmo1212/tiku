@@ -143,7 +143,7 @@
         projectName: '马克思',
         chapterName: '导论',
         chapterColor: "#536dfe",
-        checkIndex: -1,
+        checkIndex: -1,  // 用户选项
         showAnswer: false,
 
         userAns: null,
@@ -161,8 +161,8 @@
           options: ['把马克思主义基本原理同中国具体实际相结合', '实事求是，群众路线，独立自主', '解放思想，实事求是', '解放思想，实事求是，与时俱进'],               // 总的数组
         }],
 
-        answerList: [],
-        checkedList: [],               // 多选题答案
+        answerList: [],                // 多选题正确答案
+        checkedList: [],               // 用户多选题答案
 
         isError: true,
 
@@ -182,6 +182,11 @@
       let isOverview = false;
       let newIndex = null;
 
+      let _this = this;
+      document.onkeydown = function(e) {
+        _this.keyListener(_this);
+      };
+
       // 是否全屏
       if(typeof(localStorage.isFullScreen) !== 'undefined'){
         // 如果用户已经设置过全屏了，则改成全屏
@@ -199,6 +204,7 @@
       this.totalQuesArr = selectedChapter.data;
       // console.log(this.totalQuesArr);
 
+      // 跳转题目
       if (typeof (this.$route.params.id) !== 'undefined') {
         this.itemIndex = this.$route.params.id;
         this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
@@ -546,7 +552,9 @@
         localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       },
 
-      // 判断是否需要替换已选择的答案
+      /**
+       * 判断是否需要替换已选择的答案
+       */
       judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
         let tempArr = null;
         // console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
@@ -677,6 +685,81 @@
         this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
         localStorage.setItem("isCheck", JSON.stringify(this.isCheck));
       },
+
+      /**
+       * KeyListener
+       */
+      keyListener(_this){
+        let answerList = document.getElementsByClassName('answer-item');
+        let key = window.event.keyCode;
+
+        // 选项
+        if (_this.currentType.indexOf('sig') >= 0 || _this.currentType.indexOf('jud') >= 0){
+          // 单选题
+          switch (key) {
+            case 49:  // A
+            case 65:  // A
+              _this.checkIndex = 0;
+              break;
+            case 50:  // B
+            case 66:  // B
+              _this.checkIndex = 1;
+              break;
+            case 51:  // C
+            case 67:  // C
+              _this.checkIndex = 2;
+              break;
+            case 52:  // D
+            case 68:  // D
+              _this.checkIndex = 3;
+              break;
+          }
+        } else if (_this.currentType.indexOf('mul') >= 0){
+          let user_index = -1;
+          // 多选题
+          switch (key) {
+            case 49:  // A
+            case 65:  // A
+              user_index = 0;
+              break;
+            case 50:  // B
+            case 66:  // B
+              user_index = 1;
+              break;
+            case 51:  // C
+            case 67:  // C
+              user_index = 2;
+              break;
+            case 52:  // D
+            case 68:  // D
+              user_index = 3;
+              break;
+          }
+
+          // 返回用户选项在已选列表里的下标
+          let _index = _this.checkedList.findIndex(function (value) {
+            return value === user_index
+          });
+          // 判断是否已经选择了该选项，有删无增
+          if (_index >= 0){
+            _this.checkedList.splice(_index,1)
+          } else {
+            _this.checkedList.push(user_index)
+          }
+        }
+
+        // 切换题目
+        switch (key) {
+          case 37:
+            // console.log("左箭头");
+            _this.changeQuestion(-1);
+            break;
+          case 39:
+            // console.log("右箭头");
+            _this.changeQuestion(1);
+
+        }
+      }
     }
   }
 </script>
@@ -817,9 +900,15 @@
 
     .content-container {
       max-height: 71%;
-      overflow-y: scroll;
       padding: 0 7px 0;
       margin-top: 5%;
+      overflow-y: scroll;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+
+      &::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+      }
 
       .content-question {
         @include font_color("detail_font_color1");
@@ -835,6 +924,12 @@
 
         .card-question {
           overflow: scroll;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE 10+ */
+
+          &::-webkit-scrollbar {
+            display: none; /* Chrome Safari */
+          }
         }
       }
 
