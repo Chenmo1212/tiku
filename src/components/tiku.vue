@@ -26,7 +26,8 @@
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
-          <button class="btn begin" @click="clickCardBtn($event, currentMemoryMsg, 1)" :style="{color: currentMemoryMsg.color}">
+          <button class="btn begin" @click="clickCardBtn($event, currentMemoryMsg, 1)"
+                  :style="{color: currentMemoryMsg.color}">
             <span class="icon-container">
               <i class="fa fa-rocket"></i>
               开始背题
@@ -52,10 +53,14 @@
         </div>
         <!--题目类型-->
         <div class="card-question_type">
-          <span v-if="value.total_sig_num"> 单选: <span :style="{color: value.color}">{{value.total_sig_num}}</span> 道</span>&nbsp;
-          <span v-if="value.total_mul_num"> 多选: <span :style="{color: value.color}">{{value.total_mul_num}}</span> 道</span>&nbsp;
-          <span v-if="value.total_jud_num"> 判断: <span :style="{color: value.color}">{{value.total_jud_num}}</span> 道</span>&nbsp;
-          <span v-if="value.total_bla_num"> 填空: <span :style="{color: value.color}">{{value.total_bla_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_sig_num"> 单选: <span
+            :style="{color: value.color}">{{value.total_sig_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_mul_num"> 多选: <span
+            :style="{color: value.color}">{{value.total_mul_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_jud_num"> 判断: <span
+            :style="{color: value.color}">{{value.total_jud_num}}</span> 道</span>&nbsp;
+          <span v-if="value.total_bla_num"> 填空: <span
+            :style="{color: value.color}">{{value.total_bla_num}}</span> 道</span>&nbsp;
         </div>
         <!--开始背题-->
         <div class="card-btn" v-show="showBeginBtn">
@@ -123,8 +128,8 @@
         return this.$refs.mySwiper.$swiper
       }
     },
-    created(){
-      if (typeof localStorage.currentMemory !== 'undefined'){
+    created() {
+      if (typeof localStorage.currentMemory !== 'undefined') {
         console.log("本地有当前在背的内容");
         this.currentMemoryMsg = JSON.parse(localStorage.currentMemory);
       } else if (JSON.stringify(this.currentMemory) !== "{}") {
@@ -152,33 +157,37 @@
         ev.srcElement.classList.add("active");
         this.setThemeColor(item.color);
 
-        if (from === 1){
-          if (typeof(localStorage.selectedChapter) === 'undefined') {
+        if (from === 1) {
+          if (typeof (localStorage.selectedChapter) === 'undefined') {
             this.setSelectedChapter({id: 'mao_gai', index: 0});
             localStorage.setItem('selectedChapter', JSON.stringify(this.selectedChapter))
           }
-          if (typeof(localStorage.selectedProject) === 'undefined') {
+          if (typeof (localStorage.selectedProject) === 'undefined') {
             this.setSelectedProject(this.projectBasicData['mao_gai']);
             localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
           }
-          if (typeof(localStorage.cardMode) !== 'undefined') {
+          if (localStorage.selectedProject === "{}") {
+            this.setSelectedProject(this.projectBasicData['mao_gai']);
+            localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
+          }
+          if (typeof (localStorage.cardMode) !== 'undefined') {
             JSON.parse(localStorage.cardMode) ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
           } else {
             this.cardMode ? this.$router.push({name: 'cardDetail'}) : this.$router.push({name: 'detail'});
           }
 
-        } else if(from === 2){
+        } else if (from === 2) {
           this.setSelectedProject(item);
           this.$router.push({name: 'chapter'});
         }
         localStorage.setItem('themeColor', JSON.stringify(item.color));
         localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
       },
-      getProgressStyle(value){
+      getProgressStyle(value) {
         let result = 100 * value.total_fill_num / value.total_num;
         // console.log(result);
-        if (result < 2 && result > 0)  result = 2;
-        return {width:result + "%", backgroundColor: value.color}
+        if (result < 2 && result > 0) result = 2;
+        return {width: result + "%", backgroundColor: value.color}
       }
     }
   }
@@ -186,33 +195,41 @@
 
 <style scoped lang="scss">
   @import "../scss/_handle.scss";
+
   #tiku {
     height: calc(100% - 100px);
     overflow: hidden;
     margin-top: 20%;
   }
+
   .dark {
     .swiper-container .swiper-slide {
-      box-shadow: -5px -5px 5px rgba(255,255,255,0.05),5px 5px 5px rgba(0,0,0,0.65) !important;
+      box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 5px 5px 5px rgba(0, 0, 0, 0.65) !important;
+
       .card-btn .btn {
-        box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+        box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
       }
     }
+
     .swiper-slide .card-progress .card-progress__back {
-      background: #2d3135!important;
-      border: 4px solid #2e3237!important;
-      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3), inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+      background: #2d3135 !important;
+      border: 4px solid #2e3237 !important;
+      box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
     }
+
     .card-progress__line {
-      background: linear-gradient(90deg, #D43C0B, #BF8A10)!important;
+      background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
     }
+
     .ribbon4, .btn.begin {
       background: #2e3237 !important;
     }
+
     .btn.begin {
-      color: #A7A9AA!important;
+      color: #A7A9AA !important;
     }
   }
+
   @media screen and (max-width: 375px) {
     #tiku {
       overflow: hidden;
@@ -256,6 +273,7 @@
   /*card*/
   .swiper-slide {
     @include font_color('tiku_font_color1');
+
     .card-cover {
       display: block;
       background-color: var(--back-color);
@@ -402,6 +420,18 @@
       bottom: -5px;
       left: -5px;
       border-radius: 5px 0 0 5px;
+    }
+  }
+
+  @media screen and (min-width: 1175px) {
+    .swiper-slide .card-cover {
+      margin: 100px auto 0;
+    }
+  }
+
+  @media (max-width: 400px) and (min-height: 700px) {
+    .swiper-slide .card-cover {
+      margin: 100px auto 0;
     }
   }
 </style>

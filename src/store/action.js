@@ -69,8 +69,13 @@ export default {
   },
 
   // 设置自动检查答案
-  setAutoCheck({commit}) {
-    commit('SET_AUTO_CHECK')
+  setAutoCheck({commit}, bool) {
+    commit('SET_AUTO_CHECK', bool)
+  },
+
+  // 设置自动检查答案关闭的原因是不是因为是多选题
+  setCloseCheckOfMul({commit}, bool) {
+    commit('SET_CLOSE_CHECK_OF_MUL', bool)
   },
 
   // 设置题库答题模式

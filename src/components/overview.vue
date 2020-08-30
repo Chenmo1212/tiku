@@ -21,7 +21,7 @@
         <div class="content">
           <div class="circle-box" v-for="index in val">
             <div class="circle"
-                 :class="{'active': isCheck(index, key)}"
+                 :class="{'active': isCheckIn(index, key)}"
                  :style="{backgroundColor: getColor(index, key)}"
                  @click="toDetail(index, key)"
             >
@@ -111,7 +111,7 @@
        * @param type 题目类型
        * @returns {boolean} 返回是否
        */
-      isCheck(index, type) {
+      isCheckIn(index, type) {
         // console.log(index);
         let itemIndex = null;
         if (type === "sigNum") {
@@ -145,7 +145,7 @@
         }
       },
       getColor(index, type) {
-        if (this.isCheck(index, type)) {
+        if (this.isCheckIn(index, type)) {
           // console.log("true")
           return this.chapterColor;
         }

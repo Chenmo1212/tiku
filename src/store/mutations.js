@@ -144,8 +144,13 @@ export default {
   },
 
   // 设置自动检查答案
-  SET_AUTO_CHECK(state) {
-    state.isCheck = !state.isCheck;
+  SET_AUTO_CHECK(state, bool) {
+    state.isCheckIn = bool;
+  },
+
+  // 设置自动检查答案关闭的原因是不是因为是多选题
+  SET_CLOSE_CHECK_OF_MUL(state, bool) {
+    state.closeCheckOfMul = bool;
   },
 
   // 导出数据
@@ -163,7 +168,8 @@ export default {
     state.totalData["cardMode"] = state.cardMode;
     state.totalData["themeMode"] = state.themeMode;
     state.totalData["isStick"] = state.isStick;
-    state.totalData["isCheck"] = state.isCheck;
+    state.totalData["isCheckIn"] = state.isCheckIn;
+    state.totalData["closeCheckOfMul"] = state.closeCheckOfMul;
     // state.totalData["musicStatus"] = state.musicStatus;
     // state.totalData["musicList"] = state.musicList;
     state.totalData["songListId"] = state.songListId;
@@ -191,7 +197,8 @@ export default {
     state.cardMode = obj["cardMode"];
     state.themeMode = obj["themeMode"];
     state.isStick = obj["isStick"];
-    state.isCheck = obj["isCheck"];
+    state.isCheckIn = obj["isCheckIn"];
+    state.closeCheckOfMul = obj["closeCheckOfMul"];
     // state.musicStatus = obj["musicStatus"];
     // state.musicList = obj["musicList"];
     state.songListId = obj["songListId"];

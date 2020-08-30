@@ -99,7 +99,7 @@
                 <i class="fa fa-check-circle check" aria-hidden="true"
                    v-if="item.type === 0 || item.type === 3"
                    @click="handleCheck"
-                   :class="{active: isCheck}"></i>
+                   :class="{active: isCheckIn}"></i>
                 <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
             </span>
           </div>
@@ -152,7 +152,7 @@
 
         selectedChapter: '',
         // isStick: false,                // 固定显示答案
-        // isCheck: false,                // 自动检查答案
+        // isCheckIn: false,                // 自动检查答案
       }
     },
     created() {
@@ -160,7 +160,7 @@
       let newIndex = null;
 
       // 是否全屏
-      if(typeof(localStorage.isFullScreen) !== 'undefined'){
+      if (typeof (localStorage.isFullScreen) !== 'undefined') {
         // 如果用户已经设置过全屏了，则改成全屏
         console.log("用户已经设置过了", JSON.parse(localStorage.isFullScreen));
         this.ifFullScreen = JSON.parse(localStorage.isFullScreen)
@@ -176,6 +176,7 @@
 
       this.totalCardArr = selectedChapter.data;
 
+      // 直接跳转题目
       if (typeof (this.$route.params.id) !== 'undefined') {
         this.itemIndex = this.$route.params.id;
         this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
@@ -192,7 +193,7 @@
         // 匹配用户答案
         for (let i = 0; i < ansArr.length; i++) {
           if (ansArr[i].index === newIndex) {
-            if (Array.isArray(ansArr[i].userAns)){
+            if (Array.isArray(ansArr[i].userAns)) {
               this.checkedList = ansArr[i].userAns
             } else {
               this.checkIndex = ansArr[i].userAns;
@@ -240,6 +241,31 @@
         this.answerList.push(this.shiftAns(dataList[i].answer, dataList[i].type));
         // console.log(this.answerList[this.answerList.length - 1]);
       }
+
+      // 初始化答案设置
+      // 固定答案
+      if (typeof (localStorage.isStick) === 'undefined') {
+        // 如果 isStick 本地没有设置，
+        localStorage.setItem("isStick", JSON.stringify(this.isStick))
+      } else if (JSON.parse(localStorage.isStick) !== this.isStick) {
+        // 如果 isStick 本地有设置，则判断是否和store存储的相同，如果不相同则更改。
+        this.setAutoStick();
+      }
+      // 自动检查答案
+      if (typeof (localStorage.isCheckIn) === 'undefined') {
+      //   // 如果 isCheckIn 本地没有设置，
+        localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn))
+      } else if (JSON.parse(localStorage.isCheckIn) !== this.isCheckIn) {
+        // 如果 isCheckIn 本地有设置，则判断是否和store存储的相同，如果不相同则更改。
+        JSON.parse(localStorage.isCheckIn) ? this.setAutoCheck(true) : this.setAutoCheck(false);
+      }
+
+      // 判断本地是否有closeCheckOfMul
+      // console.log(this.closeCheckOfMul)
+      if (typeof (localStorage.closeCheckOfMul) !== 'undefined') {
+        // 如果没有
+        localStorage.setItem('closeCheckOfMul', JSON.stringify(this.closeCheckOfMul))
+      }
     },
     mounted() {
       this.cardInit();
@@ -247,22 +273,6 @@
       if (typeof (this.$route.params.id) !== 'undefined') {
         this.slice_count = this.$route.params.id - 1;
         this.gapIndex = this.$route.params.id - 1;
-      }
-
-      // 是否自动显示答案
-      if (typeof (localStorage.isStick) !== 'undefined') {
-        if (JSON.parse(localStorage.isStick) !== this.isStick){
-          this.setAutoStick();
-        }
-      }
-
-      // if (this.isCheck) this.showAnswer = true;
-
-      // 是否自动核对答案
-      if (typeof (localStorage.isCheck) !== 'undefined') {
-        if (JSON.parse(localStorage.isCheck) !== this.isCheck){
-          this.setAutoCheck();
-        }
       }
     },
     computed: {
@@ -275,7 +285,8 @@
         'currentMemory',
         'projectBasicData',
         'isStick',
-        'isCheck',
+        'isCheckIn',
+        'closeCheckOfMul',
       ]),
     },
     methods: {
@@ -290,6 +301,7 @@
         'setFullScreen',
         'setAutoStick',
         'setAutoCheck',
+        'setCloseCheckOfMul',
       ]),
 
       /**
@@ -301,7 +313,7 @@
       getColor(answerIndex, type) {
         if (type === 1) {
           // console.log(this.checkedList);
-          if (this.checkedList.indexOf(answerIndex) >=0){
+          if (this.checkedList.indexOf(answerIndex) >= 0) {
             return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
           }
         } else {
@@ -327,7 +339,7 @@
 
         if (type === 1) {
           // console.log(this.checkedList);
-          if (this.checkedList.indexOf(answerIndex) >=0){
+          if (this.checkedList.indexOf(answerIndex) >= 0) {
             return 'c-button--active';
           }
         } else {
@@ -402,7 +414,7 @@
           if (answerList[i].index === quesIndex - 1) {
             // console.log(quesIndex);
             // console.log(answerList[i].userAns);
-            if (Array.isArray(answerList[i].userAns)){
+            if (Array.isArray(answerList[i].userAns)) {
               this.checkedList = answerList[i].userAns
             } else {
               this.checkIndex = answerList[i].userAns;
@@ -431,9 +443,12 @@
         // 默认答案为错,修改答案样式
         this.isError = true;
 
+        console.log("题目类型", type);
+        console.log("题目类型", this.isCheckIn);
+        console.log("题目类型", this.isStick);
         if (type === 1) {
           // 无则添加，有则删除
-          if (this.checkedList.indexOf(answerIndex) >= 0){
+          if (this.checkedList.indexOf(answerIndex) >= 0) {
             this.checkedList.splice(this.checkedList.indexOf(answerIndex), 1);
           } else {
             this.checkedList.push(answerIndex);
@@ -452,7 +467,7 @@
         // console.log("选择答案");
 
         // 自动校对答案
-        if (this.isCheck) this.showAnswer = true;
+        if (this.isCheckIn) this.showAnswer = true;
 
         // 判断是否是跳转过来的，是跳转的，则需要加上间隔index
         if (this.gapIndex) {
@@ -615,7 +630,7 @@
             newTempCard = this.totalCardArr.slice(this.slice_count, this.totalCardArr.length);
             console.log("还剩余", newTempCard);
 
-            this.slice_count += this.totalCardArr.length - this.slice_count ;
+            this.slice_count += this.totalCardArr.length - this.slice_count;
 
             this.cardArr = this.cardArr.concat(newTempCard);
           }
@@ -634,9 +649,16 @@
 
       // 自动检测答案
       handleCheck() {
-        this.setAutoCheck();
-        this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
-        localStorage.setItem("isCheck", JSON.stringify(this.isCheck));
+        console.log('handleCheck');
+        console.log(this.isCheckIn);
+        if (this.isCheckIn) {
+          this.setWarning("答案自动检查功能关闭");
+          this.setAutoCheck(false);
+        } else {
+          this.setWarning("答案自动检查功能开启");
+          this.setAutoCheck(true);
+        }
+        localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn));
       },
 
       // 卡片布局
@@ -830,6 +852,23 @@
 
 
               if (successful) {
+
+                // 确保多选题的时候，关闭自动检查答案
+                if (that.currentType.indexOf('mul') >= 0) {  // 多选题
+                  if(that.isCheckIn){  // 自动检查开启的时候
+                    that.setAutoCheck(false);
+                    that.setCloseCheckOfMul(true);
+                  }
+                } else {  // 不是多选题的时候
+                  // 判断自动检查是不是关闭，如果是，则进一步判断是因为什么原因而关闭的
+                  if (!that.isCheckIn) {
+                    // 判断是否是因为多选题而关闭的自动检查
+                    if (that.closeCheckOfMul) {   // 是的
+                      // 那么在不是多选题的时候，应该改回来
+                      that.setAutoCheck(true);
+                    }
+                  }
+                }
 
                 // throw card in the chosen direction
                 this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)';

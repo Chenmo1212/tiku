@@ -274,7 +274,7 @@
           localStorage.setItem("cardMode", JSON.stringify(JSON.parse(data).cardMode));
           localStorage.setItem("currentMemory", JSON.stringify(JSON.parse(data).currentMemory));
           localStorage.setItem("currentMusicBasicMsg", JSON.stringify(JSON.parse(data).currentMusicBasicMsg));
-          localStorage.setItem("isCheck", JSON.stringify(JSON.parse(data).isCheck));
+          localStorage.setItem("isCheckIn", JSON.stringify(JSON.parse(data).isCheckIn));
           localStorage.setItem("isFullScreen", JSON.stringify(JSON.parse(data).isFullScreen));
           localStorage.setItem("isStick", JSON.stringify(JSON.parse(data).isStick));
           localStorage.setItem("selectedAnswer", JSON.stringify(JSON.parse(data).selectedAnswer));

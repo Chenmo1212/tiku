@@ -106,7 +106,7 @@
              <i class="fa fa-check-circle check" aria-hidden="true"
                 v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 3"
                 @click="handleCheck"
-                :class="{active: isCheck}"></i>
+                :class="{active: isCheckIn}"></i>
               <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
           </span>
           </div>
@@ -148,7 +148,7 @@
 
         userAns: null,
 
-        questionIndex: 0,
+        questionIndex: 0,              // 题目序号
         totalQuesArr: [{
           type: 0,
           answer: 1,
@@ -175,7 +175,7 @@
         selectedChapter: '',
 
         // isStick: false,               // 是否始终显示答案
-        // isCheck: false,                // 自动检查答案
+        // isCheckIn: false,                // 自动检查答案
       }
     },
     created() {
@@ -192,6 +192,10 @@
         // 如果用户已经设置过全屏了，则改成全屏
         console.log("用户已经设置过了", JSON.parse(localStorage.isFullScreen));
         this.ifFullScreen = JSON.parse(localStorage.isFullScreen)
+      }
+      if (localStorage.selectedProject === "{}") {
+        this.setSelectedProject(this.projectBasicData['mao_gai']);
+        localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
       }
 
       // 获取全部题目数据
@@ -259,8 +263,13 @@
       // 处理标题信息
       this.chapterName = selectedChapter.title;
       this.projectName = this.selectedProject.chinese;
-      // console.log(this.selectedProject)
 
+      // 判断本地是否有closeCheckOfMul
+      // console.log(this.closeCheckOfMul)
+      if (typeof (localStorage.closeCheckOfMul) !== 'undefined') {
+        // 如果没有
+        localStorage.setItem('closeCheckOfMul', JSON.stringify(this.closeCheckOfMul))
+      }
     },
 
     mounted() {
@@ -276,12 +285,12 @@
         }
       }
 
-      // if (this.isCheck) this.showAnswer = true;
+      // if (this.isCheckIn) this.showAnswer = true;
 
       // 是否自动核对答案
-      if (typeof (localStorage.isCheck) !== 'undefined') {
-        if (JSON.parse(localStorage.isCheck) !== this.isCheck){
-          this.setAutoCheck();
+      if (typeof (localStorage.isCheckIn) !== 'undefined') {
+        if (JSON.parse(localStorage.isCheckIn) !== this.isCheckIn){
+          JSON.parse(localStorage.isCheckIn) ? this.setAutoCheck(true) : this.setAutoCheck(false);
         }
       }
     },
@@ -297,7 +306,8 @@
           'projectBasicData',
           'isFullscreen',
           'isStick',
-          'isCheck',
+          'isCheckIn',
+          'closeCheckOfMul',
         ]),
     },
     methods: {
@@ -313,6 +323,7 @@
           'setFullScreen',
           'setAutoStick',
           'setAutoCheck',
+          'setCloseCheckOfMul',
         ]),
 
       /**
@@ -417,10 +428,30 @@
       changeQuestion(index) {
         if (index === 1) {     // 下一题
           if (this.questionIndex < this.totalQuesArr.length) this.questionIndex += 1;
-
         } else if (index === -1) {  // 上一题
           if (this.questionIndex > 0) this.questionIndex -= 1;
         }
+
+        // console.log(this.totalQuesArr[this.questionIndex]);
+        let tempType = this.totalQuesArr[this.questionIndex].type;
+
+        // 确保多选题的时候，关闭自动检查答案
+        if (tempType === 1) {  // 多选题
+          if(this.isCheckIn){  // 自动检查开启的时候
+            this.setAutoCheck(false);
+            this.setCloseCheckOfMul(true);
+          }
+        } else {  // 不是多选题的时候
+          // 判断自动检查是不是关闭，如果是，则进一步判断是因为什么原因而关闭的
+          if (!this.isCheckIn) {
+            // 判断是否是因为多选题而关闭的自动检查
+            if (this.closeCheckOfMul) {   // 是的
+              // 那么在不是多选题的时候，应该改回来
+              this.setAutoCheck(true);
+            }
+          }
+        }
+        // console.log(this.isCheckIn);
 
         // console.log("当前题目序号", this.questionIndex + 1);
 
@@ -451,39 +482,39 @@
           this.checkedList = [];
         }
       },
-
-      isFinished() {
-        // 重新渲染v-for
-        // this.$forceUpdate();
-
-        // console.log("isFinished");
-        // console.log("checkIndex", this.checkIndex)
-        // console.log("题目下标", this.itemIndex);
-        // console.log(this.selectedChapter);
-        let projectId = this.selectedChapter.id;         // 科目id
-        let chapterIndex = this.selectedChapter.index;   // 章节下标
-        let quesIndex = this.itemIndex;                  // 题目下标
-
-        let flag = true;
-
-        // console.log(projectId)
-        // console.log(chapterIndex)
-        // console.log(this.currentType)
-        // console.log(JSON.parse(localStorage.selectedAnswer))
-        let answerList = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
-        console.log(answerList);
-        for (let i = 0; i < answerList.length; i++) {
-          if (answerList[i].index === quesIndex) {
-            console.log(answerList[i].index);
-            console.log(quesIndex);
-            this.checkIndex = answerList[i].userAns;
-            flag = false;
-            break;
-          }
-        }
-
-        if (flag) this.checkIndex = -1;
-      },
+      //
+      // isFinished() {
+      //   // 重新渲染v-for
+      //   // this.$forceUpdate();
+      //
+      //   // console.log("isFinished");
+      //   // console.log("checkIndex", this.checkIndex)
+      //   // console.log("题目下标", this.itemIndex);
+      //   // console.log(this.selectedChapter);
+      //   let projectId = this.selectedChapter.id;         // 科目id
+      //   let chapterIndex = this.selectedChapter.index;   // 章节下标
+      //   let quesIndex = this.itemIndex;                  // 题目下标
+      //
+      //   let flag = true;
+      //
+      //   // console.log(projectId)
+      //   // console.log(chapterIndex)
+      //   console.log(this.currentType)
+      //   // console.log(JSON.parse(localStorage.selectedAnswer))
+      //   let answerList = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
+      //   console.log(answerList);
+      //   for (let i = 0; i < answerList.length; i++) {
+      //     if (answerList[i].index === quesIndex) {
+      //       console.log(answerList[i].index);
+      //       console.log(quesIndex);
+      //       this.checkIndex = answerList[i].userAns;
+      //       flag = false;
+      //       break;
+      //     }
+      //   }
+      //
+      //   if (flag) this.checkIndex = -1;
+      // },
 
       /**
        * 选择选项并记录用户答案
@@ -518,7 +549,7 @@
         // console.log("选择答案");
 
         // 自动校对答案
-        if (this.isCheck) this.showAnswer = true;
+        if (this.isCheckIn) this.showAnswer = true;
 
         // 判断是否是跳转过来的，是跳转的，则需要加上间隔index
         this.itemIndex = index;
@@ -681,9 +712,14 @@
 
       // 自动检测答案
       handleCheck() {
-        this.setAutoCheck();
-        this.isCheck ? this.setWarning("答案自动检查功能开启") : this.setWarning("答案自动检查功能开启");
-        localStorage.setItem("isCheck", JSON.stringify(this.isCheck));
+        if(this.isCheckIn){
+          this.setWarning("答案自动检查功能关闭");
+          this.setAutoCheck(false);
+        } else {
+          this.setWarning("答案自动检查功能开启");
+          this.setAutoCheck(true);
+        }
+        localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn));
       },
 
       /**
@@ -757,7 +793,6 @@
           case 39:
             // console.log("右箭头");
             _this.changeQuestion(1);
-
         }
       }
     }
