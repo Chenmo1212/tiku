@@ -1,11 +1,11 @@
 <template>
-  <div id="mine"  :class="{dark: themeMode==='dark'}">
+  <div id="mine" :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="menu">
         <div class="menu-circle fl" @click="setModel('clear')">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </div>
-        <div class="menu-circle fr"  @click="setModel('data')">
+        <div class="menu-circle fr" @click="setModel('data')">
           <i class="fa fa-sign-out"></i>
         </div>
       </div>
@@ -56,6 +56,15 @@
         </label>
         </span>
       </div>
+      <!--<div class="item" @click="handleFeedBack">-->
+        <!--<i class="fa fa-history left"></i>-->
+        <!--<span>更新日志</span>-->
+        <!--<span class="right-icon">-->
+          <!--<span class="circle">-->
+            <!--<i class="fa fa-angle-right" aria-hidden="true"></i>-->
+          <!--</span>-->
+        <!--</span>-->
+      <!--</div>-->
       <div class="item" @click="handleFeedBack">
         <i class="fa fa-pencil-square-o left"></i>
         <span>我要反馈</span>
@@ -65,7 +74,6 @@
           </span>
         </span>
       </div>
-
     </div>
   </div>
 </template>
@@ -80,21 +88,22 @@
         ifLight: true,
       }
     },
-    created(){
-
+    created() {
       // 主题模式
-      if (typeof(localStorage.themeMode) === 'undefined'){
+      if (typeof (localStorage.themeMode) === 'undefined') {
         localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
       } else {
         this.ifLight = JSON.parse(localStorage.themeMode) === "light";
         let type = JSON.parse(localStorage.themeMode);
         this.setThemeMode({type: type});
       }
+
+      console.log($('.wrapper'))
     },
-    mounted(){
+    mounted() {
       // 主题模式
-      if (typeof(localStorage.cardMode) !== 'undefined'){
-        if (JSON.parse(localStorage.cardMode) !== this.cardMode){
+      if (typeof (localStorage.cardMode) !== 'undefined') {
+        if (JSON.parse(localStorage.cardMode) !== this.cardMode) {
           this.setTikuMode();
         }
       }
@@ -141,7 +150,7 @@
       // 更改主题
       changeTheme() {
         let type = null;
-        if(this.themeMode === 'light'){
+        if (this.themeMode === 'light') {
           type = 'dark';
           this.ifLight = true;
         } else {
@@ -158,8 +167,8 @@
       },
 
       // 设置题库模式
-      handleTikuMode(){
-        if (this.cardMode){
+      handleTikuMode() {
+        if (this.cardMode) {
           this.setTikuMode();
           this.setWarning("卡片答题页面已关闭");
         } else {
@@ -169,8 +178,8 @@
         localStorage.setItem('cardMode', JSON.stringify(this.cardMode));
       },
 
-      handleFeedBack(){
-        this.$router.push({name:'feedback'})
+      handleFeedBack() {
+        this.$router.push({name: 'feedback'})
       }
     }
   }
@@ -187,7 +196,7 @@
     position: relative;
 
     .header {
-      height: 42vh;
+      height: 38vh;
       justify-content: center;
       display: flex;
       align-items: center;
@@ -198,6 +207,7 @@
         width: 100%;
         position: absolute;
         top: 0;
+
         .menu-circle {
           width: 40px;
           height: 40px;
@@ -205,14 +215,14 @@
           border-radius: 25px;
           background-color: #f4f6f8;
           /*border: 2px solid #f4f6f8;*/
-          box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0,0,0,0.1);
+          box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
           transition: all .2s ease;
           font-size: 14px;
           text-shadow: 0 0 2px rgba(var(--text-color), 0);
         }
 
         .menu-circle:active {
-          box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1);
+          box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1);
           border: 2px solid #f4f6f8;
         }
 
@@ -293,6 +303,7 @@
           background: linear-gradient(to bottom right, #c8d0e7 0%, #fff 100%);
           animation: waves 4s linear infinite;
         }
+
         .circle__back-1.paused {
           animation-play-state: paused;
         }
@@ -301,6 +312,7 @@
           box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
           animation: waves 4s linear 2s infinite;
         }
+
         .circle__back-2.paused {
           animation-play-state: paused;
         }
@@ -326,6 +338,7 @@
         align-items: center;
         justify-content: center;
         margin-top: 40px;
+
         .typing-demo {
           width: 24ch;
           animation: typing 3s steps(24), blink 0.5s step-end infinite alternate;
@@ -336,6 +349,7 @@
           font-size: 16px;
           @include font_color('active_tab_font_color')
         }
+
         @keyframes typing {
           from {
             width: 0;
@@ -353,7 +367,7 @@
       width: 100%;
 
       .item {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         height: 100%;
         line-height: 40px;
         text-align: left;
@@ -590,7 +604,7 @@
 
         input[type="checkbox"] {
           position: relative;
-          top: 10px;
+          top: 8px;
           width: 54px;
           height: 32px;
           -webkit-appearance: none;
@@ -658,44 +672,50 @@
 
   #mine.dark {
     .menu-circle {
-      background-color: #2e3237!important;
-      box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
+      background-color: #2e3237 !important;
+      box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.65) !important;
+
       &:active {
-        border: 2px solid #2e3237!important;
-        box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
+        border: 2px solid #2e3237 !important;
+        box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
       }
     }
 
     .circle__btn {
       box-shadow: 3px 3px 6px hsla(200, 12%, 20%, 0.89), -3px -3px 6px hsla(175, 10%, 26%, 0.8) !important;
     }
+
     .circle__back-1 {
-      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b!important;
+      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b !important;
       background: linear-gradient(to bottom right, #6b6b6b 0%, #2b2b2b 100%) !important;
     }
+
     .circle__back-2 {
-      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b!important;
+      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b !important;
     }
+
     .item {
       /*box-shadow: 2px 2px 5px rgba(0,0,0,.3), -2px -2px 5px rgba(0,0,0,.5), -0.4px -0.4px 0.4px rgba(80,80,80,.4)!important;*/
-      box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65)!important;
+      box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
     }
+
     .switch-container {
       input[type="checkbox"] {
-        box-shadow: inset 0.4px 0.4px 1.5px #2E3237, inset 1.5px 1.5px 3px #6c7885, inset -0.8px -0.8px 1.5px #6c7885!important;
+        box-shadow: inset 0.4px 0.4px 1.5px #2E3237, inset 1.5px 1.5px 3px #6c7885, inset -0.8px -0.8px 1.5px #6c7885 !important;
       }
     }
+
     .right-icon {
       .circle {
-        box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
+        box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.65) !important;
       }
     }
   }
 
-  @media screen and (min-width: 1175px){
+  @media screen and (min-width: 1175px) {
     #mine .header .circle__avatar .circle__back-1,
     #mine .header .circle__avatar .circle__back-2,
-    #mine .header .circle__avatar .circle__btn{
+    #mine .header .circle__avatar .circle__btn {
       width: 8rem;
       height: 8rem;
     }

@@ -32,7 +32,7 @@
           <li>错题本记录</li>
           <li>题目总览显示答案对错</li>
         </ol>
-        <p>若您还需要其它功能，或者有很好的建议，还务必请与我个人联系。此外若网站出现Bug，也请与我联系进行反馈。联系方式（QQ）：<a href="http://wpa.qq.com/msgrd?v=3&uin=160594753&site=qq&menu=yes”">160594753</a>。</p>
+        <p>若您还需要其它功能，或者有很好的建议，还务必请与我个人联系。此外若网站出现Bug，也请与我联系进行反馈。联系方式（QQ）：<a href="tencent://message/?uin=160594753&Menu=yes'">160594753</a>。</p>
         <br>
         <p class="end name">陈默</p>
         <p class="end date">2020/07/20</p>
