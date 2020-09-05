@@ -97,8 +97,6 @@
         let type = JSON.parse(localStorage.themeMode);
         this.setThemeMode({type: type});
       }
-
-      console.log($('.wrapper'))
     },
     mounted() {
       // 主题模式
