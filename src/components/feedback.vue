@@ -21,7 +21,7 @@
           <input id="bug" name="type" type="radio" value="Bug提交"/> Bug提交
           <span class="radio-on"></span>
         </label>
-        <label class="radio" for="advice" @click.prevent="handleType(3)">
+        <label class="radio" for="advise" @click.prevent="handleType(3)">
           <span class="radio-bg"></span>
           <input id="advise" name="type" type="radio" value="对开发者的话"/> 对开发者的话
           <span class="radio-on"></span>
