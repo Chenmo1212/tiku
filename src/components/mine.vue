@@ -56,6 +56,15 @@
         </label>
         </span>
       </div>
+      <div class="item" @click="setModel('clear')">
+        <i class="fa fa-pencil-square-o left"></i>
+        <span>清空缓存</span>
+        <span class="right-icon">
+          <span class="circle">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </span>
+      </div>
       <!--<div class="item" @click="handleFeedBack">-->
         <!--<i class="fa fa-history left"></i>-->
         <!--<span>更新日志</span>-->
@@ -69,7 +78,7 @@
         <i class="fa fa-pencil-square-o left"></i>
         <span>我要反馈</span>
         <span class="right-icon">
-          <span class="circle">
+          <span class="circle right-arrow">
             <i class="fa fa-angle-right" aria-hidden="true"></i>
           </span>
         </span>
@@ -387,24 +396,22 @@
           height: 40px;
           width: 40px;
           display: inline-block;
-          font-size: 30px;
           position: relative;
+          font-size: 30px;
 
           .circle {
             height: 30px;
             width: 30px;
             border-radius: 50%;
-            display: inline-block;
+            display: flex;
+            justify-content: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.12);
             border: 2px solid;
             position: absolute;
             top: 2px;
             @include border_color("border_color1");
-
             i {
-              display: block;
-              margin-left: 11px;
-              margin-top: -2px;
+              line-height: 28px;
             }
           }
         }
@@ -670,11 +677,11 @@
 
   #mine.dark {
     .menu-circle {
-      background-color: #2e3237 !important;
+      background-color: #26282b !important;
       box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.65) !important;
 
       &:active {
-        border: 2px solid #2e3237 !important;
+        border: 2px solid #26282b !important;
         box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
       }
     }
@@ -684,12 +691,12 @@
     }
 
     .circle__back-1 {
-      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b !important;
+      box-shadow: 0.4rem 0.4rem 0.8rem #26282b, -0.4rem -0.4rem 0.8rem #26282b !important;
       background: linear-gradient(to bottom right, #6b6b6b 0%, #2b2b2b 100%) !important;
     }
 
     .circle__back-2 {
-      box-shadow: 0.4rem 0.4rem 0.8rem #2e3237, -0.4rem -0.4rem 0.8rem #26282b !important;
+      box-shadow: 0.4rem 0.4rem 0.8rem #26282b, -0.4rem -0.4rem 0.8rem #26282b !important;
     }
 
     .item {
@@ -699,7 +706,7 @@
 
     .switch-container {
       input[type="checkbox"] {
-        box-shadow: inset 0.4px 0.4px 1.5px #2E3237, inset 1.5px 1.5px 3px #6c7885, inset -0.8px -0.8px 1.5px #6c7885 !important;
+        box-shadow: inset 0.4px 0.4px 1.5px #26282b, inset 1.5px 1.5px 3px #6c7885, inset -0.8px -0.8px 1.5px #6c7885 !important;
       }
     }
 

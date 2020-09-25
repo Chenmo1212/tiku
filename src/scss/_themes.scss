@@ -15,6 +15,7 @@ $themes: (
     bg_mine_color1: #fff,   // mine 开关背景色
     bg_mine_color2: #f4f6f8,   // mine 背景色
     bg_mine_color3: #f4f6f8,   // mine 波纹背景色
+    bg_drawer_color1: #f4f6f8,
 
     //边框
     border_color1: #fff,
@@ -71,20 +72,21 @@ $themes: (
     content_color: white,
     //背景
     bg_mine: #26282b,
-    bg_mine_color1: #A7A9AA,  // mine 开关的颜色
-    bg_mine_color2: #A7A9AA ,  // mine其余的背景色
+    bg_mine_color1: #6c7885,  // mine 开关的颜色
+    bg_mine_color2: #6c7885 ,  // mine其余的背景色
     background_color2: #283142,
-    background_color3: #2E3237, // mine全局背景色
+    background_color3: #26282b, // mine全局背景色
     background_color4: #323e4e,
+    bg_drawer_color1: #26282b,
     //边框
-    border_color1: #2e3237,
+    border_color1: #26282b,
     border_mine: #6c7885,
 
     // home 页面
     home_bg_color1: #2d3135,
     home_bg_color2: #9a9a9a,
     home_bg_color3: #9a9a9a,
-    home_font_color1: #A7A9AA,
+    home_font_color1: #6c7885,
     //home_border_color1：#000000,
 
     //music 页面
@@ -92,18 +94,18 @@ $themes: (
 
     // tiku 页面
     tiku_bg_color1: #2d3135,
-    tiku_font_color1: #A7A9AA,
+    tiku_font_color1: #6c7885,
 
     //chapter 页面
     chapter_bg_color1: #26282b,
     chapter_bg_color2: #2d3135,
     chapter_border_color1: #2d3135,
-    chapter_font_color1: #A7A9AA,
+    chapter_font_color1: #6c7885,
 
     // detail 页面
     detail_bg_color1: #26282b,
     detail_bg_color2: #2d3135,
-    detail_font_color1: #A7A9AA,
+    detail_font_color1: #6c7885,
     detail_font_color2: #BF8A10,
     detail_border_color1: #2d3135,
     detail_border_color2: #2d3135,
@@ -111,7 +113,7 @@ $themes: (
     // overview 页面
     over_bg_color1: #26282b,
     over_border_color1: #2d3135,
-    over_font_color1: #A7A9AA,
+    over_font_color1: #6c7885,
 
     // App 页面
     app_bg_color1: #2d3135,

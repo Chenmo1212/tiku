@@ -376,7 +376,7 @@
             } else {
               that.musicUrl = res[0].url;
             }
-            that.setWarning("音乐数据加载成功~")
+            // that.setWarning("音乐数据加载成功~")
             console.log("音乐数据加载完成");
             audio.play();
           })

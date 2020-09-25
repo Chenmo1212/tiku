@@ -40,6 +40,11 @@ export default new Router({
       name: 'feedback',
       //懒加载
       component: resolve => require(['@/components/feedback'], resolve),
+    },{
+      path: '/test',
+      name: 'test',
+      //懒加载
+      component: resolve => require(['@/components/test'], resolve),
     },
   ]
 })

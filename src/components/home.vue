@@ -18,20 +18,28 @@
     <!--</div>-->
     <!--</div>-->
 
-    <div class="header" v-if="pageIndex === 1">
-      <div class="menu">
-        <div class="menu-circle" @click="handleFullScreen()">
-          <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>
-          <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>
-        </div>
-        <div class="title" @click="setWarning('欢迎使用  Little Cookie')">Little Cookie</div>
-        <div class="menu-circle" @click="toAbout">
-          <i class="fa fa-bell-o"></i>
-        </div>
-      </div>
+    <div id="menu_nav" class="inactive">
+      <mine-vue></mine-vue>
     </div>
 
-    <div id="navbarContainer" :class="{home: this.themeMode === 'dark'}">
+    <div id="navbarContainer" :class="{home: this.themeMode === 'dark', 'inactive': isShowDrawer}">
+      <div class="header" v-if="pageIndex === 1">
+        <div class="menu">
+          <div class="menu-circle" @click="showDrawer()">
+            <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>
+            <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>
+          </div>
+<!--          <div class="menu-circle" @click="handleFullScreen()">-->
+<!--            <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>-->
+<!--            <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>-->
+<!--          </div>-->
+          <div class="title" @click="setWarning('欢迎使用  Little Cookie')">Little Cookie</div>
+          <div class="menu-circle" @click="toAbout">
+            <i class="fa fa-bell-o"></i>
+          </div>
+        </div>
+      </div>
+
       <div id="navbar">
         <div id="bubbleWrapper">
           <div id="bubble1" class="bubble"><span class="icon"><i class="fa fa-home"
@@ -96,6 +104,7 @@
       return {
         pageIndex: 1,
         showBeginBtn: true,
+        isShowDrawer: true,
       }
     },
     created() {
@@ -172,6 +181,15 @@
         'setWarning',
         'setFullScreen',
       ]),
+
+      showDrawer(){
+        console.log("jjj")
+        let nav = document.getElementById('menu_nav');
+        let main = document.getElementById('navbarContainer');
+        nav.classList.toggle("inactive");
+        main.classList.toggle("inactive");
+        this.isShowDrawer = !this.isShowDrawer;
+      },
 
       /**
        * 设置全屏
@@ -417,6 +435,7 @@
   .hello {
     margin: 0;
     overflow: hidden;
+    @include background("bg_drawer_color1");
   }
 
   html {
@@ -473,6 +492,9 @@
   }
 
   #navbarContainer {
+    position: relative;
+    right: -76%;
+    left: 76%;
     height: 100vh;
     background-color: #f4f6f8;
     /*border-radius: 20px;*/
@@ -480,8 +502,17 @@
     justify-content: flex-end;
     flex-direction: column;
     overflow: hidden;
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    transform: scale(0.9);
+    transition: all 1s;
+
+    &.inactive {
+      right: 0;
+      left: 0;
+      border-radius: 0;
+      transform: scale(1);
+    }
 
     #navbar {
       @include font_color('home_font_color1');
@@ -821,6 +852,7 @@
 
     .home {
       background: #26282b !important;
+      box-shadow: -2px -2px 5px rgba(255,255,255,0.05),2px 2px 2px rgba(0,0,0,0.65) !important;
 
       #bg, #bgBubble {
         background-color: #26282b !important;
@@ -836,5 +868,20 @@
     }
   }
 
+  #menu_nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 76%;
+    //background-color: #f4f6f8;
+    @include background("bg_drawer_color1");
+    box-sizing: border-box;
+    transition: 1s ease left;
+  }
+
+  #menu_nav.inactive {
+    left: -76%;
+  }
 
 </style>
