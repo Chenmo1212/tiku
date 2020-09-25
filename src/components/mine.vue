@@ -48,8 +48,17 @@
         </label>
         </span>
       </div>
+      <div class="item" @click="setModel('data')">
+        <i class="fa fa-sign-out left"></i>
+        <span>管理数据</span>
+        <span class="right-icon">
+          <span class="circle">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </span>
+      </div>
       <div class="item" @click="setModel('clear')">
-        <i class="fa fa-pencil-square-o left"></i>
+        <i class="fa fa-trash-o left"></i>
         <span>清空缓存</span>
         <span class="right-icon">
           <span class="circle">
