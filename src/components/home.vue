@@ -25,14 +25,11 @@
     <div id="navbarContainer" :class="{home: this.themeMode === 'dark', 'inactive': isShowDrawer}">
       <div class="header" v-if="pageIndex === 1">
         <div class="menu">
-          <div class="menu-circle" @click="showDrawer()">
-            <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>
-            <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>
+          <div class="menu-circle m_button" @click="showDrawer()" id="m_button">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-<!--          <div class="menu-circle" @click="handleFullScreen()">-->
-<!--            <i class="fa fa-expand" aria-hidden="true" v-if="!isFullScreen"></i>-->
-<!--            <i class="fa fa-compress" aria-hidden="true" v-if="isFullScreen"></i>-->
-<!--          </div>-->
           <div class="title" @click="setWarning('欢迎使用  Little Cookie')">Little Cookie</div>
           <div class="menu-circle" @click="toAbout">
             <i class="fa fa-bell-o"></i>
@@ -63,7 +60,7 @@
       </div>
 
       <div id="content">
-        <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn"></tiku-vue>
+        <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn" class="a-fadein"></tiku-vue>
         <music-vue v-if="pageIndex === 2" class="a-fadein"></music-vue>
         <mine-vue v-if="pageIndex === 3" class="a-fadein"></mine-vue>
       </div>
@@ -186,8 +183,10 @@
         console.log("jjj")
         let nav = document.getElementById('menu_nav');
         let main = document.getElementById('navbarContainer');
+        let btn = document.getElementById('m_button');
         nav.classList.toggle("inactive");
         main.classList.toggle("inactive");
+        btn.classList.toggle("active");
         this.isShowDrawer = !this.isShowDrawer;
       },
 
@@ -234,7 +233,7 @@
         // console.log(index);
         this.pageIndex = index;
         if (index === 1) {
-          this.move('1', '16.6%', '#e8e9ed');
+          this.move('1', '16.6%', '#f4f6f8');
         }
         if (index === 2) {
           this.move('2', '50%', '#f4f6f8');
@@ -481,8 +480,21 @@
         border-radius: 25px;
         /*border: 2px solid #f4f6f8;*/
         box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
-        transition: all .2s ease;
         font-size: 14px;
+
+        -webkit-tap-highlight-color: transparent;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        cursor: pointer;
+        background-color: #f4f6f8;
+        transition: box-shadow 0.6s cubic-bezier(0.79, 0.21, 0.06, 0.81);
       }
 
       .menu-circle:active {
@@ -832,8 +844,10 @@
   .dark {
     .menu-circle {
       box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+      background-color: #26282b!important;
 
-      &:active {
+      &:active,
+      &.active.m_button {
         box-shadow: inset 2px 2px 3px -2px rgba(0,0,0,0.3),inset -2px -2px 3px 0px rgba(80,80,80,0.5) !important;
       }
     }
@@ -884,4 +898,41 @@
     left: -76%;
   }
 
+  .m_button span {
+    background-color: #A2B1CA;
+    width: 20px;
+    height: 2px;
+    border-radius: 4px;
+    margin: 3px 0 3px 0;
+    -webkit-transition: margin 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), -webkit-transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81);
+    transition: margin 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), -webkit-transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81);
+  }
+
+  .m_button span:nth-child(2) {
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+
+  .active.m_button {
+    box-shadow: inset -5px -5px 5px white,inset 5px 5px 5px rgba(0,0,0,0.1) !important;
+  }
+
+  .active.m_button span {
+    margin: -1px;
+  }
+
+  .active.m_button span:nth-child(1) {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .active.m_button span:nth-child(2) {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  .active.m_button span:nth-child(3) {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 </style>

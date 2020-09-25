@@ -1,14 +1,6 @@
 <template>
   <div id="mine" :class="{dark: themeMode==='dark'}">
     <div class="header">
-      <div class="menu">
-        <div class="menu-circle fl" @click="setModel('clear')">
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </div>
-        <div class="menu-circle fr" @click="setModel('data')">
-          <i class="fa fa-sign-out"></i>
-        </div>
-      </div>
       <div class="bg">
         <div class="circle__avatar">
           <span class="circle__btn" @click="playBtnWave">
