@@ -6,15 +6,34 @@
           <div class="day">16</div>
           <div class="month">&nbsp;/&nbsp;April</div>
         </div>
-        <div class="right new-todo" @click="addTodo">
-          <i class="fa fa-plus" aria-hidden="true"></i>
+        <!--        <div class="right new-todo" @click="addTodo">-->
+        <!--          <i class="fa fa-plus" aria-hidden="true"></i>-->
+        <!--        </div>-->
+        <div class="right new-todo add-collab-bubble" id="new_todo">
+          <div class="bubble-toggle" @click="showModal()"><i class="fa fa-plus" aria-hidden="true"></i></div>
+          <div class="add-todo-container">
+            <div class="add-header">新增代办</div>
+            <textarea class="add-input"
+                      autocomplete="off"
+                      placeholder="写下你的代办事项"
+                      v-model="newTodo" @keyup.enter="addTodo"></textarea>
+            <div class="add-group">
+              <div class="btn submit" @click="addTodo"><span>确定</span></div>
+            </div>
+            <div class="add-todo">
+              <img src="../assets/add.png" alt="no to do">
+            </div>
+          </div>
         </div>
       </header>
       <section class="main" v-show="todos.length" v-cloak>
         <ul class="todo-list">
           <li v-for="todo in filteredTodos"
               :key="todo.id"
-              :class="{ completed: todo.completed}">
+              :class="{ completed: todo.completed}"
+              class='loud-link-click'
+              data-sound="../assets/audio/finished.ogg"
+          >
             <label class="todo">
               <input class="todo__state" type="checkbox"/>
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
@@ -24,24 +43,29 @@
                 <use xlink:href="#todo__check" class="todo__check"></use>
                 <use xlink:href="#todo__circle" class="todo__circle"></use>
               </svg>
-              <span class="todo__text">{{todo.title}}</span>
+              <span class="todo__text">{{ todo.title }}</span>
             </label>
             <div class="todo-del" @click="removeTodo(todo)"><i class="fa fa-close" aria-hidden="true"></i></div>
           </li>
         </ul>
+      </section>
+      <section class="main" v-if="!todos.length">
+        <div class="no-todo">
+          <img src="../assets/none.png" alt="no to do">
+        </div>
       </section>
 
       <!-- svg -->
       <svg viewBox="0 0 0 0" style="position: absolute; z-index: -1; opacity: 0;">
         <defs>
           <linearGradient id="boxGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25" y2="25">
-            <stop offset="0%" stop-color="#27FDC7"/>
+            <stop offset="0%" stop-color="#599efb"/>
             <stop offset="100%" stop-color="#0FC0F5"/>
           </linearGradient>
 
           <linearGradient id="lineGradient">
             <stop offset="0%" stop-color="#0FC0F5"/>
-            <stop offset="100%" stop-color="#27FDC7"/>
+            <stop offset="100%" stop-color="#599efb"/>
           </linearGradient>
 
           <path id="todo__line" stroke="url(#lineGradient)" d="M21 12.3h168v0.1z"></path>
@@ -56,6 +80,8 @@
 </template>
 
 <script>
+import '../js/loud-link'
+
 export default {
   name: "test",
   data() {
@@ -119,6 +145,10 @@ export default {
   },
   filters: {},
   methods: {
+    showModal(){
+      let btn = document.getElementById('new_todo');
+      btn.classList.toggle("open");
+    },
     addTodo: function () {
       var value = this.newTodo && this.newTodo.trim();
       if (!value) {
@@ -129,9 +159,6 @@ export default {
         title: value,
         completed: false
       });
-
-      console.log(this.todos)
-
       this.newTodo = "";
     },
 
@@ -167,7 +194,7 @@ export default {
     todoStorageFetch() {
       let todos = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || this.presetValues;
       // 防止本地存储的数据为空数组
-      if (!todos.length) todos = this.presetValues;
+      // if (!todos.length) todos = this.presetValues;
 
       todos.forEach(function (todo, index) {
         todo.id = index;
@@ -287,8 +314,8 @@ body {
     }
 
     .right.new-todo {
-      height: 30px;
-      width: 30px;
+      //height: 30px;
+      //width: 30px;
       line-height: 30px;
       font-size: 18px;
     }
@@ -358,7 +385,7 @@ body {
       height: 60px;
       margin: auto;
       fill: none;
-      stroke: #27FDC7;
+      stroke: #599efb;
       stroke-width: 2;
       stroke-linejoin: round;
       stroke-linecap: round;
@@ -389,7 +416,7 @@ body {
 }
 
 .todo__circle {
-  stroke: #27FDC7;
+  stroke: #599efb;
   stroke-dasharray: 1, 6;
   stroke-width: 0;
   -webkit-transform-origin: 13.5px 12.5px;
@@ -423,7 +450,7 @@ body {
 }
 
 .todo__check {
-  stroke: #27FDC7;
+  stroke: #599efb;
   stroke-dasharray: 9.8995, 9.8995;
   stroke-dashoffset: 9.8995;
   -webkit-transition-duration: 0.32s;
@@ -469,4 +496,118 @@ body {
   -webkit-animation-name: explode;
   animation-name: explode;
 }
+
+
+.add-collab-bubble {
+  position: absolute;
+  right: 15px;
+  top: 22px;
+  height: 54px;
+  width: 54px;
+  transition: background 0.4s ease-out 0.4s, height 0.4s ease, width 0.4s ease,
+  border-radius 0.4s ease, box-shadow 0.4s ease-out, top 1s ease, right 1s ease-out;
+  z-index: 10;
+
+  &.open {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: #f4f6f8;
+    border: 1px solid #fff;
+    box-shadow: 2px 2px 4px #d1d9e6, -2px -2px 4px #f9f9f9;
+    transition: background 0.8s ease, height 0.8s ease, width 0.8s ease, border-radius 0.2s ease, box-shadow 0.2s ease,
+                top 1s ease, right 1s ease;
+  }
+}
+
+.add-collab-bubble {
+  .bubble-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 54px;
+    width: 54px;
+    z-index: 2;
+    cursor: pointer;
+
+    i {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      color: #6c7885;
+      transition: 0.2s ease;
+      transform-origin: center;
+
+      &:before, &:after {
+        transition: 0.2s ease;
+      }
+    }
+  }
+
+  &.open i {
+    transform: rotate(45deg);
+    transition: 0.24s ease-out;
+    color: #6c7885;
+    background: none;
+  }
+
+  .add-todo-container {
+    visibility: hidden;
+    padding: 1em 5%;
+    width: 90%;
+    transition: visibility 0.5s;
+
+    .add-header {
+      padding: 10px 0;
+      opacity: 0;
+      transition: opacity 0.2s ease 0.1s;
+    }
+
+    .add-input {
+      border: none;
+      outline: none;
+      max-width: 100%;
+      max-height: 300px;
+      min-width: 100%;
+      min-height: 100px;
+      padding: 10px;
+      box-sizing: border-box;
+      opacity: 0;
+      box-shadow: inset 7px -7px 14px #e8e8ea, inset -7px 7px 14px #ffffff;
+    }
+    .add-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 5%;
+      opacity: 0;
+
+      .btn {
+        border: 1px solid #fff;
+        width: 90%;
+        height: 36px;
+        line-height: 36px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px #d1d9e6, -2px -2px 4px #f9f9f9;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: .3s ease;
+        color: #599efb;
+      }
+    }
+  }
+
+  &.open .add-todo-container {
+    .add-header,
+    .add-input,
+    .add-group {
+      opacity: 1;
+    }
+    visibility: visible;
+    transition: all 5s;
+  }
+}
+
 </style>
