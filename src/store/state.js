@@ -81,4 +81,6 @@ export default {
 
   totalData: {},
 
+  todoData: null,
+
 }

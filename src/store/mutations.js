@@ -153,6 +153,11 @@ export default {
     state.closeCheckOfMul = bool;
   },
 
+  // 存储ToDo
+  SET_TODO_DATA(state, obj) {
+    state.todoData = obj;
+  },
+
   // 导出数据
   SET_EXPORT_TOTAL_DATA(state) {
     state.totalData["themeColor"] = state.themeColor;
@@ -173,6 +178,7 @@ export default {
     // state.totalData["musicStatus"] = state.musicStatus;
     // state.totalData["musicList"] = state.musicList;
     state.totalData["songListId"] = state.songListId;
+    state.totalData["todoData"] = state.todoData;
     state.totalData["currentMusicBasicMsg"] = state.currentMusicBasicMsg;
     // state.totalData["isAlert"] = state.isAlert;
     // state.totalData["warning"] = state.warning;
@@ -202,6 +208,7 @@ export default {
     // state.musicStatus = obj["musicStatus"];
     // state.musicList = obj["musicList"];
     state.songListId = obj["songListId"];
+    state.todoData = obj["todoData"];
     state.currentMusicBasicMsg = obj["currentMusicBasicMsg"];
     // state.isAlert = obj["isAlert"];
     // state.warning = obj["warning"];

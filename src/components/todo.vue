@@ -3,8 +3,8 @@
     <section class="todoapp">
       <header class="header">
         <div class="left date">
-          <div class="day">16</div>
-          <div class="month">&nbsp;/&nbsp;April</div>
+          <div class="day">{{ currentDay }}</div>
+          <div class="month">&nbsp;/&nbsp;{{ currentMonth }}</div>
         </div>
         <!--        <div class="right new-todo" @click="addTodo">-->
         <!--          <i class="fa fa-plus" aria-hidden="true"></i>-->
@@ -109,10 +109,15 @@ export default {
       }],
       STORAGE_KEY: "todo-app",
       todoStorageUid: null,
+
+      currentDay: '',
+      currentMonth: '',
     }
   },
   created() {
     this.todos = this.todoStorageFetch();
+
+    this.initDate();
   },
   // watch todos change for localStorage persistence
   watch: {
@@ -127,6 +132,7 @@ export default {
   computed: {
     ...mapState([
       'themeMode',
+      'todoData',
     ]),
 
     filteredTodos: function () {
@@ -149,6 +155,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'setTodoData',
+    ]),
     showModal(){
       let btn = document.getElementById('new_todo');
       btn.classList.toggle("open");
@@ -163,6 +172,8 @@ export default {
         title: value,
         completed: false
       });
+
+      this.setTodoData(this.todos);
       this.newTodo = "";
     },
 
@@ -196,7 +207,7 @@ export default {
     },
 
     todoStorageFetch() {
-      let todos = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || this.presetValues;
+      let todos = this.todoData || JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || this.presetValues;
       // 防止本地存储的数据为空数组
       // if (!todos.length) todos = this.presetValues;
 
@@ -204,7 +215,7 @@ export default {
         todo.id = index;
       });
       this.todoStorageUid = todos.length;
-      console.log(todos)
+      // console.log(todos)
       return todos;
     },
     todoStorageSave(todos) {
@@ -226,6 +237,16 @@ export default {
     },
     pluralize: function (n) {
       return n === 1 ? "task" : "tasks";
+    },
+
+    /**
+     * 初始化日期
+     */
+    initDate(){
+      let myDate = new Date();
+      const monthArr = ['January', 'February', 'March', 'April', 'May', 'June', "July", "August", 'September', 'October', 'November', 'December']
+      this.currentMonth = monthArr[myDate.getMonth()];
+      this.currentDay = myDate.getDate();
     }
 
   },

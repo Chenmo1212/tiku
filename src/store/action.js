@@ -98,6 +98,11 @@ export default {
     commit('SET_FULL_SCREEN', bool)
   },
 
+  // 设置todo
+  setTodoData({commit}, obj) {
+    commit('SET_TODO_DATA', obj)
+  },
+
   // 导出数据
   setExportTotalData({commit}) {
     commit('SET_EXPORT_TOTAL_DATA')
