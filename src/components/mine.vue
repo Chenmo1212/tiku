@@ -181,7 +181,7 @@
           this.setWarning("卡片答题页面已关闭");
         } else {
           this.setTikuMode();
-          this.setWarning("卡片答题页面设置成功");
+          this.setWarning("设置成功，测试功能，可能存在bug~");
         }
         localStorage.setItem('cardMode', JSON.stringify(this.cardMode));
       },

@@ -60,7 +60,7 @@ export default {
   isCheckIn: true,         // 核对答案
   closeCheckOfMul: false,   // 因为多选题而关闭的自动核对答案
 
-  cardMode: true,         // 卡片模式
+  cardMode: false,         // 卡片模式
   themeMode: 'light',     // 主题模式
 
   musicStatus: false,

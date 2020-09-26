@@ -381,7 +381,7 @@
             audio.play();
           })
           .catch(err => {
-            console.error(err)
+            console.error(err);
           });
       },
 
@@ -390,7 +390,7 @@
         let audio = document.getElementById('media');
         console.log(audio.src);
         if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-          this.setWarning("出问题啦~尝试修复中...");
+          this.setWarning("不小心溜号啦~换一首试试？");
           console.error("出问题了");
           audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
           this.songError();
@@ -414,7 +414,7 @@
         let audio = document.getElementById('media');
         console.log(audio.src);
         if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-          this.setWarning("出问题啦~尝试修复中...");
+          this.setWarning("不小心溜号啦~换一首试试？");
           console.error("出问题了");
           audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
           this.songError();
@@ -583,7 +583,7 @@
         this.checkAudio();
         let audio = document.getElementById('media');
         if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-          this.setWarning("出问题啦~");
+          this.setWarning("不小心溜号啦~换一首试试？");
           console.error("出问题了");
           audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
           this.songError();
