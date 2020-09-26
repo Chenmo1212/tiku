@@ -62,7 +62,7 @@
       <div id="content">
         <tiku-vue v-if="pageIndex === 1" :showBeginBtn="showBeginBtn" class="a-fadein"></tiku-vue>
         <music-vue v-if="pageIndex === 2" class="a-fadein"></music-vue>
-        <mine-vue v-if="pageIndex === 3" class="a-fadein"></mine-vue>
+        <todo-vue v-if="pageIndex === 3" class="a-fadein"></todo-vue>
       </div>
     </div>
 
@@ -83,6 +83,7 @@
   import tikuVue from './tiku'
   import musicVue from './music'
   import mineVue from './mine'
+  import todoVue from './todo'
 
   // 导入vuex
   import {mapState, mapActions} from 'vuex'
@@ -96,6 +97,7 @@
       tikuVue,
       musicVue,
       mineVue,
+      todoVue,
     },
     data() {
       return {
@@ -900,10 +902,10 @@
 
   .m_button span {
     background-color: #A2B1CA;
-    width: 20px;
+    width: 15px;
     height: 2px;
     border-radius: 4px;
-    margin: 3px 0 3px 0;
+    margin: 1px 0 3px 0;
     -webkit-transition: margin 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), -webkit-transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81);
     transition: margin 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81), -webkit-transform 0.4s cubic-bezier(0.79, 0.21, 0.06, 0.81);
   }

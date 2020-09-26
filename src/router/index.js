@@ -41,10 +41,10 @@ export default new Router({
       //懒加载
       component: resolve => require(['@/components/feedback'], resolve),
     },{
-      path: '/test',
-      name: 'test',
+      path: '/todo',
+      name: 'todo',
       //懒加载
-      component: resolve => require(['@/components/test'], resolve),
+      component: resolve => require(['@/components/todo'], resolve),
     },
   ]
 })
