@@ -197,7 +197,7 @@
   @import "../scss/_handle.scss";
 
   #tiku {
-    height: calc(100% - 100px);
+    height: calc(100% - 60px);
     overflow: hidden;
     margin-top: 20%;
   }
@@ -424,12 +424,6 @@
   }
 
   @media screen and (min-width: 1175px) {
-    .swiper-slide .card-cover {
-      margin: 100px auto 0;
-    }
-  }
-
-  @media (max-width: 400px) and (min-height: 700px) {
     .swiper-slide .card-cover {
       margin: 100px auto 0;
     }

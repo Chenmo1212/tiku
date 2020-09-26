@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div class="test" :class="{dark: themeMode==='dark'}">
     <section class="todoapp">
       <header class="header">
         <div class="left date">
@@ -81,6 +81,7 @@
 
 <script>
 import '../js/loud-link'
+import {mapState, mapActions} from 'vuex'
 
 export default {
   name: "test",
@@ -124,6 +125,10 @@ export default {
   },
 
   computed: {
+    ...mapState([
+      'themeMode',
+    ]),
+
     filteredTodos: function () {
       if (this.visibility === 'all') return this.filtersAll(this.todos);
       if (this.visibility === 'active') return this.filtersActive(this.todos);
@@ -143,7 +148,6 @@ export default {
       }
     }
   },
-  filters: {},
   methods: {
     showModal(){
       let btn = document.getElementById('new_todo');
@@ -236,14 +240,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../scss/_handle.scss";
 .test {
-  background-color: #f4f6f8;
+  @include background('bg_drawer_color1')
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+.dark {
+  .todo-list li,
+  .add-collab-bubble.open,
+  .add-group .btn {
+    border: 1px solid #26282b!important;
+    box-shadow: -5px -5px 5px rgba(255,255,255,0.05),2px 2px 5px rgba(0,0,0,0.65) !important;
+  }
+  .todo__text {
+    color: #6c7885!important;
+  }
+  .add-input {
+    box-shadow: inset 5px 5px 10px #202225, inset -5px -5px 10px #2c2e31!important;
+  }
 }
 
 a, button {
@@ -270,20 +284,6 @@ button {
   appearance: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: 'Noto Sans HK', sans-serif;
-  font-size: 12px;
-  line-height: 1.4em;
-  background: #d5d7de;
-  color: #000;
-  min-width: 230px;
-  max-width: 550px;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
 }
 
 .todoapp {
@@ -345,7 +345,6 @@ body {
   justify-content: space-between;
   border-radius: 10px;
   border: 2px solid #fff;
-  -webkit-box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
   box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
 
   .todo {
@@ -504,6 +503,7 @@ body {
   top: 22px;
   height: 54px;
   width: 54px;
+  @include background('bg_drawer_color1');
   transition: background 0.4s ease-out 0.4s, height 0.4s ease, width 0.4s ease,
   border-radius 0.4s ease, box-shadow 0.4s ease-out, top 1s ease, right 1s ease-out;
   z-index: 10;
@@ -558,6 +558,7 @@ body {
     padding: 1em 5%;
     width: 90%;
     transition: visibility 0.5s;
+    @include background('bg_drawer_color1');
 
     .add-header {
       padding: 10px 0;
@@ -575,6 +576,7 @@ body {
       padding: 10px;
       box-sizing: border-box;
       opacity: 0;
+      @include background('todoInput_bg_color');
       box-shadow: inset 7px -7px 14px #e8e8ea, inset -7px 7px 14px #ffffff;
     }
     .add-group {
