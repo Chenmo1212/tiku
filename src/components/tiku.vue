@@ -138,11 +138,27 @@
         localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
       }
     },
+    mounted() {
+      const that = this;
+      document.getElementById('appTitle').innerHTML = '欢迎你~';
+      setTimeout(function () {
+        document.getElementById('app').style.display = 'block';
+        document.getElementById('appLoading').style.display = 'none';
+
+        // 调整主题模式
+        if (typeof (localStorage.themeMode) !== 'undefined') {
+          let type = JSON.parse(localStorage.themeMode);
+          window.document.documentElement.setAttribute("data-theme", type);
+          that.setThemeMode({type: type});
+        }
+      }, 1000)
+    },
     methods: {
       ...mapActions([
         'setThemeColor',
         'setSelectedProject',
         'setSelectedChapter',
+        'setThemeMode',
       ]),
 
       /**

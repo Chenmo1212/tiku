@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-control" :class="{dark: this.themeMode === 'dark'}">
+  <div id="app" class="max-control" :class="{dark: this.themeMode === 'dark'}" style="display: none">
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
@@ -35,7 +35,9 @@
         <div class="music-model" v-if="musicModel">
           <div class="text">{{ modelMsg }}</div>
           <div class="input">
-            <input type="number" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput">
+            <label>
+              <input type="number" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput"/>
+            </label>
           </div>
           <div class="submit-btn" @click="handleSongListId">
             <i class="fa fa-send-o"></i>
@@ -46,7 +48,9 @@
         <!--导入数据模态框-->
         <div class="import-model" v-if="dataModel">
           <div class="input">
-            <input type="text" class="form__input" placeholder="在此处导入您的数据" v-model="dataInput">
+            <label>
+              <input type="text" class="form__input" placeholder="在此处导入您的数据" v-model="dataInput">
+            </label>
           </div>
           <div class="btn-group">
             <div class="import-btn" @click="importData">
@@ -161,7 +165,7 @@ export default {
       songListInput: '',
       isPlay: false,
 
-      isWelcome: true,
+      isWelcome: false,
 
       alertMsg: "卡片答题模式已开启",
     }
@@ -466,8 +470,7 @@ export default {
      * @param playlistId 歌单id
      */
     fetch163Playlist(playlistId) {
-      let that = this;
-      return new Promise((ok, err) => {
+      return new Promise((ok) => {
         fetch(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
           .then(response => response.json())
           .then(data => {
@@ -486,7 +489,6 @@ export default {
       });
     },
     fetch163Songs(Ids) {
-      let that = this;
       return new Promise(function (ok, err) {
         let ids;
         switch (typeof Ids) {
@@ -518,12 +520,10 @@ export default {
                 lrc: song.lyric
               });
             });
-            // that.isWelcome = false;
             return songs;
           })
           .then(ok)
           .catch(err => {
-            // that.isWelcome = false;
             alert("出错了3" + err)
           });
       });

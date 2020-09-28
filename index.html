@@ -1,12 +1,132 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Little Cookie</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Little Cookie</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b82248b24661005414494db6eada639c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <style media="screen" type="text/css">
+    #appLoading {
+      width: 100%;
+      height: 100vh;
+      background-color: #f4f4f6;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      /*display: -webkit-box;*/
+      /*display: flex;*/
+      width: 120px;
+      height: 54px;
+      font-size: 0;
+      position: relative;
+    }
+
+    .loader h3 {
+      height: 30px;
+      width: 100px;
+      position: absolute;
+      bottom: -60px;
+      color: #A2B1CA;
+      font-size: 24px;
+      /*text-shadow: 1px 2px 4px rgba(0,0,0,.3), -7px -7px 20px rgba(255,255,255,1), -4px -4px 5px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,1), 4px 4px 5px rgba(0,0,0,.2), 0 0 10px rgba(0,0,0,.3);*/
+      text-shadow:-1px 0 white,0 1px white,1px 0 white,0 -1px white;
+    }
+
+    .loader  .elem {
+      display: inline-block;
+      vertical-align: middle;
+      width: 12px;
+      height: 12px;
+      background: #A2B1CA;
+      border-radius: 50px;
+      -webkit-animation: anim-loader 2.5s ease-in-out infinite;
+      animation: anim-loader 2.5s ease-in-out infinite;
+      border: 1px solid #fff;
+    }
+
+    .loader .elem:nth-child(2) {
+      margin-left: 12px;
+      -webkit-animation-delay: 0.2s;
+      animation-delay: 0.2s;
+    }
+
+    .loader .elem:nth-child(3) {
+      margin-left: 12px;
+      -webkit-animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+
+    .loader .elem:nth-child(4) {
+      margin-left: 12px;
+      -webkit-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .loader .elem:nth-child(5) {
+      margin-left: 12px;
+      -webkit-animation-delay: 0.8s;
+      animation-delay: 0.8s;
+    }
+
+    @-webkit-keyframes anim-loader {
+      0% {
+        height: 12px;
+        box-shadow: none;
+      }
+      30% {
+        height: 45px;
+        box-shadow: -3px -3px 5px 0 rgba(255, 255, 255, 0.7), 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+      60% {
+        height: 12px;
+        box-shadow: none;
+      }
+    }
+
+    @keyframes anim-loader {
+      0% {
+        height: 12px;
+        box-shadow: none;
+      }
+      30% {
+        height: 45px;
+        box-shadow: -3px -3px 5px 0 rgba(255, 255, 255, 0.7), 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+      60% {
+        height: 12px;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="appLoading">
+  <div class="loader">
+    <div class="elem-box">
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
+    </div>
+    <h3 id="appTitle">Loading...</h3>
+  </div>
+</div>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
 </html>

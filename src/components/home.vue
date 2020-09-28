@@ -70,7 +70,7 @@
       <defs>
         <filter id="goo">
           <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" id="blurFilter"/>
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -15" result="goo"/>
+          <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -15" result="goo"/>
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </defs>
@@ -107,13 +107,6 @@
       }
     },
     created() {
-      // 调整主题模式
-      if (typeof (localStorage.themeMode) !== 'undefined') {
-        let type = JSON.parse(localStorage.themeMode);
-        window.document.documentElement.setAttribute("data-theme", type);
-        this.setThemeMode({type: type});
-      }
-
       // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
     },
     mounted() {
@@ -182,7 +175,7 @@
       ]),
 
       showDrawer(){
-        console.log("jjj")
+        // console.log("jjj")
         let nav = document.getElementById('menu_nav');
         let main = document.getElementById('navbarContainer');
         let btn = document.getElementById('m_button');
