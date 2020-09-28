@@ -122,20 +122,20 @@ export default {
       editedTodo: null,
       visibility: "all",
       presetValues: [{
-        "title": "Wake up at 5am1111",
+        "title": "我爱学习",
+        "completed": false
+      }, {
+        "title": "沉迷学习无法自拔",
+        "completed": false
+      }, {
+        "title": "优秀是一种习惯",
+        "completed": false
+      }, {
+        "title": "我心中只有学习",
+        "completed": false
+      }, {
+        "title": "如果你不爱学习，对不起，我们做不了朋友",
         "completed": true
-      }, {
-        "title": "Learn how to use Vue.js11111Learn how to use Vue.js11111Learn how to use Vue.js11111",
-        "completed": false
-      }, {
-        "title": "Drink coffee1111",
-        "completed": false
-      }, {
-        "title": "Drink coffee1111",
-        "completed": false
-      }, {
-        "title": "Drink coffee1111",
-        "completed": false
       }],
       STORAGE_KEY: "todo-app",
       todoStorageUid: null,
