@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
       var hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?b82248b24661005414494db6eada639c";
       var s = document.getElementsByTagName("script")[0];
@@ -43,10 +43,10 @@
       color: #A2B1CA;
       font-size: 24px;
       /*text-shadow: 1px 2px 4px rgba(0,0,0,.3), -7px -7px 20px rgba(255,255,255,1), -4px -4px 5px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,1), 4px 4px 5px rgba(0,0,0,.2), 0 0 10px rgba(0,0,0,.3);*/
-      text-shadow:-1px 0 white,0 1px white,1px 0 white,0 -1px white;
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     }
 
-    .loader  .elem {
+    .loader .elem {
       display: inline-block;
       vertical-align: middle;
       width: 12px;
@@ -128,5 +128,13 @@
 </div>
 <div id="app"></div>
 <!-- built files will be auto injected -->
+<script>
+  let themeMode = JSON.parse(localStorage.themeMode);
+  if (themeMode === 'dark') {
+    let obj = document.getElementById('appLoading');
+    console.log(obj)
+    obj.style.backgroundColor = '#26282b'
+  }
+</script>
 </body>
 </html>
