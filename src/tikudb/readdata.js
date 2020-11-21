@@ -59,178 +59,178 @@ let title_list = {
   lang_c_2: ["第十一章 数组", "第十二章 指针", "第十三章 结构体", "第十四章 文件", "第十五章  基本概念和算法", "第十六章 线性表", "第十七章 栈与队列", "第十八章 树与二叉树", "第十九章 图", "第二十章 查找与排序"]
 }
 
-// function write(path, msg) {
-//   return new Promise((resolve, reject) => {
-//     fs.writeFile(path, msg, (err, data) => {
-//       if (err) {
-//         reject(err);
-//       }
-//       resolve(console.log(`${path}写入完成`))
-//     });
-//   })
-// }
-//
-// function read(path) {
-//   return new Promise((resolve, reject) => {
-//     fs.readFile(path, 'utf-8', (err, data) => {
-//       if (err) {
-//         reject(err);
-//       }
-//       resolve(JSON.parse(data))
-//     });
-//   })
-// }
-//
-// // 处理天义给的数据
-// function manageXutyData() {
-//   return new Promise(async (resolve, reject) => {
-//     // 最后要写在文件里边的数据
-//     let import_data = ''
-//     // 遍历目录取出书名
-//     for (let key in xuty_menu) {
-//       // 遍历该书的的章节
-//       for (let chapter_index = 1; chapter_index <= xuty_menu[key].length; chapter_index++) {
-//         let json_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.json`
-//         let js_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.js`
-//         import_data += `import {${key}_unit${chapter_index}} from './${key}/unit${chapter_index}.js';`
-//         let data = await read(json_path)
-//         let content = {
-//           title: title_list[key][chapter_index-1],
-//           radio: 0,
-//           multiple: 0,
-//           decide: 0,
-//           fill: 0,
-//           data: `${key}_unit${chapter_index}`
-//         }
-//         for (let index in data) {
-//           switch (data[index].type) {
-//             case 0:
-//               content.radio += 1;
-//               break;
-//             case 1:
-//               content.multiple += 1;
-//               break;
-//             case 3:
-//               content.decide += 1;
-//               break;
-//           }
-//           if (data[index].unit) {
-//             delete data[index].unit
-//           }
-//         }
-//         xuty_menu[key].content.push(content)
-//         let msg = JSON.stringify(data)
-//         msg = `export var ${key}_unit${chapter_index} = ` + msg
-//         await write(js_path, msg)
-//         console.log(`${content.title}处理完成`)
-//       }
-//     }
-//     resolve(import_data)
-//   })
-// }
-//
-// // 处理老数据库的内容
-// function manageOldData() {
-//   return new Promise(async (resolve, reject) => {
-//     // 引入文件用
-//     let import_data = ''
-//     // 遍历旧数据库
-//     for (let key in old_menu) {
-//       // 遍历章节
-//       for (let chapter_index = 1; chapter_index <= old_menu[key].length; chapter_index++) {
-//         let json_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.json`
-//         let js_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.js`
-//         import_data += `import {${key}_unit${chapter_index}} from './${key}/unit${chapter_index}.js';`
-//         // 读取数据
-//         let data = await read(json_path)
-//         // 章节内容
-//         let content = {
-//           title: title_list[key][chapter_index-1],
-//           radio: 0,
-//           multiple: 0,
-//           decide: 0,
-//           fill: 0,
-//           data: `${key}_unit${chapter_index}`
-//         }
-//         // 遍历老数据组织成新数据
-//         let new_data = []
-//         for (let issue of data) {
-//           let new_issue
-//           if (issue.type == 'sig' || issue.type == 'mul') {
-//             // 是单选或者多选
-//             new_issue = {
-//               options: [issue.ChoosenA, issue.ChoosenB, issue.ChoosenC, issue.ChoosenD],
-//               question: issue.question,
-//               answer: translateAnswer(issue.answer),
-//               type: issue.type == 'sig' ? 0 : 1
-//             }
-//             issue.type == 'sig' ? content.radio += 1 : content.multiple += 1;
-//           } else {
-//             // 老数据的详细分类处理
-//             if (issue.answer == '是' || issue.answer == '否') {
-//               // 是判断
-//               new_issue = {
-//                 question: issue.question,
-//                 answer: issue.answer == '是' ? 0 : 1,
-//                 type: 3
-//               }
-//               content.decide += 1
-//             } else if (issue.answer == '') {
-//               // 无答案, 全是判断题
-//               new_issue = {
-//                 question: issue.question,
-//                 answer: -1,
-//                 type: 3
-//               }
-//               content.decide += 1
-//             } else {
-//               // 剩下得全是填空
-//               new_issue = {
-//                 question: issue.question,
-//                 answer: issue.answer.split("@"),
-//                 type: 2,
-//                 answer_num: issue.ChoosenA - 0,
-//                 img_list: [issue.ChoosenB || null, issue.ChoosenC || null, issue.ChoosenD || null]
-//               }
-//               content.fill += 1
-//             }
-//             // else {
-//             //   // 防止出现未知情况，在这打印出来
-//             //   console.log('出现未知情况')
-//             //   console.log(key, chapter_index, issue)
-//             // }
-//           }
-//           // 放进new_data
-//           new_data.push(new_issue)
-//         }
-//         old_menu[key].content.push(content)
-//         let msg = JSON.stringify(new_data)
-//         msg = `export var ${key}_unit${chapter_index} = ` + msg
-//         await write(js_path, msg)
-//         console.log(`${content.title}处理完成`)
-//       }
-//     }
-//     resolve(import_data)
-//   })
-// }
-//
-// Promise.all([manageXutyData(), manageOldData()]).then(async val => {
-//   let import_data = val[0] + val[1]
-//   let menu = Object.assign(xuty_menu, old_menu)
-//   import_data = import_data + 'export var tikudb =' + JSON.stringify(menu)
-//   let config_path = 'd:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\tikudb.js'
-//   await write(config_path, import_data)
-//   console.log('操作完成')
-// })
-//
-//
-// function translateAnswer(input) {
-//   let letter_map = ['A', 'B', 'C', 'D']
-//   let res = []
-//   letter_map.map(function (letter, index) {
-//     if (input.indexOf(letter) != -1) {
-//       res.push(index)
-//     }
-//   })
-//   return res.length == 1 ? res[0] : res
-// }
+function write(path, msg) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, msg, (err, data) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(console.log(`${path}写入完成`))
+    });
+  })
+}
+
+function read(path) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf-8', (err, data) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(JSON.parse(data))
+    });
+  })
+}
+
+// 处理天义给的数据
+function manageXutyData() {
+  return new Promise(async (resolve, reject) => {
+    // 最后要写在文件里边的数据
+    let import_data = ''
+    // 遍历目录取出书名
+    for (let key in xuty_menu) {
+      // 遍历该书的的章节
+      for (let chapter_index = 1; chapter_index <= xuty_menu[key].length; chapter_index++) {
+        let json_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.json`
+        let js_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.js`
+        import_data += `import {${key}_unit${chapter_index}} from './${key}/unit${chapter_index}.js';`
+        let data = await read(json_path)
+        let content = {
+          title: title_list[key][chapter_index-1],
+          radio: 0,
+          multiple: 0,
+          decide: 0,
+          fill: 0,
+          data: `${key}_unit${chapter_index}`
+        }
+        for (let index in data) {
+          switch (data[index].type) {
+            case 0:
+              content.radio += 1;
+              break;
+            case 1:
+              content.multiple += 1;
+              break;
+            case 3:
+              content.decide += 1;
+              break;
+          }
+          if (data[index].unit) {
+            delete data[index].unit
+          }
+        }
+        xuty_menu[key].content.push(content)
+        let msg = JSON.stringify(data)
+        msg = `export var ${key}_unit${chapter_index} = ` + msg
+        await write(js_path, msg)
+        console.log(`${content.title}处理完成`)
+      }
+    }
+    resolve(import_data)
+  })
+}
+
+// 处理老数据库的内容
+function manageOldData() {
+  return new Promise(async (resolve, reject) => {
+    // 引入文件用
+    let import_data = ''
+    // 遍历旧数据库
+    for (let key in old_menu) {
+      // 遍历章节
+      for (let chapter_index = 1; chapter_index <= old_menu[key].length; chapter_index++) {
+        let json_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.json`
+        let js_path = `d:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\${key}\\unit${chapter_index}.js`
+        import_data += `import {${key}_unit${chapter_index}} from './${key}/unit${chapter_index}.js';`
+        // 读取数据
+        let data = await read(json_path)
+        // 章节内容
+        let content = {
+          title: title_list[key][chapter_index-1],
+          radio: 0,
+          multiple: 0,
+          decide: 0,
+          fill: 0,
+          data: `${key}_unit${chapter_index}`
+        }
+        // 遍历老数据组织成新数据
+        let new_data = []
+        for (let issue of data) {
+          let new_issue
+          if (issue.Mode == 'sig' || issue.Mode == 'mul') {
+            // 是单选或者多选
+            new_issue = {
+              options: [issue.ChoosenA, issue.ChoosenB, issue.ChoosenC, issue.ChoosenD],
+              question: issue.QuestionStr,
+              answer: translateAnswer(issue.Answer),
+              type: issue.Mode == 'sig' ? 0 : 1
+            }
+            issue.Mode == 'sig' ? content.radio += 1 : content.multiple += 1;
+          } else {
+            // 老数据的详细分类处理
+            if (issue.Answer == '是' || issue.Answer == '否') {
+              // 是判断
+              new_issue = {
+                question: issue.QuestionStr,
+                answer: issue.Answer == '是' ? 0 : 1,
+                type: 3
+              }
+              content.decide += 1
+            } else if (issue.Answer == '') {
+              // 无答案, 全是判断题
+              new_issue = {
+                question: issue.QuestionStr,
+                answer: -1,
+                type: 3
+              }
+              content.decide += 1
+            } else {
+              // 剩下得全是填空
+              new_issue = {
+                question: issue.QuestionStr,
+                answer: issue.Answer.split("@"),
+                type: 2,
+                answer_num: issue.ChoosenA - 0,
+                img_list: [issue.ChoosenB || null, issue.ChoosenC || null, issue.ChoosenD || null]
+              }
+              content.fill += 1
+            }
+            // else {
+            //   // 防止出现未知情况，在这打印出来
+            //   console.log('出现未知情况')
+            //   console.log(key, chapter_index, issue)
+            // }
+          }
+          // 放进new_data
+          new_data.push(new_issue)
+        }
+        old_menu[key].content.push(content)
+        let msg = JSON.stringify(new_data)
+        msg = `export var ${key}_unit${chapter_index} = ` + msg
+        await write(js_path, msg)
+        console.log(`${content.title}处理完成`)
+      }
+    }
+    resolve(import_data)
+  })
+}
+
+Promise.all([manageXutyData(), manageOldData()]).then(async val => {
+  let import_data = val[0] + val[1]
+  let menu = Object.assign(xuty_menu, old_menu)
+  import_data = import_data + 'export var tikudb =' + JSON.stringify(menu)
+  let config_path = 'd:\\Code\\tiku\\frontEnd\\src\\utils\\tikudb\\tikudb.js'
+  await write(config_path, import_data)
+  console.log('操作完成')
+})
+
+
+function translateAnswer(input) {
+  let letter_map = ['A', 'B', 'C', 'D']
+  let res = []
+  letter_map.map(function (letter, index) {
+    if (input.indexOf(letter) != -1) {
+      res.push(index)
+    }
+  })
+  return res.length == 1 ? res[0] : res
+}

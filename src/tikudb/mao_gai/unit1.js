@@ -187,7 +187,7 @@ export var mao_gai_unit1 = [{
   "options": ["《论联合政府》", "《论反对日本帝国主义的策略》", "《新民主主义论》", "《论人民民主专政》"],
   "type": 0,
   "question": "毛泽东在中共七大上所作的政治报告是(　  )",
-  "answer": 2
+  "answer": 0
 }, {
   "options": ["正确处理敌我矛盾", "正确处理人民内部矛盾", "坚持四项基本原则", "进行政治体制改革"],
   "type": 0,
@@ -431,6 +431,6 @@ export var mao_gai_unit1 = [{
   "answer": 1
 }, {
   "type": 3,
-  "question": "党的根本工作路线是群众路线。",
+  "question": "，党的根本工作路线是群众路线。",
   "answer": 1
 }]

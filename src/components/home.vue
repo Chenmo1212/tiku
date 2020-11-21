@@ -89,7 +89,7 @@
   import {mapState, mapActions} from 'vuex'
 
   // 导入数据
-  import tikudb from '../tikudb/tikudb'
+  import {tikudb} from '../tikudb/tikudb'
 
   export default {
     name: 'home',
@@ -112,7 +112,7 @@
     mounted() {
       // console.clear();
       // 导入数据
-      // console.log(tikudb.tikudb);
+      console.log(tikudb);
       // console.log(this.projectBasicData);
       if (JSON.stringify(this.projectBasicData) === "{}") {
         // console.log(typeof(localStorage.globalConfig) === 'undefined');
@@ -129,11 +129,11 @@
           let tikudbProjectName = ['morals_and_ethics', 'modern_history', 'marxism_principle', 'mao_gai', 'lang_c_1', 'lang_c_2', 'jun_li_1', 'jun_li_2'];
 
           for (let i = 0; i < projectName.length; i++) {
-            projectBasicData[projectName[i]] = this.getBasicMsg(tikudb.tikudb[tikudbProjectName[i]]);
+            projectBasicData[projectName[i]] = this.getBasicMsg(tikudb[tikudbProjectName[i]]);
             projectBasicData[projectName[i]].color = projectColor[i];
             projectBasicData[projectName[i]].svg = projectSvgName[i];
             projectBasicData[projectName[i]].id = projectName[i];
-            questionData[projectName[i]] = tikudb.tikudb[tikudbProjectName[i]].content;
+            questionData[projectName[i]] = tikudb[tikudbProjectName[i]].content;
           }
           // console.log("导入后的数据：", projectBasicData, '\n 题目数据：', questionData);
           this.setProjectBasicData(projectBasicData);

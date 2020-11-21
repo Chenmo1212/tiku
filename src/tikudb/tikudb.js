@@ -202,11 +202,10 @@ import {
 import {
   lang_c_2_unit10
 } from './lang_c_2/unit10.js';
-const tikudb = {
+export var tikudb = {
   "mao_gai": {
     "length": 14,
-    "content": [
-      {
+    "content": [{
       "title": "第一章 毛泽东思想及其历史地位",
       "radio": 55,
       "multiple": 28,
@@ -379,7 +378,7 @@ const tikudb = {
     "length": 11,
     "content": [{
       "title": "第一章",
-      "radio": 65,
+      "radio": 63,
       "multiple": 35,
       "decide": 0,
       "fill": 0,
@@ -393,14 +392,14 @@ const tikudb = {
       "data": modern_history_unit2
     }, {
       "title": "第三章",
-      "radio": 83,
+      "radio": 82,
       "multiple": 25,
       "decide": 0,
       "fill": 0,
       "data": modern_history_unit3
     }, {
       "title": "第四章",
-      "radio": 89,
+      "radio": 88,
       "multiple": 50,
       "decide": 0,
       "fill": 0,
@@ -506,8 +505,7 @@ const tikudb = {
   },
   "jun_li_1": {
     "length": 3,
-    "content": [
-      {
+    "content": [{
       "title": "第一章 军事思想",
       "radio": 211,
       "multiple": 53,
@@ -721,11 +719,6 @@ const tikudb = {
     }],
     "chinese": "C语言下"
   }
-};
-
-export var version = 2;
-
-export default{
-  tikudb,
-  version
 }
+
+export var version = 20201111
