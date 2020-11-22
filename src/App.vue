@@ -33,10 +33,10 @@
 
         <!--音乐模态框-->
         <div class="music-model" v-if="musicModel">
-          <div class="text">{{ modelMsg }}</div>
+          <div class="text" v-html="modelMsg"></div>
           <div class="input">
             <label>
-              <input type="number" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput"/>
+              <input type="text" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput"/>
             </label>
           </div>
           <div class="submit-btn" @click="handleSongListId">
@@ -309,16 +309,31 @@ export default {
     /**
      * 更改音乐歌单
      */
-    handleSongListId() {
+    handleSongListId(searchString) {
       const that = this;
-
+      let reg = /[1-9][0-9]*/g;
+      let songIdList = this.songListInput.match(reg);
+      console.log(songIdList)
+      let id = null
+      // http://music.163.com/playlist/899755273/579065427/?userid=579065427
+      if(this.songListInput.indexOf('?userid=') >=0){
+        id = songIdList[1]
+      } else if (this.songListInput.indexOf('playlist?id=') >=0){
+        id = songIdList[1]
+      } else if(this.songListId === null) {
+        id = songIdList[0]
+      }
       if (!this.songListInput) {
         this.setWarning("歌单id不得为空");
         return
       }
-
+      if(id === null){
+        this.setWarning("格式错误，请重试！");
+        this.songListInput = ''
+        return
+      }
       this.hiddenModel();
-      this.setSongListId(this.songListInput);
+      this.setSongListId(id);
       localStorage.setItem('songListId', JSON.stringify(this.songListId));
 
       this.handleShowLoading();
@@ -552,7 +567,7 @@ export default {
       if (type === 'music') {
         this.musicModel = true;
         this.modelTit = "更换歌单";
-        this.modelMsg = '您可以在此处替换成您的歌单';
+        this.modelMsg = '您可以在此处替换成您的歌单 <br> <span style="text-align: left; display: block; margin-top: 5px;">1. 网易云歌单ID，例如：2111679838 <br> 2. 歌单分享链接，例如：http://music...</span>';
       } else if (type === 'data') {
         this.dataModel = true;
         this.modelTit = "导入 / 导出数据";
