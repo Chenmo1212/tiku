@@ -87,9 +87,11 @@
           <div class="text">
             1. 网站使用CDN加速，打开速度更快了~ <br> <br>
             2. 题库内容已更新~<br> <br>
-            3. 模拟期末考试功能正在开发（大四有点忙，会尽快完成的）<br> <br>
-            4. 如有知道正确题型分布的朋友进行反馈~<br> <br>
-            5. 如有建议或bug请点击左上角进行反馈~<br> <br>
+            3. 音乐播放器支持传入歌单链接~<br> <br>
+            4. 优化部分细节~<br> <br>
+<!--            3. 模拟期末考试功能正在开发（大四有点忙，会尽快完成的）<br> <br>-->
+<!--            4. 如有知道正确题型分布的朋友进行反馈~<br> <br>-->
+<!--            5. 如有建议或bug请点击左上角进行反馈~<br> <br>-->
           </div>
           <div class="submit-btn" @click="hiddenUpdateModal"><i class="fa fa-send-o"></i> <span>朕知道了</span></div>
         </div>
@@ -125,18 +127,26 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
+      version: '1.1.3',
     }
   },
   created() {
+    // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
+  },
+  mounted() {
     // 更新提示框是否已经隐藏
+    if(typeof(localStorage.tiku_version) !== 'undefined'){
+      if (JSON.parse(localStorage.tiku_version) !== this.version){
+        localStorage.removeItem('isShowUpdateModal')
+        localStorage.setItem('tiku_version', this.version)
+      }
+    }
     if (typeof (localStorage.isShowUpdateModal) !== 'undefined'){
       if (!JSON.parse(localStorage.isShowUpdateModal)){
         this.isShowUpdateModal = false
       }
     }
-    // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
-  },
-  mounted() {
+
     // console.clear();
     // 导入数据
     // console.log(tikudb);
@@ -214,6 +224,7 @@ export default {
 
     hiddenUpdateModal(){
       localStorage.setItem('isShowUpdateModal', JSON.stringify(false));
+      localStorage.setItem('tiku_version', JSON.stringify(this.version));
       this.isShowUpdateModal = false;
     },
 

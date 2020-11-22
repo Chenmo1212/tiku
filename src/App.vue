@@ -313,7 +313,7 @@ export default {
       const that = this;
       let reg = /[1-9][0-9]*/g;
       let songIdList = this.songListInput.match(reg);
-      console.log(songIdList)
+      // console.log(songIdList)
       let id = null
       // http://music.163.com/playlist/899755273/579065427/?userid=579065427
       if(this.songListInput.indexOf('?userid=') >=0){
