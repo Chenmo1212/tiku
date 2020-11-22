@@ -39,18 +39,18 @@
 
       <div id="navbar">
         <div id="bubbleWrapper">
-          <div id="bubble1" class="bubble"><span class="icon"><i class="fa fa-home"
+          <div id="bubble1" class="bubble"><span class="icon"><i class="fa fa-wpforms"
                                                                  aria-hidden="true"></i></span></div>
           <div id="bubble2" class="bubble"><span class="icon"><i class="fa fa-music"></i></span></div>
-          <div id="bubble3" class="bubble"><span class="icon"><i class="fa fa-flag"></i></span></div>
+          <div id="bubble3" class="bubble"><span class="icon"><i class="fa fa-check-square-o"></i></span></div>
           <!--<div id="bubble4" class="bubble"><span class="icon"><i class="fas fa-user"></i></span></div>-->
         </div>
         <div id="menuWrapper">
           <div id="menu1" class="menuElement" @click="changeTab(1)"><i
-            class="fa fa-home"></i></div>
+            class="fa fa-wpforms"></i></div>
           <div id="menu2" class="menuElement" @click="changeTab(2)"><i class="fa fa-music"></i>
           </div>
-          <div id="menu3" class="menuElement" @click="changeTab(3)"><i class="fa fa-flag"></i></div>
+          <div id="menu3" class="menuElement" @click="changeTab(3)"><i class="fa fa-check-square-o"></i></div>
           <!--<div id="menu4" class="menuElement" @click="move('4', '329px', '#ce93d8')"><i class="fas fa-user"></i></div>-->
         </div>
       </div>
