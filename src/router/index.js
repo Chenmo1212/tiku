@@ -30,7 +30,7 @@ export default new Router({
       name: 'overview',
       //懒加载
       component: resolve => require(['@/components/overview'], resolve),
-    },{
+    }, {
       path: '/about',
       name: 'about',
       //懒加载
@@ -40,7 +40,12 @@ export default new Router({
       name: 'feedback',
       //懒加载
       component: resolve => require(['@/components/feedback'], resolve),
-    },{
+    }, {
+      path: '/beforeExam',
+      name: 'beforeExam',
+      //懒加载
+      component: resolve => require(['@/components/exam/beforeExam'], resolve),
+    }, {
       path: '/todo',
       name: 'todo',
       //懒加载

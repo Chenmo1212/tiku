@@ -195,6 +195,9 @@ export default {
     window.preSong = this.preSong;
 
     this.songError();
+
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('appLoading').style.display = 'none';
   },
   methods: {
     ...mapActions([
