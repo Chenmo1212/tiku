@@ -16,9 +16,7 @@
           <span v-if="totalQuesArr[questionIndex].type === 3">判断题</span>
         </div>
         <div class="question-num">
-          <span class="question-index" :style="{color: chapterColor}">{{ getQuestionIndex() }}</span>
-          /
-          <span class="question-num-item">{{ questionTypeNum }}</span>
+          <span class="question-index" :style="{color: chapterColor}">{{ questionIndex + 1 }}</span>
           /
           <span class="question-num-item">100</span>
         </div>
@@ -95,7 +93,7 @@
       </div>
       <div class="content-btn-group">
         <div class="menu-card" :style="{color: chapterColor}">
-          <div class="all-question" @click="toOverview">
+          <div class="all-question" @click="toExamOverview">
             <i class="fa fa-th" aria-hidden="true"></i>
           </div>
           <div class="pre-question" @click="changeQuestion(-1)" :class="{'disable': questionIndex <= 0}">
@@ -125,11 +123,15 @@ export default {
       minutes: 0,
       seconds: 0,
 
+      subjectId: null,
       totalQuesArr: [],              // 所有题目信息
       quesDistributionType: null,    // 题型分布
       answerObj: {},                 // 用户的答案
       questionTypeNum: 0,            // 题型数目
       questionTypeIndex: 0,            // 题型数目
+
+      questionIndex: 0,              // 题目序号
+      currentType: null,             // 题目类型
 
       chapterColor: "#536dfe",
       checkIndex: -1,  // 用户选项
@@ -137,33 +139,48 @@ export default {
 
       userAns: null,
 
-
-      questionIndex: 0,              // 题目序号
-
       answerList: [],                // 多选题正确答案
-      checkedList: [],               // 用户多选题答案
-
-      isError: true,
 
       ifFullScreen: false,
-
-      gapIndex: 0,
-      itemIndex: null,               // 题目序号
-      currentType: null,             // 题目类型
-
-      // isStick: false,               // 是否始终显示答案
-      // isCheckIn: false,                // 自动检查答案
     }
   },
   created() {
     // this.timer = setInterval(this.startTimer, 1000);
-    // 获取所有信息
-    this.totalQuesArr = this.$route.params.examQues;
-    this.quesDistributionType = this.$route.params.quesDistributionType;
-    this.currentType = this.totalQuesArr[0].type;
 
-    let isOverview = false;
-    let newIndex = null;
+    // console.log(this.$route.params.from)
+
+    // 获取所有信息
+    if (this.$route.params.from === 'examOverview'){
+      // 从本地中获取考试信息
+      if (typeof (localStorage.tiku_examData) !== undefined) {
+        let tempData = JSON.parse(localStorage.tiku_examData);
+        this.totalQuesArr = tempData.examQues;
+        this.subjectId = tempData.subjectId;
+        this.quesDistributionType = tempData.quesDistributionType;
+      }
+      // 从题目总览中直接跳转的题号
+      this.questionIndex = this.$route.params.quesIndex - 1;
+      this.answerObj = this.$route.params.answerObj;
+      if (this.$route.params.type.indexOf('sig') >= 0) this.currentType = 0;
+      if (this.$route.params.type.indexOf('mul') >= 0) this.currentType = 1;
+      if (this.$route.params.type.indexOf('bla') >= 0) this.currentType = 2;
+      if (this.$route.params.type.indexOf('jud') >= 0) this.currentType = 3;
+      console.log(this.questionIndex)
+      this.matchUserAns();
+    } else if(this.$route.params.from === 'beforeExam'){
+      this.totalQuesArr = this.$route.params.examQues;
+      this.subjectId = this.$route.params.id;
+      this.quesDistributionType = this.$route.params.quesDistributionType;
+      this.currentType = this.totalQuesArr[0].type;
+
+      // 将考试信息存入本地
+      this.setExamLocal()
+    } else if(typeof(localStorage.tiku_examData) !== undefined){
+      let tempData = JSON.parse(localStorage.tiku_examData);
+      this.totalQuesArr = tempData.examQues;
+      this.subjectId = tempData.subjectId;
+      this.quesDistributionType = tempData.quesDistributionType;
+    }
 
     // 键盘操作
     let _this = this;
@@ -177,67 +194,9 @@ export default {
       console.log("用户已经设置过了", JSON.parse(localStorage.isFullScreen));
       this.ifFullScreen = JSON.parse(localStorage.isFullScreen)
     }
-    if (localStorage.selectedProject === "{}") {
-      this.setSelectedProject(this.projectBasicData['mao_gai']);
-      localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject))
-    }
-
-    // 获取全部题目数据
-    this.totalQuesArr = this.$route.params.examQues;
-    console.log(this.totalQuesArr);
-
-    // 跳转题目
-    if (typeof (this.$route.params.id) !== 'undefined') {
-      this.itemIndex = this.$route.params.id;
-      this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
-      newIndex = this.$route.params.id - 1;
-      // console.log("下标", newIndex);
-      // console.log(this.selectedAnswer);
-      // console.log(this.selectedChapter);
-
-      let projectId = this.selectedChapter.id;
-      let chapterIndex = this.selectedChapter.index;
-      // console.log(this.$route.params.type);
-      let type = this.$route.params.type.slice(0, 3) + 'Arr';
-      let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
-
-      // 匹配用户答案
-      for (let i = 0; i < ansArr.length; i++) {
-        if (ansArr[i].index === newIndex) {
-          if (Array.isArray(ansArr[i].userAns)) {
-            this.checkedList = ansArr[i].userAns
-          } else {
-            this.checkIndex = ansArr[i].userAns;
-          }
-        }
-      }
-      isOverview = true;
-    }
 
     // 处理主题色
-    this.chapterColor = JSON.parse(localStorage.themeColor);
-
-    // if (isOverview) {  // 题目总览中直接跳转
-    //   this.questionIndex = newIndex;
-    // } else {           // 答题页面直接刷新
-    //   let projectId = selectedChapter.id;
-    //   let chapterIndex = selectedChapter.index;
-    //   this.questionIndex = JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex].currentIndex;
-    //   let type = this.totalQuesArr[this.questionIndex].type;
-    //   if (type === 0) type = "sigArr";
-    //   if (type === 1) type = "mulArr";
-    //   if (type === 2) type = "blaArr";
-    //   if (type === 3) type = "judArr";
-    //
-    //   let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
-    //   // console.log(ansArr);
-    //   // 匹配用户答案
-    //   for (let i = 0; i < ansArr.length; i++) {
-    //     if (ansArr[i].index === newIndex + 1) {
-    //       this.checkIndex = ansArr[i].userAns;
-    //     }
-    //   }
-    // }
+    this.chapterColor = '#00b0ff';
   },
 
   mounted() {
@@ -265,8 +224,7 @@ export default {
       ]),
   },
   methods: {
-    ...
-      mapActions([
+    ...mapActions([
         'setSelectedChapter',
         'setSelectedAnswer',
         'setCurrentMemory',
@@ -279,13 +237,6 @@ export default {
         'setAutoCheck',
         'setCloseCheckOfMul',
       ]),
-
-    getQuestionIndex() {
-      if (this.currentType === 0) return this.questionIndex + 1;
-      if (this.currentType === 1) return this.questionIndex + 1 - this.quesDistributionType.sig;
-      if (this.currentType === 2) return this.questionIndex + 1 - this.quesDistributionType.sig - this.quesDistributionType.mul;
-      if (this.currentType === 3) return this.questionIndex + 1 - this.quesDistributionType.sig - this.quesDistributionType.mul - this.quesDistributionType.bla;
-    },
     /**
      * 更改选项颜色
      * @param answerIndex 选项下标
@@ -340,33 +291,51 @@ export default {
         return ""
       }
     },
-    backChapter() {
-      this.$router.push({name: 'chapter'});
-    },
 
-    toOverview() {
-      this.$router.push({name: 'overview'})
+    toExamOverview() {
+      console.log(this.quesDistributionType)
+      this.$router.push({
+        name: 'examOverview',
+        params: {
+          from: 'examDetail',
+          subjectId: this.subjectId,
+          examQues: this.totalQuesArr,
+          userAnsObj: this.answerObj,
+          quesDistributionType: this.quesDistributionType,
+        }
+      })
+    },
+    // 匹配用户答案
+    matchUserAns(){
+      // 匹配用户答案
+      for(let key in this.answerObj){
+        if (key == this.questionIndex) {
+          if (Array.isArray(this.answerObj[key])) {
+            this.checkedList = this.answerObj[key]
+          } else {
+            this.checkIndex = this.answerObj[key]
+          }
+          return true
+        }
+      }
     },
 
     // 切换题目
     changeQuestion(index) {
       if (index === 1) {     // 下一题
-        if (this.questionIndex < this.totalQuesArr.length) this.questionIndex += 1;
-        this.setWarning("这已经是最后一题了哦~");
+        this.questionIndex < this.totalQuesArr.length ? this.questionIndex += 1 : this.setWarning("这已经是最后一题了哦~");
       } else if (index === -1) {  // 上一题
-        if (this.questionIndex > 0) this.questionIndex -= 1;
-        this.setWarning("这已经是第一题了哦~");
+        this.questionIndex > 0 ? this.questionIndex -= 1 : this.setWarning("这已经是第一题了哦~");
       }
 
       // console.log(this.totalQuesArr[this.questionIndex]);
       this.currentType = this.totalQuesArr[this.questionIndex].type;   // 题目类型变化
       this.getQuesTypeNum()
 
-      console.log("当前题目序号", this.questionIndex + 1);
-      // console.log(this.checkedList)
-
-      this.checkIndex = null;
-      this.checkedList = [];
+      if (!this.matchUserAns()){  // 匹配用户答案
+        this.checkIndex = null;
+        this.checkedList = [];
+      }
     },
     getQuesTypeNum() {  // 获取题目类型的数量
       if (this.currentType === 0) this.questionTypeNum = this.quesDistributionType.sig
@@ -396,7 +365,7 @@ export default {
         this.checkIndex = answerIndex;
         this.answerObj[index] = this.checkIndex;
       }
-      console.log(this.answerObj)
+      // console.log(this.answerObj)
     },
 
     /**
@@ -452,93 +421,6 @@ export default {
     },
 
     /**
-     * 将答案序号改成文字
-     * @param ans 题目答案序号
-     * @param type 题目类型
-     * @returns {String} 返回答案字符串
-     */
-    shiftAns(ans, type) {
-      if (type === 0) { // 单选题
-        if (ans === 0) return "A";
-        if (ans === 1) return "B";
-        if (ans === 2) return "C";
-        if (ans === 3) return "D";
-      } else if (type === 1) { // 多选题
-        let tempAns = '';
-        for (let i = 0; i < ans.length; i++) {
-          if (ans[i] === 0) tempAns += "A";
-          if (ans[i] === 1) tempAns += "B";
-          if (ans[i] === 2) tempAns += "C";
-          if (ans[i] === 3) tempAns += "D";
-          if (ans.length - i > 1) tempAns += '、';
-        }
-        return tempAns;
-      } else if (type === 2) { // 填空题
-        let tempAns = '';
-        for (let i = 0; i < ans.length; i++) {
-          tempAns += ans[i];
-          if (ans.length - i > 1) tempAns += '、';
-        }
-        return tempAns;
-      } else if (type === 3) { // 判断题
-        if (ans === 0) return "对";
-        if (ans === 1) return "错";
-      }
-    },
-
-    /**
-     * 懒加载加入数据
-     * @param len 剩余卡片数目
-     */
-    pushCardData(len) {
-      if (len > 3) return;
-      if (len <= 3) {
-        console.log("少于三个了");
-        // console.log("刚开始：", this.cardArr);
-        let newTempCard = null;
-
-        if (this.totalCardArr.length - this.slice_count > 10) {
-          // 新截取的数组
-          newTempCard = this.totalCardArr.slice(this.slice_count, this.slice_count + 10);
-          // console.log("刚开始2：", newTempCard);
-
-          this.slice_count += 10;
-        } else {
-          // 新截取的数组
-          newTempCard = this.totalCardArr.slice(this.slice_count, this.totalCardArr.length);
-          // console.log("刚开始2：", newTempCard);
-
-          this.slice_count = this.totalCardArr.length;
-        }
-
-        this.cardArr = this.cardArr.concat(newTempCard);
-        // console.log("合并后：", this.cardArr);
-
-        // 重新渲染v-for
-        this.$forceUpdate();
-      }
-    },
-
-    // 固定答案
-    handleStick() {
-      this.setAutoStick();
-      this.isStick ? this.setWarning("答案固定显示") : this.setWarning("答案取消固定");
-      localStorage.setItem("isStick", JSON.stringify(this.isStick));
-    },
-
-    // 自动检测答案
-    handleCheck() {
-      if (this.isCheckIn) {
-        this.setWarning("答案自动检查功能关闭");
-        this.setAutoCheck(false);
-      } else {
-        this.setWarning("答案自动检查功能开启");
-        this.setAutoCheck(true);
-      }
-      localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn));
-    },
-
-    /**
      * KeyListener
      */
     keyListener(_this) {
@@ -546,7 +428,7 @@ export default {
       let key = window.event.keyCode;
 
       // 选项
-      if (_this.currentType.indexOf('sig') >= 0 || _this.currentType.indexOf('jud') >= 0) {
+      if (_this.currentType === 0 || _this.currentType === 3) {
         // 单选题
         switch (key) {
           case 49:  // A
@@ -566,7 +448,7 @@ export default {
             _this.checkIndex = 3;
             break;
         }
-      } else if (_this.currentType.indexOf('mul') >= 0) {
+      } else if (_this.currentType === 1) {
         let user_index = -1;
         // 多选题
         switch (key) {
@@ -626,7 +508,16 @@ export default {
         this.hour = this.hour + 1;
       }
       this.examTime = (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds);
-    }
+    },
+
+    setExamLocal(){
+      let tempObj = {}
+      tempObj['examQues'] = this.totalQuesArr;
+      tempObj['subjectId'] = this.subjectId;
+      tempObj['quesDistributionType'] = this.quesDistributionType;
+      tempObj['userAnsObj'] = this.userAnsObj;
+      localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
+    },
   }
 }
 </script>
@@ -682,6 +573,11 @@ export default {
 
   .menu-card {
     color: #BF8A10 !important;
+  }
+
+  .header .page-title span {
+    box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
+    background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
   }
 }
 

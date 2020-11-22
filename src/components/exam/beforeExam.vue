@@ -158,6 +158,7 @@ export default {
           examQues: this.examQues,  // 模拟考试题
           id: this.subjectId,        // 科目id
           quesDistributionType: this.quesDistributionType,  // 题型分布
+          from: 'beforeExam',
         }
       });
     },
