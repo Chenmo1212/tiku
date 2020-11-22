@@ -55,11 +55,12 @@ export default {
 
   // 设置当前在背
   SET_CURRENT_MEMORY(state, obj) {
-    // console.log(state.projectBasicData);
-    // console.log(state.projectBasicData[obj.projectId]);
+    console.log(state.projectBasicData);
+    console.log(state.projectBasicData[obj.projectId]);
 
     let tempObj = {};
     tempObj["title"] = state.projectBasicData[obj.projectId]['chinese'];
+    tempObj["id"] = state.projectBasicData[obj.projectId]['id'];
     tempObj["radioNum"] = state.projectBasicData[obj.projectId]['total_sig_num'];
     tempObj["multiNum"] = state.projectBasicData[obj.projectId]['total_mul_num'];
     tempObj["judgeNum"] = state.projectBasicData[obj.projectId]['total_jud_num'];

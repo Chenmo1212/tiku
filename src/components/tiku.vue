@@ -41,15 +41,15 @@
             </button>
           </div>
           <!--模拟考试-->
-<!--          <div class="card-btn" v-show="showBeginBtn">-->
-<!--            <button class="btn begin" @click="mockExam($event, currentMemoryMsg)"-->
-<!--                    :style="{color: currentMemoryMsg.color}">-->
-<!--            <span class="icon-container">-->
-<!--              <i class="fa fa-flag"></i>-->
-<!--              模拟考试-->
-<!--            </span>-->
-<!--            </button>-->
-<!--          </div>-->
+          <div class="card-btn" v-show="showBeginBtn">
+            <button class="btn begin" @click="mockExam($event, currentMemoryMsg)"
+                    :style="{color: currentMemoryMsg.color}">
+            <span class="icon-container">
+              <i class="fa fa-flag"></i>
+              模拟考试
+            </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -90,14 +90,14 @@
             </button>
           </div>
           <!--模拟考试-->
-<!--          <div class="card-btn" v-show="showBeginBtn">-->
-<!--            <button class="btn begin" @click="mockExam($event, value)" :style="{color: value.color}">-->
-<!--            <span class="icon-container">-->
-<!--              <i class="fa fa-flag"></i>-->
-<!--              模拟考试-->
-<!--            </span>-->
-<!--            </button>-->
-<!--          </div>-->
+          <div class="card-btn" v-show="showBeginBtn">
+            <button class="btn begin" @click="mockExam($event, value)" :style="{color: value.color}">
+            <span class="icon-container">
+              <i class="fa fa-flag"></i>
+              模拟考试
+            </span>
+            </button>
+          </div>
         </div>
       </div>
     </swiper>
@@ -234,10 +234,16 @@ export default {
       return {width: result + "%", backgroundColor: value.color}
     },
 
-    mockExam(ev, item){
-      console.log(item);
+    mockExam(ev, item) {
       ev.srcElement.classList.add("active");
-      this.$router.push({name: 'beforeExam'});
+      this.setThemeColor(item.color);
+      let id_ = item.id
+      this.$router.push({
+        name: 'beforeExam',
+        params: {
+          id: id_
+        }
+      });
     }
   }
 }

@@ -30,7 +30,7 @@
         </div>
         <!-- 开始考试 -->
         <div class="start-exam">
-          <div class="card-btn">
+          <div class="card-btn" @click="toExamDetail">
             <button class="btn begin" style="color: rgb(0, 176, 255);">
               <span class="icon-container">
                 <i class="fa fa-rocket"></i>开始考试
@@ -45,7 +45,6 @@
 <script>
 import detailVue from '../cardDetail'
 import {mapState, mapActions} from 'vuex'
-import axios from 'axios'
 
 export default {
   name: "chapter",
@@ -55,20 +54,27 @@ export default {
   data() {
     return {
       pageName: '模拟考试',
+      subjectName: '',  // 科目名字
+      projectQuestion: null,  // 科目题目
+      projectBasic: null,  // 科目基本信息
 
-      type: '改进建议',
-      feedCont: '',
-      mail: '',
-      name: '',
+      totalQues: [],  // 全部题目
+      sig: [],   // 单选题
+      mul: [],  // 多选题
+      jud: [],   // 判断题
+      bla: [],   // 填空题
+      examQues: [],  // 按考试顺序出的题
+
+      quesDistributionType: '',   // 题型分布类型
     }
   },
   computed: {
     ...mapState([
-      'themeColor',
       'themeMode',
-      'cardMode',
-      'selectedProject',
-      'selectedChapter',
+      'projectName',
+      'projectQuestionData',
+      'projectBasicData',
+      'quesDistribution',
     ]),
   },
   created() {
@@ -78,6 +84,14 @@ export default {
       window.document.documentElement.setAttribute("data-theme", type);
       this.setThemeMode({type: type});
     }
+
+    // 获取科目id
+    this.subjectId = this.$route.params.id;
+    // 获取科目题目
+    this.projectQuestion = this.projectQuestionData[this.subjectId];
+    //  获取科目基本信息
+    this.projectBasic = this.projectBasicData[this.subjectId];
+    this.getAllQuestion();
   },
   mounted() {
   },
@@ -92,118 +106,70 @@ export default {
       this.$router.push({name: 'home'});
     },
 
-    /**
-     * 反馈类型
-     * @param index 下标
-     */
-    handleType(index) {
-      console.log(index);
-
-      let type1 = document.getElementById('improve');
-      let type2 = document.getElementById('bug');
-      let type3 = document.getElementById('advise');
-
-      switch (index) {
-        case 1:
-          this.type = '改进建议';
-          type1.checked = "checked";
-          type2.checked = "";
-          type3.checked = "";
-          break;
-        case 2:
-          this.type = 'Bug提交';
-          type1.checked = "";
-          type2.checked = "checked";
-          type3.checked = "";
-          break;
-        case 3:
-          this.type = '对开发者的话';
-          type1.checked = "";
-          type2.checked = "";
-          type3.checked = "checked";
-          break;
+    getAllQuestion() {
+      //  获取基本信息
+      console.log(this.projectQuestion);
+      // 合并每个章节的题
+      for (let i = 0; i < this.projectBasic.length; i++) {
+        this.totalQues = this.totalQues.concat(this.projectQuestion[i].data);
       }
-    },
-    /**
-     * 移除警告状态
-     */
-    removeWarning() {
-      document.getElementById("content").classList.remove("warning");
-      document.getElementById("mail").classList.remove("warning");
-    },
-
-    /**
-     * 检测邮箱格式是否正确
-     * @returns {boolean} 正确与否
-     */
-    checkMail() {
-      let email = this.mail;
-      let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-      if (reg.test(email)) {
-        console.log("邮箱格式正确");
-        return true
-      } else {
-        console.log("邮箱格式不正确");
-        document.getElementById("mail").classList.add("warning");
-        this.setWarning("邮箱格式不正确");
-        return false
+      for (let i = 0; i < this.totalQues.length; i++) {
+        if (this.totalQues[i].type === 0) this.sig.push(this.totalQues[i])
+        if (this.totalQues[i].type === 1) this.mul.push(this.totalQues[i])
+        if (this.totalQues[i].type === 2) this.bla.push(this.totalQues[i])
+        if (this.totalQues[i].type === 3) this.jud.push(this.totalQues[i])
       }
-    },
-    /**
-     * 检测反馈内容是否正确
-     * @returns {boolean} 正确与否
-     */
-    checkContent() {
-      let content = this.feedCont;
-      if (content) {
-        console.log("反馈内容不为空");
-        return true
-      } else {
-        console.log("反馈内容为空");
-        document.getElementById("content").classList.add("warning");
-        this.setWarning("反馈内容不得为空");
-        return false
+
+      // 获取题型比例
+      let temp = ''
+      if (this.sig.length) temp += 'sig_'
+      if (this.mul.length) temp += 'mul_'
+      if (this.jud.length) temp += 'jud_'
+      if (this.bla.length) temp += 'bla_'
+      if (temp[temp.length - 1] === '_')
+        temp = temp.substr(0, temp.length - 1)
+      this.quesDistributionType = this.quesDistribution[temp]
+      // console.log('题型分布:', this.quesDistributionType)
+
+      // 随机抽取题目
+      if (this.quesDistributionType.sig !== undefined) {
+        this.sig = this.getRandomArrayElements(this.sig, this.quesDistributionType.sig);
+        this.examQues = this.examQues.concat(this.sig)
       }
+      if (this.quesDistributionType.mul !== undefined) {
+        this.mul = this.getRandomArrayElements(this.mul, this.quesDistributionType.mul);
+        this.examQues = this.examQues.concat(this.mul)
+      }
+      if (this.quesDistributionType.jud !== undefined) {
+        this.jud = this.getRandomArrayElements(this.jud, this.quesDistributionType.jud);
+        this.examQues = this.examQues.concat(this.jud)
+      }
+      if (this.quesDistributionType.bla !== undefined) {
+        this.bla = this.getRandomArrayElements(this.bla, this.quesDistributionType.bla);
+        this.examQues = this.examQues.concat(this.bla)
+      }
+      // console.log(this.examQues)
     },
 
-    /**
-     * 提交
-     */
-    submitBug() {
-      // 检测邮箱
-      if (!this.checkMail()) return;
-      // 检测反馈内容
-      if (!this.checkContent()) return;
-
-      let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
-
-      let SCKEY = 'SCU111050Tdb28e1d031b1b4a87d4cdba2f8bba1095f478da29f48a';
-      let url = 'https://sc.ftqq.com/' + SCKEY + '.send';
-
-      let params = new URLSearchParams();
-      params.append('text', 'Little cookie 用户反馈');
-      params.append('desp', content);
-
-      axios.post(url, params, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'application/json'
-        },
-      }).then((res) => {
-        console.log("返回的值" + res);
-        this.setWarning("提交成功！感谢您的反馈！");
-        this.type = '';
-        this.mail = '';
-        this.name = '';
-        this.feedCont = ''
-      }).catch(err => {
-        console.log("错误" + err);
-        this.setWarning("提交成功了！感谢您的反馈！");
-        this.type = '';
-        this.mail = '';
-        this.name = '';
-        this.feedCont = ''
+    toExamDetail() {
+      this.$router.push({
+        name: 'examDetail',
+        params: {
+          examQues: this.examQues,  // 模拟考试题
+          id: this.subjectId,        // 科目id
+          quesDistributionType: this.quesDistributionType,  // 题型分布
+        }
       });
+    },
+    getRandomArrayElements(arr, count) {
+      let shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+      while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+      }
+      return shuffled.slice(min);
     }
   }
 }
@@ -249,7 +215,7 @@ export default {
 
     .card-btn .btn {
       background: #26282b !important;
-      color: #BF8A10!important;
+      color: #BF8A10 !important;
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
     }
   }

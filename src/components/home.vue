@@ -141,6 +141,9 @@ export default {
         localStorage.setItem('tiku_version', this.version)
       }
     }
+    if (typeof(localStorage.tiku_version) === 'undefined') {
+      localStorage.setItem('tiku_version', '1.0.0')
+    }
     if (typeof (localStorage.isShowUpdateModal) !== 'undefined'){
       if (!JSON.parse(localStorage.isShowUpdateModal)){
         this.isShowUpdateModal = false

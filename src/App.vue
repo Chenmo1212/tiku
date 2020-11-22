@@ -185,6 +185,9 @@ export default {
     ]),
   },
   mounted() {
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('appLoading').style.display = 'none';
+
     // 获取本地歌单
     if (typeof (localStorage.songListId) !== 'undefined') {
       this.setSongListId(JSON.parse(localStorage.songListId));
@@ -195,9 +198,6 @@ export default {
     window.preSong = this.preSong;
 
     this.songError();
-
-    document.getElementById('app').style.display = 'block';
-    document.getElementById('appLoading').style.display = 'none';
   },
   methods: {
     ...mapActions([

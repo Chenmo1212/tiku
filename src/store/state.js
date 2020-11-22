@@ -13,6 +13,7 @@ export default {
   // 当前在背
   currentMemory: {
     svgName: "maogai",         // 封面图名字
+    id: "mao_gai",         // 科目id
     title: "毛概",              // 名称
     currentChapter: "第一章",   // 当前章节
     chapterProgress: "2%",    // 当前进度
@@ -24,6 +25,15 @@ export default {
   },
 
   isFullScreen: false,
+
+  quesDistribution: {             // 模拟考试题型分布
+    sig_mul_jud_bla: {sig: 50, mul:30, jud: 10, bla: 10},
+    sig_mul_jud: {sig: 50, mul:30, jud: 20, bla: 0},
+    sig_mul_bla: {sig: 50, mul:30, jud: 0, bla: 20},
+    sig_mul: {sig: 70, mul: 30, jud: 0, bla: 0},
+    sig_jud: {sig: 70, mul: 0, jud: 30, bla: 0},
+    sig_bla: {sig: 70, mul: 0, jud: 0, bla: 30},
+  },
 
   projectBasicData: {},     // 科目基本信息
 
