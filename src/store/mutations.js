@@ -83,9 +83,7 @@ export default {
         break;
       }
     }
-
     state.currentMemory = tempObj;
-
     state.projectBasicData[obj.projectId].content[obj.chapterIndex].currentIndex = obj.itemIndex;
     // console.log("currentINdex", state.projectBasicData[obj.projectId].content[obj.chapterIndex]);
     // console.log("currentINdex", state.projectBasicData[obj.projectId].content[obj.chapterIndex].currentIndex)

@@ -3,7 +3,7 @@
     <div class="header">
       <div class="page-title" @click="clickSubmitBtn"><span>{{ submitName }}</span></div>
       <div class="full-screen" :style="{color: chapterColor}">
-        {{ examTime ? examTime : '00:00' }}
+        {{ examTimeObj.examTime ? examTimeObj.examTime : '00:00' }}
       </div>
     </div>
 
@@ -120,12 +120,18 @@ export default {
   name: 'Detail',
   data() {
     return {
-      examTime: '',
-      timer: "",
-      content: "",
-      hour: 0,
-      minutes: 0,
-      seconds: 0,
+      // 定时器
+      examTimeObj: {
+        beginTime: 0,
+        toOverviewTime: 0,
+        backDetailTime: 0,
+        endTime: 0,
+        examTime: '00:00:00',
+        gapTime: 0,
+        isOver: false,
+      },
+      timer: '',
+      examTime: 0,
 
       subjectId: null,
       submitName: '提交试卷',
@@ -152,30 +158,26 @@ export default {
     }
   },
   created() {
-    // this.timer = setInterval(this.startTimer, 1000);
+    // 定时器初始化
+    this.clockInit()
 
     this.submitName = this.examDoneStatus ? '查看结果' : '提交试卷';
 
     // 获取所有信息
-    if (this.$route.params.from === 'afterExam') {
-      this.totalQuesArr = this.$route.params.examQues;
-      this.subjectId = this.$route.params.id;
-      this.quesDistributionType = this.$route.params.quesDistributionType;
-      this.currentType = this.totalQuesArr[0].type;
+    let tempData = JSON.parse(localStorage.tiku_examData);
+    this.totalQuesArr = tempData.examQues;
+    this.subjectId = tempData.subjectId;
+    this.quesDistributionType = tempData.quesDistributionType;
 
+    if (this.$route.params.from === 'beforeExam') {
+      this.currentType = this.totalQuesArr[0].type;
       // 将考试信息存入本地
       this.setExamLocal(1)
-    } else if (typeof (localStorage.tiku_examData) !== undefined) {
+    } else if (typeof (localStorage.tiku_examData) !== 'undefined') {
       // 从本地中获取考试信息
-      if (typeof (localStorage.tiku_examData) !== undefined) {
-        let tempData = JSON.parse(localStorage.tiku_examData);
-        this.totalQuesArr = tempData.examQues;
-        this.subjectId = tempData.subjectId;
-        this.quesDistributionType = tempData.quesDistributionType;
-        this.questionIndex = tempData.questionIndex;
-        this.currentType = tempData.currentType;
-        this.answerObj = tempData.answerObj;
-      }
+      this.questionIndex = tempData.questionIndex;
+      this.currentType = tempData.currentType;
+      this.answerObj = tempData.answerObj;
       this.matchUserAns();
     }
 
@@ -231,25 +233,25 @@ export default {
       'setModel',
       'setSubmitExamStatus',
     ]),
-    /**
-     * 更改选项颜色
-     * @param answerIndex 选项下标
-     * @param type 题目类型
-     * @returns {*} 返回颜色
-     */
-    getColor(answerIndex, type) {
-      if (type === 1) {
-        // console.log(this.checkedList);
-        if (this.checkedList.indexOf(answerIndex) >= 0) {
-          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+
+    // 前往答题卡
+    toExamOverview() {
+      // 存储一些必要的信息
+      this.setExamLocal(1);
+
+      //  处理计时器
+      this.examTimeObj.toOverviewTime = Date.parse(new Date()) / 1000;
+      this.setLocalStorage();
+      clearInterval(this.timer)
+
+      this.$router.push({
+        name: 'examOverview',
+        params: {
+          from: 'examDetail',
         }
-      } else {
-        if (this.checkIndex === answerIndex) {
-          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
-        }
-        return {}
-      }
+      })
     },
+    // 提交试卷
     clickSubmitBtn() {
       if (!this.examDoneStatus) { // 考试在继续
         this.setModel('submitExam');  // 显示模态框等待用户操作
@@ -263,8 +265,12 @@ export default {
         })
       }
     },
-    // 提交试卷
     submitExam() {
+      // 计时器
+      clearInterval(this.timer);
+      this.examTimeObj.isOver = true;
+      this.setLocalStorage()
+
       let total = this.totalQuesArr
       let user = this.answerObj
       // 计算总分
@@ -280,6 +286,7 @@ export default {
 
       // 设置模拟考试状态为结束考试
       this.setExamStatus(true)
+      this.setSubmitExamStatus(false)
       this.setExamLocal(0);
 
       // 跳转考试结束页面
@@ -327,6 +334,26 @@ export default {
       }
       // console.log(scoreObj)
       return scoreObj
+    },
+
+    /**
+     * 更改选项颜色
+     * @param answerIndex 选项下标
+     * @param type 题目类型
+     * @returns {*} 返回颜色
+     */
+    getColor(answerIndex, type) {
+      if (type === 1) {
+        // console.log(this.checkedList);
+        if (this.checkedList.indexOf(answerIndex) >= 0) {
+          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+        }
+      } else {
+        if (this.checkIndex === answerIndex) {
+          return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
+        }
+        return {}
+      }
     },
     /**
      * 判断选项是否激活
@@ -413,18 +440,6 @@ export default {
       }
       localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn));
     },
-    // 前往答题卡
-    toExamOverview() {
-      // 存储一些必要的信息
-      this.setExamLocal(1);
-
-      this.$router.push({
-        name: 'examOverview',
-        params: {
-          from: 'examDetail',
-        }
-      })
-    },
     // 匹配用户答案
     matchUserAns() {
       // 匹配用户答案
@@ -499,53 +514,6 @@ export default {
 
       // 判断用户答案是否正确
       this.judAnswer()
-    },
-
-    /**
-     * 判断是否需要替换已选择的答案
-     */
-    judgeReplace(projectId, chapterIndex, tempObj, type, quesIndex, typeArr) {
-      let tempArr = null;
-      // console.log(JSON.parse(localStorage.selectedAnswer)[projectId]);
-      if (typeof (localStorage.selectedAnswer) === 'undefined') {
-        tempArr = this.selectedAnswer[projectId][chapterIndex][typeArr];
-      } else {
-        tempArr = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][typeArr];
-      }
-      let obj = this.isHasObj(tempArr, quesIndex);
-      // console.log(obj.flag);
-      if (obj.flag) {
-        // 科目id-章节下标-题目下标-用户答案
-        this.setSelectedAnswer({
-          projectId: projectId,
-          chapterIndex: chapterIndex,
-          quesObj: tempObj,
-          quesType: type,
-          isReplace: true,
-          replaceIndex: obj.index
-        });
-      } else {
-        // 科目id-章节下标-题目下标-用户答案
-        this.setSelectedAnswer({
-          projectId: projectId,
-          chapterIndex: chapterIndex,
-          quesObj: tempObj,
-          quesType: type,
-          isReplace: false,
-        });
-      }
-    },
-    // 判断是否已经选择过该题
-    isHasObj(arr, val) {
-      let flag = false; // true为有 false为没有
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].index === val) {
-          flag = true;
-          // console.log("重复值下标为：", i);
-          return {flag: true, index: i};
-        }
-      }
-      return {flag: false, index: -1};
     },
 
     getAnsStyle(bool) {
@@ -631,22 +599,6 @@ export default {
       _this.setExamLocal(1)
     },
 
-
-    //封装一个处理单位数字的函数
-    startTimer() {
-      this.seconds += 1;
-      if (this.seconds >= 60) {
-        this.seconds = 0;
-        this.minute = this.minute + 1;
-      }
-
-      if (this.minute >= 60) {
-        this.minute = 0;
-        this.hour = this.hour + 1;
-      }
-      this.examTime = (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds);
-    },
-
     /**
      * 存储考试用的必要信息
      * @param type: 1/0  1:普通模式； 0：考试结束后切换答题卡不改变总分
@@ -660,12 +612,88 @@ export default {
       tempObj['currentType'] = this.currentType;
       tempObj['questionIndex'] = this.questionIndex;
       if (!type && this.examDoneStatus) {  // 考试结束
-        localStorage.setItem('examTime', JSON.stringify(this.examTime))
+        localStorage.setItem('examTimeObj', JSON.stringify(this.examTimeObj))
         localStorage.setItem('totalScore', JSON.stringify(this.totalScore))
         localStorage.setItem('typeScore', JSON.stringify(this.typeScore))
       }
       localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
     },
+
+    calcExamTime() {
+      // 获取当前时间为结束时间
+      this.examTimeObj.endTime = Date.parse(new Date()) / 1000;
+      let obj = this.examTimeObj;
+
+      obj.gapTime += obj.backDetailTime - obj.toOverviewTime;  // 跳出的时间
+      obj.toOverviewTime = 0;
+      obj.backDetailTime = 0;
+
+      // 输出到屏幕上
+      let temp = (obj.endTime - obj.beginTime) - obj.gapTime;
+      // 转换成字符串
+      this.examTimeObj.examTime = this.numToTime(temp);
+      this.setLocalStorage()
+    },
+    numToTime(num) {
+      let hours = parseInt(num / 60 / 60)
+      let minute = parseInt(num / 60 % 60)
+      let second = parseInt(num % 60)
+
+      if (hours < 10) hours = '0' + hours
+      if (minute < 10) minute = '0' + minute
+      if (second < 10) second = '0' + second
+      return hours + ':' + minute + ':' + second
+    },
+    // 存储数据到本地
+    setLocalStorage() {
+      // window.examTimeObj = JSON.stringify(this.examTimeObj);
+      localStorage.setItem('examTimeObj', JSON.stringify(this.examTimeObj));
+    },
+    overClock() {
+      clearInterval(this.timer);
+      this.examTimeObj.isOver = true;
+      this.setLocalStorage()
+    },
+
+    //添加beforeunload监听事件
+    createBeforeunloadHandler() {
+      //window.addEventListener('beforeunload', e => this.beforeunloadHandler(e));
+      window.addEventListener('beforeunload', this.beforeunloadHandler, false);
+    },
+    //beforeunload监听事件
+    beforeunloadHandler(e) {
+      this.setLocalStorage();
+      console.log("本地存储")
+    },
+    toAbout() {
+      this.$router.push({name: 'about'})
+    },
+    resetTime() {
+      this.examTimeObj.beginTime = Date.parse(new Date()) / 1000;
+      this.examTimeObj.toOverviewTime = 0;
+      this.examTimeObj.backDetailTime = 0;
+      this.examTimeObj.endTime = 0;
+      this.examTimeObj.gapTime = 0;
+      this.setLocalStorage();
+    },
+    clockInit() {
+      console.log('????????????????')
+      if (typeof (localStorage.examTimeObj) === 'undefined') {
+        this.examTimeObj.beginTime = Date.parse(new Date()) / 1000;
+        this.timer = setInterval(this.calcExamTime, 1000)
+      } else {
+        // 刷新之后本地数据覆盖初始化数据
+        this.examTimeObj = JSON.parse(localStorage.examTimeObj);
+        if (!JSON.parse(localStorage.examTimeObj).isOver) {
+          this.timer = setInterval(this.calcExamTime, 1000)
+        }
+      }
+      if (this.$route.params.from && this.$route.params.from === 'examOverview') {
+        this.examTimeObj.backDetailTime = Date.parse(new Date()) / 1000;
+      }
+      this.setLocalStorage();
+      this.createBeforeunloadHandler();
+    }
   }
 }
 </script>
@@ -750,7 +778,7 @@ export default {
   }
 
   .full-screen {
-    width: 15%;
+    width: 20%;
   }
 }
 

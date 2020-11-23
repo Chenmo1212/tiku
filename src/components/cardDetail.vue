@@ -750,7 +750,7 @@
 
             // wait transition end
             setTimeout(() => {
-              // reset transform properties
+              // clockReset transform properties
               this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(1)'
             }, 100)
 
@@ -910,7 +910,7 @@
 
               } else {
 
-                // reset cards position
+                // clockReset cards position
                 this.topCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(1)';
                 if (this.nextCard) this.nextCard.style.transform = 'translateX(0%) translateY(0%) rotate(0deg) rotateY(0deg) scale(0.95)'
               }

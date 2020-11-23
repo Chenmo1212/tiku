@@ -1,4 +1,4 @@
-// 1. start the dev server using production config
+// 1. clockStart the dev server using production config
 process.env.NODE_ENV = 'testing'
 
 const webpack = require('webpack')

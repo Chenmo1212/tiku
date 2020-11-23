@@ -72,8 +72,6 @@ export default {
     ...mapState([
       'themeMode',
       'projectName',
-      'projectQuestionData',
-      'projectBasicData',
       'quesDistribution',
     ]),
   },
@@ -86,12 +84,16 @@ export default {
     }
 
     // 获取科目id
-    this.subjectId = this.$route.params.id;
+    this.subjectId = typeof (localStorage.tiku_examData) === 'undefined' ?
+      this.$route.params.id : JSON.parse(localStorage.tiku_examData).subjectId;
+
     // 获取科目题目
-    this.projectQuestion = this.projectQuestionData[this.subjectId];
+    this.projectQuestion = JSON.parse(localStorage.projectQuestionData)[this.subjectId];
     //  获取科目基本信息
-    this.projectBasic = this.projectBasicData[this.subjectId];
+    this.projectBasic = JSON.parse(localStorage.projectBasicData)[this.subjectId];
+
     this.getAllQuestion();
+    this.setExamLocal()
   },
   mounted() {
   },
@@ -152,13 +154,11 @@ export default {
     },
 
     toExamDetail() {
+      this.setExamLocal();
       this.$router.push({
         name: 'examDetail',
         params: {
-          examQues: this.examQues,  // 模拟考试题
-          id: this.subjectId,        // 科目id
-          quesDistributionType: this.quesDistributionType,  // 题型分布
-          from: 'afterExam',
+          from: 'beforeExam',
         }
       });
     },
@@ -171,7 +171,17 @@ export default {
         shuffled[i] = temp;
       }
       return shuffled.slice(min);
-    }
+    },
+    /**
+     * 存储考试用的必要信息
+     */
+    setExamLocal() {
+      let tempObj = {}
+      tempObj['examQues'] = this.examQues;
+      tempObj['subjectId'] = this.subjectId;
+      tempObj['quesDistributionType'] = this.quesDistributionType;
+      localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
+    },
   }
 }
 </script>

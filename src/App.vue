@@ -238,6 +238,7 @@ export default {
       'setWarning',
       'setMusicStatus',
       'setSubmitExamStatus',
+      'setExamStatus',
     ]),
 
     /**
@@ -646,8 +647,12 @@ export default {
     },
     backHome() {
       this.$router.push({name: 'home', replace: true});
+      this.setExamStatus(false)
       this.hiddenModel()
       localStorage.removeItem('tiku_examData');
+      localStorage.removeItem('examTimeObj');
+      localStorage.removeItem('totalScore');
+      localStorage.removeItem('typeScore');
     }
   },
 

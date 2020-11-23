@@ -112,7 +112,7 @@ export default {
     let temp = JSON.parse(localStorage.tiku_examData)
 
     // 获取时间
-    this.examTime = JSON.parse(localStorage.examTime);
+    this.examTime = JSON.parse(localStorage.examTimeObj).examTime;
     // 获取总分
     this.totalScore = JSON.parse(localStorage.totalScore);
     this.typeScore = JSON.parse(localStorage.typeScore);

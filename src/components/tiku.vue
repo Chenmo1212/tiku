@@ -187,6 +187,7 @@ export default {
       'setSelectedProject',
       'setSelectedChapter',
       'setThemeMode',
+      'setCurrentMemory',
     ]),
 
     /**
@@ -235,6 +236,17 @@ export default {
     },
 
     mockExam(ev, item) {
+      if(typeof(localStorage.tiku_examData) !== 'undefined') localStorage.removeItem('tiku_examData');
+      if(typeof(localStorage.examTimeObj) !== 'undefined') localStorage.removeItem('examTimeObj');
+
+      console.log(item.id)
+      this.setCurrentMemory({
+        projectId: item.id,
+        chapterIndex: 0,
+        itemIndex: 0,
+      });
+      localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
+
       ev.srcElement.classList.add("active");
       this.setThemeColor(item.color);
       let id_ = item.id
