@@ -78,6 +78,7 @@ export default {
   musicStatus: false,
 
   // 音乐清单
+  musicPlayActive: false,
   musicList: null,
   songListId: '2111679838',
 

@@ -84,6 +84,7 @@
     methods: {
       ...mapActions([
         'setMusicStatus',
+        'setAudioActive',
       ]),
       handleSong(index) {
         this.isChecked = true;
@@ -98,6 +99,7 @@
       },
       clickMenu() {
         const that = this;
+        this.setAudioActive(true);
 
         if (!this.isChecked) {
           // console.log(1);

@@ -161,7 +161,7 @@ export default {
   data() {
     return {
       index: 0,
-      musicUrl: 'http://music.163.com/song/media/outer/url?id=28828076.mp3',
+      musicUrl: '',
       musicList: null,
       // musicList: [
       //   'http://music.163.com/song/media/outer/url?id=28828076.mp3',
@@ -211,11 +211,10 @@ export default {
       'totalData',
       'songListId',
       'currentMemory',
+      'musicPlayActive',
     ]),
   },
   mounted() {
-    document.getElementById('app').style.display = 'block';
-    document.getElementById('appLoading').style.display = 'none';
 
     // 获取本地歌单
     if (typeof (localStorage.songListId) !== 'undefined') {
@@ -226,7 +225,8 @@ export default {
     window.nextSong = this.nextSong;
     window.preSong = this.preSong;
 
-    this.songError();
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('appLoading').style.display = 'none';
   },
   methods: {
     ...mapActions([
@@ -425,7 +425,7 @@ export default {
       }
       this.fetch163Playlist(this.songListId)
         .then(res => {
-          // console.log(res);
+          console.log(res);
           that.musicList = res;
           that.setMusicMsg(res);
           if (flag) {
@@ -436,7 +436,7 @@ export default {
           }
           // that.setWarning("音乐数据加载成功~")
           console.log("音乐数据加载完成");
-          audio.play();
+          // audio.play();
         })
         .catch(err => {
           console.error(err);
@@ -446,7 +446,7 @@ export default {
     // 下一首
     nextSong() {
       let audio = document.getElementById('media');
-      console.log(audio.src);
+      // console.log(audio.src);
       if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
         this.setWarning("不小心溜号啦~换一首试试？");
         console.error("出问题了");
@@ -470,7 +470,7 @@ export default {
     // 上一首
     preSong() {
       let audio = document.getElementById('media');
-      console.log(audio.src);
+      // console.log(audio.src);
       if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
         this.setWarning("不小心溜号啦~换一首试试？");
         console.error("出问题了");
@@ -479,8 +479,8 @@ export default {
         return;
       }
 
-      console.log("pre");
-      console.log(this.index);
+      // console.log("pre");
+      // console.log(this.index);
       if (this.index > 1) {
         this.index -= 1;
       } else {
@@ -529,7 +529,7 @@ export default {
           .then(response => response.json())
           .then(data => {
             const arr = [];
-            data.playlist.tracks.map(function (value) {
+            data.playlist.trackIds.map(function (value) {
               arr.push(value.id);
             });
             return arr;
@@ -653,12 +653,18 @@ export default {
       localStorage.removeItem('examTimeObj');
       localStorage.removeItem('totalScore');
       localStorage.removeItem('typeScore');
+    },
+
+    insertEle(){
+      this.songError();
+      console.log(this.musicList)
     }
   },
 
   watch: {
     musicStatus() {
       console.log("musicstatus change");
+      console.log(this.musicStatus);
       this.checkAudio();
       let audio = document.getElementById('media');
       if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
@@ -677,6 +683,10 @@ export default {
       } else {
         audio.pause();// 暂停
       }
+    },
+
+    musicPlayActive() {
+      this.insertEle();
     },
 
     isAlert() {
@@ -726,6 +736,7 @@ export default {
       .submit {
         background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
       }
+
       .cancel-btn {
         color: #A7A9AA;
       }
@@ -735,7 +746,7 @@ export default {
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
     }
 
-    .clear-model .submit
+    .clear-model .submit,
     .submitExam-model .submit {
       background-color: #26282b !important;
       color: #fff;

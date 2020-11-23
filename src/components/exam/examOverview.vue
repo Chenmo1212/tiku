@@ -155,6 +155,11 @@ export default {
     },
     toExamDetail(index, key, type) {
       if (type ==='back'){
+        if(this.from) {
+          let temp = JSON.parse(localStorage.examTimeObj)
+          temp.backDetailTime = Date.parse(new Date()) / 1000;
+          localStorage.setItem('examTimeObj', JSON.stringify(temp));
+        }
         this.$router.go(-1)
       } else {
         // 跳转题目，把跳转的东西存在本地

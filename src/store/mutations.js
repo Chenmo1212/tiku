@@ -104,6 +104,11 @@ export default {
     state.musicList = obj;
   },
 
+  // 激活音乐控件
+  SET_AUDIO_ACTIVE(state, bool){
+    state.musicPlayActive = bool;
+  },
+
   // 设置当前播放音乐状态
   CURRENT_MUSIC_BASIC_MSG(state, obj) {
     state.currentMusicBasicMsg = obj;

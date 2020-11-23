@@ -53,6 +53,11 @@ export default {
     commit('SET_MUSIC_MSG', obj)
   },
 
+  // 激活音乐控件
+  setAudioActive({commit}, bool) {
+    commit('SET_AUDIO_ACTIVE', bool)
+  },
+
   // 设置当前播放歌曲信息
   setCurrentBasicMsg({commit}, obj) {
     commit('CURRENT_MUSIC_BASIC_MSG', obj)

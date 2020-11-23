@@ -209,6 +209,12 @@ export default {
   watch: {
     submitExamStatus() {
       this.submitExam();
+    },
+    '$route' (to, from) {
+      console.log(to)
+      console.log(from)
+      // from 对象中要 router 来源信息.
+      // do your want
     }
   },
   computed: {
