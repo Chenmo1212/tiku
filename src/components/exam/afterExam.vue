@@ -147,10 +147,11 @@ export default {
     ...mapActions([
       'setWarning',
       'setExamStatue',
+      'setModel',
     ]),
 
     backHome() {
-      this.$router.push({name: 'home'});
+      this.setModel('backHome')
     },
 
     toExamOverview() {

@@ -1,7 +1,7 @@
 <template>
   <div class="Detail" :class="{dark: themeMode==='dark'}">
     <div class="header">
-      <div class="page-title" @click="submitExam"><span>{{ submitName }}</span></div>
+      <div class="page-title" @click="clickSubmitBtn"><span>{{ submitName }}</span></div>
       <div class="full-screen" :style="{color: chapterColor}">
         {{ examTime ? examTime : '00:00' }}
       </div>
@@ -204,6 +204,11 @@ export default {
       this.gapIndex = this.$route.params.id - 1;
     }
   },
+  watch: {
+    submitExamStatus() {
+      this.submitExam();
+    }
+  },
   computed: {
     ...
       mapState([
@@ -213,6 +218,7 @@ export default {
         'isCheckIn',
         'isFullscreen',
         'examDoneStatus',
+        'submitExamStatus',
       ]),
   },
   methods: {
@@ -222,6 +228,8 @@ export default {
       'setExamStatus',
       'setAutoStick',
       'setAutoCheck',
+      'setModel',
+      'setSubmitExamStatus',
     ]),
     /**
      * 更改选项颜色
@@ -242,28 +250,38 @@ export default {
         return {}
       }
     },
+    clickSubmitBtn() {
+      if (!this.examDoneStatus) { // 考试在继续
+        this.setModel('submitExam');  // 显示模态框等待用户操作
+      } else {
+        // 跳转考试结束页面
+        this.$router.push({
+          name: 'afterExam',
+          params: {
+            from: 'examDetail'
+          }
+        })
+      }
+    },
     // 提交试卷
     submitExam() {
-      // console.log(this.answerObj)
-      // console.log(this.totalQuesArr)
-      if (!this.examDoneStatus) { // 考试在继续
-        let total = this.totalQuesArr
-        let user = this.answerObj
-        // 计算总分
-        for (let i = 0; i < total.length; i++) {
-          if (user[i] !== undefined) { // 用户答了这个题
-            if (user[i] === total[i].answer) {  // 判断是否正确
-              this.totalScore++;
-            }
+      let total = this.totalQuesArr
+      let user = this.answerObj
+      // 计算总分
+      for (let i = 0; i < total.length; i++) {
+        if (user[i] !== undefined) { // 用户答了这个题
+          if (user[i] === total[i].answer) {  // 判断是否正确
+            this.totalScore++;
           }
         }
-        // 计算题型分数
-        this.typeScore = this.calcTypeScore();
-
-        // 设置模拟考试状态为结束考试
-        this.setExamStatus(true)
-        this.setExamLocal(0);
       }
+      // 计算题型分数
+      this.typeScore = this.calcTypeScore();
+
+      // 设置模拟考试状态为结束考试
+      this.setExamStatus(true)
+      this.setExamLocal(0);
+
       // 跳转考试结束页面
       this.$router.push({
         name: 'afterExam',

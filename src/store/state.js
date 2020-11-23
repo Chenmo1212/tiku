@@ -35,6 +35,7 @@ export default {
     sig_bla: {sig: 70, mul: 0, jud: 0, bla: 30},
   },
   examDoneStatus: false,
+  submitExamStatus: false,   // false/true  false为初始状态，true为确定
 
   projectBasicData: {},     // 科目基本信息
 

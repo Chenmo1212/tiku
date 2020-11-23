@@ -159,6 +159,11 @@ export default {
     state.examDoneStatus = bool;
   },
 
+  // 设置提交考试状态
+  SET_SUBMIT_EXAM_STATUS(state, bool){
+    state.submitExamStatus = bool;
+  },
+
   // 存储ToDo
   SET_TODO_DATA(state, obj) {
     state.todoData = obj;

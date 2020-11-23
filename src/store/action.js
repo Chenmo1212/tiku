@@ -98,9 +98,14 @@ export default {
     commit('SET_FULL_SCREEN', bool)
   },
 
-  // 设置全屏
+  // 设置期末考试状态
   setExamStatus({commit}, bool) {
     commit('SET_EXAM_STATUS', bool)
+  },
+
+  // 设置提交试卷状态
+  setSubmitExamStatus({commit}, bool) {
+    commit('SET_SUBMIT_EXAM_STATUS', bool)
   },
 
   // 设置todo

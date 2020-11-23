@@ -71,7 +71,7 @@
             <div class="btn submit" @click="deleteLocalStorage">
               <span>确定</span>
             </div>
-            <div class="btn" @click="hiddenModel">
+            <div class="btn">
               <span>取消</span>
             </div>
           </div>
@@ -85,6 +85,33 @@
             <span>刷新</span>
           </div>
         </div>
+
+        <!--提交试卷模态框-->
+        <div class="clear-model submitExam-model" v-if="submitExamModel">
+          <div class="text">{{ modelMsg }}</div>
+          <div class="btn-group">
+            <div class="btn submit" @click="clickSubmitExamBtn">
+              <span>确定</span>
+            </div>
+            <div class="btn" @click="hiddenModel()">
+              <span>取消</span>
+            </div>
+          </div>
+        </div>
+
+        <!--提交试卷模态框-->
+        <div class="clear-model submitExam-model" v-if="backHomeModel">
+          <div class="text">{{ modelMsg }}</div>
+          <div class="btn-group">
+            <div class="btn submit" @click="backHome()">
+              <span>确定</span>
+            </div>
+            <div class="btn" @click="hiddenModel()">
+              <span>取消</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -157,6 +184,8 @@ export default {
       dataModel: false,
       clearModel: false,
       freshModel: false,
+      submitExamModel: false,
+      backHomeModel: false,
       modelTit: "提示",
       modelMsg: "您可以在此处替换成您的歌单",
 
@@ -208,6 +237,7 @@ export default {
       'setSongListId',
       'setWarning',
       'setMusicStatus',
+      'setSubmitExamStatus',
     ]),
 
     /**
@@ -219,6 +249,11 @@ export default {
       this.dataModel = false;
       this.clearModel = false;
       this.dataInput = "";
+    },
+
+    clickSubmitExamBtn() {
+      this.setSubmitExamStatus(true);
+      this.hiddenModel();
     },
 
     /**
@@ -316,18 +351,18 @@ export default {
       // console.log(songIdList)
       let id = null
       // http://music.163.com/playlist/899755273/579065427/?userid=579065427
-      if(this.songListInput.indexOf('?userid=') >=0){
+      if (this.songListInput.indexOf('?userid=') >= 0) {
         id = songIdList[1]
-      } else if (this.songListInput.indexOf('playlist?id=') >=0){
+      } else if (this.songListInput.indexOf('playlist?id=') >= 0) {
         id = songIdList[1]
-      } else if(this.songListId === null) {
+      } else if (this.songListId === null) {
         id = songIdList[0]
       }
       if (!this.songListInput) {
         this.setWarning("歌单id不得为空");
         return
       }
-      if(id === null){
+      if (id === null) {
         this.setWarning("格式错误，请重试！");
         this.songListInput = ''
         return
@@ -579,6 +614,14 @@ export default {
         this.freshModel = true;
         this.modelTit = "请刷新页面";
         this.modelMsg = '歌单更换成功，请刷新页面';
+      } else if (type === 'submitExam') {
+        this.submitExamModel = true;
+        this.modelTit = "提交试卷";
+        this.modelMsg = '确定要提交试卷吗？提交之后不可更改！';
+      } else if (type === 'backHome') {
+        this.backHomeModel = true;
+        this.modelTit = "返回主页";
+        this.modelMsg = '考试结果不会保存，确定要返回主页吗？';
       }
       this.showModel = true;
     },
@@ -593,6 +636,10 @@ export default {
         clearTimeout(timeId);
       }, 3000)
     },
+    backHome() {
+      this.$router.push({name: 'home'});
+      this.hiddenModel()
+    }
   },
 
   watch: {
@@ -666,7 +713,8 @@ export default {
       color: #BF8A10 !important;
     }
 
-    .clear-model .submit {
+    .clear-model .submit
+    .submitExam-model .submit {
       background-color: #26282b !important;
       color: #fff;
     }
@@ -907,6 +955,11 @@ html, body {
         background-color: #9ee3fb;
         color: #fff;
       }
+    }
+
+    .submitExam-model .submit {
+      background: linear-gradient(-90deg, #38d1bf, #00b0ff);
+      color: #fff;
     }
   }
 }
