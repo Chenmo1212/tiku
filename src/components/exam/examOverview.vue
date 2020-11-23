@@ -155,7 +155,7 @@ export default {
     },
     toExamDetail(index, key, type) {
       if (type ==='back'){
-        if(this.from) {
+        if(this.from === 'examDetail') {
           let temp = JSON.parse(localStorage.examTimeObj)
           temp.backDetailTime = Date.parse(new Date()) / 1000;
           localStorage.setItem('examTimeObj', JSON.stringify(temp));

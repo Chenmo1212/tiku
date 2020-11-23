@@ -17,6 +17,23 @@ if (typeof (localStorage.themeMode) !== 'undefined') {
   // this.setThemeMode({type: type});
 }
 
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+  if (to.meta.toHome) { // 判断该路由是否需要登录权限
+    if(JSON.parse(localStorage.getItem('toHome'))){ //判断本地是否存在access_token
+      next();
+    }else {
+      next({
+        path:'/'
+      })
+    }
+  }
+  else {
+    next();
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

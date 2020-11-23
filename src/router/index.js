@@ -13,11 +13,17 @@ export default new Router({
     }, {
       path: '/chapter',
       name: 'chapter',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/chapter'], resolve),
     }, {
       path: '/detail',
       name: 'detail',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/detail'], resolve),
     }, {
@@ -28,6 +34,9 @@ export default new Router({
     }, {
       path: '/overview',
       name: 'overview',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/overview'], resolve),
     }, {
@@ -43,21 +52,33 @@ export default new Router({
     }, {
       path: '/beforeExam',
       name: 'beforeExam',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/exam/beforeExam'], resolve),
     }, {
       path: '/examDetail',
       name: 'examDetail',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/exam/examDetail'], resolve),
     }, {
       path: '/examOverview',
       name: 'examOverview',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/exam/examOverview'], resolve),
     }, {
       path: '/afterExam',
       name: 'afterExam',
+      meta: {
+        toHome: true    // 添加该字段，表示进入这个路由是需要条件的
+      },
       //懒加载
       component: resolve => require(['@/components/exam/afterExam'], resolve),
     }, {
@@ -65,7 +86,10 @@ export default new Router({
       name: 'todo',
       //懒加载
       component: resolve => require(['@/components/todo'], resolve),
-    }
+    }, {
+      path: '*',
+      redirect: '/home'
+    },
   ]
 })
 
