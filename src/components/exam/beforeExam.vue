@@ -108,7 +108,7 @@ export default {
 
     getAllQuestion() {
       //  获取基本信息
-      console.log(this.projectQuestion);
+      // console.log(this.projectQuestion);
       // 合并每个章节的题
       for (let i = 0; i < this.projectBasic.length; i++) {
         this.totalQues = this.totalQues.concat(this.projectQuestion[i].data);
@@ -158,7 +158,7 @@ export default {
           examQues: this.examQues,  // 模拟考试题
           id: this.subjectId,        // 科目id
           quesDistributionType: this.quesDistributionType,  // 题型分布
-          from: 'beforeExam',
+          from: 'afterExam',
         }
       });
     },

@@ -1,7 +1,7 @@
 <template>
   <div class="Detail" :class="{dark: themeMode==='dark'}">
     <div class="header">
-      <div class="page-title"><span>提交试卷</span></div>
+      <div class="page-title" @click="submitExam"><span>提交试卷</span></div>
       <div class="full-screen" :style="{color: chapterColor}">
         {{ examTime ? examTime : '00:00' }}
       </div>
@@ -134,23 +134,19 @@ export default {
       currentType: null,             // 题目类型
 
       chapterColor: "#536dfe",
+
       checkIndex: -1,  // 用户选项
+      checkedList: [],                // 多选题正确答案
+
       showAnswer: false,
-
-      userAns: null,
-
-      answerList: [],                // 多选题正确答案
-
       ifFullScreen: false,
     }
   },
   created() {
     // this.timer = setInterval(this.startTimer, 1000);
 
-    // console.log(this.$route.params.from)
-
     // 获取所有信息
-    if (this.$route.params.from === 'examOverview'){
+    if (this.$route.params.from === 'examOverview') {
       // 从本地中获取考试信息
       if (typeof (localStorage.tiku_examData) !== undefined) {
         let tempData = JSON.parse(localStorage.tiku_examData);
@@ -165,9 +161,8 @@ export default {
       if (this.$route.params.type.indexOf('mul') >= 0) this.currentType = 1;
       if (this.$route.params.type.indexOf('bla') >= 0) this.currentType = 2;
       if (this.$route.params.type.indexOf('jud') >= 0) this.currentType = 3;
-      console.log(this.questionIndex)
       this.matchUserAns();
-    } else if(this.$route.params.from === 'beforeExam'){
+    } else if (this.$route.params.from === 'afterExam') {
       this.totalQuesArr = this.$route.params.examQues;
       this.subjectId = this.$route.params.id;
       this.quesDistributionType = this.$route.params.quesDistributionType;
@@ -175,7 +170,7 @@ export default {
 
       // 将考试信息存入本地
       this.setExamLocal()
-    } else if(typeof(localStorage.tiku_examData) !== undefined){
+    } else if (typeof (localStorage.tiku_examData) !== undefined) {
       let tempData = JSON.parse(localStorage.tiku_examData);
       this.totalQuesArr = tempData.examQues;
       this.subjectId = tempData.subjectId;
@@ -212,31 +207,16 @@ export default {
       mapState([
         'themeColor',
         'themeMode',
-        // 'selectedChapter',
-        'selectedProject',
-        'selectedAnswer',
         'currentMemory',
         'projectBasicData',
         'isFullscreen',
-        'isStick',
-        'isCheckIn',
-        'closeCheckOfMul',
       ]),
   },
   methods: {
     ...mapActions([
-        'setSelectedChapter',
-        'setSelectedAnswer',
-        'setCurrentMemory',
-        'setSelectedProject',
-        'defineSelectedAnswer',
-        'setProjectBasicData',
-        'setWarning',
-        'setFullScreen',
-        'setAutoStick',
-        'setAutoCheck',
-        'setCloseCheckOfMul',
-      ]),
+      'setWarning',
+      'setFullScreen',
+    ]),
     /**
      * 更改选项颜色
      * @param answerIndex 选项下标
@@ -256,7 +236,73 @@ export default {
         return {}
       }
     },
+    // 提交试卷
+    submitExam() {
+      // console.log(this.answerObj)
+      // console.log(this.totalQuesArr)
 
+      let totalScore = 0;
+      let total = this.totalQuesArr
+      let user = this.answerObj
+
+      for (let i = 0; i < total.length; i++) {
+        if (user[i] !== undefined) { // 用户答了这个题
+          if (user[i] === total[i].answer) {  // 判断是否正确
+            totalScore++;
+          }
+        }
+      }
+      let typeScore = this.calcTypeScore()
+
+      this.$router.push({
+        name: 'afterExam',
+        params: {
+          from: 'examDetail',
+          time: this.examTime,
+          totalScore: totalScore,
+          typeScore: typeScore,
+          quesDistributionType: this.quesDistributionType,
+        }
+      })
+    },
+    calcTypeScore() {
+      let sigNum = this.quesDistributionType.sig;
+      let mulNum = this.quesDistributionType.mul;
+      let blaNum = this.quesDistributionType.bla;
+      let judNum = this.quesDistributionType.jud;
+      let scoreObj = {sig: 0, mul: 0, bla: 0, jud: 0};
+      let total = this.totalQuesArr
+      let user = this.answerObj
+      for (let i = 0; i < total.length; i++) {
+        if (i < sigNum) {
+          if (user[i] !== undefined) { // 用户答了这个题
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              scoreObj.sig++;
+            }
+          }
+        } else if (i < mulNum) {
+          if (user[i] !== undefined) { // 用户答了这个题
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              scoreObj.mul++;
+            }
+          }
+        } else if (i < blaNum) {
+          if (user[i] !== undefined) { // 用户答了这个题
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              scoreObj.bla++;
+            }
+          }
+        } else if (i < judNum) {
+          if (user[i] !== undefined) { // 用户答了这个题
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              scoreObj.jud++;
+            }
+          }
+        }
+      }
+      // console.log(scoreObj)
+      return scoreObj
+    },
     /**
      * 判断选项是否激活
      * @param answerIndex 选项下标
@@ -276,14 +322,13 @@ export default {
         if (type === 2) this.currentType = 'blaArr';
         if (type === 3) this.currentType = 'judArr';
       }
-
+      // 根据不同题型判断答案是否激活
       if (type === 1) {
         // console.log(this.checkedList);
         if (this.checkedList.indexOf(answerIndex) >= 0) {
           return 'c-button--active';
         }
       } else {
-        // console.log(this.checkIndex);
         if (this.checkIndex === answerIndex) {
           // console.log("getActiveStyle:", this.checkIndex);
           return 'c-button--active'
@@ -293,7 +338,7 @@ export default {
     },
 
     toExamOverview() {
-      console.log(this.quesDistributionType)
+      // console.log(this.quesDistributionType)
       this.$router.push({
         name: 'examOverview',
         params: {
@@ -302,13 +347,16 @@ export default {
           examQues: this.totalQuesArr,
           userAnsObj: this.answerObj,
           quesDistributionType: this.quesDistributionType,
+
+          currentIndex: this.questionIndex,
+          currentType: this.currentType,
         }
       })
     },
     // 匹配用户答案
-    matchUserAns(){
+    matchUserAns() {
       // 匹配用户答案
-      for(let key in this.answerObj){
+      for (let key in this.answerObj) {
         if (key == this.questionIndex) {
           if (Array.isArray(this.answerObj[key])) {
             this.checkedList = this.answerObj[key]
@@ -332,7 +380,7 @@ export default {
       this.currentType = this.totalQuesArr[this.questionIndex].type;   // 题目类型变化
       this.getQuesTypeNum()
 
-      if (!this.matchUserAns()){  // 匹配用户答案
+      if (!this.matchUserAns()) {  // 匹配用户答案
         this.checkIndex = null;
         this.checkedList = [];
       }
@@ -510,7 +558,7 @@ export default {
       this.examTime = (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds);
     },
 
-    setExamLocal(){
+    setExamLocal() {
       let tempObj = {}
       tempObj['examQues'] = this.totalQuesArr;
       tempObj['subjectId'] = this.subjectId;

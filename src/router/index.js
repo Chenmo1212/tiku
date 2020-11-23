@@ -56,6 +56,11 @@ export default new Router({
       //懒加载
       component: resolve => require(['@/components/exam/examOverview'], resolve),
     }, {
+      path: '/afterExam',
+      name: 'afterExam',
+      //懒加载
+      component: resolve => require(['@/components/exam/afterExam'], resolve),
+    }, {
       path: '/todo',
       name: 'todo',
       //懒加载

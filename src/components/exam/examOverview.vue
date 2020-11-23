@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backDetail"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="toExamDetail(historyIndex, historyType)"></i>
         </div>
         <div class="page-title">题目总览</div>
       </div>
@@ -22,7 +22,7 @@
             <div class="circle"
                  :class="{'active': isCheckIn(getQuestionIndex(index, key), key)}"
                  :style="{backgroundColor: getColor(getQuestionIndex(index, key), key)}"
-                 @click="toExamDetail(index, key)"
+                 @click="toExamDetail(getQuestionIndex(index, key), key)"
             >
               {{ getQuestionIndex(index, key) }}
             </div>
@@ -42,7 +42,7 @@ export default {
     return {
       projectName: '马克思',
       chapterName: '导论',
-      chapterColor: "#536dfe",
+      chapterColor: "#00b0ff",
       questionObj: {
         sigNum: 43,
         mulNum: 23,
@@ -50,8 +50,10 @@ export default {
         blaNum: 19,
       },
       answerObj: {},
-      currentType: null,
       questionIndex: null,
+
+      historyIndex: null,
+      historyType: null,
     }
   },
   created() {
@@ -61,6 +63,13 @@ export default {
     this.subjectId = this.$route.params.subjectId;
     this.quesDistributionType = this.$route.params.quesDistributionType;
     this.answerObj = this.$route.params.userAnsObj;
+    this.historyIndex = this.$route.params.currentIndex + 1;
+    let temp = this.$route.params.currentType;
+    if (temp == 0) this.historyType = 'sigNum';
+    if (temp == 1) this.historyType = 'mulNum';
+    if (temp == 2) this.historyType = 'blaNum';
+    if (temp == 3) this.historyType = 'judNum';
+
 
     let tempObj = {}
     tempObj['sigNum'] = this.quesDistributionType.sig;
@@ -122,15 +131,11 @@ export default {
       }
     },
     toExamDetail(index, key) {
-      let quesIndex = 0;
-      if (key === "sigNum") quesIndex = index;
-      if (key === "mulNum") quesIndex = index + this.questionObj.sigNum;
-      if (key === "blaNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum;
-      if (key === "judNum") quesIndex = index + this.questionObj.sigNum + this.questionObj.mulNum + this.questionObj.blaNum;
+      console.log(index, key)
       this.$router.push({
         name: 'examDetail',
         params: {
-          quesIndex: quesIndex,
+          quesIndex: index,
           type: key,
           answerObj: this.answerObj,
           from: 'examOverview',
