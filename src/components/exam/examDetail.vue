@@ -146,23 +146,7 @@ export default {
     // this.timer = setInterval(this.startTimer, 1000);
 
     // 获取所有信息
-    if (this.$route.params.from === 'examOverview') {
-      // 从本地中获取考试信息
-      if (typeof (localStorage.tiku_examData) !== undefined) {
-        let tempData = JSON.parse(localStorage.tiku_examData);
-        this.totalQuesArr = tempData.examQues;
-        this.subjectId = tempData.subjectId;
-        this.quesDistributionType = tempData.quesDistributionType;
-      }
-      // 从题目总览中直接跳转的题号
-      this.questionIndex = this.$route.params.quesIndex - 1;
-      this.answerObj = this.$route.params.answerObj;
-      if (this.$route.params.type.indexOf('sig') >= 0) this.currentType = 0;
-      if (this.$route.params.type.indexOf('mul') >= 0) this.currentType = 1;
-      if (this.$route.params.type.indexOf('bla') >= 0) this.currentType = 2;
-      if (this.$route.params.type.indexOf('jud') >= 0) this.currentType = 3;
-      this.matchUserAns();
-    } else if (this.$route.params.from === 'afterExam') {
+    if (this.$route.params.from === 'afterExam') {
       this.totalQuesArr = this.$route.params.examQues;
       this.subjectId = this.$route.params.id;
       this.quesDistributionType = this.$route.params.quesDistributionType;
@@ -171,10 +155,17 @@ export default {
       // 将考试信息存入本地
       this.setExamLocal()
     } else if (typeof (localStorage.tiku_examData) !== undefined) {
-      let tempData = JSON.parse(localStorage.tiku_examData);
-      this.totalQuesArr = tempData.examQues;
-      this.subjectId = tempData.subjectId;
-      this.quesDistributionType = tempData.quesDistributionType;
+      // 从本地中获取考试信息
+      if (typeof (localStorage.tiku_examData) !== undefined) {
+        let tempData = JSON.parse(localStorage.tiku_examData);
+        this.totalQuesArr = tempData.examQues;
+        this.subjectId = tempData.subjectId;
+        this.quesDistributionType = tempData.quesDistributionType;
+        this.questionIndex = tempData.questionIndex;
+        this.currentType = tempData.currentType;
+        this.answerObj = tempData.answerObj;
+      }
+      this.matchUserAns();
     }
 
     // 键盘操作
@@ -338,7 +329,9 @@ export default {
     },
 
     toExamOverview() {
-      // console.log(this.quesDistributionType)
+      // 存储一些必要的信息
+      this.setExamLocal();
+
       this.$router.push({
         name: 'examOverview',
         params: {
@@ -379,6 +372,7 @@ export default {
       // console.log(this.totalQuesArr[this.questionIndex]);
       this.currentType = this.totalQuesArr[this.questionIndex].type;   // 题目类型变化
       this.getQuesTypeNum()
+      this.setExamLocal()
 
       if (!this.matchUserAns()) {  // 匹配用户答案
         this.checkIndex = null;
@@ -411,8 +405,10 @@ export default {
       } else {
         // 更改选项样式
         this.checkIndex = answerIndex;
+        console.log(this.answerObj)
         this.answerObj[index] = this.checkIndex;
       }
+      this.setExamLocal()
       // console.log(this.answerObj)
     },
 
@@ -557,13 +553,16 @@ export default {
       }
       this.examTime = (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds);
     },
-
+    // 存储考试用的必要信息
     setExamLocal() {
       let tempObj = {}
       tempObj['examQues'] = this.totalQuesArr;
       tempObj['subjectId'] = this.subjectId;
       tempObj['quesDistributionType'] = this.quesDistributionType;
-      tempObj['userAnsObj'] = this.userAnsObj;
+      tempObj['answerObj'] = this.answerObj;
+      tempObj['currentType'] = this.currentType;
+      tempObj['questionIndex'] = this.questionIndex;
+      tempObj['examTime'] = this.examTime;
       localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
     },
   }

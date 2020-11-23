@@ -40,6 +40,7 @@ export default {
   name: "overview",
   data() {
     return {
+      from: '',    // 从哪来
       projectName: '马克思',
       chapterName: '导论',
       chapterColor: "#00b0ff",
@@ -59,26 +60,14 @@ export default {
   created() {
 
     // 获取所有信息
-    this.totalQuesArr = this.$route.params.examQues;
-    this.subjectId = this.$route.params.subjectId;
-    this.quesDistributionType = this.$route.params.quesDistributionType;
-    this.answerObj = this.$route.params.userAnsObj;
-    this.historyIndex = this.$route.params.currentIndex + 1;
-    let temp = this.$route.params.currentType;
-    if (temp == 0) this.historyType = 'sigNum';
-    if (temp == 1) this.historyType = 'mulNum';
-    if (temp == 2) this.historyType = 'blaNum';
-    if (temp == 3) this.historyType = 'judNum';
-
-
-    let tempObj = {}
-    tempObj['sigNum'] = this.quesDistributionType.sig;
-    tempObj['mulNum'] = this.quesDistributionType.mul;
-    tempObj['judNum'] = this.quesDistributionType.jud;
-    tempObj['blaNum'] = this.quesDistributionType.bla;
-
-    this.questionObj = tempObj;
-    console.log(this.answerObj)
+    this.from = this.$route.params.from;
+    if (this.from === 'examDetail') {
+      this.getDataFromExamDetail();  // 从模拟考试答题页面跳转进来
+    } else if (this.from === 'afterExam') {
+      this.getDataFromAfterExam();  // 从考试结束页面跳转进来
+    } else {
+      this.setWarning("搞事情同学，从哪个页面进来的？")
+    }
   },
   computed: {
     ...mapState([
@@ -130,17 +119,58 @@ export default {
         return this.chapterColor;
       }
     },
-    toExamDetail(index, key) {
-      console.log(index, key)
-      this.$router.push({
-        name: 'examDetail',
-        params: {
-          quesIndex: index,
-          type: key,
-          answerObj: this.answerObj,
-          from: 'examOverview',
-        }
-      })
+    toExamDetail(index, key, type) {
+      if (type ==='back'){
+        this.$router.go(-1)
+      } else {
+        // 跳转题目，把跳转的东西存在本地
+        let temp = JSON.parse(localStorage.tiku_examData)
+        // 跳转的题目下标
+        temp['questionIndex'] = index - 1;
+        // 跳转的题目类型
+        if (key.indexOf('sig') >= 0) temp['currentType'] = 0;
+        if (key.indexOf('mul') >= 0) temp['currentType'] = 1;
+        if (key.indexOf('bla') >= 0) temp['currentType'] = 2;
+        if (key.indexOf('jud') >= 0) temp['currentType'] = 3;
+        localStorage.setItem('tiku_examData', JSON.stringify(temp))
+
+        this.$router.push({
+          name: 'examDetail',
+          params: {
+            from: 'examOverview',
+          }
+        })
+      }
+    },
+    // 从模拟考试答题页面跳转进来
+    getDataFromExamDetail() {
+      this.totalQuesArr = this.$route.params.examQues;
+      this.subjectId = this.$route.params.subjectId;
+      this.quesDistributionType = this.$route.params.quesDistributionType;
+      this.answerObj = this.$route.params.userAnsObj;
+      this.historyIndex = this.$route.params.currentIndex + 1;
+      let temp = this.$route.params.currentType;
+      if (temp == 0) this.historyType = 'sigNum';
+      if (temp == 1) this.historyType = 'mulNum';
+      if (temp == 2) this.historyType = 'blaNum';
+      if (temp == 3) this.historyType = 'judNum';
+
+      let tempObj = {}
+      tempObj['sigNum'] = this.quesDistributionType.sig;
+      tempObj['mulNum'] = this.quesDistributionType.mul;
+      tempObj['judNum'] = this.quesDistributionType.jud;
+      tempObj['blaNum'] = this.quesDistributionType.bla;
+
+      this.questionObj = tempObj;
+      // console.log(this.answerObj)
+    },
+    // 从考试结束页面跳转进来
+    getDataFromAfterExam() {
+      // 从本地获取题目信息、科目id、题型分布、用户答案
+      this.totalQuesArr = JSON.parse(localStorage.tiku_examData)['examQues'];
+      this.subjectId = JSON.parse(localStorage.tiku_examData)['subjectId'];
+      this.quesDistributionType = JSON.parse(localStorage.tiku_examData)['quesDistributionType'];
+      this.userAnsObj = JSON.parse(localStorage.tiku_examData)['userAnsObj'];
     }
   }
 }

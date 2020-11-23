@@ -58,7 +58,7 @@
 
     <!-- 开始考试 -->
     <div class="check-answer-sheet">
-      <div class="card-btn" @click="toExamDetail">
+      <div class="card-btn" @click="toExamOverview">
         <button class="btn begin" style="color: rgb(0, 176, 255);">
               <span class="icon-container">
                 <i class="fa fa-rocket"></i>查看答题卡
@@ -213,7 +213,7 @@ export default {
       // console.log(this.examQues)
     },
 
-    toExamDetail() {
+    toExamOverview() {
       this.$router.push({
         name: 'examDetail',
         params: {
