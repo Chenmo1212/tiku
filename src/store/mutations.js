@@ -154,6 +154,11 @@ export default {
     state.closeCheckOfMul = bool;
   },
 
+  // 设置期末考试状态
+  SET_EXAM_STATUS(state, bool){
+    state.examDoneStatus = bool;
+  },
+
   // 存储ToDo
   SET_TODO_DATA(state, obj) {
     state.todoData = obj;
@@ -216,6 +221,5 @@ export default {
     // state.isModel = obj["isModel"];
     // state.modelType = obj["modelType"];
   },
-
 
 }

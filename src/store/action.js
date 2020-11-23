@@ -98,6 +98,11 @@ export default {
     commit('SET_FULL_SCREEN', bool)
   },
 
+  // 设置全屏
+  setExamStatus({commit}, bool) {
+    commit('SET_EXAM_STATUS', bool)
+  },
+
   // 设置todo
   setTodoData({commit}, obj) {
     commit('SET_TODO_DATA', obj)

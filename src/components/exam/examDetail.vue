@@ -1,7 +1,7 @@
 <template>
   <div class="Detail" :class="{dark: themeMode==='dark'}">
     <div class="header">
-      <div class="page-title" @click="submitExam"><span>提交试卷</span></div>
+      <div class="page-title" @click="submitExam"><span>{{ submitName }}</span></div>
       <div class="full-screen" :style="{color: chapterColor}">
         {{ examTime ? examTime : '00:00' }}
       </div>
@@ -96,6 +96,10 @@
           <div class="all-question" @click="toExamOverview">
             <i class="fa fa-th" aria-hidden="true"></i>
           </div>
+          <div class="show-answer" @click="showAnswer = !showAnswer" v-if="examDoneStatus">
+            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
+            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
+          </div>
           <div class="pre-question" @click="changeQuestion(-1)" :class="{'disable': questionIndex <= 0}">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
           </div>
@@ -124,6 +128,7 @@ export default {
       seconds: 0,
 
       subjectId: null,
+      submitName: '提交试卷',
       totalQuesArr: [],              // 所有题目信息
       quesDistributionType: null,    // 题型分布
       answerObj: {},                 // 用户的答案
@@ -138,12 +143,18 @@ export default {
       checkIndex: -1,  // 用户选项
       checkedList: [],                // 多选题正确答案
 
+      totalScore: 0,
+      typeScore: 0,
+
       showAnswer: false,
+      isError: true,
       ifFullScreen: false,
     }
   },
   created() {
     // this.timer = setInterval(this.startTimer, 1000);
+
+    this.submitName = this.examDoneStatus ? '查看结果' : '提交试卷';
 
     // 获取所有信息
     if (this.$route.params.from === 'afterExam') {
@@ -153,7 +164,7 @@ export default {
       this.currentType = this.totalQuesArr[0].type;
 
       // 将考试信息存入本地
-      this.setExamLocal()
+      this.setExamLocal(1)
     } else if (typeof (localStorage.tiku_examData) !== undefined) {
       // 从本地中获取考试信息
       if (typeof (localStorage.tiku_examData) !== undefined) {
@@ -198,15 +209,19 @@ export default {
       mapState([
         'themeColor',
         'themeMode',
-        'currentMemory',
-        'projectBasicData',
+        'isStick',
+        'isCheckIn',
         'isFullscreen',
+        'examDoneStatus',
       ]),
   },
   methods: {
     ...mapActions([
       'setWarning',
       'setFullScreen',
+      'setExamStatus',
+      'setAutoStick',
+      'setAutoCheck',
     ]),
     /**
      * 更改选项颜色
@@ -231,28 +246,29 @@ export default {
     submitExam() {
       // console.log(this.answerObj)
       // console.log(this.totalQuesArr)
-
-      let totalScore = 0;
-      let total = this.totalQuesArr
-      let user = this.answerObj
-
-      for (let i = 0; i < total.length; i++) {
-        if (user[i] !== undefined) { // 用户答了这个题
-          if (user[i] === total[i].answer) {  // 判断是否正确
-            totalScore++;
+      if (!this.examDoneStatus) { // 考试在继续
+        let total = this.totalQuesArr
+        let user = this.answerObj
+        // 计算总分
+        for (let i = 0; i < total.length; i++) {
+          if (user[i] !== undefined) { // 用户答了这个题
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              this.totalScore++;
+            }
           }
         }
-      }
-      let typeScore = this.calcTypeScore()
+        // 计算题型分数
+        this.typeScore = this.calcTypeScore();
 
+        // 设置模拟考试状态为结束考试
+        this.setExamStatus(true)
+        this.setExamLocal(0);
+      }
+      // 跳转考试结束页面
       this.$router.push({
         name: 'afterExam',
         params: {
-          from: 'examDetail',
-          time: this.examTime,
-          totalScore: totalScore,
-          typeScore: typeScore,
-          quesDistributionType: this.quesDistributionType,
+          from: 'examDetail'
         }
       })
     },
@@ -327,22 +343,67 @@ export default {
         return ""
       }
     },
+    /**
+     * 将答案序号改成文字
+     * @param ans 题目答案序号
+     * @param type 题目类型
+     * @returns {String} 返回答案字符串
+     */
+    shiftAns(ans, type) {
+      if (type === 0) { // 单选题
+        if (ans === 0) return "A";
+        if (ans === 1) return "B";
+        if (ans === 2) return "C";
+        if (ans === 3) return "D";
+      } else if (type === 1) { // 多选题
+        let tempAns = '';
+        for (let i = 0; i < ans.length; i++) {
+          if (ans[i] === 0) tempAns += "A";
+          if (ans[i] === 1) tempAns += "B";
+          if (ans[i] === 2) tempAns += "C";
+          if (ans[i] === 3) tempAns += "D";
+          if (ans.length - i > 1) tempAns += '、';
+        }
+        return tempAns;
+      } else if (type === 2) { // 填空题
+        let tempAns = '';
+        for (let i = 0; i < ans.length; i++) {
+          tempAns += ans[i];
+          if (ans.length - i > 1) tempAns += '、';
+        }
+        return tempAns;
+      } else if (type === 3) { // 判断题
+        if (ans === 0) return "对";
+        if (ans === 1) return "错";
+      }
+    },
+    // 固定答案
+    handleStick() {
+      this.setAutoStick();
+      this.isStick ? this.setWarning("答案固定显示") : this.setWarning("答案取消固定");
+      localStorage.setItem("isStick", JSON.stringify(this.isStick));
+    },
 
+    // 自动检测答案
+    handleCheck() {
+      if (this.isCheckIn) {
+        this.setWarning("答案自动检查功能关闭");
+        this.setAutoCheck(false);
+      } else {
+        this.setWarning("答案自动检查功能开启");
+        this.setAutoCheck(true);
+      }
+      localStorage.setItem("isCheckIn", JSON.stringify(this.isCheckIn));
+    },
+    // 前往答题卡
     toExamOverview() {
       // 存储一些必要的信息
-      this.setExamLocal();
+      this.setExamLocal(1);
 
       this.$router.push({
         name: 'examOverview',
         params: {
           from: 'examDetail',
-          subjectId: this.subjectId,
-          examQues: this.totalQuesArr,
-          userAnsObj: this.answerObj,
-          quesDistributionType: this.quesDistributionType,
-
-          currentIndex: this.questionIndex,
-          currentType: this.currentType,
         }
       })
     },
@@ -372,12 +433,20 @@ export default {
       // console.log(this.totalQuesArr[this.questionIndex]);
       this.currentType = this.totalQuesArr[this.questionIndex].type;   // 题目类型变化
       this.getQuesTypeNum()
-      this.setExamLocal()
+
+      // 判断考试是否完成决定保存数据时是否更新总分
+      this.examDoneStatus ? this.setExamLocal(1) : this.setExamLocal(0);
 
       if (!this.matchUserAns()) {  // 匹配用户答案
         this.checkIndex = null;
         this.checkedList = [];
       }
+
+      // 判断用户答案是否正确
+      this.judAnswer();
+    },
+    judAnswer() {
+      this.isError = this.totalQuesArr[this.questionIndex].answer !== this.answerObj[this.questionIndex];
     },
     getQuesTypeNum() {  // 获取题目类型的数量
       if (this.currentType === 0) this.questionTypeNum = this.quesDistributionType.sig
@@ -405,11 +474,13 @@ export default {
       } else {
         // 更改选项样式
         this.checkIndex = answerIndex;
-        console.log(this.answerObj)
+        // console.log(this.answerObj)
         this.answerObj[index] = this.checkIndex;
       }
-      this.setExamLocal()
-      // console.log(this.answerObj)
+      this.setExamLocal(1)
+
+      // 判断用户答案是否正确
+      this.judAnswer()
     },
 
     /**
@@ -460,6 +531,7 @@ export default {
     },
 
     getAnsStyle(bool) {
+      console.log(bool)
       if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
       return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
     },
@@ -553,8 +625,12 @@ export default {
       }
       this.examTime = (this.minutes < 10 ? '0' + this.minutes : this.minutes) + ':' + (this.seconds < 10 ? '0' + this.seconds : this.seconds);
     },
-    // 存储考试用的必要信息
-    setExamLocal() {
+
+    /**
+     * 存储考试用的必要信息
+     * @param type: 1/0  1:普通模式； 0：考试结束后切换答题卡不改变总分
+     */
+    setExamLocal(type) {
       let tempObj = {}
       tempObj['examQues'] = this.totalQuesArr;
       tempObj['subjectId'] = this.subjectId;
@@ -562,7 +638,11 @@ export default {
       tempObj['answerObj'] = this.answerObj;
       tempObj['currentType'] = this.currentType;
       tempObj['questionIndex'] = this.questionIndex;
-      tempObj['examTime'] = this.examTime;
+      if (!type && this.examDoneStatus) {  // 考试结束
+        localStorage.setItem('examTime', JSON.stringify(this.examTime))
+        localStorage.setItem('totalScore', JSON.stringify(this.totalScore))
+        localStorage.setItem('typeScore', JSON.stringify(this.typeScore))
+      }
       localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
     },
   }
@@ -807,8 +887,13 @@ export default {
           margin-top: -7px;
 
           .stick, .check {
-            padding: 8px;
-            margin: 0 5px;
+            padding: 7px;
+            margin: 0px 5px;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            line-height: 18px;
           }
         }
 

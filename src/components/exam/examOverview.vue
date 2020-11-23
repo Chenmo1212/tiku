@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="toExamDetail(historyIndex, historyType)"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="toExamDetail(0, 0, 'back')"></i>
         </div>
         <div class="page-title">题目总览</div>
       </div>
@@ -22,7 +22,7 @@
             <div class="circle"
                  :class="{'active': isCheckIn(getQuestionIndex(index, key), key)}"
                  :style="{backgroundColor: getColor(getQuestionIndex(index, key), key)}"
-                 @click="toExamDetail(getQuestionIndex(index, key), key)"
+                 @click="toExamDetail(getQuestionIndex(index, key), key, 'toQuestion')"
             >
               {{ getQuestionIndex(index, key) }}
             </div>
@@ -44,6 +44,8 @@ export default {
       projectName: '马克思',
       chapterName: '导论',
       chapterColor: "#00b0ff",
+      wrongColor: "#ff6584",
+      totalQuesArr: [],  // 题目信息
       questionObj: {
         sigNum: 43,
         mulNum: 23,
@@ -61,13 +63,24 @@ export default {
 
     // 获取所有信息
     this.from = this.$route.params.from;
-    if (this.from === 'examDetail') {
-      this.getDataFromExamDetail();  // 从模拟考试答题页面跳转进来
-    } else if (this.from === 'afterExam') {
-      this.getDataFromAfterExam();  // 从考试结束页面跳转进来
-    } else {
+    if (this.from !== 'examDetail' && this.from !== 'afterExam' ) {
       this.setWarning("搞事情同学，从哪个页面进来的？")
     }
+
+    let temp = JSON.parse(localStorage.tiku_examData)
+    this.totalQuesArr = temp.examQues;
+    this.subjectId = temp.subjectId;
+    this.quesDistributionType = temp.quesDistributionType;
+    this.answerObj = temp.answerObj;
+
+    let tempObj = {}
+    tempObj['sigNum'] = this.quesDistributionType.sig;
+    tempObj['mulNum'] = this.quesDistributionType.mul;
+    tempObj['judNum'] = this.quesDistributionType.jud;
+    tempObj['blaNum'] = this.quesDistributionType.bla;
+
+    this.questionObj = tempObj;
+
   },
   computed: {
     ...mapState([
@@ -76,6 +89,7 @@ export default {
       'cardMode',
       'selectedProject',
       'themeMode',
+      'examDoneStatus',
     ]),
   },
   methods: {
@@ -114,9 +128,26 @@ export default {
       }
     },
     getColor(index, type) {
-      if (this.isCheckIn(index, type)) {
-        // console.log("true")
-        return this.chapterColor;
+      if (!this.examDoneStatus) {  // 考试ing，查看答题卡，只有做和没做的区别
+        if (this.isCheckIn(index, type)) {
+          // console.log("true")
+          return this.chapterColor;
+        }
+      } else {  // 考试结束，查看答题卡，没做、做对、做错三种区别
+        // 默认是没做的颜色
+        // console.log(index, type)
+        let total = this.totalQuesArr;
+        let user = this.answerObj;
+        if (this.isCheckIn(index, type)) {  // 判断有没有做
+          // console.log(total[index].answer)
+          // console.log(user[index - 1])
+          if (total[index - 1].answer === user[index - 1]) { // 判断是否做对
+            return this.chapterColor;
+          } else {  // 做错了
+            return this.wrongColor;
+          }
+        }  // 没做
+        return ''
       }
     },
     toExamDetail(index, key, type) {
@@ -142,36 +173,6 @@ export default {
         })
       }
     },
-    // 从模拟考试答题页面跳转进来
-    getDataFromExamDetail() {
-      this.totalQuesArr = this.$route.params.examQues;
-      this.subjectId = this.$route.params.subjectId;
-      this.quesDistributionType = this.$route.params.quesDistributionType;
-      this.answerObj = this.$route.params.userAnsObj;
-      this.historyIndex = this.$route.params.currentIndex + 1;
-      let temp = this.$route.params.currentType;
-      if (temp == 0) this.historyType = 'sigNum';
-      if (temp == 1) this.historyType = 'mulNum';
-      if (temp == 2) this.historyType = 'blaNum';
-      if (temp == 3) this.historyType = 'judNum';
-
-      let tempObj = {}
-      tempObj['sigNum'] = this.quesDistributionType.sig;
-      tempObj['mulNum'] = this.quesDistributionType.mul;
-      tempObj['judNum'] = this.quesDistributionType.jud;
-      tempObj['blaNum'] = this.quesDistributionType.bla;
-
-      this.questionObj = tempObj;
-      // console.log(this.answerObj)
-    },
-    // 从考试结束页面跳转进来
-    getDataFromAfterExam() {
-      // 从本地获取题目信息、科目id、题型分布、用户答案
-      this.totalQuesArr = JSON.parse(localStorage.tiku_examData)['examQues'];
-      this.subjectId = JSON.parse(localStorage.tiku_examData)['subjectId'];
-      this.quesDistributionType = JSON.parse(localStorage.tiku_examData)['quesDistributionType'];
-      this.userAnsObj = JSON.parse(localStorage.tiku_examData)['userAnsObj'];
-    }
   }
 }
 </script>

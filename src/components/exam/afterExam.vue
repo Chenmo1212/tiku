@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"></i>
+          <i @click="backHome" aria-hidden="true" class="fa fa-home"></i>
         </div>
         <div class="pageName">{{ pageName }}</div>
       </div>
@@ -32,7 +32,7 @@
           </div>
           <div class="line"></div>
           <div class="content-bd">
-            <div class="total-time">{{ time }}</div>
+            <div class="total-time">{{ examTime }}</div>
             <div class="text">用时</div>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <div class="content-hd">{{ value.name }}</div>
           <div class="content-bd">
             <div class="question-num">题数: <span>{{ value.distrType }}</span></div>
-            <div class="question-rate">正确率：<span>{{ (value.typeScore / value.distrType) * 100 }}%</span></div>
+            <div class="question-rate">正确率：<span>{{ ((value.typeScore * 100 / value.distrType).toFixed(2))}}%</span></div>
           </div>
           <div class="score"><span>{{ value.typeScore }}</span>分</div>
         </div>
@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       pageName: '考试结果',
-      time: '', // 用时
+      examTime: '', // 用时
       totalScore: '', // 总分
       typeScore: {}, // 每一类
 
@@ -93,7 +93,6 @@ export default {
       mul: [],  // 多选题
       jud: [],   // 判断题
       bla: [],   // 填空题
-      examQues: [],  // 按考试顺序出的题
 
       quesDistributionType: '',   // 题型分布类型
 
@@ -110,24 +109,14 @@ export default {
     ]),
   },
   created() {
-    // 调整主题模式
-    if (typeof (localStorage.themeMode) !== 'undefined') {
-      let type = JSON.parse(localStorage.themeMode);
-      window.document.documentElement.setAttribute("data-theme", type);
-      this.setThemeMode({type: type});
-    }
+    let temp = JSON.parse(localStorage.tiku_examData)
 
     // 获取时间
-    this.time = this.$route.params.time;
+    this.examTime = JSON.parse(localStorage.examTime);
     // 获取总分
-    this.totalScore = this.$route.params.totalScore;
-    this.typeScore = this.$route.params.typeScore;
-    this.quesDistributionType = this.$route.params.quesDistributionType;
-
-    console.log("时间:", this.time)
-    console.log("总分:", this.totalScore)
-    console.log("各类型题分数:", this.typeScore)
-    console.log("题型分布:", this.quesDistributionType)
+    this.totalScore = JSON.parse(localStorage.totalScore);
+    this.typeScore = JSON.parse(localStorage.typeScore);
+    this.quesDistributionType = temp.quesDistributionType;
 
     this.questionTypeLists = [
       {
@@ -151,75 +140,23 @@ export default {
       distrType: this.quesDistributionType.jud,
       typeScore: this.typeScore.jud,
     }]
-    // //  获取科目基本信息
-    // this.projectBasic = this.projectBasicData[this.subjectId];
-    // this.getAllQuestion();
   },
   mounted() {
   },
   methods: {
     ...mapActions([
-      'setThemeMode',
       'setWarning',
-      'setProjectQuestionData',
+      'setExamStatue',
     ]),
 
     backHome() {
       this.$router.push({name: 'home'});
     },
 
-    getAllQuestion() {
-      //  获取基本信息
-      console.log(this.projectQuestion);
-      // 合并每个章节的题
-      for (let i = 0; i < this.projectBasic.length; i++) {
-        this.totalQues = this.totalQues.concat(this.projectQuestion[i].data);
-      }
-      for (let i = 0; i < this.totalQues.length; i++) {
-        if (this.totalQues[i].type === 0) this.sig.push(this.totalQues[i])
-        if (this.totalQues[i].type === 1) this.mul.push(this.totalQues[i])
-        if (this.totalQues[i].type === 2) this.bla.push(this.totalQues[i])
-        if (this.totalQues[i].type === 3) this.jud.push(this.totalQues[i])
-      }
-
-      // 获取题型比例
-      let temp = ''
-      if (this.sig.length) temp += 'sig_'
-      if (this.mul.length) temp += 'mul_'
-      if (this.jud.length) temp += 'jud_'
-      if (this.bla.length) temp += 'bla_'
-      if (temp[temp.length - 1] === '_')
-        temp = temp.substr(0, temp.length - 1)
-      this.quesDistributionType = this.quesDistribution[temp]
-      // console.log('题型分布:', this.quesDistributionType)
-
-      // 随机抽取题目
-      if (this.quesDistributionType.sig !== undefined) {
-        this.sig = this.getRandomArrayElements(this.sig, this.quesDistributionType.sig);
-        this.examQues = this.examQues.concat(this.sig)
-      }
-      if (this.quesDistributionType.mul !== undefined) {
-        this.mul = this.getRandomArrayElements(this.mul, this.quesDistributionType.mul);
-        this.examQues = this.examQues.concat(this.mul)
-      }
-      if (this.quesDistributionType.jud !== undefined) {
-        this.jud = this.getRandomArrayElements(this.jud, this.quesDistributionType.jud);
-        this.examQues = this.examQues.concat(this.jud)
-      }
-      if (this.quesDistributionType.bla !== undefined) {
-        this.bla = this.getRandomArrayElements(this.bla, this.quesDistributionType.bla);
-        this.examQues = this.examQues.concat(this.bla)
-      }
-      // console.log(this.examQues)
-    },
-
     toExamOverview() {
       this.$router.push({
-        name: 'examDetail',
+        name: 'examOverview',
         params: {
-          examQues: this.examQues,  // 模拟考试题
-          id: this.subjectId,        // 科目id
-          quesDistributionType: this.quesDistributionType,  // 题型分布
           from: 'afterExam',
         }
       });
@@ -233,7 +170,21 @@ export default {
         shuffled[i] = temp;
       }
       return shuffled.slice(min);
-    }
+    },
+    // 存储考试用的必要信息
+    setExamLocal() {
+      let tempObj = {}
+      tempObj['examQues'] = this.totalQuesArr;
+      tempObj['subjectId'] = this.subjectId;
+      tempObj['quesDistributionType'] = this.quesDistributionType;
+      tempObj['answerObj'] = this.answerObj;
+      tempObj['currentType'] = this.currentType;
+      tempObj['questionIndex'] = this.questionIndex;
+      localStorage.setItem('examTime', JSON.stringify(this.examTime))
+      localStorage.setItem('totalScore', JSON.stringify(this.totalScore))
+      localStorage.setItem('typeScore', JSON.stringify(this.typeScore))
+      localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
+    },
   }
 }
 </script>
@@ -310,9 +261,10 @@ export default {
     }
 
     i {
-      font-size: 30px;
-      margin-right: 4px;
+      font-size: 20px;
+      line-height: 30px;
       display: block;
+      color: #00b0ff;
     }
 
     div {
@@ -397,7 +349,7 @@ export default {
     .content {
       width: 100%;
       position: relative;
-      margin: 2.5% 0;
+      margin: 4% 0;
 
       .content-hd {
         font-size: 16px;

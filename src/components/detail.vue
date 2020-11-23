@@ -1056,8 +1056,13 @@
             margin-top: -7px;
 
             .stick, .check {
-              padding: 8px;
-              margin: 0 5px;
+              padding: 7px;
+              margin: 0px 5px;
+              border-radius: 50%;
+              height: 18px;
+              width: 18px;
+              text-align: center;
+              line-height: 18px;
             }
           }
 

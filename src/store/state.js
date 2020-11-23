@@ -34,6 +34,7 @@ export default {
     sig_jud: {sig: 70, mul: 0, jud: 30, bla: 0},
     sig_bla: {sig: 70, mul: 0, jud: 0, bla: 30},
   },
+  examDoneStatus: false,
 
   projectBasicData: {},     // 科目基本信息
 
