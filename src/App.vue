@@ -599,6 +599,14 @@ export default {
 
     // 显示通知
     handleShowModel(type) {
+      // 初始化
+      this.musicModel = false
+      this.dataModel = false
+      this.clearModel = false
+      this.freshModel = false
+      this.submitExamModel = false
+      this.backHomeModel = false
+
       if (type === 'music') {
         this.musicModel = true;
         this.modelTit = "更换歌单";
@@ -637,8 +645,9 @@ export default {
       }, 3000)
     },
     backHome() {
-      this.$router.push({name: 'home'});
+      this.$router.push({name: 'home', replace: true});
       this.hiddenModel()
+      localStorage.removeItem('tiku_examData');
     }
   },
 

@@ -582,6 +582,7 @@ export default {
             _this.checkIndex = 3;
             break;
         }
+        _this.answerObj[_this.questionIndex] = _this.checkIndex;
       } else if (_this.currentType === 1) {
         let user_index = -1;
         // 多选题
@@ -614,6 +615,7 @@ export default {
         } else {
           _this.checkedList.push(user_index)
         }
+        _this.answerObj[_this.questionIndex] = _this.checkedList;
       }
 
       // 切换题目
@@ -626,6 +628,7 @@ export default {
           // console.log("右箭头");
           _this.changeQuestion(1);
       }
+      _this.setExamLocal(1)
     },
 
 
