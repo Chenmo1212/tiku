@@ -161,7 +161,7 @@ export default {
       console.log("本地有当前在背的内容");
       this.currentMemoryMsg = JSON.parse(localStorage.currentMemory);
     } else if (JSON.stringify(this.currentMemory) !== "{}") {
-      console.log(this.currentMemory);
+      // console.log(this.currentMemory);
       this.currentMemoryMsg = this.currentMemory;
       localStorage.setItem('currentMemory', JSON.stringify(this.currentMemory));
     }
@@ -198,7 +198,7 @@ export default {
      */
     clickCardBtn(ev, item, from) {
       // console.log(ev);
-      console.log(item);
+      // console.log(item);
       ev.srcElement.classList.add("active");
       this.setThemeColor(item.color);
 

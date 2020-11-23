@@ -16,9 +16,16 @@
       </div>
       <svg class="progress" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
            preserveAspectRatio="xMidYMid meet">
+        <linearGradient id="svg-gradient" gradientUnits="userSpaceOnUse" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" v-if="themeMode === 'light'" style="stop-color:#00b0ff"/>
+          <stop offset="0%" v-if="themeMode === 'dark'" style="stop-color:#BF8A10"/>
+          <stop offset="100%" v-if="themeMode === 'light'" style="stop-color:#38d1bf"/>
+          <stop offset="100%" v-if="themeMode === 'dark'" style="stop-color:#D43C0B"/>
+        </linearGradient>
         <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#E2E8F0"></circle>
-        <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7" stroke-dasharray="300" stroke-dashoffset="300"
-                fill="transparent" stroke="#00b0ff" stroke-linecap="round" class="meter"></circle>
+        <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7" stroke-dasharray="200" stroke-dashoffset="0"
+                transform="rotate(-90 50 50)"
+                fill="transparent" stroke="url(#svg-gradient)" stroke-linecap="round" class="meter"></circle>
       </svg>
     </div>
 
@@ -49,7 +56,8 @@
           <div class="content-hd">{{ value.name }}</div>
           <div class="content-bd">
             <div class="question-num">题数: <span>{{ value.distrType }}</span></div>
-            <div class="question-rate">正确率：<span>{{ ((value.typeScore * 100 / value.distrType).toFixed(2))}}%</span></div>
+            <div class="question-rate">正确率：<span>{{ ((value.typeScore * 100 / value.distrType).toFixed(2)) }}%</span>
+            </div>
           </div>
           <div class="score"><span>{{ value.typeScore }}</span>分</div>
         </div>
@@ -120,26 +128,26 @@ export default {
 
     this.questionTypeLists = [
       {
-      type: 'sig',
-      name: '单选题',
-      distrType: this.quesDistributionType.sig,
-      typeScore: this.typeScore.sig,
-    }, {
-      type: 'mul',
-      name: '多选题',
-      distrType: this.quesDistributionType.mul,
-      typeScore: this.typeScore.mul,
-    }, {
-      type: 'bla',
-      name: '填空题',
-      distrType: this.quesDistributionType.bla,
-      typeScore: this.typeScore.bla,
-    }, {
-      type: 'jud',
-      name: '判断题',
-      distrType: this.quesDistributionType.jud,
-      typeScore: this.typeScore.jud,
-    }]
+        type: 'sig',
+        name: '单选题',
+        distrType: this.quesDistributionType.sig,
+        typeScore: this.typeScore.sig,
+      }, {
+        type: 'mul',
+        name: '多选题',
+        distrType: this.quesDistributionType.mul,
+        typeScore: this.typeScore.mul,
+      }, {
+        type: 'bla',
+        name: '填空题',
+        distrType: this.quesDistributionType.bla,
+        typeScore: this.typeScore.bla,
+      }, {
+        type: 'jud',
+        name: '判断题',
+        distrType: this.quesDistributionType.jud,
+        typeScore: this.typeScore.jud,
+      }];
   },
   mounted() {
   },
@@ -234,6 +242,37 @@ export default {
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
     }
   }
+
+  .exam-result.chart,
+  .score,
+  .check-answer-sheet .card-btn .btn,
+  .question-detail {
+    border: none!important;
+    color: #A7A9AA!important;
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
+    span {
+      color: #BF8A10!important;
+    }
+  }
+
+  .exam-result.chart::after {
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
+  }
+
+  .header .circle .fa.fa-home{
+    color: #BF8A10!important;
+  }
+
+  .tit {
+    color: #A7A9AA!important;
+    .left-line {
+      background-color: #BF8A10!important;
+    }
+  }
+
+  .check-answer-sheet .card-btn .btn {
+    background: #26282b !important;
+  }
 }
 
 .header {
@@ -311,6 +350,10 @@ export default {
     span {
       display: block;
     }
+
+    .text-muted {
+      font-size: 26px;
+    }
   }
 
   #btntransactions {
@@ -318,15 +361,16 @@ export default {
   }
 
   #chartfill {
+    //transition: stroke-dasharray 2s;
     animation: chart 2000ms linear forwards;
   }
 
   @keyframes chart {
     from {
-      stroke-dashoffset: 300;
+      stroke-dashoffset: 200;
     }
     to {
-      stroke-dashoffset: 110;
+      stroke-dashoffset: 0;
     }
   }
 }
@@ -364,6 +408,7 @@ export default {
 
         div {
           width: 40%;
+
           span {
             color: #00b0ff;
           }

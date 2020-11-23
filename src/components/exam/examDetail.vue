@@ -677,7 +677,6 @@ export default {
       this.setLocalStorage();
     },
     clockInit() {
-      console.log('????????????????')
       if (typeof (localStorage.examTimeObj) === 'undefined') {
         this.examTimeObj.beginTime = Date.parse(new Date()) / 1000;
         this.timer = setInterval(this.calcExamTime, 1000)

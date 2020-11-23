@@ -21,7 +21,7 @@
           <div class="circle-box" v-for="index in val">
             <div class="circle"
                  :class="{'active': isCheckIn(getQuestionIndex(index, key), key)}"
-                 :style="{backgroundColor: getColor(getQuestionIndex(index, key), key)}"
+                 :style="{background: getColor(getQuestionIndex(index, key), key)}"
                  @click="toExamDetail(getQuestionIndex(index, key), key, 'toQuestion')"
             >
               {{ getQuestionIndex(index, key) }}
@@ -142,8 +142,11 @@ export default {
           // console.log(total[index].answer)
           // console.log(user[index - 1])
           if (total[index - 1].answer === user[index - 1]) { // 判断是否做对
+            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
             return this.chapterColor;
           } else {  // 做错了
+            // if (this.themeMode === 'dark') return 'linear-gradient(90deg, #cb2d3e, #ef473a)'
+            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)'
             return this.wrongColor;
           }
         }  // 没做
@@ -199,9 +202,10 @@ export default {
 
   .container .content .circle-box .circle.active {
     box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
-    background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
+    //background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
   }
 
+  .page-title,
   .pageName {
     color: #BF8A10 !important;
   }

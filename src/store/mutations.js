@@ -55,8 +55,8 @@ export default {
 
   // 设置当前在背
   SET_CURRENT_MEMORY(state, obj) {
-    console.log(state.projectBasicData);
-    console.log(state.projectBasicData[obj.projectId]);
+    // console.log(state.projectBasicData);
+    // console.log(state.projectBasicData[obj.projectId]);
 
     let tempObj = {};
     tempObj["title"] = state.projectBasicData[obj.projectId]['chinese'];

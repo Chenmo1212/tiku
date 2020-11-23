@@ -93,7 +93,7 @@
             <div class="btn submit" @click="clickSubmitExamBtn">
               <span>确定</span>
             </div>
-            <div class="btn" @click="hiddenModel()">
+            <div class="btn cancel-btn" @click="hiddenModel()">
               <span>取消</span>
             </div>
           </div>
@@ -106,7 +106,7 @@
             <div class="btn submit" @click="backHome()">
               <span>确定</span>
             </div>
-            <div class="btn" @click="hiddenModel()">
+            <div class="btn cancel-btn" @click="hiddenModel()">
               <span>取消</span>
             </div>
           </div>
@@ -722,9 +722,17 @@ export default {
       box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
     }
 
+    .content .clear-model.submitExam-model {
+      .submit {
+        background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
+      }
+      .cancel-btn {
+        color: #A7A9AA;
+      }
+    }
+
     .submit-btn {
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
-      color: #BF8A10 !important;
     }
 
     .clear-model .submit
