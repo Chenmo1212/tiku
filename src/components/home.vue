@@ -81,14 +81,18 @@
       <div class="content a-fadeinB">
         <div class="title">
           <svg-icon iconClass="update"></svg-icon>
-          <h3>更新说明</h3>
+          <h3>Little Cookie <br>更新说明({{ version }})</h3>
         </div>
         <div class="msg-model">
           <div class="text">
-            1. 题库内容已更新~ <br> <br>
-            2. 新增模拟考试模式~<br> <br>
-            3. 音乐播放器支持传入歌单链接~<br> <br>
-            4. 优化部分细节~<br> <br>
+            1. 修复考试结果页面分数不显示bug~ <br> <br>
+            2. 支持电脑端键盘快速答题~<br> <br>
+            3. 优化部分细节~<br> <br>
+
+            <!-- 1. 题库内容已更新~ <br> <br>-->
+            <!-- 2. 新增模拟考试模式~<br> <br>-->
+            <!-- 3. 音乐播放器支持传入歌单链接~<br> <br>-->
+            <!-- 4. 优化部分细节~<br> <br>-->
 
             <!-- 1. 网站使用CDN加速，打开速度更快了~ <br> <br>-->
             <!-- 2. 题库内容已更新~<br> <br>-->
@@ -132,7 +136,7 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
-      version: '1.2.0',
+      version: '1.2.1',
     }
   },
   created() {

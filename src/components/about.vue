@@ -27,7 +27,9 @@
           主页：<a href="https://chenmo1212.cn">陈默的小站</a></p>
         <p>该网站的功能有些杂，全凭自己“脑子一抽”设计的，若有使用不便之处，还望海涵。功能上目前仅仅实现了基本功能，还有一些功能将在后续阶段继续开发。现在纳入待办事项的功能有：</p>
         <ol>
-          <li>模拟期末考试</li>
+          <li class="done">音乐播放器</li>
+          <li class="done">todolist</li>
+          <li class="done">模拟期末考试</li>
           <li>错题本记录</li>
         </ol>
         <p>若您还需要其它功能，或者有很好的建议，还务必请与我个人联系。此外若网站出现Bug，也请与我联系进行反馈。联系方式（QQ）：<a
@@ -183,6 +185,10 @@ export default {
     -webkit-box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
     box-shadow: 5px 5px 8px #ebebeb, -5px -5px 8px #ffffff;
     padding: 20px;
+
+    li.done {
+      text-decoration: line-through;
+    }
   }
 
   h4 {
