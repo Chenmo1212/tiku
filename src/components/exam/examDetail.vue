@@ -96,7 +96,7 @@
           <div class="all-question" @click="toExamOverview">
             <i class="fa fa-th" aria-hidden="true"></i>
           </div>
-          <div class="show-answer" @click="showAnswer = !showAnswer" v-if="examDoneStatus">
+          <div class="show-answer" @click="handleShowAnswer()" v-if="examDoneStatus">
             <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
             <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
           </div>
@@ -161,6 +161,9 @@ export default {
     // 定时器初始化
     this.clockInit()
 
+    // 判断答案是否固定显示
+    if(this.isStick) this.handleShowAnswer()
+
     this.submitName = this.examDoneStatus ? '查看结果' : '提交试卷';
 
     // 获取所有信息
@@ -208,9 +211,10 @@ export default {
   },
   watch: {
     submitExamStatus() {
-      this.submitExam();
+      console.log("changed", this.submitExamStatus)
+      if (this.submitExamStatus) this.submitExam();
     },
-    '$route' (to, from) {
+    '$route'(to, from) {
       console.log(to)
       console.log(from)
       // from 对象中要 router 来源信息.
@@ -318,19 +322,19 @@ export default {
               scoreObj.sig++;
             }
           }
-        } else if (i < mulNum) {
+        } else if (i < sigNum + mulNum) {
           if (user[i] !== undefined) { // 用户答了这个题
             if (user[i] === total[i].answer) {  // 判断是否正确
               scoreObj.mul++;
             }
           }
-        } else if (i < blaNum) {
+        } else if (i < sigNum + mulNum + blaNum) {
           if (user[i] !== undefined) { // 用户答了这个题
             if (user[i] === total[i].answer) {  // 判断是否正确
               scoreObj.bla++;
             }
           }
-        } else if (i < judNum) {
+        } else if (i < 100) {
           if (user[i] !== undefined) { // 用户答了这个题
             if (user[i] === total[i].answer) {  // 判断是否正确
               scoreObj.jud++;
@@ -340,6 +344,12 @@ export default {
       }
       // console.log(scoreObj)
       return scoreObj
+    },
+
+    handleShowAnswer() {
+      //   显示答案
+      this.judAnswer();
+      this.showAnswer = !this.showAnswer;
     },
 
     /**
@@ -464,9 +474,21 @@ export default {
     // 切换题目
     changeQuestion(index) {
       if (index === 1) {     // 下一题
-        this.questionIndex < this.totalQuesArr.length ? this.questionIndex += 1 : this.setWarning("这已经是最后一题了哦~");
+        // this.questionIndex < this.totalQuesArr.length ? this.questionIndex += 1 : this.setWarning("这已经是最后一题了哦~");
+        if (this.questionIndex < this.totalQuesArr.length) {
+          this.questionIndex += 1;
+        } else {
+          this.setWarning("这已经是最后一题了哦~");
+          return
+        }
       } else if (index === -1) {  // 上一题
-        this.questionIndex > 0 ? this.questionIndex -= 1 : this.setWarning("这已经是第一题了哦~");
+        // this.questionIndex > 0 ? this.questionIndex -= 1 : this.setWarning("这已经是第一题了哦~");
+        if (this.questionIndex > 0) {
+          this.questionIndex -= 1
+        } else {
+          this.setWarning("这已经是第一题了哦~");
+          return
+        }
       }
 
       // console.log(this.totalQuesArr[this.questionIndex]);

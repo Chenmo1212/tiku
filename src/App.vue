@@ -99,7 +99,7 @@
           </div>
         </div>
 
-        <!--提交试卷模态框-->
+        <!--返回主页模态框-->
         <div class="clear-model submitExam-model" v-if="backHomeModel">
           <div class="text">{{ modelMsg }}</div>
           <div class="btn-group">
