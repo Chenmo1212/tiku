@@ -63,7 +63,7 @@ export default {
 
     // 获取所有信息
     this.from = this.$route.params.from;
-    if (this.from !== 'examDetail' && this.from !== 'afterExam' ) {
+    if (this.from !== 'examDetail' && this.from !== 'afterExam') {
       this.setWarning("搞事情同学，从哪个页面进来的？")
     }
 
@@ -141,7 +141,16 @@ export default {
         if (this.isCheckIn(index, type)) {  // 判断有没有做
           // console.log(total[index].answer)
           // console.log(user[index - 1])
-          if (total[index - 1].answer === user[index - 1]) { // 判断是否做对
+
+          if (Array.isArray(total[index - 1].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
+            if (JSON.stringify(user[index - 1].sort()) === JSON.stringify(total[index - 1].answer.sort())) {
+              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
+              return this.chapterColor;
+            } else {
+              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)'
+              return this.wrongColor;
+            }
+          } else if (total[index - 1].answer === user[index - 1]) { // 判断是否做对
             if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
             return this.chapterColor;
           } else {  // 做错了
@@ -154,8 +163,8 @@ export default {
       }
     },
     toExamDetail(index, key, type) {
-      if (type ==='back'){
-        if(this.from === 'examDetail') {
+      if (type === 'back') {
+        if (this.from === 'examDetail') {
           let temp = JSON.parse(localStorage.examTimeObj)
           temp.backDetailTime = Date.parse(new Date()) / 1000;
           localStorage.setItem('examTimeObj', JSON.stringify(temp));

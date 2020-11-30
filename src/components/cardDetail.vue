@@ -80,7 +80,7 @@
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex, item.type)"
                  @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
-                 v-for="(answerItem, answerIndex) in ['对','错']" :key="answerIndex">
+                 v-for="(answerItem, answerIndex) in ['错','对']" :key="answerIndex">
               <span class="icon-item">
                 <span v-if="answerIndex === 0">A</span>
                 <span v-if="answerIndex === 1">B</span>
@@ -460,7 +460,8 @@
         } else {
           // 更改选项样式
           this.checkIndex = answerIndex;
-
+          // 更改判断题顺序（使第一个选项为对，第二个选项为错）
+          if (type === 3) answerIndex = answerIndex ? 0 : 1;
           // 判断对错，改答案样式
           item.answer === answerIndex ? this.isError = false : this.isError = true;
         }

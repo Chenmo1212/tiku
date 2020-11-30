@@ -66,7 +66,7 @@
                  :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
                  :style="getColor(answerIndex, totalQuesArr[questionIndex].type)"
                  @click="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex, totalQuesArr[questionIndex].type)"
-                 v-for="(answerItem, answerIndex) in ['对','错']">
+                 v-for="(answerItem, answerIndex) in ['错','对']">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A</span>
               <span v-if="answerIndex === 1">B</span>
@@ -286,8 +286,15 @@ export default {
       // 计算总分
       for (let i = 0; i < total.length; i++) {
         if (user[i] !== undefined) { // 用户答了这个题
-          if (user[i] === total[i].answer) {  // 判断是否正确
-            this.totalScore++;
+          if (Array.isArray(total[i].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
+            // console.log(total[i].answer)
+            if (JSON.stringify(user[i].sort()) === JSON.stringify(total[i].answer.sort())) {  // 判断是否正确
+              this.totalScore++;
+            }
+          } else {
+            if (user[i] === total[i].answer) {  // 判断是否正确
+              this.totalScore++;
+            }
           }
         }
       }
@@ -324,8 +331,10 @@ export default {
           }
         } else if (i < sigNum + mulNum) {
           if (user[i] !== undefined) { // 用户答了这个题
-            if (user[i] === total[i].answer) {  // 判断是否正确
-              scoreObj.mul++;
+            if (Array.isArray(total[i].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
+              if (JSON.stringify(user[i].sort()) === JSON.stringify(total[i].answer.sort())) {  // 判断是否正确
+                scoreObj.mul++;
+              }
             }
           }
         } else if (i < sigNum + mulNum + blaNum) {
@@ -507,7 +516,17 @@ export default {
       this.judAnswer();
     },
     judAnswer() {
-      this.isError = this.totalQuesArr[this.questionIndex].answer !== this.answerObj[this.questionIndex];
+      let ans = this.totalQuesArr[this.questionIndex].answer
+      let user = this.answerObj[this.questionIndex]
+      if (Array.isArray(ans)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
+        if (Array.isArray(user)) {
+          this.isError = JSON.stringify(user.sort()) !== JSON.stringify(ans.sort())
+        } else {
+          this.isError = false
+        }
+      } else {
+        this.isError = this.totalQuesArr[this.questionIndex].answer !== this.answerObj[this.questionIndex];
+      }
     },
     getQuesTypeNum() {  // 获取题目类型的数量
       if (this.currentType === 0) this.questionTypeNum = this.quesDistributionType.sig
@@ -530,12 +549,15 @@ export default {
           this.checkedList.splice(this.checkedList.indexOf(answerIndex), 1);
         } else {
           this.checkedList.push(answerIndex);
+          // console.log(this.checkedList)
         }
         this.answerObj[index] = this.checkedList;
       } else {
         // 更改选项样式
         this.checkIndex = answerIndex;
         // console.log(this.answerObj)
+        // 更改判断题顺序（使第一个选项为对，第二个选项为错）
+        if (type === 3) answerIndex = answerIndex ? 0 : 1;
         this.answerObj[index] = this.checkIndex;
       }
       this.setExamLocal(1)
@@ -556,73 +578,79 @@ export default {
     keyListener(_this) {
       let answerList = document.getElementsByClassName('answer-item');
       let key = window.event.keyCode;
-
-      // 选项
-      if (_this.currentType === 0 || _this.currentType === 3) {
-        // 单选题
-        switch (key) {
-          case 49:  // A
-          case 65:  // A
-            _this.checkIndex = 0;
-            break;
-          case 50:  // B
-          case 66:  // B
-            _this.checkIndex = 1;
-            break;
-          case 51:  // C
-          case 67:  // C
-            _this.checkIndex = 2;
-            break;
-          case 52:  // D
-          case 68:  // D
-            _this.checkIndex = 3;
-            break;
-        }
-        _this.answerObj[_this.questionIndex] = _this.checkIndex;
-      } else if (_this.currentType === 1) {
-        let user_index = -1;
-        // 多选题
-        switch (key) {
-          case 49:  // A
-          case 65:  // A
-            user_index = 0;
-            break;
-          case 50:  // B
-          case 66:  // B
-            user_index = 1;
-            break;
-          case 51:  // C
-          case 67:  // C
-            user_index = 2;
-            break;
-          case 52:  // D
-          case 68:  // D
-            user_index = 3;
-            break;
-        }
-
-        // 返回用户选项在已选列表里的下标
-        let _index = _this.checkedList.findIndex(function (value) {
-          return value === user_index
-        });
-        // 判断是否已经选择了该选项，有删无增
-        if (_index >= 0) {
-          _this.checkedList.splice(_index, 1)
-        } else {
-          _this.checkedList.push(user_index)
-        }
-        _this.answerObj[_this.questionIndex] = _this.checkedList;
-      }
+      let isAnswerQuestion = true;  // 是否是回答问题的——防止用户在切换题目的时候被误认为答题
 
       // 切换题目
       switch (key) {
         case 37:
           // console.log("左箭头");
           _this.changeQuestion(-1);
+          isAnswerQuestion = false;
           break;
         case 39:
           // console.log("右箭头");
           _this.changeQuestion(1);
+          isAnswerQuestion = false;
+      }
+      // 判断是不是答题状态
+      if (isAnswerQuestion) {
+        // 选项
+        if (_this.currentType === 0 || _this.currentType === 3) {
+          // 单选题
+          switch (key) {
+            case 49:  // A
+            case 65:  // A
+              _this.checkIndex = 0;
+              break;
+            case 50:  // B
+            case 66:  // B
+              _this.checkIndex = 1;
+              break;
+            case 51:  // C
+            case 67:  // C
+              _this.checkIndex = 2;
+              break;
+            case 52:  // D
+            case 68:  // D
+              _this.checkIndex = 3;
+              break;
+          }
+          _this.answerObj[_this.questionIndex] = _this.checkIndex;
+        } else if (_this.currentType === 1) {
+          let user_index = -1;
+          // 多选题
+          switch (key) {
+            case 49:  // A
+            case 65:  // A
+              user_index = 0;
+              break;
+            case 50:  // B
+            case 66:  // B
+              user_index = 1;
+              break;
+            case 51:  // C
+            case 67:  // C
+              user_index = 2;
+              break;
+            case 52:  // D
+            case 68:  // D
+              user_index = 3;
+              break;
+          }
+
+          // 返回用户选项在已选列表里的下标
+          let _index = _this.checkedList.findIndex(function (value) {
+            return value === user_index
+          });
+          // 判断是否已经选择了该选项，有删无增
+          if (_index >= 0) {
+            _this.checkedList.splice(_index, 1)
+          } else {
+            _this.checkedList.push(user_index);
+            // console.log(_this.checkedList)
+          }
+          _this.answerObj[_this.questionIndex] = _this.checkedList;
+        }
       }
       _this.setExamLocal(1)
     },
