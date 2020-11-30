@@ -142,8 +142,12 @@ export default {
           // console.log(total[index].answer)
           // console.log(user[index - 1])
 
-          if (Array.isArray(total[index - 1].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
-            if (JSON.stringify(user[index - 1].sort()) === JSON.stringify(total[index - 1].answer.sort())) {
+          let index_ = index;
+
+          if (Array.isArray(total[index_ - 1].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
+            let user_temp = user[index_ - 1].slice(0)
+            let ans_temp = total[index_ - 1].answer.slice(0)
+            if (JSON.stringify(user_temp.sort()) === JSON.stringify(ans_temp.sort())) {
               if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
               return this.chapterColor;
             } else {
