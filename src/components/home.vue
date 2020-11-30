@@ -85,9 +85,13 @@
         </div>
         <div class="msg-model">
           <div class="text">
-            1. 修复考试结果页面分数不显示bug~ <br> <br>
-            2. 支持电脑端键盘快速答题~<br> <br>
+            1. 修复模拟考试多选题顺序不同导致判错bug~<br> <br>
+            2. 修复判断题答案错误~<br> <br>
             3. 优化部分细节~<br> <br>
+
+            <!-- 1. 修复考试结果页面分数不显示bug~ <br> <br>-->
+            <!-- 2. 支持电脑端键盘快速答题~<br> <br>-->
+            <!-- 3. 优化部分细节~<br> <br>-->
 
             <!-- 1. 题库内容已更新~ <br> <br>-->
             <!-- 2. 新增模拟考试模式~<br> <br>-->
@@ -136,7 +140,7 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
-      version: '1.2.1',
+      version: '1.2.2',
     }
   },
   created() {
