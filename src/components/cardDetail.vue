@@ -80,7 +80,7 @@
                  :class="getActiveStyle(answerIndex, item.type)"
                  :style="getColor(answerIndex, item.type)"
                  @click.stop.prevent="submitAns(item, answerIndex, index, item.type)"
-                 v-for="(answerItem, answerIndex) in ['错','对']" :key="answerIndex">
+                 v-for="(answerItem, answerIndex) in ['对','错']" :key="answerIndex">
               <span class="icon-item">
                 <span v-if="answerIndex === 0">A</span>
                 <span v-if="answerIndex === 1">B</span>
@@ -600,8 +600,8 @@
           }
           return tempAns;
         } else if (type === 3) { // 判断题
-          if (ans === 0) return "对";
-          if (ans === 1) return "错";
+          if (ans === 1) return "对";
+          if (ans === 0) return "错";
         }
       },
 

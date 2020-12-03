@@ -82,12 +82,16 @@
         <div class="title">
           <svg-icon iconClass="update"></svg-icon>
           <h3>Little Cookie <br>更新说明({{ version }})</h3>
+<!--          <h3>Little Cookie <br>维护ing</h3>-->
         </div>
         <div class="msg-model">
           <div class="text">
+<!--            模拟考试模式正在维护中，若继续使用结果将仅供参考。-->
             1. 修复模拟考试多选题顺序不同导致判错bug~<br> <br>
             2. 修复判断题答案错误~<br> <br>
             3. 优化部分细节~<br> <br>
+            <br>
+            多谢 <span style="color: rgb(89, 158, 251)">@ZRunnnnyue</span> 同学的反馈
 
             <!-- 1. 修复考试结果页面分数不显示bug~ <br> <br>-->
             <!-- 2. 支持电脑端键盘快速答题~<br> <br>-->
@@ -140,7 +144,7 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
-      version: '1.2.2',
+      version: '1.2.4',
     }
   },
   created() {

@@ -646,16 +646,20 @@ export default {
       }, 3000)
     },
     backHome() {
+      console.log("remove")
       this.$router.push({name: 'home', replace: true});
       this.setExamStatus(false)
       this.hiddenModel()
       localStorage.removeItem('tiku_examData');
+      if(typeof(localStorage.examTimeObj) !== 'undefined'){
+        clearInterval(JSON.parse(localStorage.examTimeObj).timer)
+      }
       localStorage.removeItem('examTimeObj');
       localStorage.removeItem('totalScore');
       localStorage.removeItem('typeScore');
     },
 
-    insertEle(){
+    insertEle() {
       this.songError();
       console.log(this.musicList)
     }

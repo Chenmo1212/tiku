@@ -66,7 +66,7 @@
                  :class="getActiveStyle(answerIndex, totalQuesArr[questionIndex].type)"
                  :style="getColor(answerIndex, totalQuesArr[questionIndex].type)"
                  @click="submitAns(totalQuesArr[questionIndex], answerIndex, questionIndex, totalQuesArr[questionIndex].type)"
-                 v-for="(answerItem, answerIndex) in ['错','对']">
+                 v-for="(answerItem, answerIndex) in ['对','错']">
             <span class="icon-item">
               <span v-if="answerIndex === 0">A</span>
               <span v-if="answerIndex === 1">B</span>
@@ -129,8 +129,8 @@ export default {
         examTime: '00:00:00',
         gapTime: 0,
         isOver: false,
+        timer: '',
       },
-      timer: '',
       examTime: 0,
 
       subjectId: null,
@@ -246,13 +246,14 @@ export default {
 
     // 前往答题卡
     toExamOverview() {
-      // 存储一些必要的信息
-      this.setExamLocal(1);
 
       //  处理计时器
       this.examTimeObj.toOverviewTime = Date.parse(new Date()) / 1000;
       this.setLocalStorage();
-      clearInterval(this.timer)
+      clearInterval(this.examTimeObj.timer)
+
+      // 存储一些必要的信息
+      this.setExamLocal(1);
 
       this.$router.push({
         name: 'examOverview',
@@ -277,7 +278,7 @@ export default {
     },
     submitExam() {
       // 计时器
-      clearInterval(this.timer);
+      clearInterval(this.examTimeObj.timer);
       this.examTimeObj.isOver = true;
       this.setLocalStorage()
 
@@ -443,8 +444,8 @@ export default {
         }
         return tempAns;
       } else if (type === 3) { // 判断题
-        if (ans === 0) return "对";
-        if (ans === 1) return "错";
+        if (ans === 1) return "对";
+        if (ans === 0) return "错";
       }
     },
     // 固定答案
@@ -468,12 +469,13 @@ export default {
     // 匹配用户答案
     matchUserAns() {
       // 匹配用户答案
+      console.log("匹配用户答案：", this.answerObj, '\n', this.questionIndex);
       for (let key in this.answerObj) {
         if (key == this.questionIndex) {
           if (Array.isArray(this.answerObj[key])) {
             this.checkedList = this.answerObj[key]
           } else {
-            this.checkIndex = this.answerObj[key]
+            this.checkIndex = this.answerObj[key] ? 0 : 1;
           }
           return true
         }
@@ -484,7 +486,7 @@ export default {
     changeQuestion(index) {
       if (index === 1) {     // 下一题
         // this.questionIndex < this.totalQuesArr.length ? this.questionIndex += 1 : this.setWarning("这已经是最后一题了哦~");
-        if (this.questionIndex < this.totalQuesArr.length) {
+        if (this.questionIndex + 1 < this.totalQuesArr.length) {
           this.questionIndex += 1;
         } else {
           this.setWarning("这已经是最后一题了哦~");
@@ -558,7 +560,8 @@ export default {
         // console.log(this.answerObj)
         // 更改判断题顺序（使第一个选项为对，第二个选项为错）
         if (type === 3) answerIndex = answerIndex ? 0 : 1;
-        this.answerObj[index] = this.checkIndex;
+        console.log(answerIndex)
+        this.answerObj[index] = answerIndex;
       }
       this.setExamLocal(1)
 
@@ -615,7 +618,9 @@ export default {
               _this.checkIndex = 3;
               break;
           }
-          _this.answerObj[_this.questionIndex] = _this.checkIndex;
+          let answerIndex = _this.checkIndex
+          if (this.currentType === 3) answerIndex = answerIndex ? 0 : 1;
+          _this.answerObj[_this.questionIndex] = answerIndex;
         } else if (_this.currentType === 1) {
           let user_index = -1;
           // 多选题
@@ -706,7 +711,7 @@ export default {
       localStorage.setItem('examTimeObj', JSON.stringify(this.examTimeObj));
     },
     overClock() {
-      clearInterval(this.timer);
+      clearInterval(this.examTimeObj.timer);
       this.examTimeObj.isOver = true;
       this.setLocalStorage()
     },
@@ -735,12 +740,12 @@ export default {
     clockInit() {
       if (typeof (localStorage.examTimeObj) === 'undefined') {
         this.examTimeObj.beginTime = Date.parse(new Date()) / 1000;
-        this.timer = setInterval(this.calcExamTime, 1000)
+        this.examTimeObj.timer = setInterval(this.calcExamTime, 1000)
       } else {
         // 刷新之后本地数据覆盖初始化数据
         this.examTimeObj = JSON.parse(localStorage.examTimeObj);
         if (!JSON.parse(localStorage.examTimeObj).isOver) {
-          this.timer = setInterval(this.calcExamTime, 1000)
+          this.examTimeObj.timer = setInterval(this.calcExamTime, 1000)
         }
       }
       if (this.$route.params.from && this.$route.params.from === 'examOverview') {
