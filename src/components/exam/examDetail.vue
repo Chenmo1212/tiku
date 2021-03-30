@@ -469,13 +469,17 @@ export default {
     // 匹配用户答案
     matchUserAns() {
       // 匹配用户答案
-      console.log("匹配用户答案：", this.answerObj, '\n', this.questionIndex);
+      // console.log("匹配用户答案：", this.answerObj, '\n', this.questionIndex);
       for (let key in this.answerObj) {
         if (key == this.questionIndex) {
           if (Array.isArray(this.answerObj[key])) {
             this.checkedList = this.answerObj[key]
           } else {
-            this.checkIndex = this.answerObj[key] ? 0 : 1;
+            if (this.currentType === 3) {
+              this.checkIndex = this.answerObj[key] ? 0 : 1;
+            } else {
+              this.checkIndex = this.answerObj[key]
+            }
           }
           return true
         }
