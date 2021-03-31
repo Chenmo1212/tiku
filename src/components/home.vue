@@ -82,36 +82,14 @@
         <div class="title">
           <svg-icon iconClass="christmas_tree"></svg-icon>
           <h3>Little Cookie <br>更新说明({{ version }})</h3>
-<!--          <h3>Little Cookie <br>维护ing</h3>-->
+          <!--          <h3>Little Cookie <br>维护ing</h3>-->
         </div>
         <div class="msg-model">
           <div class="text">
-<!--            模拟考试模式正在维护中，若继续使用结果将仅供参考。-->
-            1. 圣诞节来袭！！祝大家平安喜乐，万事胜意！！ <br><br>
-            2. 给大家开发了一个可以给头像加上圣诞帽的网站：<a href="https://chenmo1212.cn/Christmas">点此进入</a>
-<!--            1. 修复模拟考试多选题顺序不同导致判错bug~<br>-->
-<!--            2. 修复判断题答案错误~<br>-->
-<!--            3. 修复选项自动切换bug~<br>-->
-<!--            4. 优化部分细节~<br>-->
-<!--            <br>-->
-<!--            多谢 <span style="color: rgb(89, 158, 251)">@ZRunnnnyue</span> 同学的反馈-->
-
-            <!-- 1. 修复考试结果页面分数不显示bug~ <br> <br>-->
-            <!-- 2. 支持电脑端键盘快速答题~<br> <br>-->
-            <!-- 3. 优化部分细节~<br> <br>-->
-
-            <!-- 1. 题库内容已更新~ <br> <br>-->
-            <!-- 2. 新增模拟考试模式~<br> <br>-->
-            <!-- 3. 音乐播放器支持传入歌单链接~<br> <br>-->
-            <!-- 4. 优化部分细节~<br> <br>-->
-
-            <!-- 1. 网站使用CDN加速，打开速度更快了~ <br> <br>-->
-            <!-- 2. 题库内容已更新~<br> <br>-->
-            <!-- 3. 音乐播放器支持传入歌单链接~<br> <br>-->
-            <!-- 4. 优化部分细节~<br> <br>-->
-            <!-- 3. 模拟期末考试功能正在开发（大四有点忙，会尽快完成的）<br> <br>-->
-            <!-- 4. 如有知道正确题型分布的朋友进行反馈~<br> <br>-->
-            <!-- 5. 如有建议或bug请点击左上角进行反馈~<br> <br>-->
+            <!--            模拟考试模式正在维护中，若继续使用结果将仅供参考。-->
+            突然更新！吓死你们！<br><br>
+            用户反馈功能更新了，之前的接口失效了，所以一直没有收到用户反馈，我要开始增加功能了，有好点子的伙伴快进行反馈吧~<br><br>
+            <br><br>
           </div>
           <div class="submit-btn" @click="hiddenUpdateModal"><i class="fa fa-send-o"></i> <span>朕知道了</span></div>
         </div>
@@ -147,7 +125,7 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
-      version: '1.2.5.1',
+      version: '1.2.6',
     }
   },
   created() {

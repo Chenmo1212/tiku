@@ -87,6 +87,11 @@ export default new Router({
       //懒加载
       component: resolve => require(['@/components/todo'], resolve),
     }, {
+      path: '/timeline',
+      name: 'timeline',
+      //懒加载
+      component: resolve => require(['@/components/timeline'], resolve),
+    }, {
       path: '*',
       redirect: '/home'
     },

@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"></i>
+          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"/>
         </div>
         <div class="pageName">{{pageName}}</div>
       </div>
@@ -12,30 +12,30 @@
       <div class="title mt-0"><span class="text">反馈类型</span></div>
       <div class="type-content">
         <label class="radio" for="improve" @click.prevent="handleType(1)">
-          <span class="radio-bg"></span>
+          <span class="radio-bg"/>
           <input checked="checked" id="improve" name="type" type="radio" value="改进建议"/> 改进建议
-          <span class="radio-on"></span>
+          <span class="radio-on"/>
         </label>
         <label class="radio" for="bug" @click.prevent="handleType(2)">
-          <span class="radio-bg"></span>
+          <span class="radio-bg"/>
           <input id="bug" name="type" type="radio" value="Bug提交"/> Bug提交
-          <span class="radio-on"></span>
+          <span class="radio-on"/>
         </label>
         <label class="radio" for="advise" @click.prevent="handleType(3)">
-          <span class="radio-bg"></span>
+          <span class="radio-bg"/>
           <input id="advise" name="type" type="radio" value="对开发者的话"/> 对开发者的话
-          <span class="radio-on"></span>
+          <span class="radio-on"/>
         </label>
       </div>
       <div class="title"><span class="text">反馈内容</span></div>
-      <textarea v-model="feedCont" id="content" @focus="removeWarning()"></textarea>
+      <textarea v-model="feedCont" id="content" @focus="removeWarning()"/>
       <div class="title"><span class="text">称呼（选填）</span></div>
       <input type="text" class="input name" v-model="name"/>
       <div class="title"><span class="text">邮箱</span></div>
       <input type="text" class="input mail" v-model="mail" id="mail" @focus="removeWarning()"/>
       <button class="btn submit" @click="submitBug()">
         <span class="icon-container">
-          <i class="fa fa-rocket"></i>
+          <i class="fa fa-rocket"/>
             立即提交
           </span>
       </button>
@@ -178,8 +178,8 @@
 
         let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
 
-        let SCKEY = 'SCU111050Tdb28e1d031b1b4a87d4cdba2f8bba1095f478da29f48a';
-        let url = 'https://sc.ftqq.com/' + SCKEY + '.send';
+        let SCKEY = 'SCT25268TK4j67c5FaUBd7RVWlNas3kcN';
+        let url = 'https://sctapi.ftqq.com/' + SCKEY + '.send';
 
         let params = new URLSearchParams();
         params.append('text', 'Little cookie 用户反馈');
