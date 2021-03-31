@@ -35,95 +35,19 @@
     data() {
       return {
         pageName: '更新日志',
-
-        updateLogsList: [{
-          date: '2020-11-30',
-          version: 'version: 1.2.4',
-          content: ['圣诞节来袭！！祝大家平安喜乐，万事胜意！！',
-            '给大家开发了一个可以给头像加上圣诞帽的网站：<a href="https://chenmo1212.cn/Christmas">点此进入</a>']
-        }, {
-          date: '2020-11-30',
-          version: 'version: 1.2.4',
-          content: ['修复模拟考试多选题顺序不同导致判错bug~',
-            '修复判断题答案错误~',
-            '修复选项自动切换bug~',
-            '优化部分细节~']
-        }, {
-          date: '2020-11-28',
-          version: 'version: 1.2.2',
-          content: ['修复考试结果页面分数不显示bug~ ',
-            '支持电脑端键盘快速答题~',
-            '优化部分细节~']
-        }, {
-          date: '2020-11-24',
-          version: 'version: 1.2.0',
-          content: ['题库内容已更新~',
-            '新增模拟考试模式~',
-            '音乐播放器支持传入歌单链接~',
-            '优化部分细节~']
-        }, {
-          date: '2020-11-21',
-          version: 'version: 1.1.0',
-          content: ['网站使用CDN加速，打开速度更快了~',
-            '题库内容已更新~',
-            '音乐播放器支持传入歌单链接~',
-            '优化部分细节~',
-            '模拟期末考试功能正在开发（大四有点忙，会尽快完成的）']
-        }, {
-          date: '2020-9-28',
-          version: 'version: 1.1.0',
-          content: ['增加todo功能~']
-        }, {
-          date: '2020-9-25',
-          version: 'version: 1.0.7',
-          content: ['更换全局成抽屉样式~']
-        }, {
-          date: '2020-8-29',
-          version: 'version: 1.0.6',
-          content: ['支持键盘监听，可以用键盘切换题目~']
-        }, {
-          date: '2020-8-27',
-          version: 'version: 1.0.5',
-          content: ['增加反馈机制~',
-            '题库网站的域名更换啦~',]
-        }, {
-          date: '2020-8-6',
-          version: 'version: 1.0.4',
-          content: ['增加音乐播放器~',
-            '增加全局悬浮音乐控制按钮~',]
-        }, {
-          date: '2020-7-30',
-          version: 'version: 1.0.3',
-          content: ['页面懒加载~',
-            '增加全屏功能~',]
-        }, {
-          date: '2020-7-23',
-          version: 'version: 1.0.2',
-          content: ['增加卡片模式~']
-        }, {
-          date: '2020-7-16',
-          version: 'version: 1.0.1',
-          content: ['增加黑夜模式~']
-        }, {
-          date: '2020-7-9',
-          version: 'version: 1.0.0',
-          content: ['长理web端新拟态题库来了~']
-        }]
       }
     },
     computed: {
       ...mapState([
         'themeColor',
         'themeMode',
-        'cardMode',
-        'selectedProject',
-        'selectedChapter',
+        'updateLogsList',
       ]),
     },
     created() {
       // 调整主题模式
       if (typeof (localStorage.themeMode) !== 'undefined') {
-        let type = JSON.parse(localStorage.themeMode);
+        let type = localStorage.themeMode;
         window.document.documentElement.setAttribute("data-theme", type);
         this.setThemeMode({type: type});
       }
@@ -140,120 +64,6 @@
       backHome() {
         this.$router.push({name: 'home'});
       },
-
-      /**
-       * 反馈类型
-       * @param index 下标
-       */
-      handleType(index) {
-        console.log(index);
-
-        let type1 = document.getElementById('improve');
-        let type2 = document.getElementById('bug');
-        let type3 = document.getElementById('advise');
-
-        switch (index) {
-          case 1:
-            this.type = '改进建议';
-            type1.checked = "checked";
-            type2.checked = "";
-            type3.checked = "";
-            break;
-          case 2:
-            this.type = 'Bug提交';
-            type1.checked = "";
-            type2.checked = "checked";
-            type3.checked = "";
-            break;
-          case 3:
-            this.type = '对开发者的话';
-            type1.checked = "";
-            type2.checked = "";
-            type3.checked = "checked";
-            break;
-        }
-      },
-      /**
-       * 移除警告状态
-       */
-      removeWarning() {
-        document.getElementById("content").classList.remove("warning");
-        document.getElementById("mail").classList.remove("warning");
-      },
-
-      /**
-       * 检测邮箱格式是否正确
-       * @returns {boolean} 正确与否
-       */
-      checkMail() {
-        let email = this.mail;
-        let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-        if (reg.test(email)) {
-          console.log("邮箱格式正确");
-          return true
-        } else {
-          console.log("邮箱格式不正确");
-          document.getElementById("mail").classList.add("warning");
-          this.setWarning("邮箱格式不正确");
-          return false
-        }
-      },
-      /**
-       * 检测反馈内容是否正确
-       * @returns {boolean} 正确与否
-       */
-      checkContent() {
-        let content = this.feedCont;
-        if (content) {
-          console.log("反馈内容不为空");
-          return true
-        } else {
-          console.log("反馈内容为空");
-          document.getElementById("content").classList.add("warning");
-          this.setWarning("反馈内容不得为空");
-          return false
-        }
-      },
-
-      /**
-       * 提交
-       */
-      submitBug() {
-        // 检测邮箱
-        if (!this.checkMail()) return;
-        // 检测反馈内容
-        if (!this.checkContent()) return;
-
-        let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
-
-        let SCKEY = 'SCT25268TK4j67c5FaUBd7RVWlNas3kcN';
-        let url = 'https://sctapi.ftqq.com/' + SCKEY + '.send';
-
-        let params = new URLSearchParams();
-        params.append('text', 'Little cookie 用户反馈');
-        params.append('desp', content);
-
-        axios.post(url, params, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json'
-          },
-        }).then((res) => {
-          console.log("返回的值" + res);
-          this.setWarning("提交成功！感谢您的反馈！");
-          this.type = '';
-          this.mail = '';
-          this.name = '';
-          this.feedCont = ''
-        }).catch(err => {
-          console.log("错误" + err);
-          this.setWarning("提交成功了！感谢您的反馈！");
-          this.type = '';
-          this.mail = '';
-          this.name = '';
-          this.feedCont = ''
-        });
-      }
     }
   }
 </script>
@@ -291,11 +101,24 @@
   }
 
   .dark {
+    .main {
+      background: #26282b !important;
 
-  }
+      &:before {
+        background: none!important;
+      }
 
-  .dark {
+      &:after {
+        border-right: 6px solid #26282b !important
+      }
 
+      p .link {
+        color: #BF8A10!important;
+      }
+    }
+    p, p span {
+      color: #a2b1ca!important;
+    }
   }
 
   .header {
@@ -427,7 +250,7 @@
           }
 
           * {
-            text-shadow: 0 1px rgba(255, 255, 255, .5);
+            /*text-shadow: 0 1px rgba(255, 255, 255, .5);*/
             color: #5d6b7d;
             font-size: 13px;
             position: relative;

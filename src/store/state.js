@@ -96,4 +96,78 @@ export default {
 
   todoData: null,
 
+  updateLogsList: [
+    {
+      date: '2020-11-30',
+      version: 'version: 1.2.4',
+      content: ['圣诞节来袭！！祝大家平安喜乐，万事胜意！！',
+        '给大家开发了一个可以给头像加上圣诞帽的网站：<a href="https://chenmo1212.cn/Christmas" style="color:#BF8A10">点此进入</a>']
+    }, {
+      date: '2020-11-30',
+      version: 'version: 1.2.4',
+      content: ['修复模拟考试多选题顺序不同导致判错bug~',
+        '修复判断题答案错误~',
+        '修复选项自动切换bug~',
+        '优化部分细节~']
+    }, {
+      date: '2020-11-28',
+      version: 'version: 1.2.2',
+      content: ['修复考试结果页面分数不显示bug~ ',
+        '支持电脑端键盘快速答题~',
+        '优化部分细节~']
+    }, {
+      date: '2020-11-24',
+      version: 'version: 1.2.0',
+      content: ['题库内容已更新~',
+        '新增模拟考试模式~',
+        '音乐播放器支持传入歌单链接~',
+        '优化部分细节~']
+    }, {
+      date: '2020-11-21',
+      version: 'version: 1.1.0',
+      content: ['网站使用CDN加速，打开速度更快了~',
+        '题库内容已更新~',
+        '音乐播放器支持传入歌单链接~',
+        '优化部分细节~',
+        '模拟期末考试功能正在开发（大四有点忙，会尽快完成的）']
+    }, {
+      date: '2020-9-28',
+      version: 'version: 1.1.0',
+      content: ['增加todo功能~']
+    }, {
+      date: '2020-9-25',
+      version: 'version: 1.0.7',
+      content: ['更换全局成抽屉样式~']
+    }, {
+      date: '2020-8-29',
+      version: 'version: 1.0.6',
+      content: ['支持键盘监听，可以用键盘切换题目~']
+    }, {
+      date: '2020-8-27',
+      version: 'version: 1.0.5',
+      content: ['增加反馈机制~',
+        '题库网站的域名更换啦~',]
+    }, {
+      date: '2020-8-6',
+      version: 'version: 1.0.4',
+      content: ['增加音乐播放器~',
+        '增加全局悬浮音乐控制按钮~',]
+    }, {
+      date: '2020-7-30',
+      version: 'version: 1.0.3',
+      content: ['页面懒加载~',
+        '增加全屏功能~',]
+    }, {
+      date: '2020-7-23',
+      version: 'version: 1.0.2',
+      content: ['增加卡片模式~']
+    }, {
+      date: '2020-7-16',
+      version: 'version: 1.0.1',
+      content: ['增加黑夜模式~']
+    }, {
+      date: '2020-7-9',
+      version: 'version: 1.0.0',
+      content: ['长理web端新拟态题库来了~']
+    }]
 }

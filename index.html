@@ -129,10 +129,9 @@
 <div id="app"></div>
 <!-- built files will be auto injected -->
 <script>
-  let themeMode = JSON.parse(localStorage.themeMode);
+  let themeMode = localStorage.themeMode;
   if (themeMode === 'dark') {
     let obj = document.getElementById('appLoading');
-    console.log(obj)
     obj.style.backgroundColor = '#26282b'
   }
 </script>

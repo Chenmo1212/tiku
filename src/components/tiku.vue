@@ -175,7 +175,7 @@ export default {
 
       // 调整主题模式
       if (typeof (localStorage.themeMode) !== 'undefined') {
-        let type = JSON.parse(localStorage.themeMode);
+        let type = localStorage.themeMode;
         window.document.documentElement.setAttribute("data-theme", type);
         that.setThemeMode({type: type});
       }

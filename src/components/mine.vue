@@ -19,18 +19,18 @@
     </div>
     <div class="content">
       <div class="item day-night">
-        <i class="fa fa-moon-o left" aria-hidden="true"></i>
+        <i class="fa fa-moon-o left" aria-hidden="true"/>
         <span v-if="themeMode === 'light'">白天模式</span>
         <span v-if="themeMode !== 'light'">黑夜模式</span>
         <div class="toggle toggle--daynight">
           <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
           <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
-            <span class="toggle--feature"></span>
+            <span class="toggle--feature"/>
           </label>
         </div>
       </div>
       <div class="item">
-        <i class="fa fa-clone left"></i>
+        <i class="fa fa-clone left"/>
         <span>卡片模式</span>
         <span class="switch-container">
          <label class="switch" @click="handleTikuMode">
@@ -39,7 +39,7 @@
         </span>
       </div>
       <div class="item">
-        <i class="fa fa-expand left"></i>
+        <i class="fa fa-expand left"/>
         <span>全屏模式</span>
         <span class="switch-container">
          <label class="switch" @click="setFullScreen">
@@ -104,10 +104,10 @@ export default {
   created() {
     // 主题模式
     if (typeof (localStorage.themeMode) === 'undefined') {
-      localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
+      localStorage.setItem('themeMode', this.themeMode);
     } else {
-      this.ifLight = JSON.parse(localStorage.themeMode) === "light";
-      let type = JSON.parse(localStorage.themeMode);
+      this.ifLight = localStorage.themeMode === "light";
+      let type = localStorage.themeMode;
       this.setThemeMode({type: type});
     }
   },
@@ -174,7 +174,7 @@ export default {
       this.setThemeMode({type: type});
       window.document.documentElement.setAttribute("data-theme", type);
 
-      localStorage.setItem('themeMode', JSON.stringify(this.themeMode));
+      localStorage.setItem('themeMode', this.themeMode);
     },
 
     // 设置题库模式

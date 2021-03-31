@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 
 // 调整主题模式
 if (typeof (localStorage.themeMode) !== 'undefined') {
-  let type = JSON.parse(localStorage.themeMode);
+  let type = localStorage.themeMode;
   window.document.documentElement.setAttribute("data-theme", type);
   // this.setThemeMode({type: type});
 }

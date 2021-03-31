@@ -80,7 +80,7 @@
       <div class="bg"></div>
       <div class="content a-fadeinB">
         <div class="title">
-          <svg-icon iconClass="christmas_tree"></svg-icon>
+          <svg-icon iconClass="having_fun"></svg-icon>
           <h3>Little Cookie <br>更新说明({{ version }})</h3>
           <!--          <h3>Little Cookie <br>维护ing</h3>-->
         </div>
@@ -91,6 +91,7 @@
             用户反馈功能更新了，之前的接口失效了，所以一直没有收到用户反馈，我要开始增加功能了，有好点子的伙伴快进行反馈吧~<br><br>
             <br><br>
           </div>
+          <div class="text" style="text-align: center;"><router-link to="/timeline" style="color:#599efb;">查看更新日志</router-link></div>
           <div class="submit-btn" @click="hiddenUpdateModal"><i class="fa fa-send-o"></i> <span>朕知道了</span></div>
         </div>
       </div>
@@ -125,7 +126,7 @@ export default {
       showBeginBtn: true,
       isShowDrawer: true,
       isShowUpdateModal: true,
-      version: '1.2.6',
+      version: '1.2.7',
     }
   },
   created() {
@@ -135,7 +136,7 @@ export default {
   mounted() {
     // 更新提示框是否已经隐藏
     if (typeof (localStorage.tiku_version) !== 'undefined') {
-      if (JSON.parse(localStorage.tiku_version) !== this.version) {
+      if (localStorage.tiku_version !== this.version) {
         localStorage.removeItem('isShowUpdateModal')
         localStorage.setItem('tiku_version', this.version)
       }
@@ -227,7 +228,7 @@ export default {
 
     hiddenUpdateModal() {
       localStorage.setItem('isShowUpdateModal', JSON.stringify(false));
-      localStorage.setItem('tiku_version', JSON.stringify(this.version));
+      localStorage.setItem('tiku_version', this.version);
       this.isShowUpdateModal = false;
     },
 
