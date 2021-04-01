@@ -7,8 +7,8 @@
         <div class="card-container">
           <!--封面-->
           <div class="card-cover">
-            <!--<svg-icon iconClass="maogai"></svg-icon>-->
-            <svg-icon :iconClass="currentMemoryMsg.svgName"></svg-icon>
+            <!--<svg-icon iconClass="maogai"/>-->
+            <svg-icon :iconClass="currentMemoryMsg.svgName"/>
           </div>
           <!--标题-->
           <div class="card-title">{{ currentMemoryMsg.title }} <span>({{ currentMemoryMsg.currentChapter }})</span>
@@ -35,7 +35,7 @@
             <button class="btn begin" @click="clickCardBtn($event, currentMemoryMsg, 1)"
                     :style="{color: currentMemoryMsg.color}">
             <span class="icon-container">
-              <i class="fa fa-rocket"></i>
+              <i class="fa fa-rocket"/>
               开始背题
             </span>
             </button>
@@ -45,7 +45,7 @@
             <button class="btn begin" @click="mockExam($event, currentMemoryMsg)"
                     :style="{color: currentMemoryMsg.color}">
             <span class="icon-container">
-              <i class="fa fa-flag"></i>
+              <i class="fa fa-flag"/>
               模拟考试
             </span>
             </button>
@@ -58,8 +58,8 @@
         <div class="card-container">
           <!--封面-->
           <div class="card-cover">
-            <!--<svg-icon iconClass="maogai"></svg-icon>-->
-            <svg-icon :iconClass="value.svg"></svg-icon>
+            <!--<svg-icon iconClass="maogai"/>-->
+            <svg-icon :iconClass="value.svg"/>
           </div>
           <!--标题-->
           <div class="card-title">{{ value.chinese }}</div>
@@ -84,7 +84,7 @@
           <div class="card-btn" v-show="showBeginBtn">
             <button class="btn begin" @click="clickCardBtn($event, value, 2)" :style="{color: value.color}">
             <span class="icon-container">
-              <i class="fa fa-rocket"></i>
+              <i class="fa fa-rocket"/>
               开始背题
             </span>
             </button>
@@ -93,7 +93,7 @@
           <div class="card-btn" v-show="showBeginBtn">
             <button class="btn begin" @click="mockExam($event, value)" :style="{color: value.color}">
             <span class="icon-container">
-              <i class="fa fa-flag"></i>
+              <i class="fa fa-flag"/>
               模拟考试
             </span>
             </button>
@@ -239,7 +239,7 @@ export default {
       if(typeof(localStorage.tiku_examData) !== 'undefined') localStorage.removeItem('tiku_examData');
       if(typeof(localStorage.examTimeObj) !== 'undefined') localStorage.removeItem('examTimeObj');
 
-      console.log(item.id)
+      // console.log(item.id)
       this.setCurrentMemory({
         projectId: item.id,
         chapterIndex: 0,
@@ -249,7 +249,7 @@ export default {
 
       ev.srcElement.classList.add("active");
       this.setThemeColor(item.color);
-      let id_ = item.id
+      let id_ = item.id;
       this.$router.push({
         name: 'beforeExam',
         params: {
@@ -265,9 +265,7 @@ export default {
 @import "../scss/_handle.scss";
 
 #tiku {
-  height: calc(100% - 60px);
-  overflow: hidden;
-  margin-top: 20%;
+  height: 100%;
 }
 
 .dark {
@@ -306,7 +304,6 @@ export default {
 
 .swiper-container {
   height: 100%;
-  padding-top: 10px;
 
   .swiper-slide {
     transition: 1s;

@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i @click="backHome" aria-hidden="true" class="fa fa-home"></i>
+          <i @click="backHome" aria-hidden="true" class="fa fa-home"/>
         </div>
         <div class="pageName">{{ pageName }}</div>
       </div>
@@ -22,10 +22,10 @@
           <stop offset="100%" v-if="themeMode === 'light'" style="stop-color:#38d1bf"/>
           <stop offset="100%" v-if="themeMode === 'dark'" style="stop-color:#D43C0B"/>
         </linearGradient>
-        <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#E2E8F0"></circle>
+        <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#E2E8F0"/>
         <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7" stroke-dasharray="200" stroke-dashoffset="0"
                 transform="rotate(-90 50 50)"
-                fill="transparent" stroke="url(#svg-gradient)" stroke-linecap="round" class="meter"></circle>
+                fill="transparent" stroke="url(#svg-gradient)" stroke-linecap="round" class="meter"/>
       </svg>
     </div>
 
@@ -69,7 +69,7 @@
       <div class="card-btn" @click="toExamOverview">
         <button class="btn begin" style="color: rgb(0, 176, 255);">
               <span class="icon-container">
-                <i class="fa fa-rocket"></i>查看答题卡
+                <i class="fa fa-rocket"/>查看答题卡
           </span></button>
       </div>
     </div>
@@ -117,7 +117,7 @@ export default {
     ]),
   },
   created() {
-    let temp = JSON.parse(localStorage.tiku_examData)
+    let temp = JSON.parse(localStorage.tiku_examData);
 
     // 获取时间
     this.examTime = JSON.parse(localStorage.examTimeObj).examTime;
@@ -189,10 +189,10 @@ export default {
       tempObj['answerObj'] = this.answerObj;
       tempObj['currentType'] = this.currentType;
       tempObj['questionIndex'] = this.questionIndex;
-      localStorage.setItem('examTime', JSON.stringify(this.examTime))
-      localStorage.setItem('totalScore', JSON.stringify(this.totalScore))
-      localStorage.setItem('typeScore', JSON.stringify(this.typeScore))
-      localStorage.setItem('tiku_examData', JSON.stringify(tempObj))
+      localStorage.setItem('examTime', JSON.stringify(this.examTime));
+      localStorage.setItem('totalScore', JSON.stringify(this.totalScore));
+      localStorage.setItem('typeScore', JSON.stringify(this.typeScore));
+      localStorage.setItem('tiku_examData', JSON.stringify(tempObj));
     },
   }
 }

@@ -3,14 +3,13 @@
     <div class="themed-block">
       <div class="neumorphic-card d-flex flex-column mx-auto">
         <div class="d-flex">
-          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab">
-            <a :href="url" target="_blank">
-              <i class="fa fa-download header-icon" aria-hidden="true"></i>
-            </a>
+          <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="back">
+            <i class="fa fa-arrow-left header-icon" aria-hidden="true"/>
           </button>
-          <div class="neumorphic-text flex-grow-1 my-auto text-center" @click="setWarning('这是一个音乐播放器~')">Music Player</div>
+          <div class="neumorphic-text flex-grow-1 my-auto text-center" @click="setWarning('这是一个音乐播放器~')">Music Player
+          </div>
           <button type="button" class="btn neumorphic-btn neumorphic-btn_fab" @click="setModel('music')">
-            <i class="fa fa-user header-icon" aria-hidden="true"></i>
+            <i class="fa fa-user header-icon" aria-hidden="true"/>
           </button>
         </div>
         <div class="neumorphic-card__body">
@@ -18,30 +17,32 @@
                :class="musicStatus ? '' : 'paused'"
                @click="setWarning('这里什么都没有哦~')">
             <img :src="cover"
-              style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
+                 style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
           <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a>
           </div>
           <div class="neumorphic-text neumorphic-text_author text-center mt-1 mb-5">{{artist}}</div>
           <div class="neumorphic-slider slider mx-auto">
-            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime ? currentTime : '00:00'}}</div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime ? currentTime : '00:00'}}
+            </div>
             <div class="neumorphic-slider__back"></div>
-            <div class="neumorphic-slider__line" :style="{width: currentMusicBasicMsg.progress ? currentMusicBasicMsg.progress : 0}"></div>
+            <div class="neumorphic-slider__line"
+                 :style="{width: currentMusicBasicMsg.progress ? currentMusicBasicMsg.progress : 0}"></div>
             <!--<div class="neumorphic-slider__thumb"></div>-->
             <div class="neumorphic-slider__text neumorphic-slider__text_right">{{duration ? duration : '00:00'}}</div>
           </div>
           <div class="player-controls">
             <div class="btn-group">
               <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto" @click="handlePre()">
-                <i class="fa fa-backward"></i>
+                <i class="fa fa-backward"/>
               </button>
               <button type="button" class="btn neumorphic-btn neumorphic-btn_fab neumorphic-btn_primary mx-auto"
                       @click="handleMusicStatus">
-                <i class="fa fa-pause" v-if="musicStatus"></i>
-                <i class="fa fa-play" v-if="!musicStatus"></i>
+                <i class="fa fa-pause" v-if="musicStatus"/>
+                <i class="fa fa-play" v-if="!musicStatus"/>
               </button>
               <button type="button" class="btn neumorphic-btn neumorphic-btn_fab mx-auto" @click="handleNext">
-                <i class="fa fa-forward"></i>
+                <i class="fa fa-forward"/>
               </button>
             </div>
           </div>
@@ -73,6 +74,8 @@
         cover: 'https://p3.music.126.net/QGb9Vtyw7qHS00uEvPfM6g==/843325418547559.jpg?param=300y300',
         url: '',
         currentMusicMsg: "",
+
+        fromRouterName: "home",
       }
     },
     created() {
@@ -107,25 +110,39 @@
         localStorage.setItem("currentMusicBasicMsg", JSON.stringify(this.currentMusicBasicMsg));
       }
     },
+    beforeRouteEnter(to, from, next) {
+      // console.log(to, from); // 可以拿到 from， 知道上一个路由是什么，从而进行判断
+      //在next中写处理函数
+      next(vm => {
+        vm.setFromRouter(from.name)
+      });
+    },
     methods: {
       ...mapActions([
         'setMusicStatus',
         'setWarning',
         'setModel',
       ]),
+      // beforeRouteEnter的处理函数，用来获取来源路由的名字
+      setFromRouter(name) {
+        this.fromRouterName = name;
+      },
+      back() {// 返回
+        this.$router.push({name: this.fromRouterName})
+      },
       handleMusicStatus() {
         this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
         const turn = document.querySelector('.turn');
         // 如果classList中存在给定的值，删除它，否则，添加它；
         turn.classList.toggle('paused');
       },
-      pausedWrapper(){
+      pausedWrapper() {
         const turn = document.querySelector('.neumorphic-image-wrapper');
         // 如果classList中存在给定的值，删除它，否则，添加它；
         turn.classList.remove('turn');
         setTimeout(() => {
           turn.classList.add('turn');
-        }, 500 );
+        }, 500);
         turn.classList.remove('paused');
       },
       handleNext() {
@@ -195,9 +212,9 @@
       },
 
       // 提示信息
-      handleAlertMsg(){
+      handleAlertMsg() {
         this.setWarning("该功能正在开发ing~");
-      }
+      },
     }
   }
 </script>
@@ -211,7 +228,7 @@
   }
 
   #music {
-    height: calc(100vh - 80px);
+    height: 100vh;
   }
 
   body {
@@ -222,6 +239,7 @@
   }
 
   .themed-block {
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -242,30 +260,37 @@
       --main-action-right: #BF8A10px !important;
       background-color: #26282B !important;
     }
+
     .neumorphic-image-wrapper {
       /*box-shadow: 7px 7px 15px 5px rgba(0,0,0, .3), -4px -4px 5px 7px rgba(80,80,80, 1);*/
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 5px 5px 5px rgba(0, 0, 0, 0.65);
     }
+
     .player-controls .btn {
       /*box-shadow: 7px 7px 15px 0 rgba(0, 0, 0, .3), -7px -7px 15px 0px rgba(80, 80, 80, 1), inset -1px -1px 2px 0px rgba(0,0,0, .3), inset 1px 1px 2px 0px rgba(80, 80, 80, 1);*/
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 5px 5px 5px rgba(0, 0, 0, 0.65);
     }
+
     .neumorphic-btn {
       /*box-shadow: 7px 7px 15px 0 rgba(0,0,0, 0.3),-7px -7px 15px 0px rgba(80,80,80, 1),inset 0px 0px 0px 0px rgba(0,0,0, 0),inset 0px 0px 0px 0px rgba(80,80,80, 0);*/
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 5px 5px 5px rgba(0, 0, 0, 0.65);
     }
+
     .neumorphic-btn:active {
       border: 2px solid #26282b;
       box-shadow: inset -5px -5px 5px rgba(255, 255, 255, 0.05), inset 5px 5px 5px rgba(0, 0, 0, 0.65) !important;
     }
+
     .neumorphic-btn_primary {
       background: linear-gradient(90deg, #D43C0B, #BF8A10);
     }
+
     .neumorphic-slider__line {
       background: linear-gradient(90deg, #D43C0B, #BF8A10);
     }
+
     .neumorphic-slider__back {
-      box-shadow: inset 2px 2px 3px -2px rgba(0,0,0, .3), inset -2px -2px 3px 0px rgba(80,80,80, .5);
+      box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, .3), inset -2px -2px 3px 0px rgba(80, 80, 80, .5);
     }
   }
 
@@ -322,7 +347,7 @@
     }
 
     .header-icon {
-        color: #A2B1CA!important;
+      color: #A2B1CA !important;
     }
   }
 
@@ -332,7 +357,7 @@
 
     &:active {
       /*box-shadow: 7px 7px 15px 0 rgba(var(--shadow-color), .3), -7px -7px 15px 0 rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, .3) !important;*/
-      box-shadow: 2px 2px 6px 0 rgba(var(--shadow-color), 0.3),-2px -1px 7px 0 rgba(var(--light-color), 1),inset 4px 4px 20px 0px rgba(0,0,0,0.3) !important;
+      box-shadow: 2px 2px 6px 0 rgba(var(--shadow-color), 0.3), -2px -1px 7px 0 rgba(var(--light-color), 1), inset 4px 4px 20px 0px rgba(0, 0, 0, 0.3) !important;
     }
   }
 
@@ -344,6 +369,7 @@
 
 
   .neumorphic-card {
+    height: 100%;
     /*background-color: #f4f6f8;*/
     @include background('music_bg_color1');
     /*background-color: var(--back-color);*/
@@ -583,14 +609,17 @@
       .d-flex {
         margin-top: 5%;
       }
+
       .neumorphic-image-wrapper {
         margin: 10% auto;
         width: 300px;
         height: 300px;
       }
+
       .neumorphic-text_title {
         margin: 15% auto 3%;
       }
+
       .neumorphic-text_author {
         margin: 0 auto 15%;
       }
@@ -604,16 +633,28 @@
   infinite :规定动画应该无限次播放
  */
   .turn {
-    animation:turn 30s linear infinite;
+    animation: turn 30s linear infinite;
   }
+
   .turn.paused {
     animation-play-state: paused;
   }
-  @keyframes turn{
-    0%{-webkit-transform:rotate(0deg);}
-    25%{-webkit-transform:rotate(90deg);}
-    50%{-webkit-transform:rotate(180deg);}
-    75%{-webkit-transform:rotate(270deg);}
-    100%{-webkit-transform:rotate(360deg);}
+
+  @keyframes turn {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    25% {
+      -webkit-transform: rotate(90deg);
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+    }
+    75% {
+      -webkit-transform: rotate(270deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
   }
 </style>

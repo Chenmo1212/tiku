@@ -1,87 +1,60 @@
 <template>
   <div id="mine" :class="{dark: themeMode==='dark'}">
     <div class="header">
-      <div class="bg">
-        <div class="circle__avatar">
-          <span class="circle__btn" @click="playBtnWave">
-            <span class="pause"/>
-            <span class="play"/>
-          </span>
-          <span class="circle__back-1"/>
-          <span class="circle__back-2"/>
+      <div class="return">
+        <div class="circle">
+          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"/>
         </div>
-        <div class="wrapper">
-          <div class="typing-demo">
-            LITTLE COOKIE By ChenMo.
-          </div>
-        </div>
+        <div class="pageName">{{pageName}}</div>
       </div>
     </div>
     <div class="content">
-      <div class="item day-night">
-        <i class="fa fa-moon-o left" aria-hidden="true"/>
-        <span v-if="themeMode === 'light'">白天模式</span>
-        <span v-if="themeMode !== 'light'">黑夜模式</span>
-        <div class="toggle toggle--daynight">
-          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" :checked="ifLight">
-          <label class="toggle--btn" for="toggle--daynight" @click="changeTheme">
-            <span class="toggle--feature"/>
-          </label>
-        </div>
-      </div>
-      <div class="item">
-        <i class="fa fa-clone left"/>
-        <span>卡片模式</span>
-        <span class="switch-container">
-         <label class="switch" @click="handleTikuMode">
-          <input type="checkbox" :checked="cardMode">
-        </label>
-        </span>
-      </div>
       <div class="item">
         <i class="fa fa-expand left"/>
-        <span>全屏模式</span>
+        <span>音乐悬浮窗</span>
         <span class="switch-container">
-         <label class="switch" @click="setFullScreen">
-          <input type="checkbox" :checked="isFullScreen">
+         <label class="switch" @click="handleFloatBall">
+          <input type="checkbox" :checked="isShowFloatBall">
         </label>
         </span>
       </div>
-      <div class="item" @click="toOtherPage('moreSetting')">
+      <div class="item" @click="setModel('data')">
         <i class="fa fa-sign-out left"/>
-        <span>更多设置</span>
+        <span>管理数据</span>
         <span class="right-icon">
           <span class="circle">
             <i class="fa fa-angle-right" aria-hidden="true"/>
           </span>
         </span>
       </div>
-      <div class="divider-container">
-        <div class="divider"/>
-      </div>
-      <div class="item" @click="toOtherPage('music')">
-        <i class="fa fa-music left"/>
-        <span>背景音乐</span>
+      <div class="item" @click="setModel('clear')">
+        <i class="fa fa-trash-o left"/>
+        <span>清空缓存</span>
         <span class="right-icon">
           <span class="circle">
             <i class="fa fa-angle-right" aria-hidden="true"/>
           </span>
         </span>
       </div>
-      <div class="item" @click="toOtherPage('todo')">
-        <i class="fa fa-check-square-o left"/>
-        <span>待办事项</span>
+      <div class="item" @click="toOtherPage('timeline')">
+        <i class="fa fa-history left"/>
+        <span>更新日志</span>
         <span class="right-icon">
           <span class="circle">
+            <i class="fa fa-angle-right" aria-hidden="true"/>
+          </span>
+        </span>
+      </div>
+      <div class="item" @click="toOtherPage('feedback')">
+        <i class="fa fa-pencil-square-o left"/>
+        <span>我要反馈</span>
+        <span class="right-icon">
+          <span class="circle right-arrow">
             <i class="fa fa-angle-right" aria-hidden="true"/>
           </span>
         </span>
       </div>
     </div>
-    <footer>
-      <!--      <p class="app"><a href="https://tiku.chenmo1212.cn/app.apk" target="_blank">点我下载app</a></p>-->
-      <p class="copyright">Copyright © 2020 <a href="https://www.chenmo1212.cn/?from=tiku">ChenMo1212</a></p>
-    </footer>
   </div>
 </template>
 
@@ -93,6 +66,7 @@
     data() {
       return {
         ifLight: true,
+        pageName: '更多设置',
       }
     },
     created() {
@@ -118,6 +92,7 @@
         'cardMode',
         'themeMode',
         'isFullScreen',
+        'isShowFloatBall',
       ]),
     },
     methods: {
@@ -127,6 +102,7 @@
         'setWarning',
         'setModel',
         'setFullScreen',
+        'setFloatBall',
       ]),
 
       /**
@@ -151,6 +127,12 @@
        */
       setFullScreen() {
         this.$parent.handleFullScreen();
+      },
+      backHome() {
+        this.$router.push({name: 'home'});
+      },
+      handleFloatBall() {
+        this.setFloatBall(!this.isShowFloatBall)
       },
       // 更改主题
       changeTheme() {
@@ -184,12 +166,10 @@
       },
 
       toOtherPage(type) {
-        if (type === 'music') {
-          this.$router.push({name: 'music'})
-        } else if (type === 'todo') {
-          this.$router.push({name: 'todo'})
-        } else if (type === 'moreSetting') {
-          this.$router.push({name: 'moreSetting'})
+        if (type === 'feedback') {
+          this.$router.push({name: 'feedback'})
+        } else if (type === 'timeline') {
+          this.$router.push({name: 'timeline'})
         }
       }
     }
@@ -199,185 +179,56 @@
 <style scoped lang="scss">
   @import "../scss/_handle.scss";
 
-  #mine {
-    /*height: calc(100vh - 80px);*/
-    @include background('background_color3');
-    padding: 7% 20px;
-    width: 100%;
-    position: relative;
-    height: 100%;
-    box-sizing: border-box;
+  .header {
+    height: 60px;
+    line-height: 60px;
+    /*background-color: #f4f6f8;*/
+    @include background('chapter_bg_color1');
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-    .header {
-      height: 35vh;
-      justify-content: center;
+    .return {
+      float: left;
+      margin-left: 20px;
       display: flex;
       align-items: center;
-      position: relative;
 
-      .menu {
-        color: #A2B1CA;
-        width: 100%;
-        position: absolute;
-        top: 0;
-
-        .menu-circle {
-          width: 40px;
-          height: 40px;
-          line-height: 40px;
-          border-radius: 25px;
-          background-color: #f4f6f8;
-          /*border: 2px solid #f4f6f8;*/
-          box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
-          transition: all .2s ease;
-          font-size: 14px;
-          text-shadow: 0 0 2px rgba(var(--text-color), 0);
-        }
-
-        .menu-circle:active {
-          box-shadow: inset -5px -5px 5px white, inset 5px 5px 5px rgba(0, 0, 0, 0.1);
-          border: 2px solid #f4f6f8;
-        }
-
-        .fr {
-          float: right;
-        }
-
-        .fl {
-          float: left;
-        }
+      .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        /*background-color: #f4f6f8;*/
+        @include background('chapter_bg_color2');
+        margin: 0;
+        box-shadow: var(--box-shadow);
+        border: 1px solid;
+        @include border_color('chapter_border_color1');
       }
 
-
-      /*  PLAY BUTTON  */
-      .circle__avatar {
-        justify-self: center;
-        border-radius: 1rem;
-        justify-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        display: grid;
-        grid-template-rows: 1fr;
-
-        .circle__btn {
-          grid-row: 1 / 2;
-          grid-column: 1 / 2;
-          width: 6rem;
-          height: 6rem;
-          display: flex;
-          margin: .6rem;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-          z-index: 300;
-          /*background: #E4EBF5;*/
-          box-shadow: 3px 3px 6px hsla(215, 46%, 78%, 0.8), -3px -3px 6px hsla(215, 46%, 108%, 0.8);
-          cursor: pointer;
-          position: relative;
-          background: url("../assets/avatar.png");
-          -webkit-background-size: cover;
-          background-size: cover;
-          border: 2px solid;
-          @include border_color("border_color1");
-
-          .play {
-            position: absolute;
-            opacity: 0;
-            transition: all .2s linear;
-          }
-
-          .play.visibility {
-            opacity: 1;
-          }
-
-          .pause {
-            position: absolute;
-            transition: all .2s linear;
-          }
-
-          .pause.visibility {
-            opacity: 0;
-          }
-        }
-
-        .circle__back-1, .circle__back-2 {
-          grid-row: 1 / 2;
-          grid-column: 1 / 2;
-          width: 6rem;
-          height: 6rem;
-          border-radius: 50%;
-          filter: blur(1px);
-          z-index: 100;
-        }
-
-        .circle__back-1 {
-          box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
-          background: linear-gradient(to bottom right, #c8d0e7 0%, #fff 100%);
-          animation: waves 4s linear infinite;
-        }
-
-        .circle__back-1.paused {
-          animation-play-state: paused;
-        }
-
-        .circle__back-2 {
-          box-shadow: 0.4rem 0.4rem 0.8rem #c8d0e7, -0.4rem -0.4rem 0.8rem #fff;
-          animation: waves 4s linear 2s infinite;
-        }
-
-        .circle__back-2.paused {
-          animation-play-state: paused;
-        }
-
-        @keyframes waves {
-          0% {
-            transform: scale(1);
-            opacity: 1;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            transform: scale(2);
-            opacity: 0;
-          }
-        }
+      i {
+        font-size: 30px;
+        margin-right: 4px;
+        display: block;
       }
 
-      /*  Wrapper  */
-      .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 40px;
-
-        .typing-demo {
-          width: 24ch;
-          animation: typing 3s steps(24), blink 0.5s step-end infinite alternate;
-          white-space: nowrap;
-          overflow: hidden;
-          border-right: 3px solid;
-          font-family: Poppins, serif;
-          font-size: 16px;
-          @include font_color('active_tab_font_color')
-        }
-
-        @keyframes typing {
-          from {
-            width: 0;
-          }
-        }
-        @keyframes blink {
-          50% {
-            border-color: transparent;
-          }
-        }
+      div {
+        margin: 0 10px;
+        font-size: 16px;
+        color: var(--text-color);
       }
     }
+  }
+
+  #mine {
+    /*height: calc(100vh - 80px);*/
+    @include background('bg_mine_color2');
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
 
     .content {
-      width: 100%;
+      /*width: 100%;*/
+      padding: 7% 20px;
 
       .item {
         margin-bottom: 15px;
@@ -422,39 +273,6 @@
             }
           }
         }
-      }
-
-      .divider-container {
-        position: relative;
-        margin-bottom: 40px;
-      }
-
-      .divider {
-        position: absolute;
-        background-color: #cad1db;;
-        height: 1px;
-        width: 100%;
-        margin: 5px 0 10px;
-
-        /*<!--&:before, &:after {-->*/
-        /*<!--  content: "";-->*/
-        /*<!--  position: absolute;-->*/
-        /*<!--  width: 9px;-->*/
-        /*<!--  height: 9px;-->*/
-        /*<!--  background: -webkit-gradient(linear, left top, left bottom, from(#98a3b3), to(#d8e0ea));-->*/
-        /*<!--  background: linear-gradient(#98a3b3, #d8e0ea);-->*/
-        /*<!--  box-shadow: 0 0 0 1px #a4b2c6 inset, 0 0 0 2px #d8e0ea inset, 0 4px 3px #a6b4c766;-->*/
-        /*<!--  border-radius: 50%;-->*/
-        /*<!--}-->*/
-
-        /*<!--&:before {-->*/
-        /*<!--  left: -5px;-->*/
-        /*<!--  top: -4px;-->*/
-        /*<!--}-->*/
-        /*<!--&:after {-->*/
-        /*<!--  top: -4px;-->*/
-        /*<!--  right: -5px;-->*/
-        /*<!--}-->*/
       }
 
       .day-night {

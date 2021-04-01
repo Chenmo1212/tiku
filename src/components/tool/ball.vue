@@ -7,26 +7,29 @@
          @touchmove.prevent.stop="handleTouchMove($event)"
          @touchend.stop="handleTouchEnd"
          :style="{left: left + 'px',top: top + 'px',width: itemWidth + 'px',height: itemHeight + 'px'}"
-         v-if="isShow">
+         v-if="isShow && isShowFloatBall">
       <nav class="nav">
-        <input type="checkbox" class="nav__cb" id="menu-cb" :checked="isChecked"  @click="clickMenu">
+        <input type="checkbox" class="nav__cb" id="menu-cb" :checked="isChecked" @click="clickMenu">
         <div class="nav__content">
           <ul class="nav__items">
+            <li class="nav__item" @click="toMusic()">
+              <span class="nav__item-text">  <i class="fa fa-music" aria-hidden="true"/> </span>
+            </li>
             <li class="nav__item" @click="handleSong(-1)">
-              <span class="nav__item-text">  <i class="fa fa-chevron-left" aria-hidden="true"></i> </span>
+              <span class="nav__item-text">  <i class="fa fa-chevron-left" aria-hidden="true"/> </span>
             </li>
             <li class="nav__item" v-if="musicStatus" @click="handleMusicStatus">
-              <span class="nav__item-text">  <i class="fa fa-pause" aria-hidden="true"></i></span>
+              <span class="nav__item-text">  <i class="fa fa-pause" aria-hidden="true"/></span>
             </li>
             <li class="nav__item" v-if="!musicStatus" @click="handleMusicStatus">
-              <span class="nav__item-text">  <i class="fa fa-play" aria-hidden="true"></i></span>
+              <span class="nav__item-text">  <i class="fa fa-play" aria-hidden="true"/></span>
             </li>
             <li class="nav__item" @click="handleSong(1)">
-              <span class="nav__item-text">  <i class="fa fa-chevron-right" aria-hidden="true"></i> </span>
+              <span class="nav__item-text">  <i class="fa fa-chevron-right" aria-hidden="true"/> </span>
             </li>
           </ul>
         </div>
-        <label class="nav__btn" for="menu-cb"></label>
+        <label class="nav__btn" for="menu-cb"/>
       </nav>
     </div>
   </transition>
@@ -79,6 +82,7 @@
     computed: {
       ...mapState([
         'musicStatus',
+        'isShowFloatBall',
       ]),
     },
     methods: {
@@ -86,6 +90,9 @@
         'setMusicStatus',
         'setAudioActive',
       ]),
+      toMusic() {
+        this.$router.push({name: 'music'})
+      },
       handleSong(index) {
         this.isChecked = true;
         this.clickMenu();
@@ -104,15 +111,15 @@
         if (!this.isChecked) {
           // console.log(1);
           if (this.left < (this.clientW / 2)) {
-            this.left = 82;//不让贴边 所以设置30没设置0
+            this.left = 102;//不让贴边 所以设置30没设置0
           } else {
-            this.left = this.clientW - this.itemWidth - 80;//不让贴边 所以减30
+            this.left = this.clientW - this.itemWidth - 100;//不让贴边 所以减30
           }
           this.$refs.dragIcon.style.transition = "all .3s";
         } else {
           // console.log(2);
           if (this.left < (this.clientW / 2)) {
-            this.left = 82;
+            this.left = 102;
             setTimeout(function () {
               that.left = 20;
               that.$refs.dragIcon.style.transition = "all 0.8s";
@@ -165,7 +172,7 @@
       },
       handleIconY() {
         if (this.top < 0) {
-          this.top = 20;//不上帖上边所以设置为30 没设置0
+          this.top = 100;//不上帖上边所以设置为30 没设置0
         } else if (this.top + this.itemHeight > this.clientH) {
           this.top = this.clientH - this.itemHeight - 20;//不让帖下边所以减30
         }
@@ -258,12 +265,12 @@
   .nav__cb:checked ~ .nav__content {
     -webkit-transition: width 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
     transition: width 1s cubic-bezier(0.48, 0.43, 0.29, 1.3);
-    width: 160px;
+    width: 200px;
   }
 
   .nav__items {
     position: relative;
-    width: 160px;
+    width: 200px;
     height: 100%;
     list-style-type: none;
     font-size: 0;

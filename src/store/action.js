@@ -103,6 +103,11 @@ export default {
     commit('SET_FULL_SCREEN', bool)
   },
 
+  // 设置显示音乐悬浮窗
+  setFloatBall({commit}, bool) {
+    commit('SET_FLOAT_BALL', bool)
+  },
+
   // 设置期末考试状态
   setExamStatus({commit}, bool) {
     commit('SET_EXAM_STATUS', bool)

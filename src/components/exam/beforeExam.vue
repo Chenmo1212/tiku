@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"></i>
+          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"/>
         </div>
         <div class="pageName">{{ pageName }}</div>
       </div>
@@ -12,8 +12,8 @@
       <div class="main-container">
         <!--封面-->
         <div class="card-cover">
-          <!--<svg-icon iconClass="maogai"></svg-icon>-->
-          <svg-icon iconClass="exam"></svg-icon>
+          <!--<svg-icon iconClass="maogai"/>-->
+          <svg-icon iconClass="exam"/>
         </div>
 
         <!-- 文字-->
@@ -33,7 +33,7 @@
           <div class="card-btn" @click="toExamDetail">
             <button class="btn begin" style="color: rgb(0, 176, 255);">
               <span class="icon-container">
-                <i class="fa fa-rocket"></i>开始考试
+                <i class="fa fa-rocket"/>开始考试
           </span></button>
           </div>
         </div>
@@ -116,21 +116,21 @@ export default {
         this.totalQues = this.totalQues.concat(this.projectQuestion[i].data);
       }
       for (let i = 0; i < this.totalQues.length; i++) {
-        if (this.totalQues[i].type === 0) this.sig.push(this.totalQues[i])
-        if (this.totalQues[i].type === 1) this.mul.push(this.totalQues[i])
-        if (this.totalQues[i].type === 2) this.bla.push(this.totalQues[i])
-        if (this.totalQues[i].type === 3) this.jud.push(this.totalQues[i])
+        if (this.totalQues[i].type === 0) this.sig.push(this.totalQues[i]);
+        if (this.totalQues[i].type === 1) this.mul.push(this.totalQues[i]);
+        if (this.totalQues[i].type === 2) this.bla.push(this.totalQues[i]);
+        if (this.totalQues[i].type === 3) this.jud.push(this.totalQues[i]);
       }
 
       // 获取题型比例
       let temp = ''
-      if (this.sig.length) temp += 'sig_'
-      if (this.mul.length) temp += 'mul_'
-      if (this.jud.length) temp += 'jud_'
-      if (this.bla.length) temp += 'bla_'
+      if (this.sig.length) temp += 'sig_';
+      if (this.mul.length) temp += 'mul_';
+      if (this.jud.length) temp += 'jud_';
+      if (this.bla.length) temp += 'bla_';
       if (temp[temp.length - 1] === '_')
-        temp = temp.substr(0, temp.length - 1)
-      this.quesDistributionType = this.quesDistribution[temp]
+        temp = temp.substr(0, temp.length - 1);
+      this.quesDistributionType = this.quesDistribution[temp];
       // console.log('题型分布:', this.quesDistributionType)
 
       // 随机抽取题目

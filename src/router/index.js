@@ -40,6 +40,11 @@ export default new Router({
       //懒加载
       component: resolve => require(['@/components/overview'], resolve),
     }, {
+      path: '/music',
+      name: 'music',
+      //懒加载
+      component: resolve => require(['@/components/music'], resolve),
+    }, {
       path: '/about',
       name: 'about',
       //懒加载
@@ -91,6 +96,11 @@ export default new Router({
       name: 'timeline',
       //懒加载
       component: resolve => require(['@/components/timeline'], resolve),
+    }, {
+      path: '/moreSetting',
+      name: 'moreSetting',
+      //懒加载
+      component: resolve => require(['@/components/moreSetting'], resolve),
     }, {
       path: '*',
       redirect: '/home'

@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i @click="backHome" aria-hidden="true" class="fa fa-angle-left"></i>
+          <i @click="back" aria-hidden="true" class="fa fa-angle-left"/>
         </div>
         <div class="pageName">{{pageName}}</div>
       </div>
@@ -25,7 +25,6 @@
 <script>
   import detailVue from './cardDetail'
   import {mapState, mapActions} from 'vuex'
-  import axios from 'axios'
 
   export default {
     name: "chapter",
@@ -35,6 +34,7 @@
     data() {
       return {
         pageName: '更新日志',
+        fromRouterName: "home",
       }
     },
     computed: {
@@ -54,15 +54,25 @@
     },
     mounted() {
     },
+    beforeRouteEnter(to, from, next) {
+      // console.log(to, from); // 可以拿到 from， 知道上一个路由是什么，从而进行判断
+      //在next中写处理函数
+      next(vm => {
+        vm.setFromRouter(from.name)
+      });
+    },
     methods: {
       ...mapActions([
         'setThemeMode',
         'setWarning',
         'setProjectQuestionData',
       ]),
-
-      backHome() {
-        this.$router.push({name: 'home'});
+      // beforeRouteEnter的处理函数，用来获取来源路由的名字
+      setFromRouter(name) {
+        this.fromRouterName = name;
+      },
+      back() {// 返回
+        this.$router.push({name: this.fromRouterName})
       },
     }
   }
@@ -219,7 +229,7 @@
         .main {
           position: relative;
           display: inline-block;
-          background: #D3DCE6;
+          /*background: #D3DCE6;*/
           background: linear-gradient(0deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, 0) 10px) #D3DCE6;
           border-radius: 13px;
           border: 1px solid #acbacc;

@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"/>
         </div>
         <div>选择章节</div>
         |
@@ -32,7 +32,7 @@
           </div>
           <div class="right">
             <div class="detail-icon" @click.stop="clickCardBtn(index, 2, $event)">
-              <i class="fa fa-angle-right" aria-hidden="true" :style="{color: chapterColor}"></i>
+              <i class="fa fa-angle-right" aria-hidden="true" :style="{color: chapterColor}"/>
             </div>
           </div>
         </div>

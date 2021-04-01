@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="toExamDetail(0, 0, 'back')"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="toExamDetail(0, 0, 'back')"/>
         </div>
         <div class="page-title">题目总览</div>
       </div>
@@ -67,13 +67,13 @@ export default {
       this.setWarning("搞事情同学，从哪个页面进来的？")
     }
 
-    let temp = JSON.parse(localStorage.tiku_examData)
+    let temp = JSON.parse(localStorage.tiku_examData);
     this.totalQuesArr = temp.examQues;
     this.subjectId = temp.subjectId;
     this.quesDistributionType = temp.quesDistributionType;
     this.answerObj = temp.answerObj;
 
-    let tempObj = {}
+    let tempObj = {};
     tempObj['sigNum'] = this.quesDistributionType.sig;
     tempObj['mulNum'] = this.quesDistributionType.mul;
     tempObj['judNum'] = this.quesDistributionType.jud;
@@ -119,9 +119,9 @@ export default {
      */
     isCheckIn(index, type) {
       let itemIndex = null;
-      let temp = Object.keys(this.answerObj)
+      let temp = Object.keys(this.answerObj);
       for (let i = 0; i < temp.length; i++) {
-        itemIndex = parseInt(temp[i]) + 1
+        itemIndex = parseInt(temp[i]) + 1;
         if (itemIndex === index) {
           return true
         }
@@ -145,21 +145,21 @@ export default {
           let index_ = index;
 
           if (Array.isArray(total[index_ - 1].answer)) {  // 数组得单独拿出来判断，存在顺序不同但内容相同的可能
-            let user_temp = user[index_ - 1].slice(0)
-            let ans_temp = total[index_ - 1].answer.slice(0)
+            let user_temp = user[index_ - 1].slice(0);
+            let ans_temp = total[index_ - 1].answer.slice(0);
             if (JSON.stringify(user_temp.sort()) === JSON.stringify(ans_temp.sort())) {
-              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
+              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)';
               return this.chapterColor;
             } else {
-              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)'
+              if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)';
               return this.wrongColor;
             }
           } else if (total[index - 1].answer === user[index - 1]) { // 判断是否做对
-            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)'
+            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #D43C0B, #BF8A10)';
             return this.chapterColor;
           } else {  // 做错了
             // if (this.themeMode === 'dark') return 'linear-gradient(90deg, #cb2d3e, #ef473a)'
-            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)'
+            if (this.themeMode === 'dark') return 'linear-gradient(90deg, #a73737, #7a2828)';
             return this.wrongColor;
           }
         }  // 没做
@@ -169,14 +169,14 @@ export default {
     toExamDetail(index, key, type) {
       if (type === 'back') {
         if (this.from === 'examDetail') {
-          let temp = JSON.parse(localStorage.examTimeObj)
+          let temp = JSON.parse(localStorage.examTimeObj);
           temp.backDetailTime = Date.parse(new Date()) / 1000;
           localStorage.setItem('examTimeObj', JSON.stringify(temp));
         }
         this.$router.go(-1)
       } else {
         // 跳转题目，把跳转的东西存在本地
-        let temp = JSON.parse(localStorage.tiku_examData)
+        let temp = JSON.parse(localStorage.tiku_examData);
         // 跳转的题目下标
         temp['questionIndex'] = index - 1;
         // 跳转的题目类型
@@ -184,7 +184,7 @@ export default {
         if (key.indexOf('mul') >= 0) temp['currentType'] = 1;
         if (key.indexOf('bla') >= 0) temp['currentType'] = 2;
         if (key.indexOf('jud') >= 0) temp['currentType'] = 3;
-        localStorage.setItem('tiku_examData', JSON.stringify(temp))
+        localStorage.setItem('tiku_examData', JSON.stringify(temp));
 
         this.$router.push({
           name: 'examDetail',

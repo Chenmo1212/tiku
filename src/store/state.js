@@ -1,4 +1,3 @@
-
 export default {
 
   // 科目主题颜色
@@ -25,11 +24,12 @@ export default {
   },
 
   isFullScreen: false,
+  isShowFloatBall: true,
 
   quesDistribution: {             // 模拟考试题型分布
-    sig_mul_jud_bla: {sig: 50, mul:30, jud: 10, bla: 10},
-    sig_mul_jud: {sig: 50, mul:30, jud: 20, bla: 0},
-    sig_mul_bla: {sig: 50, mul:30, jud: 0, bla: 20},
+    sig_mul_jud_bla: {sig: 50, mul: 30, jud: 10, bla: 10},
+    sig_mul_jud: {sig: 50, mul: 30, jud: 20, bla: 0},
+    sig_mul_bla: {sig: 50, mul: 30, jud: 0, bla: 20},
     sig_mul: {sig: 70, mul: 30, jud: 0, bla: 0},
     sig_jud: {sig: 70, mul: 0, jud: 30, bla: 0},
     sig_bla: {sig: 70, mul: 0, jud: 0, bla: 30},
@@ -98,6 +98,11 @@ export default {
 
   updateLogsList: [
     {
+      date: '2021-03-31',
+      version: 'version: 1.2.5',
+      content: ['诈尸更新！！！',
+        '去掉了原先的tabbar菜单（底部菜单），<span style="color:#599efb">音乐</span>和<span style="color:#599efb">待办事项</span>移动到抽屉里啦~~']
+    }, {
       date: '2020-11-30',
       version: 'version: 1.2.4',
       content: ['圣诞节来袭！！祝大家平安喜乐，万事胜意！！',

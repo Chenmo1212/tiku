@@ -41,7 +41,7 @@
                 <span v-if="answerIndex === 2">C.</span>
                 <span v-if="answerIndex === 3">D.</span>
               </span>
-              <span class="c-button__label" v-html="answerItem"></span>
+              <span class="c-button__label" v-html="answerItem"/>
             </div>
 
             <!--多选题-->
@@ -57,7 +57,7 @@
                 <span v-if="answerIndex === 2">C.</span>
                 <span v-if="answerIndex === 3">D.</span>
               </span>
-              <span class="c-button__label" v-html="answerItem"></span>
+              <span class="c-button__label" v-html="answerItem"/>
             </div>
 
             <!--判断题-->
@@ -85,8 +85,8 @@
              <i class="fa fa-check-circle check" aria-hidden="true"
                 v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 3"
                 @click="handleCheck"
-                :class="{active: isCheckIn}"></i>
-              <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
+                :class="{active: isCheckIn}"/>
+              <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"/>
           </span>
           </div>
         </div>
@@ -94,18 +94,18 @@
       <div class="content-btn-group">
         <div class="menu-card" :style="{color: chapterColor}">
           <div class="all-question" @click="toExamOverview">
-            <i class="fa fa-th" aria-hidden="true"></i>
+            <i class="fa fa-th" aria-hidden="true"/>
           </div>
           <div class="show-answer" @click="handleShowAnswer()" v-if="examDoneStatus">
-            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
-            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
+            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"/>
+            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"/>
           </div>
           <div class="pre-question" @click="changeQuestion(-1)" :class="{'disable': questionIndex <= 0}">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i class="fa fa-arrow-left" aria-hidden="true"/>
           </div>
           <div class="next-question" @click="changeQuestion(1)"
                :class="{'disable': questionIndex >= totalQuesArr.length - 1}">
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-arrow-right" aria-hidden="true"/>
           </div>
         </div>
       </div>
@@ -159,10 +159,10 @@ export default {
   },
   created() {
     // 定时器初始化
-    this.clockInit()
+    this.clockInit();
 
     // 判断答案是否固定显示
-    if(this.isStick) this.handleShowAnswer()
+    if (this.isStick) this.handleShowAnswer();
 
     this.submitName = this.examDoneStatus ? '查看结果' : '提交试卷';
 
@@ -202,7 +202,7 @@ export default {
   },
 
   mounted() {
-    this.getQuesTypeNum()
+    this.getQuesTypeNum();
     console.log("mounted:", this.$route.params.id);
     if (typeof (this.$route.params.id) !== 'undefined') {
       this.slice_count = this.$route.params.id - 1;
@@ -215,8 +215,8 @@ export default {
       if (this.submitExamStatus) this.submitExam();
     },
     '$route'(to, from) {
-      console.log(to)
-      console.log(from)
+      console.log(to);
+      console.log(from);
       // from 对象中要 router 来源信息.
       // do your want
     }
@@ -250,7 +250,7 @@ export default {
       //  处理计时器
       this.examTimeObj.toOverviewTime = Date.parse(new Date()) / 1000;
       this.setLocalStorage();
-      clearInterval(this.examTimeObj.timer)
+      clearInterval(this.examTimeObj.timer);
 
       // 存储一些必要的信息
       this.setExamLocal(1);
@@ -280,10 +280,10 @@ export default {
       // 计时器
       clearInterval(this.examTimeObj.timer);
       this.examTimeObj.isOver = true;
-      this.setLocalStorage()
+      this.setLocalStorage();
 
-      let total = this.totalQuesArr
-      let user = this.answerObj
+      let total = this.totalQuesArr;
+      let user = this.answerObj;
       // 计算总分
       for (let i = 0; i < total.length; i++) {
         if (user[i] !== undefined) { // 用户答了这个题
@@ -303,8 +303,8 @@ export default {
       this.typeScore = this.calcTypeScore();
 
       // 设置模拟考试状态为结束考试
-      this.setExamStatus(true)
-      this.setSubmitExamStatus(false)
+      this.setExamStatus(true);
+      this.setSubmitExamStatus(false);
       this.setExamLocal(0);
 
       // 跳转考试结束页面
@@ -321,8 +321,8 @@ export default {
       let blaNum = this.quesDistributionType.bla;
       let judNum = this.quesDistributionType.jud;
       let scoreObj = {sig: 0, mul: 0, bla: 0, jud: 0};
-      let total = this.totalQuesArr
-      let user = this.answerObj
+      let total = this.totalQuesArr;
+      let user = this.answerObj;
       for (let i = 0; i < total.length; i++) {
         if (i < sigNum) {
           if (user[i] !== undefined) { // 用户答了这个题
@@ -564,17 +564,17 @@ export default {
         // console.log(this.answerObj)
         // 更改判断题顺序（使第一个选项为对，第二个选项为错）
         if (type === 3) answerIndex = answerIndex ? 0 : 1;
-        console.log(answerIndex)
+        console.log(answerIndex);
         this.answerObj[index] = answerIndex;
       }
-      this.setExamLocal(1)
+      this.setExamLocal(1);
 
       // 判断用户答案是否正确
       this.judAnswer()
     },
 
     getAnsStyle(bool) {
-      console.log(bool)
+      console.log(bool);
       if (!bool) return {color: this.chapterColor, border: '1px solid' + this.chapterColor};
       return {color: '#F56C6C', border: '1px solid' + '#F56C6C'}
     },

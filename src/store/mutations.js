@@ -142,6 +142,12 @@ export default {
     state.isFullScreen = bool;
   },
 
+  // 设置全屏
+  SET_FLOAT_BALL(state, bool) {
+    state.isShowFloatBall = bool;
+    console.log(bool)
+  },
+
   // 设置自动显示答案
   SET_AUTO_STICK(state) {
     state.isStick = !state.isStick;

@@ -3,15 +3,15 @@
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"/>
         </div>
         <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}"
                                                                  class="pageName">{{ projectName }} - {{ chapterName }}</span>
         </div>
       </div>
       <div class="full-screen" :style="{color: chapterColor}">
-        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"></i></span>
-        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"></i></span>
+        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"/></span>
+        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"/></span>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
                 <span v-if="answerIndex === 2">C.</span>
                 <span v-if="answerIndex === 3">D.</span>
               </span>
-              <span class="c-button__label" v-html="answerItem"></span>
+              <span class="c-button__label" v-html="answerItem"/>
             </div>
 
             <!--多选题-->
@@ -82,7 +82,7 @@
                 <span v-if="answerIndex === 2">C.</span>
                 <span v-if="answerIndex === 3">D.</span>
               </span>
-              <span class="c-button__label" v-html="answerItem"></span>
+              <span class="c-button__label" v-html="answerItem"/>
             </div>
 
             <!--判断题-->
@@ -110,8 +110,8 @@
              <i class="fa fa-check-circle check" aria-hidden="true"
                 v-if="totalQuesArr[questionIndex].type === 0 || totalQuesArr[questionIndex].type === 3"
                 @click="handleCheck"
-                :class="{active: isCheckIn}"></i>
-              <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"></i>
+                :class="{active: isCheckIn}"/>
+              <i class="fa fa-thumb-tack stick" @click="handleStick" :class="{active: isStick}"/>
           </span>
           </div>
         </div>
@@ -119,18 +119,18 @@
       <div class="content-btn-group">
         <div class="menu-card" :style="{color: chapterColor}">
           <div class="all-question" @click="toOverview">
-            <i class="fa fa-th" aria-hidden="true"></i>
+            <i class="fa fa-th" aria-hidden="true"/>
           </div>
           <div class="show-answer" @click="showAnswer = !showAnswer">
-            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"></i>
-            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"></i>
+            <i class="fa fa-eye" aria-hidden="true" v-if="showAnswer"/>
+            <i class="fa fa-eye-slash" aria-hidden="true" v-if="!showAnswer"/>
           </div>
           <div class="pre-question" @click="changeQuestion(-1)" :class="{'disable': questionIndex <= 0}">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i class="fa fa-arrow-left" aria-hidden="true"/>
           </div>
           <div class="next-question" @click="changeQuestion(1)"
                :class="{'disable': questionIndex >= totalQuesArr.length - 1}">
-            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-arrow-right" aria-hidden="true"/>
           </div>
         </div>
       </div>

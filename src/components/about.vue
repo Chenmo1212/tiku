@@ -3,13 +3,13 @@
     <div class="header">
       <div class="return">
         <div class="circle">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backHome"/>
         </div>
         <div class="page-title">关于</div>
       </div>
       <div class="home-page">
         <a class="circle" href="https://www.chenmo1212.cn" target="_blank">
-          <i class="fa fa-home" aria-hidden="true"></i>
+          <i class="fa fa-home" aria-hidden="true"/>
         </a>
       </div>
     </div>

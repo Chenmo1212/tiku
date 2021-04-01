@@ -3,7 +3,7 @@
     <div class="header">
       <div class="return">
         <div class="circle" :style="{color: chapterColor}">
-          <i class="fa fa-angle-left" aria-hidden="true" @click="backDetail"></i>
+          <i class="fa fa-angle-left" aria-hidden="true" @click="backDetail"/>
         </div>
         <div class="page-title">题目总览 | <span :style="{color: chapterColor}" class="pageName">{{projectName}} - {{chapterName}}</span>
         </div>
