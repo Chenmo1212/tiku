@@ -3,7 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
-    <audio id="media" preload="auto" :src="musicUrl" @timeupdate="timeupdate"/>
+    <audio id="media" preload="auto" :src="currentMusicBasicData.url" @timeupdate="timeupdate"/>
 
     <div class="alert a-fadeinB" v-if="showAlert">
       <div class="chip">
@@ -161,8 +161,7 @@ export default {
   data() {
     return {
       index: 0,
-      musicUrl: '',
-      musicList: null,
+      // musicUrl: '',
       // musicList: [
       //   'http://music.163.com/song/media/outer/url?id=28828076.mp3',
       //   'http://music.163.com/song/media/outer/url?id=31654455.mp3',
@@ -212,6 +211,8 @@ export default {
       'songListId',
       'currentMemory',
       'musicPlayActive',
+      'currentMusicBasicData',
+      'musicList',
     ]),
   },
   mounted() {
@@ -230,7 +231,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setCurrentBasicMsg',
+      'setCurrentBasicData',
       'setMusicMsg',
       'setExportTotalData',
       'setImportTotalData',
@@ -316,7 +317,7 @@ export default {
         // 所有数据存入本地
         localStorage.setItem("cardMode", JSON.stringify(JSON.parse(data).cardMode));
         localStorage.setItem("currentMemory", JSON.stringify(JSON.parse(data).currentMemory));
-        localStorage.setItem("currentMusicBasicMsg", JSON.stringify(JSON.parse(data).currentMusicBasicMsg));
+        localStorage.setItem("currentMusicBasicData", JSON.stringify(JSON.parse(data).currentMusicBasicData));
         localStorage.setItem("isCheckIn", JSON.stringify(JSON.parse(data).isCheckIn));
         localStorage.setItem("isFullScreen", JSON.stringify(JSON.parse(data).isFullScreen));
         localStorage.setItem("isStick", JSON.stringify(JSON.parse(data).isStick));
@@ -343,45 +344,6 @@ export default {
     },
 
     /**
-     * 更改音乐歌单
-     */
-    handleSongListId(searchString) {
-      const that = this;
-      let reg = /[1-9][0-9]*/g;
-      let songIdList = this.songListInput.match(reg);
-      // console.log(songIdList)
-      let id = null
-      // http://music.163.com/playlist/899755273/579065427/?userid=579065427
-      if (this.songListInput.indexOf('?userid=') >= 0) {
-        id = songIdList[1]
-      } else if (this.songListInput.indexOf('playlist?id=') >= 0) {
-        id = songIdList[1]
-      } else if (this.songListId === null) {
-        id = songIdList[0]
-      }
-      if (!this.songListInput) {
-        this.setWarning("歌单id不得为空");
-        return
-      }
-      if (id === null) {
-        this.setWarning("格式错误，请重试！");
-        this.songListInput = ''
-        return
-      }
-      this.hiddenModel();
-      this.setSongListId(id);
-      localStorage.setItem('songListId', JSON.stringify(this.songListId));
-
-      this.handleShowLoading();
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        that.handleShowAlert("歌单更改成功, 请刷新页面");
-        that.handleShowModel('fresh');
-        clearTimeout(timeId)
-      }, 3000)
-    },
-
-    /**
      * 刷新网页
      */
     freshPage() {
@@ -405,181 +367,96 @@ export default {
       document.body.removeChild(transfer);
     },
 
-    checkAudio() {
-      let audio = document.getElementById('media');
-      if (audio) {
-        console.log("有用");
-      } else {
-        console.log("坏了");
-        this.handleShowAlert("音乐加载失败，请刷新后重试");
-      }
-      // console.log(audio)
-    },
-
-    songError() {
+    /**
+     * 更改音乐歌单
+     */
+    handleSongListId(searchString) {
       const that = this;
-      let flag = false;
-      let audio = document.getElementById('media');
-      if (typeof (localStorage.currentMusicBasicMsg) !== 'undefined') {
-        flag = true
+      let reg = /[1-9][0-9]*/g;
+      let songIdList = this.songListInput.match(reg);
+      // console.log(songIdList)
+      let id = null;
+      // http://music.163.com/playlist/899755273/579065427/?userid=579065427
+      if (this.songListInput.indexOf('?userid=') >= 0) {
+        id = songIdList[1]
+      } else if (this.songListInput.indexOf('playlist?id=') >= 0) {
+        id = songIdList[1]
+      } else if (this.songListId === null) {
+        id = songIdList[0]
       }
-      this.fetch163Playlist(this.songListId)
-        .then(res => {
-          console.log(res);
-          that.musicList = res;
-          that.setMusicMsg(res);
-          if (flag) {
-            that.musicUrl = JSON.parse(localStorage.currentMusicBasicMsg).url;
-            that.index = JSON.parse(localStorage.currentMusicBasicMsg).index;
-          } else {
-            that.musicUrl = res[0].url;
-          }
-          // that.setWarning("音乐数据加载成功~")
-          console.log("音乐数据加载完成");
-          // audio.play();
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      if (!this.songListInput) {
+        this.setWarning("歌单id不得为空");
+        return
+      }
+      if (id === null) {
+        this.setWarning("格式错误，请重试！");
+        this.songListInput = '';
+        return
+      }
+      this.hiddenModel();
+      this.setSongListId(id);
+      localStorage.setItem('songListId', JSON.stringify(this.songListId));
+
+      this.handleShowLoading();
+      clearTimeout(timeId);
+      let timeId = setTimeout(function () {
+        that.handleShowAlert("歌单更改成功, 请刷新页面");
+        that.handleShowModel('fresh');
+        clearTimeout(timeId)
+      }, 3000)
     },
 
     // 下一首
     nextSong() {
+      console.log("next");
       let audio = document.getElementById('media');
-      // console.log(audio.src);
-      if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-        this.setWarning("不小心溜号啦~换一首试试？");
-        console.error("出问题了");
-        audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
-        this.songError();
-        return;
-      }
-
-      // console.log("next");
       if (this.index < this.musicList.length - 1) {
         this.index += 1;
       } else {
         this.index = 0;
       }
-      this.musicUrl = this.musicList[this.index].url;
+      this.setCurrentBasicData(this.musicList[this.index]);
       setTimeout(() => {
         audio.play();
-      }, 10);
+      }, 150);
     },
 
     // 上一首
     preSong() {
       let audio = document.getElementById('media');
-      // console.log(audio.src);
-      if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-        this.setWarning("不小心溜号啦~换一首试试？");
-        console.error("出问题了");
-        audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
-        this.songError();
-        return;
-      }
 
-      // console.log("pre");
-      // console.log(this.index);
       if (this.index > 1) {
         this.index -= 1;
       } else {
         this.index = this.musicList.length - 1;
       }
-      this.musicUrl = this.musicList[this.index].url;
+      this.setCurrentBasicData(this.musicList[this.index]);
       setTimeout(() => {
         audio.play();
-      }, 10);
+      }, 150);
     },
 
+    // 歌曲进行，时间变化
     timeupdate() {
       let audio = document.getElementById('media');
       if (audio.ended) {
         this.nextSong();
       }
-      // console.log(audio.currentTime);
-      // console.log(audio.duration);
-      // console.log(this.musicList[this.index]);
-      const musicData = this.musicList[this.index];
+      const musicData = this.currentMusicBasicData;
       let progress = 100 * (audio.currentTime / audio.duration) + "%";
-      // console.log(progress)
-      let singer = musicData.artist;
+      let artists = musicData.artists;
       let name = musicData.name;
-      let cover = musicData.pic;
+      let cover = musicData.cover;
       let duration = audio.duration;
-      this.setCurrentBasicMsg({
+      this.setCurrentBasicData({
         progress: progress,
-        singer: singer,
+        artists: artists,
         name: name,
         cover: cover,
         duration: duration,
         currentTime: audio.currentTime,
         url: musicData.url,
         index: this.index,
-      });
-    },
-
-    /**
-     * 获取一言的网易云接口（本示例需要浏览器支持 Promise，fetch 以及 ES6 语法。）
-     * @param playlistId 歌单id
-     */
-    fetch163Playlist(playlistId) {
-      return new Promise((ok) => {
-        fetch(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
-          .then(response => response.json())
-          .then(data => {
-            const arr = [];
-            data.playlist.trackIds.map(function (value) {
-              arr.push(value.id);
-            });
-            return arr;
-          })
-          .then(this.fetch163Songs)
-          .then(ok)
-          .catch(err => {
-            // that.isWelcome = false;
-            alert("出错了1" + err)
-          });
-      });
-    },
-    fetch163Songs(Ids) {
-      return new Promise(function (ok, err) {
-        let ids;
-        switch (typeof Ids) {
-          case 'number':
-            ids = [Ids];
-            break;
-          case 'object':
-            if (!Array.isArray(Ids)) {
-              err(new Error('Please enter array or number'));
-              return;
-            }
-            ids = Ids;
-            break;
-          default:
-            err(new Error('Please enter array or number'));
-            return;
-        }
-        fetch(`https://v1.hitokoto.cn/nm/summary/${ids.join(',')}?lyric=true&common=true`)
-          .then(response => response.json())
-          .then(data => {
-            let songs = [];
-            data.songs.map(function (song) {
-              songs.push({
-                name: song.name,
-                url: song.url,
-                artist: song.artists.join('/'),
-                album: song.album.name,
-                pic: song.album.picture,
-                lrc: song.lyric
-              });
-            });
-            return songs;
-          })
-          .then(ok)
-          .catch(err => {
-            alert("出错了3" + err)
-          });
       });
     },
 
@@ -646,7 +523,7 @@ export default {
       }, 3000)
     },
     backHome() {
-      console.log("remove")
+      // console.log("remove")
       this.$router.push({name: 'home', replace: true});
       this.setExamStatus(false)
       this.hiddenModel()
@@ -658,39 +535,22 @@ export default {
       localStorage.removeItem('totalScore');
       localStorage.removeItem('typeScore');
     },
-
-    insertEle() {
-      this.songError();
-      console.log(this.musicList)
-    }
   },
 
   watch: {
-    musicStatus() {
-      console.log("musicstatus change");
-      console.log(this.musicStatus);
-      this.checkAudio();
+    musicStatus() {   // 音乐播放状态发生改变（暂停，播放）
+      console.log("music status change");
+      // console.log(this.musicStatus);
       let audio = document.getElementById('media');
-      if (audio.src.indexOf('v1.hitokoto.cn') < 0) {
-        this.setWarning("不小心溜号啦~换一首试试？");
-        console.error("出问题了");
-        audio.src = 'http://music.163.com/song/media/outer/url?id=28828076.mp3';
-        this.songError();
-        audio.play();
-        return;
-      }
       if (this.musicStatus) {
-        if (typeof (localStorage.currentMusicBasicMsg) !== 'undefined') {
-          audio.currentTime = JSON.parse(localStorage.currentMusicBasicMsg).currentTime;
-        }
-        audio.play();
+        setTimeout(() => {
+          audio.play();
+        }, 150);
       } else {
-        audio.pause();// 暂停
+        setTimeout(() => {
+          audio.pause();// 暂停
+        }, 150);
       }
-    },
-
-    musicPlayActive() {
-      this.insertEle();
     },
 
     isAlert() {

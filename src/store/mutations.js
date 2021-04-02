@@ -110,8 +110,8 @@ export default {
   },
 
   // 设置当前播放音乐状态
-  CURRENT_MUSIC_BASIC_MSG(state, obj) {
-    state.currentMusicBasicMsg = obj;
+  CURRENT_MUSIC_BASIC_DATA(state, obj) {
+    state.currentMusicBasicData = obj;
   },
 
   // 设置答题模式
@@ -142,10 +142,9 @@ export default {
     state.isFullScreen = bool;
   },
 
-  // 设置全屏
+  // 设置球悬浮
   SET_FLOAT_BALL(state, bool) {
     state.isShowFloatBall = bool;
-    console.log(bool)
   },
 
   // 设置自动显示答案
@@ -199,7 +198,7 @@ export default {
     // state.totalData["musicList"] = state.musicList;
     state.totalData["songListId"] = state.songListId;
     state.totalData["todoData"] = state.todoData;
-    state.totalData["currentMusicBasicMsg"] = state.currentMusicBasicMsg;
+    state.totalData["default.watch.currentMusicBasicData"] = state.currentMusicBasicData;
     // state.totalData["isAlert"] = state.isAlert;
     // state.totalData["warning"] = state.warning;
     // state.totalData["isModel"] = state.isModel;
@@ -229,7 +228,7 @@ export default {
     // state.musicList = obj["musicList"];
     state.songListId = obj["songListId"];
     state.todoData = obj["todoData"];
-    state.currentMusicBasicMsg = obj["currentMusicBasicMsg"];
+    state.currentMusicBasicData = obj["default.watch.currentMusicBasicData"];
     // state.isAlert = obj["isAlert"];
     // state.warning = obj["warning"];
     // state.isModel = obj["isModel"];

@@ -389,6 +389,13 @@
     .add-input {
       box-shadow: inset 5px 5px 10px #202225, inset -5px -5px 10px #2c2e31 !important;
     }
+
+    .return {
+      color: #6c7885;
+      .circle {
+        box-shadow: -1px -1px 3px 0 #636363, 1px 1px 3px 0 black !important;
+      }
+    }
   }
 
   a, button {

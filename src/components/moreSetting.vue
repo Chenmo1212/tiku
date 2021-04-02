@@ -1,5 +1,5 @@
 <template>
-  <div id="mine" :class="{dark: themeMode==='dark'}">
+  <div id="moreSetting" :class="{dark: themeMode==='dark'}">
     <div class="header">
       <div class="return">
         <div class="circle">
@@ -62,7 +62,7 @@
   import {mapState, mapActions} from 'vuex'
 
   export default {
-    name: "mine",
+    name: "moreSetting",
     data() {
       return {
         ifLight: true,
@@ -183,7 +183,7 @@
     height: 60px;
     line-height: 60px;
     /*background-color: #f4f6f8;*/
-    @include background('chapter_bg_color1');
+    @include background('chapter_bg_col`or1');
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     .return {
@@ -199,7 +199,7 @@
         /*background-color: #f4f6f8;*/
         @include background('chapter_bg_color2');
         margin: 0;
-        box-shadow: var(--box-shadow);
+        box-shadow: 3px 3px 5px #ebebeb, -3px -3px 5px #ffffff;
         border: 1px solid;
         @include border_color('chapter_border_color1');
       }
@@ -218,9 +218,9 @@
     }
   }
 
-  #mine {
+  #moreSetting {
     /*height: calc(100vh - 80px);*/
-    @include background('bg_mine_color2');
+    @include background('music_bg_color1');
     width: 100%;
     position: relative;
     height: 100vh;
@@ -533,7 +533,7 @@
 
   }
 
-  #mine.dark {
+  #moreSetting.dark {
     .menu-circle {
       background-color: #26282b !important;
       box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.65) !important;
@@ -568,7 +568,8 @@
       }
     }
 
-    .right-icon {
+    .return {
+      color: #6c7885;
       .circle {
         box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.05), 2px 2px 2px rgba(0, 0, 0, 0.65) !important;
       }

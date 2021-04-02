@@ -59,8 +59,8 @@ export default {
   },
 
   // 设置当前播放歌曲信息
-  setCurrentBasicMsg({commit}, obj) {
-    commit('CURRENT_MUSIC_BASIC_MSG', obj)
+  setCurrentBasicData({commit}, obj) {
+    commit('CURRENT_MUSIC_BASIC_DATA', obj)
   },
 
   // 设置题库答题模式

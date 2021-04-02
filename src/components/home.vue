@@ -75,7 +75,7 @@
         showBeginBtn: true,
         isShowDrawer: true,
         isShowUpdateModal: true,
-        version: '1.2.7',
+        version: '1.2.5',
       }
     },
     created() {
@@ -485,7 +485,7 @@
     }
 
     #content {
-      height: calc(100vh - 60px);
+      height: calc(100vh - 70px);
     }
 
     /*@media screen and (max-width: 375px) {*/

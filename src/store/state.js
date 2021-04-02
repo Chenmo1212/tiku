@@ -77,12 +77,12 @@ export default {
 
   musicStatus: false,
 
-  // 音乐清单
+  // 音乐歌单
   musicPlayActive: false,
   musicList: null,
   songListId: '2111679838',
 
-  currentMusicBasicMsg: [],
+  currentMusicBasicData: {url: ''},
 
   // 警告框
   isAlert: false,

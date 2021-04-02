@@ -16,20 +16,23 @@
           <div class="neumorphic-image-wrapper turn"
                :class="musicStatus ? '' : 'paused'"
                @click="setWarning('这里什么都没有哦~')">
-            <img :src="cover"
+            <img :src="currentMusicMsg.cover"
                  style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
-          <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{songName}}</a>
+          <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{currentMusicMsg.name}}</a>
           </div>
-          <div class="neumorphic-text neumorphic-text_author text-center mt-1 mb-5">{{artist}}</div>
+          <div class="neumorphic-text neumorphic-text_author text-center mt-1 mb-5">{{currentMusicMsg.artists}}</div>
           <div class="neumorphic-slider slider mx-auto">
-            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentTime ? currentTime : '00:00'}}
+            <div class="neumorphic-slider__text neumorphic-slider__text_left">{{currentMusicMsg.currentTime ?
+              currentMusicMsg.currentTime : '00:00'}}
             </div>
             <div class="neumorphic-slider__back"></div>
             <div class="neumorphic-slider__line"
-                 :style="{width: currentMusicBasicMsg.progress ? currentMusicBasicMsg.progress : 0}"></div>
+                 :style="{width: currentMusicMsg.progress ? currentMusicMsg.progress : 0}"></div>
             <!--<div class="neumorphic-slider__thumb"></div>-->
-            <div class="neumorphic-slider__text neumorphic-slider__text_right">{{duration ? duration : '00:00'}}</div>
+            <div class="neumorphic-slider__text neumorphic-slider__text_right">{{currentMusicMsg.duration ?
+              currentMusicMsg.duration : '00:00'}}
+            </div>
           </div>
           <div class="player-controls">
             <div class="btn-group">
@@ -61,53 +64,50 @@
       ...mapState([
         'musicStatus',
         'themeMode',
-        'currentMusicBasicMsg',
+        'songListId',
+        'currentMusicBasicData',
       ]),
     },
     data() {
       return {
         ifPlayMusic: false,
         duration: '',
-        currentTime: '',
+        currentTime: '0',
         songName: '',
-        artist: '',
+        artists: '',
         cover: 'https://p3.music.126.net/QGb9Vtyw7qHS00uEvPfM6g==/843325418547559.jpg?param=300y300',
         url: '',
-        currentMusicMsg: "",
+        currentMusicMsg: null,
 
         fromRouterName: "home",
+
+        isLocal: false,   // 是否存储在本地
       }
     },
     created() {
-
-      if (typeof (localStorage.currentMusicBasicMsg) === 'undefined') {
-        this.currentMusicMsg = this.currentMusicBasicMsg;
-        this.duration = this.formatSeconds(this.currentMusicMsg.duration);
-        // console.log(this.duration);
-        localStorage.setItem("currentMusicBasicMsg", JSON.stringify(this.currentMusicBasicMsg));
+      // debugger
+      if (typeof (localStorage.currentMusicBasicData) === 'undefined') {
+        console.log("第一次不从首页进，直接修改网址的吧")
+        // this.currentMusicMsg = this.currentMusicBasicData;
+        // localStorage.setItem("currentMusicBasicData", JSON.stringify(this.currentMusicBasicData));
       } else {
-        // console.log(JSON.parse(localStorage.currentMusicBasicMsg))
-        this.currentMusicMsg = JSON.parse(localStorage.currentMusicBasicMsg);
+        console.log(JSON.parse(localStorage.currentMusicBasicData));
+        this.currentMusicMsg = JSON.parse(localStorage.currentMusicBasicData);
+        this.isLocal = true;
       }
+
+      // // 获取仓库的当前播放歌曲数据
+      // this.currentMusicMsg = this.currentMusicBasicData;
+
+      // 加载歌单歌曲信息，等待控件触发
+      this.getSongListsData(this.songListId);
+
     },
     mounted() {
-      this.currentTime = this.formatSeconds(this.currentMusicMsg.currentTime);
-      this.duration = this.formatSeconds(this.currentMusicMsg.duration);
-      this.songName = this.currentMusicMsg.name;
-      this.artist = this.currentMusicMsg.singer;
-      this.cover = this.currentMusicMsg.cover;
-      this.url = this.currentMusicMsg.url;
-      // console.log(this.cover);
     },
     watch: {
-      currentMusicBasicMsg() {
-        this.currentTime = this.formatSeconds(this.currentMusicBasicMsg.currentTime);
-        this.duration = this.formatSeconds(this.currentMusicBasicMsg.duration);
-        this.songName = this.currentMusicBasicMsg.name;
-        this.artist = this.currentMusicBasicMsg.singer;
-        this.cover = this.currentMusicBasicMsg.cover;
-        this.url = this.currentMusicBasicMsg.url;
-        localStorage.setItem("currentMusicBasicMsg", JSON.stringify(this.currentMusicBasicMsg));
+      currentMusicBasicData() {
+        this.setCurrentMusicMsg();
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -122,6 +122,8 @@
         'setMusicStatus',
         'setWarning',
         'setModel',
+        'setCurrentBasicData',
+        'setMusicMsg',
       ]),
       // beforeRouteEnter的处理函数，用来获取来源路由的名字
       setFromRouter(name) {
@@ -130,12 +132,114 @@
       back() {// 返回
         this.$router.push({name: this.fromRouterName})
       },
+
+      // 更新当前播放歌曲的数据
+      setCurrentMusicMsg() {
+        this.currentMusicMsg = this.currentMusicBasicData;
+        this.currentMusicMsg.duration = this.formatSeconds(this.currentMusicBasicData.duration);
+        this.currentMusicMsg.currentTime = this.formatSeconds(this.currentMusicBasicData.currentTime);
+        this.$forceUpdate();
+
+        // 将当前播放歌曲数据存入本地
+        localStorage.setItem('currentMusicBasicData', JSON.stringify(this.currentMusicBasicData))
+      },
+      // 点击暂停和播放按钮
       handleMusicStatus() {
         this.musicStatus ? this.setMusicStatus(false) : this.setMusicStatus(true);
         const turn = document.querySelector('.turn');
         // 如果classList中存在给定的值，删除它，否则，添加它；
         turn.classList.toggle('paused');
       },
+      // 根据网易云歌单id获取歌单信息
+      getSongListsData(id) {
+        const that = this;
+        this.fetch163Playlist(this.songListId)
+          .then(res => {  // 获取歌单内歌曲信息
+            console.log(res);
+            that.songLists = res;
+            that.setMusicMsg(res);  // 把歌单信息放进仓库
+
+            let tempIndex = 0;
+            if (that.isLocal) {
+              let temp = JSON.parse(localStorage.currentMusicBasicData);
+              tempIndex = temp.index;
+            } else {
+              tempIndex = 0;
+            }
+            res[tempIndex].index = tempIndex; // 添加歌曲下
+            that.currentMusicMsg = res[tempIndex];  // 把第一首歌信息存为当前播放音乐 给音乐组件使用
+            that.setCurrentBasicData(res[tempIndex]);  // 把第一首歌信息存为当前播放音乐 存到仓库里供全局使用
+          })
+          .catch(err => {
+            console.error("歌单信息获取失败：", err);
+          });
+      },
+
+      /**
+       * 获取一言的网易云接口（本示例需要浏览器支持 Promise，fetch 以及 ES6 语法。）
+       * @param playlistId 歌单id
+       */
+      fetch163Playlist(playlistId) {
+        return new Promise((ok) => {
+          fetch(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
+            .then(response => response.json())
+            .then(data => {
+              const arr = [];
+              data.playlist.trackIds.map(function (value) {
+                arr.push(value.id);
+              });
+              return arr;
+            })
+            .then(this.fetch163Songs)
+            .then(ok)
+            .catch(err => {
+              // that.isWelcome = false;
+              alert("出错了1" + err)
+            });
+        });
+      },
+      fetch163Songs(Ids) {
+        return new Promise(function (ok, err) {
+          let ids;
+          switch (typeof Ids) {
+            case 'number':
+              ids = [Ids];
+              break;
+            case 'object':
+              if (!Array.isArray(Ids)) {
+                err(new Error('Please enter array or number'));
+                return;
+              }
+              ids = Ids;
+              break;
+            default:
+              err(new Error('Please enter array or number'));
+              return;
+          }
+          fetch(`https://v1.hitokoto.cn/nm/summary/${ids.join(',')}?lyric=true&common=true`)
+            .then(response => response.json())
+            .then(data => {
+              let songs = [];
+              data.songs.map(function (song) {
+                songs.push({
+                  name: song.name,
+                  url: song.url,
+                  artists: song.artists.join('/'),
+                  album: song.album.name,
+                  cover: song.album.picture,
+                  lrc: song.lyric
+                });
+              });
+              return songs;
+            })
+            .then(ok)
+            .catch(err => {
+              alert("出错了3" + err)
+            });
+        });
+      },
+
+      // 暂停封面
       pausedWrapper() {
         const turn = document.querySelector('.neumorphic-image-wrapper');
         // 如果classList中存在给定的值，删除它，否则，添加它；
@@ -145,11 +249,14 @@
         }, 500);
         turn.classList.remove('paused');
       },
+
+      // 下一首
       handleNext() {
         window.nextSong();
         this.setMusicStatus(true);
         this.pausedWrapper()
       },
+      // 上一首
       handlePre() {
         window.preSong();
         this.setMusicStatus(true);
@@ -239,6 +346,7 @@
   }
 
   .themed-block {
+    background: #f4f6f8;
     height: 100%;
     margin-left: auto;
     margin-right: auto;

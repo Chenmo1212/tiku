@@ -1,23 +1,6 @@
 <template>
   <div class="hello" :class="{dark: themeMode==='dark'}">
 
-    <!--<div class="search" v-if="pageIndex === 1">-->
-    <!--<div class="container">-->
-    <!--<form autocomplete="off" @submit="searchSubmit($event)">-->
-    <!--<div class="finder">-->
-    <!--<div class="finder__outer">-->
-    <!--<div class="finder__inner">-->
-    <!--<div class="finder__icon" ref="icon"></div>-->
-    <!--<label>-->
-    <!--<input class="finder__input" type="text" name="q" @focus="searchFocus()" @blur="searchBlur()">-->
-    <!--</label>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div id="menu_nav" class="inactive">
       <mine-vue/>
     </div>
@@ -133,21 +116,8 @@
       // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
     },
     mounted() {
-      // 更新提示框是否已经隐藏
-      if (typeof (localStorage.tiku_version) !== 'undefined') {
-        if (localStorage.tiku_version !== this.version) {
-          localStorage.removeItem('isShowUpdateModal');
-          localStorage.setItem('tiku_version', this.version)
-        }
-      }
-      if (typeof (localStorage.tiku_version) === 'undefined') {
-        localStorage.setItem('tiku_version', '1.0.0')
-      }
-      if (typeof (localStorage.isShowUpdateModal) !== 'undefined') {
-        if (!JSON.parse(localStorage.isShowUpdateModal)) {
-          this.isShowUpdateModal = false
-        }
-      }
+      // 检查题库版本
+      this.checkTikuVersion();
 
       // console.clear();
       // 导入数据
@@ -226,87 +196,29 @@
         this.isShowDrawer = !this.isShowDrawer;
       },
 
-      hiddenUpdateModal() {
+      // 检查题库版本
+      checkTikuVersion(){
+        // 更新提示框是否已经隐藏
+        if (typeof (localStorage.tiku_version) !== 'undefined') {  // 当本地存有题库版本信息时
+          if (localStorage.tiku_version !== this.version) {
+            localStorage.removeItem('isShowUpdateModal');
+            localStorage.setItem('tiku_version', this.version)
+          }
+        }
+        if (typeof (localStorage.tiku_version) === 'undefined') {  // 本地没有题库信息，则初始化为1.0.0
+          localStorage.setItem('tiku_version', '1.0.0')
+        }
+        if (typeof (localStorage.isShowUpdateModal) !== 'undefined') {
+          if (!JSON.parse(localStorage.isShowUpdateModal)) {
+            this.isShowUpdateModal = false
+          }
+        }
+      },
+
+      hiddenUpdateModal() { // 隐藏更新弹框
         localStorage.setItem('isShowUpdateModal', JSON.stringify(false));
         localStorage.setItem('tiku_version', this.version);
         this.isShowUpdateModal = false;
-      },
-
-      /**
-       * 设置全屏
-       */
-      handleFullScreen() {
-        // console.log(this.isFullScreen);
-        if (this.isFullScreen) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-          } else {
-            window.parent.showTopBottom();
-          }
-          this.setFullScreen(false);
-          this.setWarning("全屏模式关闭");
-        } else {
-          // console.log("退出");
-          let ele = document.body;
-          if (ele.requestFullscreen) {
-            ele.requestFullscreen();
-          } else if (ele.mozRequestFullScreen) {
-            ele.mozRequestFullScreen();
-          } else if (ele.webkitRequestFullscreen) {
-            ele.webkitRequestFullscreen();
-          } else if (ele.msRequestFullscreen) {
-            ele.msRequestFullscreen();
-          }
-          this.setFullScreen(true);
-          this.setWarning("全屏模式开启");
-        }
-      },
-      /**
-       * 导航切换
-       * @param index 导航下标
-       */
-      changeTab(index) {
-        // console.log(index);
-        this.pageIndex = index;
-        if (index === 1) {
-          this.move('1', '16.6%', '#f4f6f8');
-        }
-        if (index === 2) {
-          this.setAudioActive(true)
-          this.move('2', '50%', '#f4f6f8');
-        }
-        if (index === 3) {
-          this.move('3', '83.334%', '#f4f6f8');
-        }
-      },
-      // tab 切换
-      move(id, position, color) {
-        let tl = gsap.timeline();
-        tl.to("#bgBubble", {duration: 0.15, bottom: "-30px", ease: "ease-out"}, 0)
-          .to("#bubble1", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
-          .to("#bubble2", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
-          .to("#bubble3", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
-          // .to("#bubble4", {duration: 0.1, y: "120%", boxShadow: 'none', ease: "ease-out",}, 0)
-          .to(".icon", {duration: 0.05, opacity: 0, ease: "ease-out",}, 0)
-          .to("#bgBubble", {duration: 0.2, left: position, ease: "ease-in-out"}, 0.1)
-          .to("#bgBubble", {duration: 0.15, bottom: "-50px", ease: "ease-out"}, '-=0.2')
-          .to(`#bubble${id}`, {
-            duration: 0.15,
-            y: "0%",
-            opacity: 1,
-            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-            ease: "ease-out"
-          }, '-=0.1')
-          .to(`#bubble${id}> span`, {duration: 0.15, y: "0%", opacity: 0.7, ease: "ease-out"}, '-=0.1')
-          .to("#navbarContainer", {duration: 0.3, backgroundColor: color, ease: "ease-in-out"}, 0)
-          .to("#bg", {duration: 0.3, backgroundColor: color, ease: "ease-in-out"}, 0)
-          .to("#bgBubble", {duration: 0.3, backgroundColor: color, ease: "ease-in-out"}, 0)
       },
 
       /**
@@ -548,12 +460,8 @@
         -webkit-tap-highlight-color: transparent;
         display: -webkit-box;
         display: flex;
-        -webkit-box-align: center;
         align-items: center;
-        -webkit-box-pack: center;
         justify-content: center;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
         flex-direction: column;
         cursor: pointer;
         background-color: #f4f6f8;
@@ -572,7 +480,6 @@
     left: 76%;
     height: 100vh;
     background-color: #f4f6f8;
-    /*border-radius: 20px;*/
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -589,96 +496,6 @@
       transform: scale(1);
     }
 
-    #navbar {
-      @include font_color('home_font_color1');
-      width: 100%;
-      height: 60px;
-      @include background('home_bg_color1');
-      position: absolute;
-      /*z-index: 999;*/
-
-      #bubbleWrapper {
-        position: absolute;
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        bottom: 25px;
-        /*z-index: 999;*/
-
-        .bubble {
-          /*background-color: #fff;*/
-          @include background('home_bg_color1');
-          width: 50px;
-          height: 50px;
-          bottom: 85px;
-          border-radius: 50%;
-          z-index: 1;
-          transform: translateY(120%);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          .icon {
-            opacity: 0;
-          }
-        }
-
-        #bubble1 {
-          transform: translateY(0%);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        }
-
-        #bubble1 > span {
-          opacity: 0.7;
-        }
-      }
-    }
-
-    #bgWrapper {
-      filter: url(#goo);
-      width: 100%;
-      height: 100px;
-      /*height: calc(100vh - 120px - 20px);*/
-      position: absolute;
-      bottom: 60px;
-
-      #bg {
-        background-color: #f4f6f8;
-        width: 120%;
-        height: 100%;
-        margin-left: -10%;
-      }
-
-      #bgBubble {
-        position: absolute;
-        background-color: #f4f6f8;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        bottom: -50px;
-        left: 16.667%;
-        transform: translateX(-50%);
-      }
-
-    }
-
-    #menuWrapper {
-      position: absolute;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-
-      .menuElement {
-        opacity: 0.4;
-        transform: translateY(100%);
-        cursor: pointer;
-
-        &:hover {
-          opacity: 0.5;
-        }
-      }
-    }
-
     #content {
       margin-bottom: 100px;
       height: calc(100vh - 100px);
@@ -690,7 +507,6 @@
     /*}*/
     /*}*/
   }
-
 
   #contentWrapper {
     position: absolute;
@@ -912,18 +728,6 @@
       &:active,
       &.active.m_button {
         box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
-      }
-    }
-
-    .mine {
-      #b, #bgBubble {
-        background-color: #2e3237 !important;
-      }
-    }
-
-    .music {
-      #bg, #bgBubble {
-        background-color: #26282b !important;
       }
     }
 

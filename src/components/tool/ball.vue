@@ -91,7 +91,8 @@
         'setAudioActive',
       ]),
       toMusic() {
-        this.$router.push({name: 'music'})
+        this.clickMenu();
+        this.$router.push({name: 'music'});
       },
       handleSong(index) {
         this.isChecked = true;
