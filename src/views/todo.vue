@@ -359,7 +359,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../scss/handle";
 
   .test {
     @include background('bg_drawer_color1');

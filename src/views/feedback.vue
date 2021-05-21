@@ -219,7 +219,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../scss/handle";
   :root {
     .chapter.dark {
       --box-shadow: -1px -1px 3px 0 #636363,1px 1px 3px 0 #000!important;

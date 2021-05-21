@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../scss/_handle.scss";
+@import "../scss/handle";
 
 .about {
   @include background("detail_bg_color1");

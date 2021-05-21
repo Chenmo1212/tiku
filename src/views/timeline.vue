@@ -79,7 +79,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../scss/handle";
 
   :root {
     .chapter.dark {

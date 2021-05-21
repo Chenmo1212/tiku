@@ -138,7 +138,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../scss/handle";
   .chapter {
     /*background-color: #f4f6f8;*/
     @include background('chapter_bg_color1');

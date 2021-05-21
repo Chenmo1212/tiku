@@ -327,7 +327,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../scss/_handle.scss";
+  @import "../scss/handle";
 
   a {
     color: #6C7A92;
