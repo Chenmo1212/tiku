@@ -195,7 +195,7 @@
       handleScrollEnd() {
         this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         // 判断是否停止滚动的条件
-        if (this.scrollTop === this.currentTop) {
+        if (this.scrollTop === this.currentTop && this.isShowFloatBall && this.screenWidth < 1175) {
           this.isShow = true
         }
       }

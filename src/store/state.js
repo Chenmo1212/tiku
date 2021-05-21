@@ -24,7 +24,7 @@ export default {
   },
 
   isFullScreen: false,
-  isShowFloatBall: true,
+  isShowFloatBall: true,   // 是否显示音乐悬浮框
 
   quesDistribution: {             // 模拟考试题型分布
     sig_mul_jud_bla: {sig: 50, mul: 30, jud: 10, bla: 10},
@@ -98,6 +98,12 @@ export default {
 
   updateLogsList: [
     {
+      date: '2021-05-21',
+      version: 'version: 1.2.6',
+      content: ['再次诈尸更新！！！',
+        '更新了军理题库，近代史题库正在更新中~',
+        '反馈功能这次真的可以用了！！！求反馈',]
+    }, {
       date: '2021-03-31',
       version: 'version: 1.2.5',
       content: ['诈尸更新！！！',

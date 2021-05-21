@@ -117,11 +117,11 @@
 <div id="appLoading">
   <div class="loader">
     <div class="elem-box">
-      <span class="elem"/>
-      <span class="elem"/>
-      <span class="elem"/>
-      <span class="elem"/>
-      <span class="elem"/>
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
+      <span class="elem"></span>
     </div>
     <h3 id="appTitle">Loading...</h3>
   </div>
@@ -133,6 +133,15 @@
   if (themeMode === 'dark') {
     let obj = document.getElementById('appLoading');
     obj.style.backgroundColor = '#26282b'
+  }
+
+  document.onreadystatechange = completeLoading;
+
+  // 加载状态为complete时移除loading效果
+  function completeLoading() {
+    if (document.readyState === "complete") {
+      document.getElementById('appLoading').style.display = 'none';
+    }
   }
 </script>
 </body>

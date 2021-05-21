@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-control" :class="{dark: this.themeMode === 'dark'}" style="display: none">
+  <div id="app" class="max-control" :class="{dark: this.themeMode === 'dark'}">
     <!--<img src="./assets/logo.png">-->
     <router-view/>
 
@@ -226,8 +226,8 @@ export default {
     window.nextSong = this.nextSong;
     window.preSong = this.preSong;
 
-    document.getElementById('app').style.display = 'block';
-    document.getElementById('appLoading').style.display = 'none';
+    // document.getElementById('app').style.display = 'block';
+    // document.getElementById('appLoading').style.display = 'none';
   },
   methods: {
     ...mapActions([
@@ -1164,7 +1164,7 @@ svg.tea {
 @media screen and (min-width: 1175px) {
   .max-control {
     width: 100%;
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto !important;
     min-height: 100%;
     position: relative;

@@ -157,12 +157,13 @@
       checkContent(){
         let content = this.feedCont;
         if(content){
-          console.log("反馈内容不为空");
+          // console.log("反馈内容不为空");
           return true
-        }else{
+        }else {
           console.log("反馈内容为空");
           document.getElementById("content").classList.add("warning");
-          this.setWarning("反馈内容不得为空");
+          this.setWarning("反馈内容不" +
+            "得为空");
           return false
         }
       },
@@ -170,36 +171,43 @@
       /**
        * 提交
        */
-      submitBug(){
+      submitBug() {
         // 检测邮箱
         if (!this.checkMail()) return;
         // 检测反馈内容
         if (!this.checkContent()) return;
 
-        let content = `#### 反馈类型：\n\n${this.type}\n\n---\n\n#### 反馈内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n${this.name}\n\n---\n\n#### 联系方式：\n\n${this.mail}`;
 
-        let SCKEY = 'SCT25268TK4j67c5FaUBd7RVWlNas3kcN';
-        let url = 'https://sctapi.ftqq.com/' + SCKEY + '.send';
+        let UID = 'UID_pNfFHmlL26qUZuXmGkrS9CGNUSLD';
+        let appToken = 'AT_aGS8jqOTZDiEAwbZFH2WdEgV15tgIl7j';
+        let data = {
+          summary: "Little Cookies反馈", //消息摘要，显示在微信聊天页面或者模版消息卡片上，限制长度100，可以不传，不传默认截取content前面的内容。
+          content: `#### 类型：\n\n${this.type}\n\n---\n\n#### 内容：\n\n${this.feedCont}\n\n---\n\n#### 称呼：\n\n
+            ${this.name}\n\n---\n\n#### 联系方式：\n\nEmail: ${this.mail}\n
+            Agent:${navigator.userAgent + " DWAPI/7.0"}\n`,
+          contentType: 3,//内容类型 1表示文字  2表示html(只发送body标签内部的数据即可，不包括body标签) 3表示markdown
+          uids: [UID], //发送目标的UID，是一个数组。注意uids和topicIds可以同时填写，也可以只填写一个。
+          appToken: appToken
+        };
 
-        let params = new URLSearchParams();
-        params.append('text', 'Little cookie 用户反馈');
-        params.append('desp', content);
+        let url = 'https://wxpusher.zjiecode.com/api/send/message/';
+
+        let params = JSON.stringify(data);
 
         axios.post(url, params, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json'
+            'Content-Type': 'application/json'
           },
         }).then((res) => {
-          console.log("返回的值"+res);
+          console.log("返回的值" + res);
           this.setWarning("提交成功！感谢您的反馈！");
           this.type = '';
           this.mail = '';
           this.name = '';
           this.feedCont = ''
         }).catch(err => {
-          console.log("错误"+err);
-          this.setWarning("提交成功了！感谢您的反馈！");
+          console.log("错误" + err);
+          this.setWarning("提交失败了，请重试");
           this.type = '';
           this.mail = '';
           this.name = '';

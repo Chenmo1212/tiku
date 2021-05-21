@@ -121,9 +121,9 @@ import {
 import {
   jun_li_1_unit1
 } from './jun_li_1/unit1.js';
-import {
-  jun_li_1_unit2
-} from './jun_li_1/unit2.js';
+// import {
+//   jun_li_1_unit2
+// } from './jun_li_1/unit2.js';
 import {
   jun_li_1_unit3
 } from './jun_li_1/unit3.js';
@@ -504,32 +504,6 @@ export var tikudb = {
     "chinese": "思修"
   },
   "jun_li_1": {
-    "length": 3,
-    "content": [{
-      "title": "第一章 军事思想",
-      "radio": 211,
-      "multiple": 53,
-      "decide": 64,
-      "fill": 0,
-      "data": jun_li_1_unit1
-    }, {
-      "title": "第二章 军事战略环境",
-      "radio": 105,
-      "multiple": 57,
-      "decide": 40,
-      "fill": 0,
-      "data": jun_li_1_unit2
-    }, {
-      "title": "第三章 周边安全环境",
-      "radio": 133,
-      "multiple": 40,
-      "decide": 30,
-      "fill": 0,
-      "data": jun_li_1_unit3
-    }],
-    "chinese": "军理上"
-  },
-  "jun_li_2": {
     "length": 5,
     "content": [{
       "title": "第一章 国防动员",
@@ -567,8 +541,38 @@ export var tikudb = {
       "fill": 0,
       "data": jun_li_2_unit5
     }],
+    "chinese": "军理上"
+  },
+  "jun_li_2": {
+    "length": 2,
+    "content": [{
+      "title": "第一章 军事思想",
+      "radio": 289,
+      "multiple": 101,
+      "decide": 459,
+      "fill": 0,
+      "data": jun_li_1_unit1
+    },
+      // 2021学年 大一下学期  修改剔除一章
+      // {
+      //   "title": "第二章 军事战略环境",
+      //   "radio": 105,
+      //   "multiple": 57,
+      //   "decide": 40,
+      //   "fill": 0,
+      //   "data": jun_li_1_unit2
+      // },
+      {
+        "title": "第二章 周边安全环境",
+        "radio": 254,
+        "multiple": 219,
+        "decide": 676,
+        "fill": 0,
+        "data": jun_li_1_unit3
+      }],
     "chinese": "军理下"
   },
+
   "lang_c_1": {
     "length": 10,
     "content": [{
@@ -721,4 +725,4 @@ export var tikudb = {
   }
 }
 
-export var version = 20201111
+export var version = 20210506
