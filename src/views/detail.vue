@@ -948,6 +948,7 @@ export default {
     .svg-icon {
       height: 100%;
       width: 50%;
+      max-width: 30px;
     }
   }
 }

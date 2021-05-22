@@ -80,6 +80,9 @@
     },
     created() {
       localStorage.setItem("toHome", JSON.stringify(true))  // 路由守卫
+
+      this.version = this.updateLogsList[0].version.slice(9)
+
       // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
     },
     mounted() {

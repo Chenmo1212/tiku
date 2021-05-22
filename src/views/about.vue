@@ -30,6 +30,7 @@
           <li class="done">音乐播放器</li>
           <li class="done">todolist</li>
           <li class="done">模拟期末考试</li>
+          <li class="done">题目收藏功能</li>
           <li>错题本记录</li>
         </ol>
         <p>若您还需要其它功能，或者有很好的建议，还务必请与我个人联系。此外若网站出现Bug，也请与我联系进行反馈。联系方式（QQ）：<a

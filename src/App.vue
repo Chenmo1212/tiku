@@ -267,7 +267,7 @@ export default {
       clearTimeout(timeId);
       let timeId = setTimeout(function () {
         localStorage.clear();
-        location.reload();
+        location.href = 'https://tiku.chenmo1212.cn?f=clear';
         clearTimeout(timeId);
       }, 4000);
     },
