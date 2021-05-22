@@ -35,12 +35,11 @@ export default {
   // 设置已选择过的答案
   SET_SELECTED_ANSWER(state, obj) {
     if (obj.isReplace) {
-      if (obj.quesType === 0) state.selectedAnswer[obj.projectId][obj.chapterIndex].sigArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
-      if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
-      if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
-      if (obj.quesType === 3) state.selectedAnswer[obj.projectId][obj.chapterIndex].judArr[obj.replaceIndex].userAns = obj.quesObj.userAns;
+      if (obj.quesType === 0) state.selectedAnswer[obj.projectId][obj.chapterIndex].sigArr[obj.replaceIndex] = obj.quesObj;
+      if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr[obj.replaceIndex] = obj.quesObj;
+      if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr[obj.replaceIndex] = obj.quesObj;
+      if (obj.quesType === 3) state.selectedAnswer[obj.projectId][obj.chapterIndex].judArr[obj.replaceIndex] = obj.quesObj;
     } else {
-      // console.log(obj.quesObj);
       if (obj.quesType === 0) state.selectedAnswer[obj.projectId][obj.chapterIndex].sigArr.push(obj.quesObj);
       if (obj.quesType === 1) state.selectedAnswer[obj.projectId][obj.chapterIndex].mulArr.push(obj.quesObj);
       if (obj.quesType === 2) state.selectedAnswer[obj.projectId][obj.chapterIndex].blaArr.push(obj.quesObj);
@@ -50,7 +49,6 @@ export default {
       // console.log(state.projectBasicData)
       state.projectBasicData[obj.projectId].total_fill_num += 1;
     }
-    // console.log(state.selectedAnswer)
   },
 
   // 设置当前在背
