@@ -1,0 +1,401 @@
+[{
+  "Answer": "A",
+  "ChoosenA": "包含一个字符",
+  "ChoosenB": "包含两个字符",
+  "ChoosenC": "包含三个字符",
+  "ChoosenD": "说明不合法，s的值不确定",
+  "ID": 101,
+  "Mode": "sig",
+  "QuestionStr": "若有说明语句：char&nbsp;s=’\\72’；则变量s_____。",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "void,&nbsp;define,&nbsp;WORD",
+  "ChoosenB": "a3_3,_123,Car",
+  "ChoosenC": "For,&nbsp;-abc,&nbsp;IF&nbsp;Case",
+  "ChoosenD": "2a,&nbsp;DO,&nbsp;sizeof",
+  "ID": 102,
+  "Mode": "sig",
+  "QuestionStr": "下列可用于C语言用户标识符的一组是_____。",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "and&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\u0009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\u0009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;_2007",
+  "ChoosenB": "Date<br\/>&nbsp;&nbsp;y-m-d",
+  "ChoosenC": "Hi<br\/>&nbsp;&nbsp;Dr.Tom",
+  "ChoosenD": "case&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;Bigl",
+  "ID": 103,
+  "Mode": "sig",
+  "QuestionStr": "可在C程序中用作用户标识符的一组标识符是_____。",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "33&nbsp;&nbsp;we&nbsp;&nbsp;auto",
+  "ChoosenB": "_23&nbsp;&nbsp;me&nbsp;&nbsp;_3ew",
+  "ChoosenC": "_43&nbsp;&nbsp;3e_&nbsp;&nbsp;else",
+  "ChoosenD": "ER&nbsp;-DF&nbsp;&nbsp;32",
+  "ID": 104,
+  "Mode": "sig",
+  "QuestionStr": "下面各选项中,均是C语言合法标识符的选项组是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "a:=b+1",
+  "ChoosenB": "a=b=c+2",
+  "ChoosenC": "int&nbsp;18.5%3",
+  "ChoosenD": "a=a+7=c+b",
+  "ID": 105,
+  "Mode": "sig",
+  "QuestionStr": "若变量已正确定义并赋值,以下符合C语言语法的表达式是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "x=y*5=x+z",
+  "ChoosenB": "int(15.8%5)",
+  "ChoosenC": "x=y+z+5,++y",
+  "ChoosenD": "x=25%5.0",
+  "ID": 106,
+  "Mode": "sig",
+  "QuestionStr": "设变量已正确定义并赋值,以下正确的表达式是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "’C’",
+  "ChoosenB": "\"C\"",
+  "ChoosenC": "’\\xCC’",
+  "ChoosenD": "’\\072’",
+  "ID": 107,
+  "Mode": "sig",
+  "QuestionStr": "以下选项中不属于字符常量的是&nbsp;_____。",
+  "Unit": 6
+}, {
+  "Answer": "D",
+  "ChoosenA": "在C程序中，逗号运算符的优先级最低",
+  "ChoosenB": "在C程序中，APH和aph是两个不同的变量",
+  "ChoosenC": "若a和b类型相同，在计算了赋值表达式a=b后b中的值将放入a中，而b中的值不变",
+  "ChoosenD": "当从键盘输入数据时，对于整型变量只能输入整型数值，对于实型变量只能输入实型数值",
+  "ID": 108,
+  "Mode": "sig",
+  "QuestionStr": "以下不正确的叙述是&nbsp;_____。",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "x=y==5;",
+  "ChoosenB": "x=n%2.5;",
+  "ChoosenC": "x+n=i;",
+  "ChoosenD": "x=5=4+1;",
+  "ID": 109,
+  "Mode": "sig",
+  "QuestionStr": "若变量均已正确定义并赋值,以下合法的C语言赋值语句是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "%",
+  "ChoosenB": "\\",
+  "ChoosenC": "%和\\",
+  "ChoosenD": "**",
+  "ID": 110,
+  "Mode": "sig",
+  "QuestionStr": "在C语言中,运算对象必须是整型数的运算符是_____。",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "1.234e04",
+  "ChoosenB": "1.234e0.4",
+  "ChoosenC": "1.234e+4",
+  "ChoosenD": "1.234e0",
+  "ID": 111,
+  "Mode": "sig",
+  "QuestionStr": "以下选项中，不能作为合法常量的是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "-80",
+  "ChoosenB": "-080",
+  "ChoosenC": "-8e1.0",
+  "ChoosenD": "-80.0e",
+  "ID": 112,
+  "Mode": "sig",
+  "QuestionStr": "以下选项中可作为C语言合法常量的是&nbsp;_____。",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "必须在最开始",
+  "ChoosenB": "必须在系统调用的库函数的后面",
+  "ChoosenC": "可以任意",
+  "ChoosenD": "必须在最后",
+  "ID": 113,
+  "Mode": "sig",
+  "QuestionStr": "C语言规定,在一个源程序中,main函数的位置_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "D",
+  "ChoosenA": "均占4个字节",
+  "ChoosenB": "根据数据的大小来决定所占内存的字节数",
+  "ChoosenC": "由用户自己定义",
+  "ChoosenD": "由C语言编译系统决定",
+  "ID": 114,
+  "Mode": "sig",
+  "QuestionStr": "以下关于long、int和short类型数据占用内存大小的叙述中正确的是_____。",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "A&nbsp;P_0&nbsp;do",
+  "ChoosenB": "float&nbsp;la0_A",
+  "ChoosenC": "b-a&nbsp;goto&nbsp;int",
+  "ChoosenD": "_123&nbsp;temp&nbsp;int",
+  "ID": 115,
+  "Mode": "sig",
+  "QuestionStr": "下面四个选项中,均是不合法的用户标识符的选项是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "用C程序实现的算法必须要有输入和输出操作",
+  "ChoosenB": "用C程序实现的算法可以没有输出但必须要有输入",
+  "ChoosenC": "用C程序实现的算法可以没有输入但必须要有输出",
+  "ChoosenD": "用C程序实现的算法可以既没有输入也没有输出",
+  "ID": 116,
+  "Mode": "sig",
+  "QuestionStr": "以下叙述中正确的是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "B",
+  "ChoosenA": "int",
+  "ChoosenB": "double",
+  "ChoosenC": "float",
+  "ChoosenD": "char",
+  "ID": 117,
+  "Mode": "sig",
+  "QuestionStr": "现有定义int&nbsp;a;double&nbsp;b;float&nbsp;c;char&nbsp;k;,则表达式a\/b+c-k值的类型为_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "a\/c\/d*b*3",
+  "ChoosenB": "3*a*b\/c\/d",
+  "ChoosenC": "3*a*b\/c*d",
+  "ChoosenD": "a*b\/d\/c*3",
+  "ID": 118,
+  "Mode": "sig",
+  "QuestionStr": "若有代数式&nbsp;，则不正确的C语言表达式是_____。",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "9*x^n\/(2*x-1)",
+  "ChoosenB": "9*x**n\/(2*x-1)",
+  "ChoosenC": "9*pow(x,n)*(1\/(2*x-1))",
+  "ChoosenD": "9*pow(n,x)\/(2*x-1)",
+  "ID": 119,
+  "Mode": "sig",
+  "QuestionStr": "与数学式子&nbsp;对应的C语言表达式是_____。",
+  "Unit": 6
+}, {
+  "Answer": "C",
+  "ChoosenA": "C程序中的注释只能出现在程序的开始位置和语句的后面",
+  "ChoosenB": "C程序书写格式严格,要求一行内只能写一个语句",
+  "ChoosenC": "C程序书写格式自由,一个语句可以写在多行上",
+  "ChoosenD": "用C语言编写的程序只能放在一个程序文件中",
+  "ID": 120,
+  "Mode": "sig",
+  "QuestionStr": "以下叙述中正确的是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "构成C程序的基本单位是函数",
+  "ChoosenB": "可以在一个函数中定义另一个函数",
+  "ChoosenC": "main()函数必须放在其他函数之前",
+  "ChoosenD": "C函数定义的格式不是ANSI格式",
+  "ID": 121,
+  "Mode": "sig",
+  "QuestionStr": "以下叙述中正确的是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "D",
+  "ChoosenA": "c=(c-’A’)%26+’a’",
+  "ChoosenB": "c=c+32",
+  "ChoosenC": "c=c-’A’+’a’",
+  "ChoosenD": "c=(’A’+c)%26-’a’",
+  "ID": 122,
+  "Mode": "sig",
+  "QuestionStr": "已知大写字母A的ASCII码是65,小写字母a的ASCII码是97。以下不能将变量c中的大写字母转换为对应小写字母的语句是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "’\\x13’",
+  "ChoosenB": "’\\081’",
+  "ChoosenC": "’65’",
+  "ChoosenD": "\"\\n\"",
+  "ID": 123,
+  "Mode": "sig",
+  "QuestionStr": "以下合法的字符型常量是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "’\\r’",
+  "ChoosenB": "\"a\"",
+  "ChoosenC": "\"\\897\"",
+  "ChoosenD": "296",
+  "ID": 124,
+  "Mode": "sig",
+  "QuestionStr": "下列选项可以正确表示字符型常量的是_____。&nbsp;",
+  "Unit": 6
+}, {
+  "Answer": "D",
+  "ChoosenA": "计算机不能直接执行用C语言编写的源程序",
+  "ChoosenB": "C程序经C编译程序编译后,生成后缀为.obj的文件是一个二进制文件",
+  "ChoosenC": "后缀为.obj的文件,经连接程序生成后缀为.exe的文件是一个二进制文件",
+  "ChoosenD": "后缀为.obj和.exe的二进制文件都可以直接运行",
+  "ID": 125,
+  "Mode": "sig",
+  "QuestionStr": "以下叙述中错误的是_____。",
+  "Unit": 6
+}, {
+  "Answer": "语句",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 281,
+  "Mode": "jud",
+  "QuestionStr": "C程序的基本组成单位是________。",
+  "Unit": 6
+}, {
+  "Answer": "ASCII码",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 282,
+  "Mode": "jud",
+  "QuestionStr": "在C语言中，char型数据在内存中的存储形式是__________。",
+  "Unit": 6
+}, {
+  "Answer": "%",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 283,
+  "Mode": "jud",
+  "QuestionStr": "C语言中运算对象必须是整型数的运算符是_________。",
+  "Unit": 6
+}, {
+  "Answer": "4",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 284,
+  "Mode": "jud",
+  "QuestionStr": "定义int&nbsp;x，y；执行y=(x=1,++x&nbsp;,x+2);后,&nbsp;y的值是________。",
+  "Unit": 6
+}, {
+  "Answer": "1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 285,
+  "Mode": "jud",
+  "QuestionStr": "若有语句double&nbsp;x=17;int&nbsp;y;，当执行y=(int)(x\/5)%2;之后y的值为_____。",
+  "Unit": 6
+}, {
+  "Answer": "编译@链接",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 286,
+  "Mode": "jud",
+  "QuestionStr": "C语言的直接可执行程序文件是通过____&nbsp;和&nbsp;_____生成的。",
+  "Unit": 6
+}, {
+  "Answer": "A",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 287,
+  "Mode": "jud",
+  "QuestionStr": "若有说明语句：char&nbsp;s=’\\101’；则变量s表示的字符是_________。",
+  "Unit": 6
+}, {
+  "Answer": "0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 288,
+  "Mode": "jud",
+  "QuestionStr": "执行下列两条语句“int&nbsp;c1=1,c2=2,c3;c3=1.0\/c2*c1;”后变量c3的值是___。",
+  "Unit": 6
+}, {
+  "Answer": "3",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 289,
+  "Mode": "jud",
+  "QuestionStr": "设变量已正确定义为整型，则表达式n=i=2,++i,i++的值为_______。",
+  "Unit": 6
+}, {
+  "Answer": "5",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 290,
+  "Mode": "jud",
+  "QuestionStr": "若有定义语句：int&nbsp;a=5;，则表达式：a++的值是______。",
+  "Unit": 6
+}, {
+  "Answer": "交换x和y的值",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 291,
+  "Mode": "jud",
+  "QuestionStr": "若x和y均为int型变量，则以下语句的功能是________。<br\/>&nbsp;x+=y;&nbsp;y=x-y;&nbsp;x-=y;<br\/>",
+  "Unit": 6
+}, {
+  "Answer": "C@OBJ@EXE",
+  "ChoosenA": "3",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 292,
+  "Mode": "jud",
+  "QuestionStr": "C语言源程序文件的后缀是________，经过编译后生成文件的后缀是________，经过链接后生成文件的后缀是________。",
+  "Unit": 6
+}, {
+  "Answer": "顺序结构@选择结构@循环结构",
+  "ChoosenA": "3",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 293,
+  "Mode": "jud",
+  "QuestionStr": "结构化设计中的三种基本结构是________、_______、________。",
+  "Unit": 6
+}, {
+  "Answer": "字母、数字、下划线",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 294,
+  "Mode": "jud",
+  "QuestionStr": "C语言中的标识符只能由3种字符组成，他们是_____。",
+  "Unit": 6
+}, {
+  "Answer": "复合",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 295,
+  "Mode": "jud",
+  "QuestionStr": "在C程序中，可用{&nbsp;}括起来的许多语句成为______语句。",
+  "Unit": 6
+}]

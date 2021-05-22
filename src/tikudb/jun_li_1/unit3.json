@@ -1,0 +1,2031 @@
+[{
+  "Answer": "A",
+  "ChoosenA": "5500",
+  "ChoosenB": "5000",
+  "ChoosenC": "6000",
+  "ChoosenD": "7000",
+  "ID": 317,
+  "Mode": "sig",
+  "QuestionStr": "我国的疆域南北长约（&nbsp;）千米",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "5500",
+  "ChoosenB": "5200",
+  "ChoosenC": "5800",
+  "ChoosenD": "4900",
+  "ID": 318,
+  "Mode": "sig",
+  "QuestionStr": "我国的疆域范围东西宽约（&nbsp;）千米。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "22000",
+  "ChoosenB": "20000",
+  "ChoosenC": "18000",
+  "ChoosenD": "36000",
+  "ID": 319,
+  "Mode": "sig",
+  "QuestionStr": "我国陆地边界线总长约（&nbsp;）千米。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "22000",
+  "ChoosenB": "18000",
+  "ChoosenC": "20000",
+  "ChoosenD": "35000",
+  "ID": 320,
+  "Mode": "sig",
+  "QuestionStr": "我国大陆海岸线总长约（&nbsp;）千米。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "11",
+  "ChoosenB": "14",
+  "ChoosenC": "15",
+  "ChoosenD": "18",
+  "ID": 321,
+  "Mode": "sig",
+  "QuestionStr": "我国陆地与（&nbsp;）个国家接壤。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "7",
+  "ChoosenB": "8",
+  "ChoosenC": "9",
+  "ChoosenD": "10",
+  "ID": 322,
+  "Mode": "sig",
+  "QuestionStr": "我国海上邻国（&nbsp;）个国家。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "200",
+  "ChoosenB": "250",
+  "ChoosenC": "300",
+  "ChoosenD": "350",
+  "ID": 323,
+  "Mode": "sig",
+  "QuestionStr": "我国拥有960万平方公里的陆地疆土，按《联合和国海洋法》，规定，还拥有（&nbsp;）万平方公里的“海洋国土”。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "陈水扁",
+  "ChoosenB": "连战",
+  "ChoosenC": "宋楚瑜",
+  "ChoosenD": "李登辉",
+  "ID": 324,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）公开提出“两国论”，妄想把台湾从中国分裂出去。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "马来西亚",
+  "ChoosenB": "越南",
+  "ChoosenC": "菲律宾",
+  "ChoosenD": "泰国",
+  "ID": 325,
+  "Mode": "sig",
+  "QuestionStr": "侵占我国南海岛礁最多的国家是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "俄罗斯（前苏联）",
+  "ChoosenB": "中国",
+  "ChoosenC": "美国",
+  "ChoosenD": "法国",
+  "ID": 326,
+  "Mode": "sig",
+  "QuestionStr": "世界上第一个实现载人海天的国家是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "A朝鲜",
+  "ChoosenB": "B泰国",
+  "ChoosenC": "C越南",
+  "ChoosenD": "D菲律宾",
+  "ID": 327,
+  "Mode": "sig",
+  "QuestionStr": "参与六方会谈的国家包括中国、美国、日本、俄罗斯、韩国（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "中国",
+  "ChoosenB": "俄罗斯",
+  "ChoosenC": "日本",
+  "ChoosenD": "美国",
+  "ID": 328,
+  "Mode": "sig",
+  "QuestionStr": "冷战结束后，在军事力量上构成“一超多强”的军事结构权利格局，所谓“一超多强”的“一超”是指（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "5",
+  "ChoosenB": "6",
+  "ChoosenC": "7",
+  "ChoosenD": "8",
+  "ID": 329,
+  "Mode": "sig",
+  "QuestionStr": "中国人民解放军设有（&nbsp;）大军区",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "殖民主义",
+  "ChoosenB": "帝国主义",
+  "ChoosenC": "霸权主义",
+  "ChoosenD": "经济利益",
+  "ID": 330,
+  "Mode": "sig",
+  "QuestionStr": "冷战时期，局部战争的根源是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "祖国统一，海洋权益争端",
+  "ChoosenB": "祖国的统一，边界争端",
+  "ChoosenC": "祖国统一，海洋权益争端，边界争端，影响边疆地区的安全的其他原因",
+  "ChoosenD": "影响边疆地区安全",
+  "ID": 331,
+  "Mode": "sig",
+  "QuestionStr": "影响中国周边安全的主要因素有（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "祖国统一",
+  "ChoosenB": "朝鲜",
+  "ChoosenC": "朝鲜半岛和印巴之间的对立",
+  "ChoosenD": "印巴之间的对立",
+  "ID": 332,
+  "Mode": "sig",
+  "QuestionStr": "在新形势下，中国周边的热点问题是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "朝鲜、美国、中国、韩国、俄罗斯和日本",
+  "ChoosenB": "朝鲜、美国、中国、印度、俄罗斯和日本",
+  "ChoosenC": "韩国、美国、中国、印度、俄罗斯和日本",
+  "ChoosenD": "韩国、美国、中国、泰国、俄罗斯和日本",
+  "ID": 333,
+  "Mode": "sig",
+  "QuestionStr": "朝核问题六方会谈的六方指哪几个国家",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "960",
+  "ChoosenB": "300",
+  "ChoosenC": "1260",
+  "ChoosenD": "1300",
+  "ID": 334,
+  "Mode": "sig",
+  "QuestionStr": "我国领土总面积应该是（&nbsp;）万平方公里",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "42738",
+  "ChoosenB": "42740",
+  "ChoosenC": "42744",
+  "ChoosenD": "42739",
+  "ID": 335,
+  "Mode": "sig",
+  "QuestionStr": ".我国耕地人均面积相当世界人均的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "42738",
+  "ChoosenB": "42744",
+  "ChoosenC": "42740",
+  "ChoosenD": "42739",
+  "ID": 336,
+  "Mode": "sig",
+  "QuestionStr": "我国森林人均占有相当世界人均的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "42738",
+  "ChoosenB": "42744",
+  "ChoosenC": "42740",
+  "ChoosenD": "42739",
+  "ID": 337,
+  "Mode": "sig",
+  "QuestionStr": "我国资源人均占有相当世界人均的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "0.3",
+  "ChoosenB": "0.22",
+  "ChoosenC": "0.15",
+  "ChoosenD": "0.35",
+  "ID": 338,
+  "Mode": "sig",
+  "QuestionStr": "我国人口占世界总人口的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "2004年",
+  "ChoosenB": "2003年",
+  "ChoosenC": "2002年",
+  "ChoosenD": "2005年",
+  "ID": 339,
+  "Mode": "sig",
+  "QuestionStr": "朝鲜核问题六方会谈的第一轮会谈在（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "争取和平统一，但不承诺放弃使用武力",
+  "ChoosenB": "文攻武备",
+  "ChoosenC": "一国两制",
+  "ChoosenD": "武力攻台",
+  "ID": 340,
+  "Mode": "sig",
+  "QuestionStr": "在军事方面，中国政府贯彻（&nbsp;）的对台斗争总方略。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "日本",
+  "ChoosenB": "印度",
+  "ChoosenC": "C美国",
+  "ChoosenD": "朝鲜",
+  "ID": 341,
+  "Mode": "sig",
+  "QuestionStr": "当代一超多强的战略格局中的多强是指俄罗斯、欧盟、中国和（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "中华民国在台湾",
+  "ChoosenB": "七块论",
+  "ChoosenC": "两国论",
+  "ChoosenD": "统一不是唯一选项",
+  "ID": 342,
+  "Mode": "sig",
+  "QuestionStr": "以下哪一项不是李登辉在位期间的台独声称？（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "北稳&nbsp;、南和、东紧、西动",
+  "ChoosenB": "北和、南稳、东紧、西动",
+  "ChoosenC": "北稳、南和、东动、西紧",
+  "ChoosenD": "北和、南稳、东动、西紧",
+  "ID": 343,
+  "Mode": "sig",
+  "QuestionStr": "目前我国地缘方向上的表现为（&nbsp;）的不同态势。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "平等、合作",
+  "ChoosenB": "互重、平等、合作",
+  "ChoosenC": "对外防御体质",
+  "ChoosenD": "构建和谐社会和世界",
+  "ID": 344,
+  "Mode": "sig",
+  "QuestionStr": "我国新的国家安全观是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "毛泽东",
+  "ChoosenB": "邓小平",
+  "ChoosenC": "江泽民",
+  "ChoosenD": "胡锦涛",
+  "ID": 345,
+  "Mode": "sig",
+  "QuestionStr": "“要为我国的经济建设创造一个和平的外交环境,首先要有一个稳定的周边环境”是（&nbsp;）说的。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "毛泽东",
+  "ChoosenB": "邓小平",
+  "ChoosenC": "江泽民",
+  "ChoosenD": "胡锦涛",
+  "ID": 346,
+  "Mode": "sig",
+  "QuestionStr": ".“对于形势严峻的一面，我们一定要有清醒的认识，要有忧患意识。”是（&nbsp;）说的。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "罗斯福",
+  "ChoosenB": "丘吉尔",
+  "ChoosenC": "拿破仑",
+  "ChoosenD": "杜鲁门",
+  "ID": 347,
+  "Mode": "sig",
+  "QuestionStr": "“世界上没有永远的敌人、也没有永远的朋友，只有永恒的利益。”是（&nbsp;）说的。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "3",
+  "ChoosenB": "4",
+  "ChoosenC": "5",
+  "ChoosenD": "6",
+  "ID": 348,
+  "Mode": "sig",
+  "QuestionStr": "“上海合作组织”有（&nbsp;）成员国。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "利益冲突",
+  "ChoosenB": "威胁企图",
+  "ChoosenC": "威胁能力",
+  "ChoosenD": "利益冲突，威胁企图，威胁能力",
+  "ID": 349,
+  "Mode": "sig",
+  "QuestionStr": "周边面临的威胁因素是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "英国、法国",
+  "ChoosenB": "伊朗、以色列",
+  "ChoosenC": "印度、巴基斯坦",
+  "ChoosenD": "澳大利亚、巴西",
+  "ID": 350,
+  "Mode": "sig",
+  "QuestionStr": "合法拥有核武器的国家有中国、美国、俄罗斯（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "9",
+  "ChoosenB": "10",
+  "ChoosenC": "11",
+  "ChoosenD": "12",
+  "ID": 351,
+  "Mode": "sig",
+  "QuestionStr": "人口过亿的国家（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "1994年",
+  "ChoosenB": "1995年",
+  "ChoosenC": "1996年",
+  "ChoosenD": "1997年",
+  "ID": 352,
+  "Mode": "sig",
+  "QuestionStr": "《联合国海洋法公约》是（&nbsp;）正式生效的。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "100",
+  "ChoosenB": "150",
+  "ChoosenC": "200",
+  "ChoosenD": "250",
+  "ID": 353,
+  "Mode": "sig",
+  "QuestionStr": "《联合国海洋法公约》规定，专属经济区外部界线至领海基线不应超过（&nbsp;）海里》",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "阿富汗、巴基斯坦、吉尔吉斯斯坦",
+  "ChoosenB": "巴基斯坦、吉尔吉斯斯坦、塔吉克斯坦",
+  "ChoosenC": "哈萨克斯坦、吉尔吉斯斯坦、塔吉克斯坦",
+  "ChoosenD": "塔吉克斯坦、巴基斯坦、阿富汗",
+  "ID": 354,
+  "Mode": "sig",
+  "QuestionStr": "中亚五国与我接壤的国家有（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "朝鲜、越南",
+  "ChoosenB": "朝鲜、日本",
+  "ChoosenC": "越南、柬埔寨",
+  "ChoosenD": "越南、老挝",
+  "ID": 355,
+  "Mode": "sig",
+  "QuestionStr": "与我国既是海上邻国，有事陆地邻国的国家是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "12.22",
+  "ChoosenB": "12.55",
+  "ChoosenC": "12.66",
+  "ChoosenD": "12.77",
+  "ID": 356,
+  "Mode": "sig",
+  "QuestionStr": "中印边界地区争议面积（&nbsp;）万平方公里。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "缓和",
+  "ChoosenB": "稳定",
+  "ChoosenC": "缓和、稳定",
+  "ChoosenD": "降温",
+  "ID": 357,
+  "Mode": "sig",
+  "QuestionStr": "当前我国周边安全环境的主流是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "100多万",
+  "ChoosenB": "150多万",
+  "ChoosenC": "200多万",
+  "ChoosenD": "250多万",
+  "ID": 358,
+  "Mode": "sig",
+  "QuestionStr": "目前我国的海洋国土中，存在争议的海区面积有（&nbsp;）平方公里。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "反战",
+  "ChoosenB": "和平",
+  "ChoosenC": "发展",
+  "ChoosenD": "和平与发展",
+  "ID": 359,
+  "Mode": "sig",
+  "QuestionStr": "当今时代的主题是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "防御、进攻",
+  "ChoosenB": "进攻、防御",
+  "ChoosenC": "防守、进攻",
+  "ChoosenD": "进攻、防守",
+  "ID": 360,
+  "Mode": "sig",
+  "QuestionStr": "日本国防战略由（&nbsp;）向（&nbsp;）转变。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "战争",
+  "ChoosenB": "合作",
+  "ChoosenC": "战略",
+  "ChoosenD": "战略合作",
+  "ID": 361,
+  "Mode": "sig",
+  "QuestionStr": "中俄之间现在是（&nbsp;）关系。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "钱伟长",
+  "ChoosenB": "钱三强",
+  "ChoosenC": "钱学森",
+  "ChoosenD": "聂荣臻",
+  "ID": 362,
+  "Mode": "sig",
+  "QuestionStr": "被誉为“中国导弹之父”是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "斯大林",
+  "ChoosenB": "丘吉尔",
+  "ChoosenC": "拿破仑",
+  "ChoosenD": "杜鲁门",
+  "ID": 363,
+  "Mode": "sig",
+  "QuestionStr": "“要想取得战争的胜利，要想增加自己的实力，必须具有三样东西，一是钱，二是更多的钱，三是更多更多的钱。”这是（&nbsp;）说的。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "1700",
+  "ChoosenB": "1800",
+  "ChoosenC": "1900",
+  "ChoosenD": "2000",
+  "ID": 364,
+  "Mode": "sig",
+  "QuestionStr": "中印边界全长（&nbsp;）公里。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "武器、补给、钱",
+  "ChoosenB": "武器、钱、粮食",
+  "ChoosenC": "钱、粮食、先进武器",
+  "ChoosenD": "钱、更多的钱、更多更多的钱",
+  "ID": 365,
+  "Mode": "sig",
+  "QuestionStr": "拿破仑曾经说过“要想取得战争的胜利，要想增加自己的实力，必须具有三样东西，第一是（&nbsp;），第二是（&nbsp;）、第三是（&nbsp;）。”",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "恐怖主义",
+  "ChoosenB": "霸权主义",
+  "ChoosenC": "恐怖主义和霸权主义",
+  "ChoosenD": "反政府武装",
+  "ID": 366,
+  "Mode": "sig",
+  "QuestionStr": "影响当前世界安全形式的主要因素（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "毛泽东",
+  "ChoosenB": "邓小平",
+  "ChoosenC": "江泽民",
+  "ChoosenD": "胡锦涛",
+  "ID": 367,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）提出“主权在我，搁置争议，共同开发”。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "巴基斯坦",
+  "ChoosenB": "印尼",
+  "ChoosenC": "文莱",
+  "ChoosenD": "菲律宾",
+  "ID": 368,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "菲律宾",
+  "ChoosenB": "印尼",
+  "ChoosenC": "文莱",
+  "ChoosenD": "俄罗斯",
+  "ID": 369,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "韩国",
+  "ChoosenB": "印尼",
+  "ChoosenC": "阿富汗",
+  "ChoosenD": "菲律宾",
+  "ID": 370,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "韩国",
+  "ChoosenB": "印尼",
+  "ChoosenC": "丹麦",
+  "ChoosenD": "菲律宾",
+  "ID": 371,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "蒙古国",
+  "ChoosenB": "马来西亚",
+  "ChoosenC": "韩国",
+  "ChoosenD": "日本",
+  "ID": 372,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "马来西亚",
+  "ChoosenB": "美国",
+  "ChoosenC": "朝鲜",
+  "ChoosenD": "越南",
+  "ID": 373,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "日本",
+  "ChoosenB": "韩国",
+  "ChoosenC": "越南",
+  "ChoosenD": "文莱",
+  "ID": 374,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "日本",
+  "ChoosenB": "韩国",
+  "ChoosenC": "文莱",
+  "ChoosenD": "老挝",
+  "ID": 375,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "德国",
+  "ChoosenB": "韩国",
+  "ChoosenC": "日本",
+  "ChoosenD": "菲律宾",
+  "ID": 376,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "韩国",
+  "ChoosenB": "英国",
+  "ChoosenC": "日本",
+  "ChoosenD": "菲律宾",
+  "ID": 377,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "中国",
+  "ChoosenB": "日本",
+  "ChoosenC": "越南",
+  "ChoosenD": "德国",
+  "ID": 378,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "瑞士",
+  "ChoosenB": "瑞典",
+  "ChoosenC": "阿根廷",
+  "ChoosenD": "美国",
+  "ID": 379,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "哈萨克斯坦",
+  "ChoosenB": "英国",
+  "ChoosenC": "文莱",
+  "ChoosenD": "日本",
+  "ID": 380,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "伊朗",
+  "ChoosenB": "塔吉克斯坦",
+  "ChoosenC": "韩国",
+  "ChoosenD": "马来西亚",
+  "ID": 381,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "俄罗斯",
+  "ChoosenB": "德国",
+  "ChoosenC": "加拿大",
+  "ChoosenD": "比利时",
+  "ID": 382,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "文莱",
+  "ChoosenB": "韩国",
+  "ChoosenC": "日本",
+  "ChoosenD": "法国",
+  "ID": 383,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "德国",
+  "ChoosenB": "英国",
+  "ChoosenC": "阿富汗",
+  "ChoosenD": "以色列",
+  "ID": 384,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "德国",
+  "ChoosenB": "法国",
+  "ChoosenC": "阿富汗",
+  "ChoosenD": "以色列",
+  "ID": 385,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "文莱",
+  "ChoosenB": "日本",
+  "ChoosenC": "加拿大",
+  "ChoosenD": "韩国",
+  "ID": 386,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "英国",
+  "ChoosenB": "法国",
+  "ChoosenC": "美国",
+  "ChoosenD": "波兰",
+  "ID": 387,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家不是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "日本",
+  "ChoosenB": "阿富汗",
+  "ChoosenC": "蒙古",
+  "ChoosenD": "俄罗斯",
+  "ID": 388,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "蒙古",
+  "ChoosenB": "韩国",
+  "ChoosenC": "不丹",
+  "ChoosenD": "缅甸",
+  "ID": 389,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "不丹",
+  "ChoosenB": "缅甸",
+  "ChoosenC": "菲律宾",
+  "ChoosenD": "阿富汗",
+  "ID": 390,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "蒙古",
+  "ChoosenB": "俄罗斯",
+  "ChoosenC": "印度",
+  "ChoosenD": "文莱",
+  "ID": 391,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "马来西亚",
+  "ChoosenB": "中国",
+  "ChoosenC": "法国",
+  "ChoosenD": "俄罗斯",
+  "ID": 392,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家不是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "菲律宾",
+  "ChoosenB": "德国",
+  "ChoosenC": "英国",
+  "ChoosenD": "吉尔吉斯斯坦",
+  "ID": 393,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "新加坡",
+  "ChoosenB": "越南",
+  "ChoosenC": "阿富汗",
+  "ChoosenD": "吉尔吉斯斯坦",
+  "ID": 394,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "俄罗斯",
+  "ChoosenB": "阿富汗",
+  "ChoosenC": "蒙古",
+  "ChoosenD": "印度尼西亚",
+  "ID": 395,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "文莱",
+  "ChoosenB": "马来西亚",
+  "ChoosenC": "印度尼西亚",
+  "ChoosenD": "荷兰",
+  "ID": 396,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国海上邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "蒙古",
+  "ChoosenB": "韩国",
+  "ChoosenC": "不丹",
+  "ChoosenD": "缅甸",
+  "ID": 397,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "阿富汗",
+  "ChoosenB": "缅甸",
+  "ChoosenC": "日本",
+  "ChoosenD": "不丹",
+  "ID": 398,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "印度",
+  "ChoosenB": "巴基斯坦",
+  "ChoosenC": "尼泊尔",
+  "ChoosenD": "菲律宾",
+  "ID": 399,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "马来西亚",
+  "ChoosenB": "阿富汗",
+  "ChoosenC": "印度",
+  "ChoosenD": "不丹",
+  "ID": 400,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是我国陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "朝鲜",
+  "ChoosenB": "阿富汗",
+  "ChoosenC": "日本",
+  "ChoosenD": "韩国",
+  "ID": 401,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家既是我国海上邻国，又是陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "中国",
+  "ChoosenB": "美国",
+  "ChoosenC": "德国",
+  "ChoosenD": "法国",
+  "ID": 402,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "俄罗斯",
+  "ChoosenB": "美国",
+  "ChoosenC": "瑞典",
+  "ChoosenD": "法国",
+  "ID": 403,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "俄罗斯",
+  "ChoosenB": "美国",
+  "ChoosenC": "埃及",
+  "ChoosenD": "法国",
+  "ID": 404,
+  "Mode": "sig",
+  "QuestionStr": "下面国家中哪一个不是联合国常任理事国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "越南",
+  "ChoosenB": "日本",
+  "ChoosenC": "韩国",
+  "ChoosenD": "阿富汗",
+  "ID": 405,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家既是我国海上邻国，又是陆地邻国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "周边国家",
+  "ChoosenB": "国际环境",
+  "ChoosenC": "边界问题",
+  "ChoosenD": "领海纠纷",
+  "ID": 406,
+  "Mode": "sig",
+  "QuestionStr": "国家安全环境是指在一定的时期内（&nbsp;）或地区影响本国生存与发展的客观条件和因素。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "安全",
+  "ChoosenB": "生存",
+  "ChoosenC": "扩张",
+  "ChoosenD": "繁荣",
+  "ID": 407,
+  "Mode": "sig",
+  "QuestionStr": "国家安全环境是指在一定的时期内周边国家或地区影响本国（&nbsp;）与发展的客观条件和因素。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "有利条件",
+  "ChoosenB": "必要条件",
+  "ChoosenC": "客观条件",
+  "ChoosenD": "充分条件",
+  "ID": 408,
+  "Mode": "sig",
+  "QuestionStr": "国家安全环境是指在一定的时期内周边国家或地区影响本国生存与发展的（&nbsp;）和因素。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "因素",
+  "ChoosenB": "必要因素",
+  "ChoosenC": "主要因素",
+  "ChoosenD": "充分因素",
+  "ID": 409,
+  "Mode": "sig",
+  "QuestionStr": "国家安全环境是指在一定的时期内周边国家或地区影响本国生存与发展的客观条件和（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "0.25",
+  "ChoosenB": "0.3",
+  "ChoosenC": "0.22",
+  "ChoosenD": "0.2",
+  "ID": 410,
+  "Mode": "sig",
+  "QuestionStr": "我国人口占世界总人口的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "2001.07",
+  "ChoosenB": "2002.07",
+  "ChoosenC": "2003.07",
+  "ChoosenD": "2004.07",
+  "ID": 411,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）签署《中俄睦邻友好合作条约》，用法律形式确定了两国“世代友好，永不为敌”&nbsp;的好邻居、好伙伴和好朋友关系",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "12",
+  "ChoosenB": "10",
+  "ChoosenC": "15",
+  "ChoosenD": "18",
+  "ID": 412,
+  "Mode": "sig",
+  "QuestionStr": "世界上有117个国家实行（&nbsp;）海里的领海宽度。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "100",
+  "ChoosenB": "200",
+  "ChoosenC": "220",
+  "ChoosenD": "300",
+  "ID": 413,
+  "Mode": "sig",
+  "QuestionStr": "专属经济区是指主权国家在邻接其领海的外部海域设立的经济管辖区。其外部界限至领海基线不应超过（&nbsp;）海里",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "1990",
+  "ChoosenB": "2000",
+  "ChoosenC": "2001",
+  "ChoosenD": "2010",
+  "ID": 414,
+  "Mode": "sig",
+  "QuestionStr": "上海合作组织成立于（&nbsp;）年",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "100",
+  "ChoosenB": "120",
+  "ChoosenC": "140",
+  "ChoosenD": "150",
+  "ID": 415,
+  "Mode": "sig",
+  "QuestionStr": "位于南海的上的东沙群岛、西沙群岛、中砂群岛和南沙群岛领海，有（&nbsp;）多个岛屿和礁、滩，自古以来就是中国的领土。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "124",
+  "ChoosenB": "134",
+  "ChoosenC": "144",
+  "ChoosenD": "154",
+  "ID": 416,
+  "Mode": "sig",
+  "QuestionStr": "1973年12月至1982年4月，联合国召开了第三次海洋会议，（&nbsp;）个国家出席了会议，通过了《联合国海洋法公约》，自1994年11月16日正式生效。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "是否稳定",
+  "ChoosenB": "有无危险",
+  "ChoosenC": "安全状况",
+  "ChoosenD": "遭到入侵",
+  "ID": 417,
+  "Mode": "sig",
+  "QuestionStr": "国家周边安全环境是指一个国家周边(&nbsp;)和受到威胁的情况及条件。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "生存发展",
+  "ChoosenB": "和平稳定",
+  "ChoosenC": "兴衰存亡",
+  "ChoosenD": "经济建设",
+  "ID": 418,
+  "Mode": "sig",
+  "QuestionStr": "国家周边安全状况关系到国家和民族的（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "寻找根据",
+  "ChoosenB": "寻找证据",
+  "ChoosenC": "寻找支撑",
+  "ChoosenD": "寻找依据",
+  "ID": 419,
+  "Mode": "sig",
+  "QuestionStr": "研究周边安全环境可以为制定和实施国防战略（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "程度",
+  "ChoosenB": "强度",
+  "ChoosenC": "状态",
+  "ChoosenD": "状况",
+  "ID": 420,
+  "Mode": "sig",
+  "QuestionStr": "研究周边安全环境是评估外来威胁（&nbsp;）的基本手段。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "“一多”“一大”“三区”",
+  "ChoosenB": "“一多”“二大”“二区”",
+  "ChoosenC": "“二多”“二大”“二区”",
+  "ChoosenD": "“二多”“二大”“三区”",
+  "ID": 421,
+  "Mode": "sig",
+  "QuestionStr": "我国地缘环境特点，概括起来说是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "14",
+  "ChoosenB": "20",
+  "ChoosenC": "21",
+  "ChoosenD": "28",
+  "ID": 422,
+  "Mode": "sig",
+  "QuestionStr": "我国陆海邻国共有（&nbsp;）个。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "6",
+  "ChoosenB": "7",
+  "ChoosenC": "8",
+  "ChoosenD": "9",
+  "ID": 423,
+  "Mode": "sig",
+  "QuestionStr": "目前为止世界上有（&nbsp;）个国家拥有核武器。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "军事借重、经济互补",
+  "ChoosenB": "相互借重、防范中国",
+  "ChoosenC": "政治借重、军事牵制",
+  "ChoosenD": "经济互助、战略牵制",
+  "ID": 424,
+  "Mode": "sig",
+  "QuestionStr": "俄罗斯对我国安全的主要影响的两个方面（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "南海",
+  "ChoosenB": "东沙",
+  "ChoosenC": "中沙",
+  "ChoosenD": "东海",
+  "ID": 425,
+  "Mode": "sig",
+  "QuestionStr": "黄岩岛在哪个群岛海域（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "35186",
+  "ChoosenB": "35551",
+  "ChoosenC": "35916",
+  "ChoosenD": "36281",
+  "ID": 426,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）印度连续进行五次核试验。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "歼七",
+  "ChoosenB": "飞豹。",
+  "ChoosenC": "歼十",
+  "ChoosenD": "枭龙",
+  "ID": 427,
+  "Mode": "sig",
+  "QuestionStr": "中巴联合研制的战机是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "经贸",
+  "ChoosenB": "军事。",
+  "ChoosenC": "政治。",
+  "ChoosenD": "反恐",
+  "ID": 428,
+  "Mode": "sig",
+  "QuestionStr": "巴基斯坦是我国重要的（&nbsp;）合作伙伴。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "六",
+  "ChoosenB": "五",
+  "ChoosenC": "四",
+  "ChoosenD": "三",
+  "ID": 429,
+  "Mode": "sig",
+  "QuestionStr": "日本对我国安全的威胁主要表现在（&nbsp;）方面。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "二",
+  "ChoosenB": "三",
+  "ChoosenC": "四",
+  "ChoosenD": "五",
+  "ID": 430,
+  "Mode": "sig",
+  "QuestionStr": "美国将我国列为潜在的战略对手，并从（&nbsp;）各方面对我进行遏制、围堵和战略牵制。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "二",
+  "ChoosenB": "三",
+  "ChoosenC": "四",
+  "ChoosenD": "五",
+  "ID": 431,
+  "Mode": "sig",
+  "QuestionStr": "台湾问题对国家安全的影响有（&nbsp;）个方面。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "“九二”共识",
+  "ChoosenB": "“文攻武备”",
+  "ChoosenC": "“和平统一”",
+  "ChoosenD": "“以武阻独”",
+  "ID": 432,
+  "Mode": "sig",
+  "QuestionStr": "筹划解决台湾问题应贯彻执行（&nbsp;）的基本方略。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "中国、俄罗斯、日本、印度、越南",
+  "ChoosenB": "中国、美国、俄罗斯、日本、印度",
+  "ChoosenC": "中国、俄罗斯、日本、中亚、越南",
+  "ChoosenD": "中国、俄罗斯、日本、印度、蒙古",
+  "ID": 433,
+  "Mode": "sig",
+  "QuestionStr": "当前中国周边安全环境及演变，主要表现为（&nbsp;）几个大国的力量对比和相互关系的演变，以及与周边其他国家的关系及演变。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "钓鱼岛及附属岛屿",
+  "ChoosenB": "钓鱼岛列岛",
+  "ChoosenC": "钓鱼岛群岛",
+  "ChoosenD": "钓鱼岛",
+  "ID": 434,
+  "Mode": "sig",
+  "QuestionStr": "中、日两国在钓鱼岛主权上存在着严重的争议。（&nbsp;）由钓鱼岛、黄尾屿、南小岛、北小岛及3个小岛礁组成。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "总体稳定、局部紧张",
+  "ChoosenB": "总体缓和、局部紧张",
+  "ChoosenC": "总体稳定、局部动荡",
+  "ChoosenD": "总体缓和、局部动荡",
+  "ID": 435,
+  "Mode": "sig",
+  "QuestionStr": "我国周边安全环境的基本态势，从全局上看（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "五",
+  "ChoosenB": "六",
+  "ChoosenC": "七",
+  "ChoosenD": "八",
+  "ID": 436,
+  "Mode": "sig",
+  "QuestionStr": "“上海合作组织”有（&nbsp;）成员国。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "三",
+  "ChoosenB": "四",
+  "ChoosenC": "五",
+  "ChoosenD": "六",
+  "ID": 437,
+  "Mode": "sig",
+  "QuestionStr": "“上海合作组织”有（&nbsp;）观察国。",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "二",
+  "ChoosenB": "三",
+  "ChoosenC": "四",
+  "ChoosenD": "五",
+  "ID": 438,
+  "Mode": "sig",
+  "QuestionStr": "“上海合作组织”有（&nbsp;）对话伙伴国。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "美国、俄罗斯、日本、印度",
+  "ChoosenB": "俄罗斯、日本、印度、朝鲜",
+  "ChoosenC": "美国、俄罗斯、印度、越南",
+  "ChoosenD": "俄罗斯、日本、印度、越南",
+  "ID": 439,
+  "Mode": "sig",
+  "QuestionStr": "从军事实力上看，在我国周边有（&nbsp;）四个世界级或地区级的军事强国。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "俄罗斯、日本、越南、印度",
+  "ChoosenB": "朝鲜、韩国、巴基斯坦、蒙古",
+  "ChoosenC": "俄罗斯、朝鲜、越南、印度",
+  "ChoosenD": "中国、巴基斯坦、韩国、蒙古",
+  "ID": 440,
+  "Mode": "sig",
+  "QuestionStr": "在我国周边有（&nbsp;）四个国家军队过百万。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "六",
+  "ChoosenB": "五",
+  "ChoosenC": "四",
+  "ChoosenD": "三",
+  "ID": 441,
+  "Mode": "sig",
+  "QuestionStr": "建国后，为捍卫国家领土主权完整，我国因领土争端被迫发动了（&nbsp;）场自卫反击作战。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "一段",
+  "ChoosenB": "二段",
+  "ChoosenC": "三段",
+  "ChoosenD": "四段",
+  "ID": 442,
+  "Mode": "sig",
+  "QuestionStr": "中、印两国边界全长1700公里，争议区域共有（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "克什米尔争端",
+  "ChoosenB": "北方四岛争议",
+  "ChoosenC": "南海争端",
+  "ChoosenD": "缅甸问题",
+  "ID": 443,
+  "Mode": "sig",
+  "QuestionStr": "下列热点问题我国是当事方的是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "A",
+  "ChoosenA": "朝鲜半岛",
+  "ChoosenB": "黄海争议",
+  "ChoosenC": "东海争端",
+  "ChoosenD": "南沙争议",
+  "ID": 444,
+  "Mode": "sig",
+  "QuestionStr": "中国周边热点，我国不是当事方的有（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "C",
+  "ChoosenA": "四",
+  "ChoosenB": "五",
+  "ChoosenC": "六",
+  "ChoosenD": "三",
+  "ID": 445,
+  "Mode": "sig",
+  "QuestionStr": "新中国成立后，我国对外进行了（&nbsp;）场战争。",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "美国",
+  "ChoosenB": "英国",
+  "ChoosenC": "中国",
+  "ChoosenD": "瑞士",
+  "ID": 446,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家使国际承认的永久中立国",
+  "Unit": 3
+}, {
+  "Answer": "D",
+  "ChoosenA": "巴西",
+  "ChoosenB": "阿根廷",
+  "ChoosenC": "德国",
+  "ChoosenD": "奥地利",
+  "ID": 447,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家使国际承认的永久中立国",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "阿富汗",
+  "ChoosenB": "爱尔兰",
+  "ChoosenC": "菲律宾",
+  "ChoosenD": "越南",
+  "ID": 448,
+  "Mode": "sig",
+  "QuestionStr": "下面哪一个国家使国际承认的永久中立国",
+  "Unit": 3
+}, {
+  "Answer": "B",
+  "ChoosenA": "6",
+  "ChoosenB": "7",
+  "ChoosenC": "8",
+  "ChoosenD": "9",
+  "ID": 449,
+  "Mode": "sig",
+  "QuestionStr": "国际承认的永久中立国有几个（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "AB",
+  "ChoosenA": "Ａ朝鲜半岛",
+  "ChoosenB": "Ｂ印巴冲突",
+  "ChoosenC": "Ｃ日本岛屿问题",
+  "ChoosenD": "Ｄ两岸关系",
+  "ID": 560,
+  "Mode": "mul",
+  "QuestionStr": "对我国安全影响较大的周边地区热点问题是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "1947",
+  "ChoosenB": "1965",
+  "ChoosenC": "1971",
+  "ChoosenD": "1975",
+  "ID": 561,
+  "Mode": "mul",
+  "QuestionStr": "印巴之间的三次大规模战争时间是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "AB",
+  "ChoosenA": "伊斯兰原教旨主义恐怖活动",
+  "ChoosenB": "东突分裂恐怖活动",
+  "ChoosenC": "国际恐怖组织",
+  "ChoosenD": "国内反政府力量",
+  "ID": 562,
+  "Mode": "mul",
+  "QuestionStr": "当前国际恐怖主义对我国的安全主要体现在（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "A台湾是主权独立的国家",
+  "ChoosenB": "B统一是唯一选项",
+  "ChoosenC": "C四要一没有",
+  "ChoosenD": "D两国论",
+  "ID": 563,
+  "Mode": "mul",
+  "QuestionStr": "已下哪些是陈水扁的台独言论。（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "两岸关系",
+  "ChoosenB": "朝鲜半岛",
+  "ChoosenC": "东部海域岛权",
+  "ChoosenD": "亚太地区安全格局",
+  "ID": 564,
+  "Mode": "mul",
+  "QuestionStr": "我国东部地缘面临着的主要威胁是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "战略包围中国",
+  "ChoosenB": "制造中国威胁论",
+  "ChoosenC": "插手台湾问题",
+  "ChoosenD": "支持日本战略",
+  "ID": 565,
+  "Mode": "mul",
+  "QuestionStr": "美国始终把我国看做潜在的战略对手主要表现是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "战略利益矛盾突出",
+  "ChoosenB": "转变为进攻型战略",
+  "ChoosenC": "巨大的军事力量",
+  "ChoosenD": "对争端岛屿的控制",
+  "ID": 566,
+  "Mode": "mul",
+  "QuestionStr": "日本对我国的安全威胁主要表现为（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "中华民国在台湾",
+  "ChoosenB": "七块论",
+  "ChoosenC": "两国论",
+  "ChoosenD": "统一不是唯一选项",
+  "ID": 567,
+  "Mode": "mul",
+  "QuestionStr": "以下哪些是李登辉在位期间的台独声称？（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "反对霸权主义",
+  "ChoosenB": "制约强权政治",
+  "ChoosenC": "经济发展示范",
+  "ChoosenD": "构建和谐世界",
+  "ID": 568,
+  "Mode": "mul",
+  "QuestionStr": "中国在多格局中的作用主要体现在（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "大规模外敌入侵的军事威胁已消除或减弱",
+  "ChoosenB": "发展了同周边国家的睦邻有好关系",
+  "ChoosenC": "建立了多边的区域合作机制",
+  "ChoosenD": "解决了与大部分国家的边界问题，我国周边热点地区有的在逐渐降温。",
+  "ID": 569,
+  "Mode": "mul",
+  "QuestionStr": "缓和与稳定是我国周边安全环境的主流主要表现是（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "政治上，加紧实施“西化”“分化”战略",
+  "ChoosenB": "军事上，对我全面遏制和防范",
+  "ChoosenC": "利用台湾问题进行战略牵制",
+  "ChoosenD": "对日的扶持",
+  "ID": 570,
+  "Mode": "mul",
+  "QuestionStr": "美国对我安全的综合性威胁（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "主权归我",
+  "ChoosenB": "搁置争议",
+  "ChoosenC": "共同开发",
+  "ChoosenD": "放弃主权",
+  "ID": 571,
+  "Mode": "mul",
+  "QuestionStr": "南沙问题（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "新型的安全观",
+  "ChoosenB": "新型的国家关系",
+  "ChoosenC": "新型的区域合作模式",
+  "ChoosenD": "新型的合作",
+  "ID": 572,
+  "Mode": "mul",
+  "QuestionStr": "上海合作组织主要体现的新观点（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "菲律宾、文莱、柬埔寨",
+  "ChoosenB": "印尼、马来西亚、泰国",
+  "ChoosenC": "新加坡、越南、缅甸",
+  "ChoosenD": "老挝、柬埔寨",
+  "ID": 573,
+  "Mode": "mul",
+  "QuestionStr": "下面答案中哪一个是东盟成员国（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "利益冲突",
+  "ChoosenB": "威胁企图",
+  "ChoosenC": "威胁能力",
+  "ChoosenD": "威胁状态",
+  "ID": 574,
+  "Mode": "mul",
+  "QuestionStr": "我国周边安全面临的威胁（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "日本、朝鲜",
+  "ChoosenB": "韩国、菲律宾",
+  "ChoosenC": "马来西亚、印度尼西亚",
+  "ChoosenD": "文莱、越南",
+  "ID": 575,
+  "Mode": "mul",
+  "QuestionStr": "我国海上相邻的国家（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "俄罗斯、蒙古、印度",
+  "ChoosenB": "哈萨克斯坦、吉尔吉斯斯坦、塔吉克斯坦",
+  "ChoosenC": "阿富汗、巴基斯坦",
+  "ChoosenD": "尼泊尔、老挝",
+  "ID": 576,
+  "Mode": "mul",
+  "QuestionStr": "与我国陆地接壤的国家（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "中国",
+  "ChoosenB": "朝鲜、",
+  "ChoosenC": "美国",
+  "ChoosenD": "日本",
+  "ID": 577,
+  "Mode": "mul",
+  "QuestionStr": "六方会谈有以下哪几个国家（&nbsp;）",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "北京、沈阳",
+  "ChoosenB": "兰州、南京",
+  "ChoosenC": "济南、成都",
+  "ChoosenD": "广州",
+  "ID": 578,
+  "Mode": "mul",
+  "QuestionStr": "中国人民解放军设有（&nbsp;）军区",
+  "Unit": 3
+}, {
+  "Answer": "BCD",
+  "ChoosenA": "美国",
+  "ChoosenB": "中国",
+  "ChoosenC": "日本",
+  "ChoosenD": "欧盟",
+  "ID": 579,
+  "Mode": "mul",
+  "QuestionStr": "当代一超多强的战略格局中的多强是指（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ACD",
+  "ChoosenA": "利益冲突",
+  "ChoosenB": "威胁想法",
+  "ChoosenC": "威胁能力",
+  "ChoosenD": "威胁企图",
+  "ID": 580,
+  "Mode": "mul",
+  "QuestionStr": "评估判断外来威胁所考虑的三个因素（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "“和平相处难”",
+  "ChoosenB": "“高枕无忧难”",
+  "ChoosenC": "“与世无争难”",
+  "ChoosenD": "“置身事外难”",
+  "ID": 581,
+  "Mode": "mul",
+  "QuestionStr": "特殊的地缘环境对我国安全的影响（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ACD",
+  "ChoosenA": "东线",
+  "ChoosenB": "南线",
+  "ChoosenC": "西线",
+  "ChoosenD": "北线",
+  "ID": 582,
+  "Mode": "mul",
+  "QuestionStr": "中国周边大致有三条战略线，分别是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ACD",
+  "ChoosenA": "军事安全",
+  "ChoosenB": "政治安全",
+  "ChoosenC": "恐怖主义",
+  "ChoosenD": "经济安全",
+  "ID": 583,
+  "Mode": "mul",
+  "QuestionStr": "中亚对我国安全的影响（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "运输安全",
+  "ChoosenB": "历史问题",
+  "ChoosenC": "加强军备",
+  "ChoosenD": "大国介入",
+  "ID": 584,
+  "Mode": "mul",
+  "QuestionStr": "印度对我国安全的影响包括（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "岛屿被侵占",
+  "ChoosenB": "海域被分割",
+  "ChoosenC": "经济被封锁",
+  "ChoosenD": "资源被掠夺",
+  "ID": 585,
+  "Mode": "mul",
+  "QuestionStr": "南海争端现状（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "AB",
+  "ChoosenA": "重兵对峙",
+  "ChoosenB": "朝核问题",
+  "ChoosenC": "大国介入",
+  "ChoosenD": "美日围堵",
+  "ID": 586,
+  "Mode": "mul",
+  "QuestionStr": "复杂多变的朝鲜半岛局势问题，主要集中在三个方面（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "宗教分裂势力",
+  "ChoosenB": "民族极端势力",
+  "ChoosenC": "恐怖主义势力",
+  "ChoosenD": "国际恐怖势力",
+  "ID": 587,
+  "Mode": "mul",
+  "QuestionStr": "对我国局部地区的安定团结和国家安全构成现实威胁的“三股势力”是指（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "军事威胁明显增大",
+  "ChoosenB": "不稳定因素在增加",
+  "ChoosenC": "领土领海争端易发生冲突",
+  "ChoosenD": "分裂势力的威胁影响稳定",
+  "ID": 588,
+  "Mode": "mul",
+  "QuestionStr": "我国周边安全面临的不利因素（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "东重",
+  "ChoosenB": "西轻",
+  "ChoosenC": "南急",
+  "ChoosenD": "北稳",
+  "ID": 589,
+  "Mode": "mul",
+  "QuestionStr": "我国周边安全环境的基本态势，从主要战略方向上看（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "睦邻",
+  "ChoosenB": "安邻",
+  "ChoosenC": "富邻",
+  "ChoosenD": "助邻",
+  "ID": 590,
+  "Mode": "mul",
+  "QuestionStr": "中国采取了&nbsp;“以邻为伴、与邻为善”；（&nbsp;）的总体外交政策，缓和了与邻国的关系。",
+  "Unit": 3
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "互信、互利、平等、协商；",
+  "ChoosenB": "尊重多样文明",
+  "ChoosenC": "互信、互利、平等、协作",
+  "ChoosenD": "谋求共同发展",
+  "ID": 591,
+  "Mode": "mul",
+  "QuestionStr": "上海合作组织始终贯彻以（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "AD",
+  "ChoosenA": "深化中俄关系",
+  "ChoosenB": "强化与中亚的合作",
+  "ChoosenC": "加强中蒙关系",
+  "ChoosenD": "发挥“上合组织”作用",
+  "ID": 592,
+  "Mode": "mul",
+  "QuestionStr": "强固北线，构建以中俄关系为主轴的北部安全战略应继续做好（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "发展中印关系",
+  "ChoosenB": "深化中巴关系",
+  "ChoosenC": "强化中越关系",
+  "ChoosenD": "巩固中缅关系。",
+  "ID": 593,
+  "Mode": "mul",
+  "QuestionStr": "经略西线，在根本上改善我在南亚次大陆的战略地位，应注重做好以下几个方面：（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "AD",
+  "ChoosenA": "稳住朝鲜半岛局势",
+  "ChoosenB": "建立东北亚安全对话机制",
+  "ChoosenC": "建立东北亚安全论坛",
+  "ChoosenD": "刚柔并济，有效化解海上领土争端",
+  "ID": 594,
+  "Mode": "mul",
+  "QuestionStr": "稳定东线，改善我国在亚太地区多边关系中的现实处境，应做好以下几个方面（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "BCD",
+  "ChoosenA": "争议存在",
+  "ChoosenB": "行政存在",
+  "ChoosenC": "军事存在",
+  "ChoosenD": "经济存在",
+  "ID": 595,
+  "Mode": "mul",
+  "QuestionStr": "维护海上领土完整，应用三个存在（&nbsp;）突显主权属我。",
+  "Unit": 3
+}, {
+  "Answer": "AC",
+  "ChoosenA": "评估外来威胁的程度",
+  "ChoosenB": "评估外来的挑战",
+  "ChoosenC": "制定国防战略的依据",
+  "ChoosenD": "制定军事战略",
+  "ID": 596,
+  "Mode": "mul",
+  "QuestionStr": "研究周边安全环境的意义（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "东沙",
+  "ChoosenB": "西沙",
+  "ChoosenC": "南沙",
+  "ChoosenD": "中沙",
+  "ID": 597,
+  "Mode": "mul",
+  "QuestionStr": "南海群岛包括（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "美国",
+  "ChoosenB": "俄罗斯",
+  "ChoosenC": "日本",
+  "ChoosenD": "英国",
+  "ID": 598,
+  "Mode": "mul",
+  "QuestionStr": "以下哪些国家是朝核“六方会谈”中的成员（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "AD",
+  "ChoosenA": "东西对进",
+  "ChoosenB": "围堵中俄",
+  "ChoosenC": "南北夹击",
+  "ChoosenD": "两洋战略",
+  "ID": 599,
+  "Mode": "mul",
+  "QuestionStr": "美国的欧亚大陆战略是（&nbsp;）。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 704,
+  "Mode": "jud",
+  "QuestionStr": "目前我国地缘方向表现为“北稳、南紧、西和、东动”的不同态势。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 705,
+  "Mode": "jud",
+  "QuestionStr": "我国的大陆边界线总长有1..8万千米长。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 706,
+  "Mode": "jud",
+  "QuestionStr": "台湾问题始终是中美关系的核心问题。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 707,
+  "Mode": "jud",
+  "QuestionStr": "一个中国原则是我国政府对台政策的核心。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 708,
+  "Mode": "jud",
+  "QuestionStr": "与我们国家陆地上接壤的国家有15个。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 709,
+  "Mode": "jud",
+  "QuestionStr": "朝核问题六方会谈指韩国、美国、中国、朝鲜、俄罗斯和日本。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 710,
+  "Mode": "jud",
+  "QuestionStr": "我国新安全观是互利、互相、平等、合作。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 711,
+  "Mode": "jud",
+  "QuestionStr": "当前我国周边安全环境的主流是缓和与稳定。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 712,
+  "Mode": "jud",
+  "QuestionStr": "《联合国海洋法》规定，一国领海和专属经济区分别不超过120海里。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 713,
+  "Mode": "jud",
+  "QuestionStr": "日本的军事战略已经实现了由“防御性”向“进攻性”的转移。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 714,
+  "Mode": "jud",
+  "QuestionStr": "中俄之间现在是战争关系。（",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 715,
+  "Mode": "jud",
+  "QuestionStr": "钱学森被誉为“中国的导弹之父”。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 716,
+  "Mode": "jud",
+  "QuestionStr": "《联合国海洋法公约》是1994年正式生效。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 717,
+  "Mode": "jud",
+  "QuestionStr": "中亚五国与我国接壤的国家有阿富汗、巴基斯坦、哈萨克斯坦。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 718,
+  "Mode": "jud",
+  "QuestionStr": ".当前世界军事格局呈现一超多强态势。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 719,
+  "Mode": "jud",
+  "QuestionStr": "日本、越南与我国海上相邻。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 720,
+  "Mode": "jud",
+  "QuestionStr": "朝鲜、越南既是我海上邻国有与陆地接壤。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 721,
+  "Mode": "jud",
+  "QuestionStr": "我国领土总面积是960万平方公里。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 722,
+  "Mode": "jud",
+  "QuestionStr": "我国耕地人均面积相当世界人均的1\/3。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 723,
+  "Mode": "jud",
+  "QuestionStr": "我国人口占世界总人口的22%。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 724,
+  "Mode": "jud",
+  "QuestionStr": "我国周边国家中和我们是对立关系的是巴基斯坦",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 725,
+  "Mode": "jud",
+  "QuestionStr": "印度既是我国陆地邻国又是海上邻国",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 726,
+  "Mode": "jud",
+  "QuestionStr": "“金砖五国”是指中国、俄罗斯、巴西、印度、南非",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 727,
+  "Mode": "jud",
+  "QuestionStr": "英国是当今世界第二经济强国",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 728,
+  "Mode": "jud",
+  "QuestionStr": "中国周围有4个国家军队人数超过100万。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 729,
+  "Mode": "jud",
+  "QuestionStr": "中国周围军队人数超过100万的国家有俄罗斯、美国、印度、越南、朝鲜。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 730,
+  "Mode": "jud",
+  "QuestionStr": "国家内陆水和领海基线向陆一侧的水域。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 731,
+  "Mode": "jud",
+  "QuestionStr": "陆地向海面下自然延伸和缓倾的浅水平台被称为大陆架。",
+  "Unit": 3
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 732,
+  "Mode": "jud",
+  "QuestionStr": "缓和与稳定是我国周边安全环境的主流。",
+  "Unit": 3
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 733,
+  "Mode": "jud",
+  "QuestionStr": "中印边界线全长3000千米，总争议面积12.5万平方千米。",
+  "Unit": 3
+}]

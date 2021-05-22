@@ -1,0 +1,301 @@
+[{
+  "Answer": "B",
+  "ChoosenA": "文本文件和数据文件",
+  "ChoosenB": "文本文件和二进制文件",
+  "ChoosenC": "数据文件和二进制文件",
+  "ChoosenD": "以上都不完全",
+  "ID": 37,
+  "Mode": "sig",
+  "QuestionStr": "C语言可以处理的文件类型是________。",
+  "Unit": 4
+}, {
+  "Answer": "C",
+  "ChoosenA": "只能顺序存取",
+  "ChoosenB": "只能随机存取（也称直接存取）",
+  "ChoosenC": "可以是顺序存取，也可以是随机存取",
+  "ChoosenD": "只能从文件的开头存取",
+  "ID": 38,
+  "Mode": "sig",
+  "QuestionStr": "对C语言的文件存取方式中，文件________。",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "键盘",
+  "ChoosenB": "显示器",
+  "ChoosenC": "软盘",
+  "ChoosenD": "硬盘",
+  "ID": 39,
+  "Mode": "sig",
+  "QuestionStr": "缺省状态下，系统的标准输出文件（设备）是指&nbsp;________。",
+  "Unit": 4
+}, {
+  "Answer": "C",
+  "ChoosenA": "“wb”",
+  "ChoosenB": "“a+”",
+  "ChoosenC": "“rb”",
+  "ChoosenD": "“rb+”",
+  "ID": 40,
+  "Mode": "sig",
+  "QuestionStr": "若要以只读打开一个新的二进制文件，则打开时使用的方式字符串是________。",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "fopen(\"D:\\user\\abc.txt\",\"r\")",
+  "ChoosenB": "fopen(\"D:\\\\user\\\\abc.txt\",\"r+\")",
+  "ChoosenC": "fopen(\"D:\\user\\abc.txt\",\"rb\")",
+  "ChoosenD": "fopen(\"D:\\\\user\\\\abc.txt\",\"w\")",
+  "ID": 41,
+  "Mode": "sig",
+  "QuestionStr": "若要打开D盘上user子目录下名为abc.txt的文本文件进行读、写操作，下面符合此要求的函数调用是&nbsp;________&nbsp;。",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "从文件f中读取长度为n的字符串存入指针s所指的内存",
+  "ChoosenB": "从文件f中读取长度不超过n-1的字符串存入指针s所指的内存",
+  "ChoosenC": "从文件f中读取n个字符串存入指针s所指的内存",
+  "ChoosenD": "从文件f中读取长度为n-1的字符串存入指针s所指的内存",
+  "ID": 86,
+  "Mode": "sig",
+  "QuestionStr": "标准函数&nbsp;fgets(s,&nbsp;n,&nbsp;f)&nbsp;的功能是________。&nbsp;",
+  "Unit": 4
+}, {
+  "Answer": "D",
+  "ChoosenA": "一个指向要输出文件的文件指针",
+  "ChoosenB": "存放输出数据项的存储区",
+  "ChoosenC": "要输出数据项的总数",
+  "ChoosenD": "存放要输出的数据的地址或指向此地址的指针",
+  "ID": 87,
+  "Mode": "sig",
+  "QuestionStr": "已知函数fwrite的一般调用形式是fwrite(buffer,size,count,fp),其中buffer代表的是________。",
+  "Unit": 4
+}, {
+  "Answer": "D",
+  "ChoosenA": "EOF",
+  "ChoosenB": "1",
+  "ChoosenC": "0",
+  "ChoosenD": "输出的字符",
+  "ID": 88,
+  "Mode": "sig",
+  "QuestionStr": "若调用fputc(&nbsp;)函数输出字符成功，则其返回值是________。",
+  "Unit": 4
+}, {
+  "Answer": "C",
+  "ChoosenA": "EOF",
+  "ChoosenB": "-1",
+  "ChoosenC": "非零值",
+  "ChoosenD": "NULL",
+  "ID": 89,
+  "Mode": "sig",
+  "QuestionStr": "若fp是指向某文件的指针，且已读到该文件的末尾，则C语言库函数feof(fp)的返回值是________。&nbsp;",
+  "Unit": 4
+}, {
+  "Answer": "C",
+  "ChoosenA": "fprintf函数",
+  "ChoosenB": "fread函数",
+  "ChoosenC": "fwrite函数",
+  "ChoosenD": "fputc函数",
+  "ID": 90,
+  "Mode": "sig",
+  "QuestionStr": "在C程序中,可把整型数以二进制形式存放到文件中的函数是________。",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "7字节、7字节",
+  "ChoosenB": "7字节、5字节",
+  "ChoosenC": "5字节、7字节",
+  "ChoosenD": "5字节、5字节",
+  "ID": 91,
+  "Mode": "sig",
+  "QuestionStr": "对于下述程序,在方式串分别采用\"w\"和\"wb\"运行时,两次生成的文件TEST的长度分别是________。<br\/>#include&ltstdio.h&gt<br\/>void&nbsp;main()&nbsp;<br\/>{&nbsp;<br\/>&nbsp;FILE&nbsp;*fp=fopen(\"TEST\",);&nbsp;<br\/>&nbsp;fputc(’A’,fp);fputc(’\\n’,fp);<br\/>&nbsp;fputc(’B’,fp);fputc(’\\n’,fp);<br\/>&nbsp;fputc(’C’,fp);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;}&nbsp;<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "D",
+  "ChoosenA": "1&nbsp;&nbsp;2",
+  "ChoosenB": "1&nbsp;&nbsp;4",
+  "ChoosenC": "123&nbsp;&nbsp;4",
+  "ChoosenD": "123&nbsp;&nbsp;456",
+  "ID": 92,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序<br\/>&nbsp;#include&ltstdio.h&gt<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp;int&nbsp;k,n,a[6]={1,2,3,4,5,6};&nbsp;<br\/>&nbsp;fp=fopen(\"d2.dat\",\"w\");&nbsp;<br\/>&nbsp;fprintf(fp,\"%d%d%d\\n\",a[0],a[1],a[2]);&nbsp;<br\/>&nbsp;fprintf(fp,\"%d%d%d\\n\",a[3],a[4],a[5]);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;fp=fopen(\"d2.dat\",\"r\");&nbsp;<br\/>&nbsp;fscanf(fp,\"%d%d\",&k,&n);printf(\"%d%d\\n\",k,n);<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;程序运行后的输出结果是________。",
+  "Unit": 4
+}, {
+  "Answer": "A",
+  "ChoosenA": "4,5,6,4,5,6,",
+  "ChoosenB": "1,2,3,4,5,6,",
+  "ChoosenC": "4,5,6,1,2,3,",
+  "ChoosenD": "6,5,4,3,2,1,",
+  "ID": 93,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序&nbsp;#include&ltstdio.h&gt<br\/>main()&nbsp;<br\/>{<br\/>&nbsp;FILE&nbsp;*fp;&nbsp;int&nbsp;i,a[6]={l,2,3,4,5,6};&nbsp;<br\/>&nbsp;fp=fopen(\"d3.dat\",\"wb+\");&nbsp;<br\/>&nbsp;fwrite(a,sizeof(int),6,fp);&nbsp;<br\/>&nbsp;fseek(fp,sizeof(int)*3,SEEK_SET);\/*该语句使读文件的位置指针从文件头向后移动3个int型数据*\/<br\/>&nbsp;fread(a,sizeof(int),3,fp);&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;for(i=0;i&lt6;i++)printf(\"%d,\",a[i]);&nbsp;<br\/>}&nbsp;<br\/>程序运行后的输出结果是________。",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "12300",
+  "ChoosenB": "123",
+  "ChoosenC": "1",
+  "ChoosenD": "321",
+  "ID": 94,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序<br\/>#include&nbsp;&ltstdio.h&gt<br\/>main()&nbsp;<br\/>{&nbsp;<br\/>&nbsp;FILE&nbsp;*fp;&nbsp;int&nbsp;a[10]={1,2,3},i,n;&nbsp;<br\/>&nbsp;fp=fopen(\"d1.dat\",\"w\");&nbsp;<br\/>&nbsp;for(i=0;i&lt3;i++)&nbsp;fprintf(fp,\"%d\",a[i]);&nbsp;<br\/>&nbsp;fprintf(fp,\"\\n\");&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;fp=fopen(\"d1.dat\",\"r\");&nbsp;<br\/>&nbsp;fscanf(fp,\"%d\",&n);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;printf(\"%d\\n\",n);&nbsp;<br\/>}&nbsp;<br\/>程序的运行结果是________。",
+  "Unit": 4
+}, {
+  "Answer": "A",
+  "ChoosenA": "123321",
+  "ChoosenB": "123",
+  "ChoosenC": "321",
+  "ChoosenD": "以上答案都不正确",
+  "ID": 95,
+  "Mode": "sig",
+  "QuestionStr": "假定当前盘符下有两个如下文本文件:&nbsp;<br\/>文件名&nbsp;a1.txt&nbsp;a2.txt&nbsp;<br\/>内容&nbsp;123#&nbsp;321#&nbsp;<br\/>则下面程序段执行后的结果为________。<br\/>#include&nbsp;\"stdio.h\"&nbsp;<br\/>void&nbsp;fc(FILE&nbsp;*p)&nbsp;<br\/>{&nbsp;<br\/>&nbsp;char&nbsp;c;&nbsp;<br\/>&nbsp;while((c=fgetc(p))!=’#’)putchar(c);<br\/>}&nbsp;<br\/>main()&nbsp;<br\/>{&nbsp;<br\/>&nbsp;FILE&nbsp;*fp;&nbsp;<br\/>&nbsp;fp=fopen(\"a1.txt\",\"r\");&nbsp;<br\/>&nbsp;fc(fp);fclose(fp);&nbsp;<br\/>&nbsp;fp=fopen(\"a2.txt\",\"r\");&nbsp;<br\/>&nbsp;fc(fp);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;putchar(’\\n’);<br\/>}&nbsp;<br\/>&nbsp;",
+  "Unit": 4
+}, {
+  "Answer": "A",
+  "ChoosenA": "20&nbsp;30",
+  "ChoosenB": "20&nbsp;50",
+  "ChoosenC": "30&nbsp;50",
+  "ChoosenD": "30&nbsp;20",
+  "ID": 96,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序<br\/>#include&nbsp;&ltstdio.h&gt<br\/>main()&nbsp;<br\/>{&nbsp;<br\/>&nbsp;FILE&nbsp;*fp;&nbsp;int&nbsp;i=20,j=30,k,n;&nbsp;<br\/>&nbsp;fp=fopen(\"d1.dat\",\"w\");&nbsp;<br\/>&nbsp;fprintf(fp,\"%d\\n\",i);fprintf(fp,\"%d\\n\",j);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;fp=fopen(\"d1.dat\",\"r\");&nbsp;<br\/>&nbsp;fscanf(fp,\"%d%d\",&k,&n);&nbsp;<br\/>&nbsp;printf(\"%d&nbsp;%d\\n\",k,n);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;fp=fopen(\"d1.dat\",\"r\");&nbsp;<br\/>&nbsp;fscanf(fp,\"%d%d\",&k,&n);&nbsp;<br\/>&nbsp;printf(\"%d&nbsp;%d\\n\",k,n);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>}&nbsp;<br\/><br\/>",
+  "Unit": 4
+}, {
+  "Answer": "B",
+  "ChoosenA": "China",
+  "ChoosenB": "Chinang",
+  "ChoosenC": "ChinaBeijing",
+  "ChoosenD": "BeijingChina",
+  "ID": 97,
+  "Mode": "sig",
+  "QuestionStr": "以下程序执行后abc.dat文件的内容是________。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;FILE&nbsp;*pf;<br\/>&nbsp;char&nbsp;*s1=\"China\",&nbsp;*s2=\"Beijing\";<br\/>&nbsp;pf=fopen(\"abc.dat\",&nbsp;\"wb+\");<br\/>&nbsp;fwrite(s2,&nbsp;7,1,pf);<br\/>&nbsp;rewind(pf);&nbsp;\/*文件位置指针回到文件头*\/<br\/>&nbsp;fwrite(s1,&nbsp;5,&nbsp;1,&nbsp;pf);<br\/>&nbsp;fclose(pf);<br\/>}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "A",
+  "ChoosenA": "hello，",
+  "ChoosenB": "new&nbsp;worldhello，",
+  "ChoosenC": "new&nbsp;world",
+  "ChoosenD": "hello,&nbsp;rld",
+  "ID": 98,
+  "Mode": "sig",
+  "QuestionStr": "下面的程序执行后，文件test.t中的内容是________。&nbsp;<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;void&nbsp;fun(char&nbsp;*fname.,char&nbsp;*st)<br\/>&nbsp;{&nbsp;<br\/>&nbsp;FILE&nbsp;*myf;&nbsp;int&nbsp;i;<br\/>&nbsp;myf=fopen(fname,\"w\"&nbsp;);<br\/>&nbsp;for(i=0;i&ltstrlen(st);&nbsp;i++)&nbsp;<br\/>&nbsp;fputc(st[i],myf);<br\/>&nbsp;fclose(myf);<br\/>}<br\/>main()<br\/>{&nbsp;<br\/>&nbsp;fun(\"test.t\",\"new&nbsp;world\");&nbsp;fun(\"test.t\",\"hello,\");<br\/>}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "A",
+  "ChoosenA": "将abc文件中所有’*’替换为’$’",
+  "ChoosenB": "查找abc文件中所有’*’",
+  "ChoosenC": "查找abc文件中所有’$’",
+  "ChoosenD": "将abc文件中所有字符替换为’$’",
+  "ID": 99,
+  "Mode": "sig",
+  "QuestionStr": "以下程序的功能是________。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;fp=fopen(\"abc\",\"r+\");<br\/>&nbsp;while(!feof(fp))<br\/>&nbsp;if(fgetc(fp)==’*’)<br\/>&nbsp;{&nbsp;<br\/>&nbsp;fseek(fp,-1L,SEEK_CUR);<br\/>&nbsp;fputc(’$’,fp);<br\/>&nbsp;fseek(fp,ftell(fp),SEEK_SET);<br\/>&nbsp;}<br\/>&nbsp;fclose(fp);<br\/>&nbsp;}&nbsp;<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "C",
+  "ChoosenA": "first",
+  "ChoosenB": "second",
+  "ChoosenC": "firstd",
+  "ChoosenD": "为空",
+  "ID": 100,
+  "Mode": "sig",
+  "QuestionStr": "如下程序执行后，abc文件的内容是________。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;char&nbsp;*str1=\"first\";<br\/>&nbsp;char&nbsp;*str2=\"second\";<br\/>&nbsp;if((fp=fopen(\"abc\",\"w+\"))==NULL)<br\/>&nbsp;{<br\/>&nbsp;printf(\"Can’t&nbsp;open&nbsp;abc&nbsp;file\\n\");<br\/>&nbsp;exit(1);<br\/>&nbsp;}<br\/>&nbsp;fwrite(str2,6,1,fp);<br\/>&nbsp;fseek(fp,0L,SEEK_SET);<br\/>&nbsp;fwrite(str1,5,1,fp);<br\/>&nbsp;fclose(fp);<br\/>&nbsp;}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "rewind或 fseek",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 281,
+  "Mode": "jud",
+  "QuestionStr": "在对文件进行操作的过程中，若要求文件的位置回到文件的开头，应当调用的函数是________函数。",
+  "Unit": 4
+}, {
+  "Answer": "(!feof(fp))或(feof(fp)==0)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 282,
+  "Mode": "jud",
+  "QuestionStr": "下面的程序用来统计文件中字符的个数，请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;long&nbsp;num=0;<br\/>&nbsp;if((&nbsp;fp=fopen(\"fname.dat\",\"r\"))==NULL)<br\/>&nbsp;{&nbsp;printf(&nbsp;\"Can’t&nbsp;open&nbsp;file!&nbsp;\\n\");&nbsp;<br\/>&nbsp;exit(0);<br\/>&nbsp;}<br\/>&nbsp;while&nbsp;（________）<br\/>&nbsp;{&nbsp;<br\/>&nbsp;fgetc(fp);&nbsp;<br\/>&nbsp;num++;<br\/>&nbsp;}<br\/>&nbsp;printf(\"num=%d\\n\",&nbsp;num);<br\/>&nbsp;fclose(fp);<br\/>&nbsp;}&nbsp;<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "!= '\\n'\u0009\u0009@j",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 283,
+  "Mode": "jud",
+  "QuestionStr": "以下程序求D盘根目录下ab.txt文件中最长行和它的位置。请填空。<br\/>&nbsp;main()<br\/>{<br\/>&nbsp;int&nbsp;lin,i,j=0,k=0;<br\/>&nbsp;char&nbsp;c;&nbsp;<br\/>&nbsp;FILE&nbsp;*&nbsp;fp;<br\/>&nbsp;fp=fopen(\"D:\\\\ab.txt\"，\"r\");<br\/>&nbsp;rewind(fp);<br\/>&nbsp;while&nbsp;(fgetc(fp)!=EOF)<br\/>&nbsp;{&nbsp;i=1;<br\/>&nbsp;while(fgetc(fp)&nbsp;________&nbsp;)<br\/>&nbsp;{&nbsp;i++;&nbsp;<br\/>&nbsp;}<br\/>&nbsp;j++;<br\/>&nbsp;if&nbsp;(i&gt=k)&nbsp;<br\/>&nbsp;{&nbsp;k=i;&nbsp;<br\/>&nbsp;lin=________;&nbsp;<br\/>&nbsp;}<br\/>&nbsp;}<br\/>&nbsp;printf(\"\\n%d\\t%d\\n\",k,lin);<br\/>&nbsp;close(fp);<br\/>&nbsp;}<br\/>&nbsp;",
+  "Unit": 4
+}, {
+  "Answer": "fname@fp",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 284,
+  "Mode": "jud",
+  "QuestionStr": "以下程序中用户由键盘输入一个文件名，然后输入一串字符（用#结束输入）存放到此文件中形成文本文件，并将字符的个数写到文件尾部，请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp；<br\/>&nbsp;char&nbsp;ch，fname[32]；&nbsp;<br\/>&nbsp;int&nbsp;count=0；<br\/>&nbsp;printf(\"Input&nbsp;the&nbsp;filename&nbsp;：\")；&nbsp;<br\/>&nbsp;scanf(\"%s\"，fname)；<br\/>&nbsp;if((fp=fopen(________，\"w+\"))==NULL)<br\/>&nbsp;{&nbsp;printf(\"Can’t&nbsp;open&nbsp;file：%s&nbsp;\\n\"，fname)；&nbsp;<br\/>&nbsp;exit(0)；<br\/>&nbsp;}<br\/>&nbsp;printf(\"Enter&nbsp;data：\\n\")；<br\/>&nbsp;while((ch=getchar())!==’#’)<br\/>&nbsp;{&nbsp;fputc(ch，fp)；&nbsp;<br\/>&nbsp;count++；<br\/>&nbsp;}<br\/>&nbsp;fprintf(________，\"\\n%d\\n\"，&nbsp;count)；<br\/>&nbsp;fclose(fp)；<br\/>&nbsp;}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "remind(fp1)@fgetc(fp1)",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 285,
+  "Mode": "jud",
+  "QuestionStr": "有一磁盘文件，第一次将它显示在屏幕上，第二次把它复制到另一文件中，请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp1,*fp2;<br\/>&nbsp;fp1=fopen(\"file1.c\",\"r\");<br\/>&nbsp;if&nbsp;(!fp1)&nbsp;<br\/>&nbsp;{&nbsp;printf(\"Can’t&nbsp;open&nbsp;file&nbsp;file1.c\");<br\/>&nbsp;exit(0);<br\/>&nbsp;}<br\/>&nbsp;fp2=fopen(\"file2.c\",&nbsp;\"w\");<br\/>&nbsp;if(!fp2)&nbsp;{&nbsp;printf(\"Can’t&nbsp;open&nbsp;file&nbsp;file2.c\");<br\/>&nbsp;exit(0);<br\/>&nbsp;}<br\/>&nbsp;while(!feof(fp1))&nbsp;<br\/>&nbsp;putchar(fgetc(fp1));<br\/>&nbsp;________;<br\/>&nbsp;while&nbsp;(!feof(fp1))&nbsp;<br\/>&nbsp;fputc(________,fp2);<br\/>&nbsp;fclose(fp1);<br\/>&nbsp;fclose(fp2);<br\/>}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "fopen",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 286,
+  "Mode": "jud",
+  "QuestionStr": "以下程序段打开文件后，先利用&nbsp;fseek函数将文件位置指针定位在文件末尾，然后调用ftell函数返回当前文件位置指针的具体位置，从而确定文件长度，请填空。&nbsp;<br\/>&nbsp;FILE&nbsp;*myf;&nbsp;long&nbsp;f1;<br\/>&nbsp;myf=&nbsp;________&nbsp;(\"test.t\",&nbsp;\"rb\");<br\/>&nbsp;fseek(myf,0,SEEK_END);&nbsp;<br\/>&nbsp;f1=ftell(myf);<br\/>&nbsp;fclose(myf);<br\/>&nbsp;printf(\"%d\\n\",f1);<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "NULL",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 287,
+  "Mode": "jud",
+  "QuestionStr": "以下程序用来判断指定文件是否能正常打开，请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;if(((fp=fopen(\"test.txt\",\"r\"))==______))<br\/>&nbsp;printf(\"未能打开文件！\\n\");<br\/>&nbsp;else<br\/>&nbsp;printf(\"文件打开成功！\\n\");<br\/>&nbsp;}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "\"filea.dat\",\"r\"",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 288,
+  "Mode": "jud",
+  "QuestionStr": "以下程序从名为filea.dat的文本文件中逐个读入字符并显示在屏幕上。请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;FILE&nbsp;*fp;&nbsp;char&nbsp;ch;&nbsp;<br\/>&nbsp;fp=fopen(______);&nbsp;<br\/>&nbsp;ch=fgetc(fp);&nbsp;<br\/>&nbsp;whlie(!feof(fp))&nbsp;{&nbsp;putchar(ch);&nbsp;ch=fgetc(fp);}&nbsp;<br\/>&nbsp;putchar(’\\n’);&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;<br\/>&nbsp;}&nbsp;<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "gets(str)\u0009\u0009\u0009@str[i]-=32;@\u0009\u0009fputc",
+  "ChoosenA": "3",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 289,
+  "Mode": "jud",
+  "QuestionStr": "以下程序实现的功能是从键盘输入一行字符串，将其中的小写字母全部转换成大写字母，然后输出到一个磁盘文件“test”中保存。请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;char&nbsp;str[100],filename[10];<br\/>&nbsp;int&nbsp;i;<br\/>&nbsp;if((fp=fopen(\"test\",\"w\"))==NULL)&nbsp;\/*&nbsp;以写方式打开文本文件&nbsp;*\/<br\/>&nbsp;{<br\/>&nbsp;printf(\"can&nbsp;not&nbsp;open&nbsp;file.\\n\");<br\/>&nbsp;exit(0);<br\/>&nbsp;}<br\/>&nbsp;printf(\"Input&nbsp;a&nbsp;atring：\");<br\/>&nbsp;________;&nbsp;\/*&nbsp;读入一行字符串，赋给str数组&nbsp;*\/&nbsp;<br\/>&nbsp;for&nbsp;(i=0;str[i];i++)&nbsp;\/*&nbsp;处理该行中的每一个字符&nbsp;*\/<br\/>&nbsp;{<br\/>&nbsp;if(str[i]&gt=&nbsp;’a’&&&nbsp;str[i]&lt=&nbsp;’z’)&nbsp;\/*&nbsp;若是小写字母&nbsp;*\/<br\/>&nbsp;________;&nbsp;\/*&nbsp;将小写字母转换为大写字母&nbsp;*\/<br\/>&nbsp;________&nbsp;(str[i],fp);&nbsp;\/*&nbsp;将转换后的字符写入文件&nbsp;*\/<br\/>&nbsp;}<br\/>&nbsp;fclose(fp);&nbsp;\/*&nbsp;关闭文件&nbsp;*\/&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 4
+}, {
+  "Answer": "\"test\",\"w\"\u0009\u0009\u0009@fscanf",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 290,
+  "Mode": "jud",
+  "QuestionStr": "下面程序实现的功能是：从键盘输入一个字符串和一个十进制整数，将它们写入test文件中，然后再从test文件中读出并显示在屏幕上。请填空。<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;FILE&nbsp;*fp;<br\/>&nbsp;char&nbsp;s[80];<br\/>&nbsp;int&nbsp;a;<br\/>&nbsp;if((fp=fopen(\"test\",\"w\"))==NULL)&nbsp;\/*&nbsp;以写方式打开文本文件&nbsp;*\/<br\/>&nbsp;{<br\/>&nbsp;printf(\"cannot&nbsp;open&nbsp;file.\\n\");<br\/>&nbsp;exit(1);<br\/>&nbsp;}<br\/>&nbsp;fscanf(stdin,\"%s%d\",s,&a);&nbsp;\/*&nbsp;从标准输入设备（键盘）上读取数据&nbsp;*\/<br\/>&nbsp;fprintf(fp,\"%s&nbsp;%d\",s,a);&nbsp;\/*&nbsp;以格式输出方式写入文件&nbsp;*\/<br\/>&nbsp;fclose(fp);&nbsp;\/*&nbsp;写文件结束关闭文件&nbsp;*\/<br\/>&nbsp;if((fp=fopen(________))==NULL)&nbsp;\/*&nbsp;以读方式打开文本文件&nbsp;*\/<br\/>&nbsp;{<br\/>&nbsp;printf(\"cannot&nbsp;open&nbsp;file.\\n\");<br\/>&nbsp;exit(1);<br\/>&nbsp;}<br\/>&nbsp;________&nbsp;(fp,\"%s%d\",s,&a);&nbsp;\/*&nbsp;以格式输入方式从文件读取数据&nbsp;*\/<br\/>&nbsp;fprintf(stdout,\"%s&nbsp;%d\\n\",s,a);&nbsp;\/*&nbsp;将数据显示到标准输出设备上&nbsp;*\/&nbsp;<br\/>&nbsp;fclose(fp);&nbsp;\/*&nbsp;读文件结束关闭文件&nbsp;*\/<br\/>}<br\/>",
+  "Unit": 4
+}]

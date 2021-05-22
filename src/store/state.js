@@ -98,6 +98,12 @@ export default {
 
   updateLogsList: [
     {
+      date: '2021-05-22',
+      version: 'version: 1.2.7',
+      content: ['再次诈尸更新！！！',
+        '更新了军理题库，近代史题库~',
+        '反馈功能这次真的可以用了！！！求反馈',]
+    }, {
       date: '2021-05-21',
       version: 'version: 1.2.6',
       content: ['再次诈尸更新！！！',

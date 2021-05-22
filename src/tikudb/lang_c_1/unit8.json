@@ -1,0 +1,401 @@
+[{
+  "Answer": "A",
+  "ChoosenA": "1",
+  "ChoosenB": "2",
+  "ChoosenC": "3",
+  "ChoosenD": "4",
+  "ID": 146,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序，程序运行后的输出结果是_____。<br\/>main()<br\/>{&nbsp;<br\/>&nbsp;int&nbsp;a=15,&nbsp;b=21,&nbsp;m=0;<br\/>&nbsp;switch&nbsp;(a%3)<br\/>&nbsp;{&nbsp;case&nbsp;0:&nbsp;m++;&nbsp;break;<br\/>&nbsp;case&nbsp;1:&nbsp;m++;<br\/>&nbsp;switch&nbsp;(b%2)<br\/>&nbsp;{&nbsp;default:&nbsp;m++;<br\/>&nbsp;case&nbsp;0:&nbsp;m++;&nbsp;break;<br\/>&nbsp;}<br\/>&nbsp;}<br\/>printf(”%d\\n”,m);<br\/>}",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "1,2,3",
+  "ChoosenB": "1,3,2",
+  "ChoosenC": "1,3,3",
+  "ChoosenD": "3,2,1",
+  "ID": 147,
+  "Mode": "sig",
+  "QuestionStr": "以下程序运行后的输出结果是_____。<br\/>main()<br\/>{&nbsp;int&nbsp;a=1,b=2,c=3,d=0;<br\/>&nbsp;if(a==1&nbsp;&&&nbsp;b++==2)<br\/>&nbsp;if(b!=2&nbsp;||&nbsp;c--!=3)<br\/>&nbsp;printf(\"%d,%d,%d\\n\",a,b,c);<br\/>&nbsp;else&nbsp;printf(\"%d,%d,%d\\n\",&nbsp;a,b,c);<br\/>&nbsp;else&nbsp;printf(\"%d,%d,%d\\n\",a,b,c);<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "(exp==0)",
+  "ChoosenB": "(exp!=0)",
+  "ChoosenC": "(exp==1)",
+  "ChoosenD": "(exp!1)",
+  "ID": 148,
+  "Mode": "sig",
+  "QuestionStr": "有条件表达式&nbsp;(exp)?a++:b--,则以下表达式中能完全等价于表达式(exp)的是&nbsp;_____。",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "缩排位置相同的if",
+  "ChoosenB": "在其之前未配对的if",
+  "ChoosenC": "在其之前未配对的最近的if",
+  "ChoosenD": "同一行上的if",
+  "ID": 149,
+  "Mode": "sig",
+  "QuestionStr": "为了避免嵌套的if-else语句的二义性，C语言规定else总是与_____组成配对关系。",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "(c==2)||(c==4)||(c==6)",
+  "ChoosenB": "(c>=2&&&nbsp;c<=6)||(c!=3)||(c!=5)",
+  "ChoosenC": "(c>=2&&c<=6)&&!(c%2)",
+  "ChoosenD": "(c>=2&&&nbsp;c<=6)&&(c%2!=1)",
+  "ID": 150,
+  "Mode": "sig",
+  "QuestionStr": "当变量c的值不为2、4、6时,值也为\"真\"的表达式是_____。",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "程序段有语法错",
+  "ChoosenB": "3,5,3",
+  "ChoosenC": "3,5,5",
+  "ChoosenD": "3,5,7",
+  "ID": 151,
+  "Mode": "sig",
+  "QuestionStr": "若变量已正确定义,有以下程序段&nbsp;<br\/>&nbsp;int&nbsp;a=3,b=5,c=7;&nbsp;<br\/>&nbsp;if(a>b)&nbsp;a=b;&nbsp;c=a;&nbsp;<br\/>&nbsp;if(c!=a)&nbsp;c=b;&nbsp;<br\/>&nbsp;printf(\"%d,%d,%d\\n\",a,b,c);&nbsp;<br\/>&nbsp;其输出结果是_____。<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "14",
+  "ChoosenB": "4",
+  "ChoosenC": "15",
+  "ChoosenD": "3",
+  "ID": 152,
+  "Mode": "sig",
+  "QuestionStr": "假定所有变量均已正确定义，下列程序段运行后x的值为_____。<br\/>k1=1;k2=2;&nbsp;k3=3;&nbsp;x=15;&nbsp;if(!k1)x--;else&nbsp;if(k2)&nbsp;if(k3)x=4;else&nbsp;x=3;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "kk>=’A’&&&nbsp;kk<=’Z’",
+  "ChoosenB": "!(kk>=’A’||kk<=’Z’)",
+  "ChoosenC": "(kk+32)>=’a’&&(kk+32)<=’Z’",
+  "ChoosenD": "isalpha(kk)&&(kk<91)",
+  "ID": 153,
+  "Mode": "sig",
+  "QuestionStr": "已知字母A的ASCII代码值为65,若变量kk为char型,以下不能正确判断出kk中的值为大写字母的表达式是_____。",
+  "Unit": 8
+}, {
+  "Answer": "A",
+  "ChoosenA": "end!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;b=s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;c=s",
+  "ChoosenB": "end!",
+  "ChoosenC": "有语法错误",
+  "ChoosenD": "a=s&nbsp;&nbsp;&nbsp;<br\/>end!",
+  "ID": 154,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序，若输入为字符s，则程序运行结果为_____。<br\/>main()<br\/>{&nbsp;<br\/>char&nbsp;ch;<br\/>ch=getchar();<br\/>switch&nbsp;(ch)<br\/>{&nbsp;case&nbsp;’a’:&nbsp;printf(\"a=%c\\n\",ch);<br\/>&nbsp;default:&nbsp;printf(”end!\\n”);&nbsp;<br\/>case&nbsp;’b’:&nbsp;printf(”b=%c\\n”,ch);<br\/>case&nbsp;’c’:&nbsp;printf(”c=%c\\n”,ch);<br\/>}<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "D",
+  "ChoosenA": "&nbsp;;",
+  "ChoosenB": "a=5,b=2.5,c=3.6;",
+  "ChoosenC": "if(a<5);",
+  "ChoosenD": "if(b!=5)x=2;y=6;",
+  "ID": 155,
+  "Mode": "sig",
+  "QuestionStr": "以下4个选项中,不能看作一条语句的是_____。",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "1",
+  "ChoosenB": "2",
+  "ChoosenC": "3",
+  "ChoosenD": "4",
+  "ID": 156,
+  "Mode": "sig",
+  "QuestionStr": "设有:&nbsp;int&nbsp;a=1,b=2,c=3,d=4,m=2,n=2;&nbsp;执行&nbsp;(m=a>b)&&(n=c>d)后,n的值是_____。",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "&nbsp;switch(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{case&nbsp;1.0:printf(\"*\\n\");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;2.0:printf(\"**\\n\");}",
+  "ChoosenB": "&nbsp;switch((int)x);<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;case&nbsp;1:printf(\"*\\n\");&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;2:printf(\"**\\n\");}",
+  "ChoosenC": "&nbsp;switch(a+b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{case&nbsp;1:printf(\"*\\n\");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;2+1:printf(\"**\\n\");}",
+  "ChoosenD": "&nbsp;switch(a+b)<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{case&nbsp;1:printf(**\\n);}&nbsp;<br\/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;c:printf(**\\n);}",
+  "ID": 157,
+  "Mode": "sig",
+  "QuestionStr": "若有定义:float&nbsp;x=1.5;int&nbsp;a=1,b=3,c=2;,则正确的switch语句是_____。",
+  "Unit": 8
+}, {
+  "Answer": "D",
+  "ChoosenA": "&nbsp;6",
+  "ChoosenB": "&nbsp;7",
+  "ChoosenC": "&nbsp;8",
+  "ChoosenD": "&nbsp;9",
+  "ID": 158,
+  "Mode": "sig",
+  "QuestionStr": "下列程序的运行结果是_____。<br\/>&nbsp;#include&nbsp;\"stdio.h\"&nbsp;<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;int&nbsp;x=-9,y=5,z=8;&nbsp;<br\/>&nbsp;if(x&lty)&nbsp;<br\/>&nbsp;if(y<0)z=0;&nbsp;<br\/>&nbsp;else&nbsp;z+=1;&nbsp;<br\/>&nbsp;printf(\"%d\\n\",z);}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "36",
+  "ChoosenB": "64",
+  "ChoosenC": "48",
+  "ChoosenD": "以上都不对",
+  "ID": 159,
+  "Mode": "sig",
+  "QuestionStr": "在执行下述程序时,若从键盘输入6和8,则结果为_____。<br\/>main()&nbsp;<br\/>{&nbsp;int&nbsp;a,b,s;&nbsp;<br\/>&nbsp;scanf(\"%d%d\",&ampa,&ampb);&nbsp;<br\/>&nbsp;s=a;<br\/>&nbsp;if(a&ltb)&nbsp;<br\/>&nbsp;s=b;&nbsp;<br\/>&nbsp;s*=s;&nbsp;<br\/>&nbsp;printf(\"%d\",s);&nbsp;}&nbsp;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "A",
+  "ChoosenA": "1",
+  "ChoosenB": "2",
+  "ChoosenC": "3",
+  "ChoosenD": "4",
+  "ID": 160,
+  "Mode": "sig",
+  "QuestionStr": "若a、b、c、d、w均为int类型变量，则执行下面语句后w值是_____。<br\/>a=1;b=2;c=3;d=4;<br\/>w=（a&ltb）?a&nbsp;：b；<br\/>w=（w&ltc）?w&nbsp;：c；<br\/>w=（w&ltd）?w&nbsp;：d；<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "D",
+  "ChoosenA": "x%2==1",
+  "ChoosenB": "x\/2",
+  "ChoosenC": "x%2!=0",
+  "ChoosenD": "x%2==0",
+  "ID": 161,
+  "Mode": "sig",
+  "QuestionStr": "以下选项中,当x为大于1的奇数时,值为0的表达式是_____。",
+  "Unit": 8
+}, {
+  "Answer": "D",
+  "ChoosenA": "必须是逻辑表达式",
+  "ChoosenB": "必须是关系表达式",
+  "ChoosenC": "必须是逻辑表达式或关系表达式",
+  "ChoosenD": "可以是任意合法的表达式",
+  "ID": 162,
+  "Mode": "sig",
+  "QuestionStr": "以下是if语句的基本形式：_____。<br\/>&nbsp;if(表达式)&nbsp;语句<br\/>&nbsp;其中\"表达式\"（&nbsp;）。<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "0",
+  "ChoosenB": "语法错",
+  "ChoosenC": "1",
+  "ChoosenD": "“假”",
+  "ID": 163,
+  "Mode": "sig",
+  "QuestionStr": "已知&nbsp;x=45,&nbsp;y=’a’,&nbsp;z=0;&nbsp;则表达式(x>=z&nbsp;&&&nbsp;y<’z’&nbsp;||&nbsp;!y)的值是_____。",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "&nbsp;if&nbsp;(x>0)&nbsp;y=1;&nbsp;\u0009\u0009\u0009\u0009\u0009&nbsp;&nbsp;&nbsp;\u0009<br\/>&nbsp;&nbsp;&nbsp;else&nbsp;&nbsp;if&nbsp;(x==0)&nbsp;y=0;&nbsp;\u0009\u0009\u0009\u0009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;else&nbsp;y=&nbsp;-1;",
+  "ChoosenB": "&nbsp;y=0;<br\/>&nbsp;&nbsp;&nbsp;if&nbsp;(x>0)&nbsp;y=1;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;else&nbsp;&nbsp;if&nbsp;(x<0)&nbsp;y=&nbsp;-1;",
+  "ChoosenC": "&nbsp;y=0;&nbsp;\u0009\u0009\u0009\u0009\u0009\u0009\u0009<br\/>&nbsp;&nbsp;&nbsp;if&nbsp;(x>=0)&nbsp;\u0009\u0009\u0009\u0009\u0009\u0009\u0009&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;if(x>0)&nbsp;y=1;&nbsp;\u0009\u0009\u0009\u0009\u0009\u0009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br\/>&nbsp;&nbsp;&nbsp;else&nbsp;y=&nbsp;-1;",
+  "ChoosenD": "&nbsp;if&nbsp;(x>=0)\u0009<br\/>&nbsp;&nbsp;&nbsp;if&nbsp;(x>0)&nbsp;y=1;<br\/>\u0009else&nbsp;y=0;<br\/>&nbsp;&nbsp;&nbsp;else&nbsp;y=&nbsp;-1;",
+  "ID": 164,
+  "Mode": "sig",
+  "QuestionStr": "有一函数：_______，以下程序段中不能根据x值正确计算出y值的是_____。",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "a=1,&nbsp;b=2,&nbsp;c=3",
+  "ChoosenB": "a=2,&nbsp;b=3,&nbsp;c=3",
+  "ChoosenC": "a=2,&nbsp;b=3,&nbsp;c=1",
+  "ChoosenD": "a=2,&nbsp;b=3,&nbsp;c=2",
+  "ID": 165,
+  "Mode": "sig",
+  "QuestionStr": "已知int&nbsp;a=1,b=2,c=3;&nbsp;以下语句执行后a,b,c的值是_____。<br\/>if(a>b)<br\/>c=a;&nbsp;a=b;&nbsp;b=c;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "有语法错不能通过编译",
+  "ChoosenB": "可以通过编译但不能通过连接",
+  "ChoosenC": "输出***",
+  "ChoosenD": "输出$$$",
+  "ID": 166,
+  "Mode": "sig",
+  "QuestionStr": "阅读以下程序，该程序_____。<br\/>main()<br\/>{&nbsp;<br\/>int&nbsp;x=-10,&nbsp;y=5,&nbsp;z=0;<br\/>if&nbsp;(x=y+z)&nbsp;<br\/>printf(\"***\\n\"&nbsp;);<br\/>else<br\/>&nbsp;printf(\"$$$\\n\");<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "B",
+  "ChoosenA": "1",
+  "ChoosenB": "2",
+  "ChoosenC": "3",
+  "ChoosenD": "4",
+  "ID": 167,
+  "Mode": "sig",
+  "QuestionStr": "当a=1,b=2,c=4,d=3时，执行完下面一段程序后x的值是_____。<br\/>&nbsp;if&nbsp;(a&ltb)<br\/>if&nbsp;(c&ltd)&nbsp;x=1;<br\/>else<br\/>&nbsp;if&nbsp;(a&ltc)<br\/>&nbsp;if&nbsp;(b&ltd)&nbsp;x=2;<br\/>&nbsp;else&nbsp;x=3;<br\/>else&nbsp;x=4;<br\/>else&nbsp;x=5;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "5",
+  "ChoosenB": "4",
+  "ChoosenC": "6",
+  "ChoosenD": "不确定",
+  "ID": 168,
+  "Mode": "sig",
+  "QuestionStr": "以下程序的输出结果是_____。<br\/>main()<br\/>{<br\/>int&nbsp;a=5,&nbsp;b=4,&nbsp;c=6,&nbsp;d;<br\/>&nbsp;printf(\"%d\\n\",&nbsp;d=a&gtb?&nbsp;a>c?a:c&nbsp;:b);<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "D",
+  "ChoosenA": "a=1,b=0",
+  "ChoosenB": "a=2,b=2",
+  "ChoosenC": "a=1,b=1",
+  "ChoosenD": "a=2,b=1",
+  "ID": 169,
+  "Mode": "sig",
+  "QuestionStr": "有以下程序&nbsp;<br\/>&nbsp;#include&nbsp;&ltstdio.h&gt<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;int&nbsp;x=1,y=0,a=0,b=0;&nbsp;<br\/>&nbsp;switch(x)&nbsp;<br\/>&nbsp;{&nbsp;case&nbsp;1:&nbsp;<br\/>&nbsp;switch(y)&nbsp;<br\/>&nbsp;{&nbsp;case&nbsp;0:a++;&nbsp;break;&nbsp;<br\/>&nbsp;case&nbsp;1:b++;&nbsp;break;&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;case&nbsp;2:a++;&nbsp;b++;&nbsp;break;&nbsp;<br\/>&nbsp;case&nbsp;3:a++;&nbsp;b++;&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;printf(\"a=%d,b=%d\\n\",a,b);&nbsp;<br\/>&nbsp;}&nbsp;<br\/>&nbsp;程序的运行结果是_____。",
+  "Unit": 8
+}, {
+  "Answer": "C",
+  "ChoosenA": "5",
+  "ChoosenB": "3",
+  "ChoosenC": "2",
+  "ChoosenD": "0",
+  "ID": 170,
+  "Mode": "sig",
+  "QuestionStr": "若执行下面的程序时,从键盘输入5和2,则输出结果是_____。<br\/>&nbsp;main()&nbsp;<br\/>&nbsp;{&nbsp;int&nbsp;a,b,k;&nbsp;<br\/>&nbsp;scanf(\"%d,%d&nbsp;\",&a,&b);&nbsp;<br\/>&nbsp;k=a;&nbsp;<br\/>&nbsp;if(a&ltb)k=a%b;&nbsp;<br\/>&nbsp;else&nbsp;k=b%a;&nbsp;<br\/>&nbsp;printf(\"%d\\n\",k);}&nbsp;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "585858",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 306,
+  "Mode": "jud",
+  "QuestionStr": "若从键盘输入58，则输出结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;int&nbsp;a;<br\/>&nbsp;scanf(”%d”,&nbsp;&a);<br\/>&nbsp;if&nbsp;(a>50)&nbsp;printf(”%d”,&nbsp;a);<br\/>&nbsp;if&nbsp;(a>40)&nbsp;printf(”%d”,a);<br\/>&nbsp;if&nbsp;(a>30)&nbsp;printf(”%d”,a);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 307,
+  "Mode": "jud",
+  "QuestionStr": "设int&nbsp;x=9，y=8；表达式x==y+1的结果是________。",
+  "Unit": 8
+}, {
+  "Answer": "0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 308,
+  "Mode": "jud",
+  "QuestionStr": "已有定义：char&nbsp;c=’’;&nbsp;int&nbsp;a=1,b;&nbsp;(此处c的初值为空格字符)，执行b=!c&&a;后b的值为_______。",
+  "Unit": 8
+}, {
+  "Answer": "1",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 309,
+  "Mode": "jud",
+  "QuestionStr": "定义int&nbsp;x=10,y,z;&nbsp;执行y=z=x;&nbsp;x=y==z；后，&nbsp;x的结果是________。",
+  "Unit": 8
+}, {
+  "Answer": "2   0   0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 310,
+  "Mode": "jud",
+  "QuestionStr": "以下程序的运行结果是________。<br\/>&nbsp;main(&nbsp;)<br\/>&nbsp;{&nbsp;<br\/>&nbsp;int&nbsp;a,b,c,s,w,t;<br\/>&nbsp;s=w=t=0;<br\/>&nbsp;a=&nbsp;-1;&nbsp;b=3;&nbsp;c=3;<br\/>&nbsp;if&nbsp;(c>0)&nbsp;s=a+b;<br\/>&nbsp;if&nbsp;(a<=0)<br\/>&nbsp;{&nbsp;if&nbsp;(b>0)<br\/>&nbsp;if&nbsp;(c<=0)&nbsp;w=a-b;<br\/>&nbsp;}<br\/>&nbsp;else&nbsp;if&nbsp;(c>0)&nbsp;w=a-b;<br\/>&nbsp;else&nbsp;t=c;<br\/>&nbsp;printf(”%d&nbsp;%d&nbsp;%d”,&nbsp;s,w,t);}",
+  "Unit": 8
+}, {
+  "Answer": "100",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 311,
+  "Mode": "jud",
+  "QuestionStr": "以下程序的运行结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;int&nbsp;a,b,c,d,e;<br\/>&nbsp;a=c=1;<br\/>&nbsp;b=20;<br\/>&nbsp;d=100;<br\/>&nbsp;if&nbsp;(!a)&nbsp;d=d++;<br\/>&nbsp;else&nbsp;if&nbsp;(!b)<br\/>&nbsp;if&nbsp;(d)&nbsp;d=&nbsp;--d;<br\/>&nbsp;else&nbsp;d=&nbsp;d--;<br\/>&nbsp;printf(”%d\\n\\n”,&nbsp;d);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "6      250",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 312,
+  "Mode": "jud",
+  "QuestionStr": "以下程序的运行结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;int&nbsp;a,&nbsp;b=&nbsp;250,&nbsp;c;<br\/>&nbsp;if&nbsp;((c=b)&lt0)&nbsp;a=4;<br\/>&nbsp;else&nbsp;if&nbsp;(b=0)&nbsp;a=5;<br\/>&nbsp;else&nbsp;a=6;<br\/>&nbsp;printf(”\\t%d\\t%d\\n”,a,c);<br\/>&nbsp;if&nbsp;(c=(b==0))&nbsp;a=5;<br\/>&nbsp;printf(”\\t%d\\t%d\\n”,a,c);<br\/>&nbsp;if&nbsp;(a=c=b)&nbsp;a=4;<br\/>&nbsp;printf(”\\t%d\\t%d\\n”,a,c);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "x>10&&x<100||x<0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 313,
+  "Mode": "jud",
+  "QuestionStr": "表示条件“10&ltx&lt100或者x&lt0”的C语言表达式是_____________。",
+  "Unit": 8
+}, {
+  "Answer": "1，0，0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 314,
+  "Mode": "jud",
+  "QuestionStr": "执行以下语句后，x、y和z&nbsp;的值分别为_____________。<br\/>&nbsp;int&nbsp;x,y,z;<br\/>&nbsp;x=y=z=0;<br\/>&nbsp;++x&nbsp;||&nbsp;++y&nbsp;&&&nbsp;++z;<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "(a+b>c) && (b+c>a) &&(a+c>b)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 315,
+  "Mode": "jud",
+  "QuestionStr": "以下程序根据输入的三角形的三边判断是否能组成三角形，若可以组成三角形，则输出YES,否则输出NO。三角形三条边a、b、c能够成三角形的条件是同时满足3个条件：a+b>c，b+c>a，a+c>b。请填空。<br\/>include&nbsp;”stdio.h”<br\/>main()<br\/>{&nbsp;<br\/>&nbsp;float&nbsp;a,b,c;<br\/>&nbsp;printf(”please&nbsp;input&nbsp;three&nbsp;edges&nbsp;of&nbsp;a&nbsp;triangle:”);<br\/>&nbsp;scanf(”%f%f%f”,&a,&b,&c);<br\/>&nbsp;if&nbsp;(&nbsp;_____________&nbsp;)printf(”YES\\n”);&nbsp;\/*a、b、c能构成三角形*\/<br\/>&nbsp;else&nbsp;<br\/>&nbsp;printf(”NO\\n”):&nbsp;\/*&nbsp;a、b、c不能构成三角形*\/<br\/>&nbsp;return&nbsp;0;<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "ch>=’A’ && ch<=’Z’@ch=ch-32",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 316,
+  "Mode": "jud",
+  "QuestionStr": "以下程序是对用户输入的字母进行大小写转换。请在横线上填入正确内容。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;char&nbsp;ch;<br\/>&nbsp;printf(”please&nbsp;input&nbsp;a&nbsp;letter:”);<br\/>&nbsp;scanf(”%c”,&ch);<br\/>&nbsp;if&nbsp;(&nbsp;_____________&nbsp;)&nbsp;ch=ch+32;<br\/>&nbsp;else&nbsp;if&nbsp;(ch>=’a’&nbsp;&&&nbsp;ch<=’z’)<br\/>&nbsp;_____________;<br\/>&nbsp;printf(”&nbsp;the&nbsp;converted&nbsp;letter&nbsp;is:&nbsp;%c\\n”,ch);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "a>b@min=c;",
+  "ChoosenA": "2",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 317,
+  "Mode": "jud",
+  "QuestionStr": "以下程序是对从键盘输入的任何三个整数，求出其中的最小值。请在横线上填入正确内容。<br\/>main()<br\/>{&nbsp;<br\/>&nbsp;int&nbsp;a,b,c,min;<br\/>&nbsp;printf(”请输入三个整数：”);<br\/>&nbsp;scanf(”%d%d%d”,&a,&b,&c);<br\/>&nbsp;if&nbsp;(_____________)<br\/>&nbsp;min=b;<br\/>&nbsp;else&nbsp;<br\/>&nbsp;min=a;<br\/>&nbsp;if&nbsp;(min>c)<br\/>&nbsp;_____________;<br\/>&nbsp;printf(”最小值为：%d\\n”,min);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "good！Joke",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 318,
+  "Mode": "jud",
+  "QuestionStr": "以下程序段的运行结果是________。<br\/>&nbsp;main()<br\/>&nbsp;{<br\/>&nbsp;char&nbsp;ch1=’a’,ch2=’A’;<br\/>&nbsp;switch&nbsp;(ch1)<br\/>&nbsp;{&nbsp;case&nbsp;’a’:<br\/>&nbsp;switch&nbsp;(ch2)<br\/>&nbsp;{case&nbsp;’A’:&nbsp;printf(”good!”);&nbsp;break;<br\/>&nbsp;case&nbsp;’B’:&nbsp;printf(”bad!”);&nbsp;break;<br\/><br\/>&nbsp;}<br\/>&nbsp;case&nbsp;’b’:&nbsp;printf(”joke\\n”);<br\/>&nbsp;}<br\/>}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "20，0",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 319,
+  "Mode": "jud",
+  "QuestionStr": "以下程序运行后的输出结果是_____________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;<br\/>&nbsp;int&nbsp;x=10,&nbsp;y=20,&nbsp;t=0;<br\/>&nbsp;if&nbsp;(x==y)&nbsp;t=x;&nbsp;x=y;&nbsp;y=t;<br\/>&nbsp;printf(”%d,%d\\n”,x,y);<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}, {
+  "Answer": "10",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 320,
+  "Mode": "jud",
+  "QuestionStr": "以下程序运行后的输出结果是__________。<br\/>&nbsp;main()<br\/>&nbsp;{&nbsp;int&nbsp;x=20;<br\/>&nbsp;printf(“%d”,0&ltx&lt20);<br\/>&nbsp;printf(“%d\\n”,0&ltx&&x&lt20);&nbsp;<br\/>&nbsp;}<br\/>",
+  "Unit": 8
+}]

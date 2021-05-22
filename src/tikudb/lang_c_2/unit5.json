@@ -1,0 +1,301 @@
+[{
+  "Answer": "D",
+  "ChoosenA": "O(1)",
+  "ChoosenB": "O(n)",
+  "ChoosenC": "O(n2)",
+  "ChoosenD": "O(n3)",
+  "ID": 101,
+  "Mode": "sig",
+  "QuestionStr": "下面程序段的时间复杂度的量级为________。<br\/>&nbsp;for(i=1;i&lt=n;i++)<br\/>&nbsp;for&nbsp;(j=1;j&lt=i;j++)<br\/>&nbsp;for&nbsp;(k=1;k&lt=j;k++)<br\/>&nbsp;x=x+1;<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "动态结构和静态结构",
+  "ChoosenB": "紧凑结构和非紧凑结构",
+  "ChoosenC": "线性结构和非线性结构",
+  "ChoosenD": "内部结构和外部结构",
+  "ID": 102,
+  "Mode": "sig",
+  "QuestionStr": "在数据结构中，从逻辑上可以把数据结构分成________。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "存储结构",
+  "ChoosenB": "逻辑结构",
+  "ChoosenC": "基本运算",
+  "ChoosenD": "算法描述",
+  "ID": 103,
+  "Mode": "sig",
+  "QuestionStr": "数据结构的________包括集合、线性、树形和图形结构四种基本类型。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "存储结构",
+  "ChoosenB": "逻辑结构",
+  "ChoosenC": "基本运算",
+  "ChoosenD": "算法描述",
+  "ID": 104,
+  "Mode": "sig",
+  "QuestionStr": "数据的________包括查找、插入、删除、更新和排序等。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "线性",
+  "ChoosenB": "数组",
+  "ChoosenC": "集合",
+  "ChoosenD": "索引",
+  "ID": 105,
+  "Mode": "sig",
+  "QuestionStr": "数据的存储结构包括顺序、链接、散列和________四种基本类型。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "O(n)",
+  "ChoosenB": "O(logn)",
+  "ChoosenC": "O(nlogn)",
+  "ChoosenD": "O(n2)",
+  "ID": 106,
+  "Mode": "sig",
+  "QuestionStr": "下面________的时间复杂性最好，即执行时间最短。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "程序",
+  "ChoosenB": "问题求解步骤的描述",
+  "ChoosenC": "要满足五个基本特性",
+  "ChoosenD": "A和C",
+  "ID": 107,
+  "Mode": "sig",
+  "QuestionStr": "一个算法应该是________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "栈",
+  "ChoosenB": "队列",
+  "ChoosenC": "完全二叉树",
+  "ChoosenD": "堆",
+  "ID": 108,
+  "Mode": "sig",
+  "QuestionStr": "下列数据中，________是非线性数据结构。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "算法程序的运行时间是有限的",
+  "ChoosenB": "算法程序所处理的数据量是有限的",
+  "ChoosenC": "算法程序的长度是有限的",
+  "ChoosenD": "算法只能被有限的用户使用",
+  "ID": 109,
+  "Mode": "sig",
+  "QuestionStr": "算法的有穷性是指________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "用C程序实现的算法必须要有输入和输出操作",
+  "ChoosenB": "用C程序实现的算法可以没有输出但必须要有输入",
+  "ChoosenC": "用C程序实现的算法可以没有输入但必须要有输出",
+  "ChoosenD": "用C程序实现的算法可以既没有输入也没有输出",
+  "ID": 110,
+  "Mode": "sig",
+  "QuestionStr": "以下叙述中正确的是________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "执行算法程序所需要的时间",
+  "ChoosenB": "算法程序的长度",
+  "ChoosenC": "算法执行过程中所需要的基本运算次数",
+  "ChoosenD": "算法程序中的指令条数",
+  "ID": 111,
+  "Mode": "sig",
+  "QuestionStr": "算法的时间复杂度是指________。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "程序执行的效率与数据的存储结构密切相关",
+  "ChoosenB": "程序执行的效率只取决于程序的控制结构",
+  "ChoosenC": "程序执行的效率只取决于所处理的数据量",
+  "ChoosenD": "以上三种说法都不对",
+  "ID": 112,
+  "Mode": "sig",
+  "QuestionStr": "下列叙述中正确的是________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "存储结构",
+  "ChoosenB": "物理结构",
+  "ChoosenC": "逻辑结构",
+  "ChoosenD": "物理和存储结构",
+  "ID": 113,
+  "Mode": "sig",
+  "QuestionStr": "数据结构中,与所使用的计算机无关的是数据的________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "数据",
+  "ChoosenB": "数据元素",
+  "ChoosenC": "数据项",
+  "ChoosenD": "数据结构",
+  "ID": 114,
+  "Mode": "sig",
+  "QuestionStr": "数据处理的最小单位是________。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "算法程序的长度",
+  "ChoosenB": "算法程序中的指令条数",
+  "ChoosenC": "算法程序所占的存储空间",
+  "ChoosenD": "执行算法需要的内存空间",
+  "ID": 115,
+  "Mode": "sig",
+  "QuestionStr": "算法的空间复杂度是指_______&nbsp;。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "健壮性和可读性",
+  "ChoosenB": "并行性",
+  "ChoosenC": "正确性",
+  "ChoosenD": "时空复杂度",
+  "ID": 116,
+  "Mode": "sig",
+  "QuestionStr": "对一个算法的评价，不包括如下________方面的内容。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "O(m2)",
+  "ChoosenB": "O(n2)",
+  "ChoosenC": "O(m*n)",
+  "ChoosenD": "O(m+n)",
+  "ID": 117,
+  "Mode": "sig",
+  "QuestionStr": "下面程序段的时间复杂度的量级为________。<br\/>&nbsp;for&nbsp;(i=0;i&ltm;i++)<br\/>&nbsp;for&nbsp;(j=0;j&ltn;j++)<br\/>&nbsp;a[i][j]=i+j;<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "树",
+  "ChoosenB": "字符串",
+  "ChoosenC": "队",
+  "ChoosenD": "栈",
+  "ID": 118,
+  "Mode": "sig",
+  "QuestionStr": "以下数据结构中，________是非线性数据结构。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "一定连续",
+  "ChoosenB": "一定不连续",
+  "ChoosenC": "不一定连续",
+  "ChoosenD": "部分连续，部分不连续",
+  "ID": 119,
+  "Mode": "sig",
+  "QuestionStr": "顺序存储设计时，存储单元的地址________。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "算法可以用不同的语言描述，如果用C&nbsp;语言等高级语言来描述，则算法实际上就是程序了。",
+  "ChoosenB": "算法的优劣与算法描述语言无关，但与所用计算机有关。",
+  "ChoosenC": "健壮的算法不会因非法的输入数据而出现莫名其妙的状态。",
+  "ChoosenD": "程序一定是算法。",
+  "ID": 120,
+  "Mode": "sig",
+  "QuestionStr": "下列说法正确的是：________。",
+  "Unit": 5
+}, {
+  "Answer": "有穷性@确定性@可行性",
+  "ChoosenA": "3",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 291,
+  "Mode": "jud",
+  "QuestionStr": "一个算法具有5个特性:&nbsp;________、&nbsp;________&nbsp;、&nbsp;________&nbsp;，有零个或多个输入、有一个或多个输出。",
+  "Unit": 5
+}, {
+  "Answer": "O(n2)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 292,
+  "Mode": "jud",
+  "QuestionStr": "下面程序段的时间复杂度为________。<br\/>&nbsp;for(i=l；i&ltn-l；i++)<br\/>&nbsp;for(j=n;j&gt=i;j--)<br\/>&nbsp;s;&nbsp;<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "O(n)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 293,
+  "Mode": "jud",
+  "QuestionStr": "下面程序段的时间复杂度为________。<br\/>&nbsp;sum=1；<br\/>&nbsp;for&nbsp;(i=0;sum&ltn;i++)&nbsp;sum+=1;&nbsp;<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "算法的时间复杂度和空间复杂度",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 294,
+  "Mode": "jud",
+  "QuestionStr": "数据结构中评价算法的两个重要指标是&nbsp;________。",
+  "Unit": 5
+}, {
+  "Answer": "集合@线性结构@树形结构@图状结构或网状结构",
+  "ChoosenA": "4",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 295,
+  "Mode": "jud",
+  "QuestionStr": "对于给定的n个元素，可以构造出的逻辑结构有_______、________、________&nbsp;和_________四种。",
+  "Unit": 5
+}, {
+  "Answer": "表示",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 296,
+  "Mode": "jud",
+  "QuestionStr": "一个数据结构在计算机中________称为存储结构。",
+  "Unit": 5
+}, {
+  "Answer": "数据元素",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 297,
+  "Mode": "jud",
+  "QuestionStr": "________是数据的基本单位，在计算机程序中通常作为一个整体进行考虑和处理。",
+  "Unit": 5
+}, {
+  "Answer": "问题规模",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 298,
+  "Mode": "jud",
+  "QuestionStr": "在一般情况下，一个算法的时间复杂度是________的函数。",
+  "Unit": 5
+}, {
+  "Answer": "O(1)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 299,
+  "Mode": "jud",
+  "QuestionStr": "设待处理问题的规模为n，若一个算法的时间复杂度为一个常数，则表示成数量级的形式为________。",
+  "Unit": 5
+}, {
+  "Answer": "O(nlog2n)",
+  "ChoosenA": "1",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 300,
+  "Mode": "jud",
+  "QuestionStr": "设待处理问题的规模为n，若一个算法的时间复杂度为n*log25n，则表示成数量级的形式为________。",
+  "Unit": 5
+}]

@@ -1,0 +1,2001 @@
+[{
+  "Answer": "D",
+  "ChoosenA": "经济时代",
+  "ChoosenB": "科技时代",
+  "ChoosenC": "计算机时代",
+  "ChoosenD": "信息时代",
+  "ID": 486,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争作为（&nbsp;）的产物。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "必然产物",
+  "ChoosenB": "直接动因",
+  "ChoosenC": "基础",
+  "ChoosenD": "历史产物",
+  "ID": 487,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是社会经济形态发展的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "必然产物",
+  "ChoosenB": "直接动因",
+  "ChoosenC": "基础",
+  "ChoosenD": "历史产物",
+  "ID": 488,
+  "Mode": "sig",
+  "QuestionStr": "高技术的发展是信息化战争产生的(&nbsp;)。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "必然产物",
+  "ChoosenB": "直接动因",
+  "ChoosenC": "基础",
+  "ChoosenD": "历史产物",
+  "ID": 489,
+  "Mode": "sig",
+  "QuestionStr": "近年来局部战争实践是信息化战争产生的(&nbsp;)。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "决定因素",
+  "ChoosenB": "重要因素",
+  "ChoosenC": "关键因素",
+  "ChoosenD": "人为因素",
+  "ID": 490,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争构成要素中信息化武装力量是(&nbsp;)。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "决定因素",
+  "ChoosenB": "重要因素",
+  "ChoosenC": "关键因素",
+  "ChoosenD": "人为因素",
+  "ID": 491,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争构成要素中信息化武器装备是(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "白雪",
+  "ChoosenB": "大风",
+  "ChoosenC": "暴雨",
+  "ChoosenD": "冰雹",
+  "ID": 492,
+  "Mode": "sig",
+  "QuestionStr": "1991年海湾战争中多国部队在电磁空间开始了代号为（&nbsp;）行动的战场信息领域对抗。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "决定因素、",
+  "ChoosenB": "重要因素",
+  "ChoosenC": "关键因素",
+  "ChoosenD": "人为因素",
+  "ID": 493,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争构成要素中信息化指挥是(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "情报战",
+  "ChoosenB": "电子战",
+  "ChoosenC": "精确战",
+  "ChoosenD": "心理战",
+  "ID": 494,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）成为战场信息领域对抗的主要形式。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "智能机器人",
+  "ChoosenB": "作战平台",
+  "ChoosenC": "信息化指挥系统",
+  "ChoosenD": "士兵作战系统",
+  "ID": 495,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）能代替士兵遂行各种军事任务的机械装置。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "航天部队",
+  "ChoosenB": "信息化部队",
+  "ChoosenC": "导弹部队",
+  "ChoosenD": "网络部队",
+  "ID": 496,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）运用航天兵器和航天技术在外层空间实施作战行动，或从外层空间向地面或中低空目标实施攻击的作战部队。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "情报战",
+  "ChoosenB": "太空战",
+  "ChoosenC": "精确战",
+  "ChoosenD": "信息战",
+  "ID": 497,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）指一个国家或集团为满足战争需要，采取各种手段，有意识、有目的、有组织地搜集和窃取敌人情报，为其制定战争政策、方略、计划和行动方案提供依据而展开的活动。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "计算机",
+  "ChoosenB": "信息",
+  "ChoosenC": "网络",
+  "ChoosenD": "智能",
+  "ID": 498,
+  "Mode": "sig",
+  "QuestionStr": "在信息社会，随着信息技术的不断发展和在军事的广泛运用，一种以（&nbsp;）为主导的新的战争形态正在登上战争历史的舞台。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "非线式",
+  "ChoosenB": "非对称",
+  "ChoosenC": "非接触",
+  "ChoosenD": "非常规",
+  "ID": 499,
+  "Mode": "sig",
+  "QuestionStr": "在信息化战争中，（&nbsp;）作战理论将得到广泛应用，战场范围大大拓宽，部队的机动范围也越来越小。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "精确战",
+  "ChoosenB": "信息战",
+  "ChoosenC": "情报战",
+  "ChoosenD": "电子战",
+  "ID": 500,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）就是指在获得制信息权的条件下，运用精确制导武器对敌方实施精确打击的一种作战样式。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "美国",
+  "ChoosenB": "苏联",
+  "ChoosenC": "德国",
+  "ChoosenD": "英国",
+  "ID": 501,
+  "Mode": "sig",
+  "QuestionStr": "世界上最先在战场上使用导弹的国家是（&nbsp;）",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "机械化军队",
+  "ChoosenB": "半机械化军队",
+  "ChoosenC": "信息化军队",
+  "ChoosenD": "冷兵器军队",
+  "ID": 502,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争双方至少有一方拥有（&nbsp;）才能进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "杜达耶夫",
+  "ChoosenB": "本拉丹",
+  "ChoosenC": "萨达姆",
+  "ChoosenD": "阿提夫",
+  "ID": 503,
+  "Mode": "sig",
+  "QuestionStr": "1996年4月21日俄罗斯猎杀车臣非法武装首领（&nbsp;）是一次漂亮的信息化斩首行动。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "航天技术",
+  "ChoosenB": "信息技术",
+  "ChoosenC": "微电子技术",
+  "ChoosenD": "新材料技术",
+  "ID": 504,
+  "Mode": "sig",
+  "QuestionStr": "在信息社会，随着（&nbsp;）的不断发展和在军事上的广泛运用，一种以信息为主导的新的战争形态已经登上历史的舞台。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "第一次",
+  "ChoosenB": "第二次",
+  "ChoosenC": "第三次",
+  "ChoosenD": "第四次",
+  "ID": 505,
+  "Mode": "sig",
+  "QuestionStr": "自从语言的出现，人们可通过语言交流传递信息，使人类之间的信息交换有了（&nbsp;）载体。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "第一次",
+  "ChoosenB": "第二次",
+  "ChoosenC": "第三次",
+  "ChoosenD": "第四次",
+  "ID": 506,
+  "Mode": "sig",
+  "QuestionStr": "自从文字的出现，人们可通过文字记载传递信息，使人类之间的信息交换有了（&nbsp;）载体。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "第一次",
+  "ChoosenB": "第二次",
+  "ChoosenC": "第三次",
+  "ChoosenD": "第四次",
+  "ID": 507,
+  "Mode": "sig",
+  "QuestionStr": "自从电磁波的出现，人们可通过电磁波传播传递信息，使人类之间的信息交换有了（&nbsp;）载体。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "数字化",
+  "ChoosenB": "自动化",
+  "ChoosenC": "半机械化",
+  "ChoosenD": "机械化",
+  "ID": 508,
+  "Mode": "sig",
+  "QuestionStr": "数字化军队是指装备了（&nbsp;）武器装备的武装力量。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "新材料技术",
+  "ChoosenB": "信息技术",
+  "ChoosenC": "航天技术",
+  "ChoosenD": "微电子技术",
+  "ID": 509,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）渗透到武器装备中去，使战场范围由陆、海、空扩展到外层空间、电磁空间和网络空间，形成了信息化战场。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "微电子",
+  "ChoosenB": "新材料",
+  "ChoosenC": "数字通信",
+  "ChoosenD": "航天技术",
+  "ID": 510,
+  "Mode": "sig",
+  "QuestionStr": "信息化现役部队是以计算机技术为支撑，通过（&nbsp;）技术联网。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "冷兵器战争",
+  "ChoosenB": "机械化战争",
+  "ChoosenC": "半机械化战争",
+  "ChoosenD": "信息化战争",
+  "ID": 511,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）作为信息时代的产物。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "新材料技术",
+  "ChoosenB": "人工智能技术",
+  "ChoosenC": "微电子技术",
+  "ChoosenD": "高技术",
+  "ID": 512,
+  "Mode": "sig",
+  "QuestionStr": "(&nbsp;)的发展是信息化战争产生的直接动因。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "网络战",
+  "ChoosenB": "情报战",
+  "ChoosenC": "电子战",
+  "ChoosenD": "心理战",
+  "ID": 513,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）是以计算机和计算机网络为主要目标，以先进信息技术为基本手段，在整个计算机网络空间上实施各类信息攻防作战的总称。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "数字化军队",
+  "ChoosenB": "自动化军队",
+  "ChoosenC": "半机械化军队",
+  "ChoosenD": "机械化军队",
+  "ID": 514,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）是指装备了数字化武器装备的武装力量。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "空间战",
+  "ChoosenB": "电子战",
+  "ChoosenC": "精确战",
+  "ChoosenD": "情报战",
+  "ID": 515,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）又称天战或太空战,是指运用或针对空间力量实施的攻防作战行动。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "军队",
+  "ChoosenB": "信息化军队",
+  "ChoosenC": "部队",
+  "ChoosenD": "现代军队",
+  "ID": 516,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是信息时代的基本战争形态,是（&nbsp;）在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "信息化战争",
+  "ChoosenB": "现代战争",
+  "ChoosenC": "高技术战争",
+  "ChoosenD": "新军事变革",
+  "ID": 517,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）是信息时代的基本战争形态,是信息化军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "当今时代",
+  "ChoosenB": "信息时代",
+  "ChoosenC": "未来",
+  "ChoosenD": "高技术时代",
+  "ID": 518,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是（&nbsp;）的基本战争形态,是信息化军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "趋势",
+  "ChoosenB": "主要产物",
+  "ChoosenC": "必然趋势",
+  "ChoosenD": "必然产物",
+  "ID": 519,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是人类社会政治、经济、科学技术和战争实践发展到一定阶段的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "五维空间",
+  "ChoosenB": "六维空间",
+  "ChoosenC": "七维空间",
+  "ChoosenD": "八维空间",
+  "ID": 520,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是信息时代的基本战争形态,是信息化军队在陆、海、空、天、信息、心理、认知等（&nbsp;），运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "主要战争形态",
+  "ChoosenB": "重要战争形态",
+  "ChoosenC": "战争形态",
+  "ChoosenD": "基本战争形态",
+  "ID": 521,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是信息时代的（&nbsp;）,是信息化军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "军队",
+  "ChoosenB": "武器",
+  "ChoosenC": "装备",
+  "ChoosenD": "武器装备",
+  "ID": 522,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是信息时代的基本战争形态,是信息化军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化（&nbsp;）进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "战争实践",
+  "ChoosenB": "武器",
+  "ChoosenC": "信息",
+  "ChoosenD": "装备",
+  "ID": 523,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是人类社会政治、经济、科学技术和（&nbsp;）发展到一定阶段的必然产物。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "主要方式",
+  "ChoosenB": "客观反映",
+  "ChoosenC": "必然阶段",
+  "ChoosenD": "必然趋势",
+  "ID": 524,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本内涵是信息化战争作为信息时代的产物，是该时代生产水平和生产方式的战争领域的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "物质条件",
+  "ChoosenB": "生产方式",
+  "ChoosenC": "劳动方式",
+  "ChoosenD": "生产条件",
+  "ID": 525,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本内涵是信息化战争作为信息时代的产物，是该时代生产水平和（&nbsp;）的战争领域的客观反映。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "机械化军队",
+  "ChoosenB": "信息化军队",
+  "ChoosenC": "重武器军队",
+  "ChoosenD": "现代军队",
+  "ID": 526,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本内涵是信息化战争必然以（&nbsp;）为主体作战力量，战争双方至少有一方拥有信息化军队才能进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "威力",
+  "ChoosenB": "作用",
+  "ChoosenC": "毁灭性",
+  "ChoosenD": "破坏性",
+  "ID": 527,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本内涵是战争的（&nbsp;）和附带性伤亡依然存在，但降至最低限度。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "信息",
+  "ChoosenB": "电磁波",
+  "ChoosenC": "无线电",
+  "ChoosenD": "网络",
+  "ID": 528,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本内涵是信息化战争的主要作战工具是（&nbsp;）、信息化和智能化武器装备平台，诸作战单元实现网络化、一体化。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "必然阶段",
+  "ChoosenB": "必然趋势",
+  "ChoosenC": "必然结果",
+  "ChoosenD": "必经途径",
+  "ID": 529,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争是社会经济形态发展的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "科技",
+  "ChoosenB": "高技术",
+  "ChoosenC": "生产力",
+  "ChoosenD": "武器",
+  "ID": 530,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）的发展是信息化战争产生的直接动因。(此题目答案来源，学校官网，2014军事理论复习题，答案以学校官网发布文档为准，不负责校验)",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "条件",
+  "ChoosenB": "环境",
+  "ChoosenC": "基础",
+  "ChoosenD": "趋势",
+  "ID": 531,
+  "Mode": "sig",
+  "QuestionStr": "近年来局部战争实践是信息化战争产生的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "决策",
+  "ChoosenB": "制定",
+  "ChoosenC": "把握",
+  "ChoosenD": "利用",
+  "ID": 532,
+  "Mode": "sig",
+  "QuestionStr": "信息对战争影响的关键是要准确获得战场信息并把信息及时用于(&nbsp;)和控制.",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "主要原因",
+  "ChoosenB": "重要原因",
+  "ChoosenC": "根本原因",
+  "ChoosenD": "基础条件",
+  "ID": 533,
+  "Mode": "sig",
+  "QuestionStr": "科学技术在军事领域的运用,尤其物化为战争&nbsp;“手臂”，是引起战争形态发生深刻变革的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "冷兵器",
+  "ChoosenB": "热兵器",
+  "ChoosenC": "远距离",
+  "ChoosenD": "软杀伤",
+  "ID": 534,
+  "Mode": "sig",
+  "QuestionStr": "信息武器系统包括（&nbsp;）型信息武器和硬杀伤型信息武器。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "主体化",
+  "ChoosenB": "重要化",
+  "ChoosenC": "主导化",
+  "ChoosenD": "必然化",
+  "ID": 535,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是信息资源（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "信息化",
+  "ChoosenB": "现代化",
+  "ChoosenC": "先进化",
+  "ChoosenD": "数字化",
+  "ID": 536,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是武器装备（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "多样化",
+  "ChoosenB": "多维化",
+  "ChoosenC": "立体化",
+  "ChoosenD": "平面化",
+  "ID": 537,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是作战空间（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "多样化",
+  "ChoosenB": "快速化",
+  "ChoosenC": "突发化",
+  "ChoosenD": "突然化",
+  "ID": 538,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是作战节奏（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "扁平化",
+  "ChoosenB": "立体化",
+  "ChoosenC": "一体化",
+  "ChoosenD": "简洁化",
+  "ID": 539,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是作战指挥（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "精确化",
+  "ChoosenB": "准确化",
+  "ChoosenC": "精密化",
+  "ChoosenD": "现实化",
+  "ID": 540,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的基本特征是作战行动（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "增加",
+  "ChoosenB": "拓宽",
+  "ChoosenC": "扩大",
+  "ChoosenD": "发展",
+  "ID": 541,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势是战争的表现形式不断（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "极大提升",
+  "ChoosenB": "不断精确",
+  "ChoosenC": "逐步减小",
+  "ChoosenD": "不断加升",
+  "ID": 542,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势是战争威力（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "多维化",
+  "ChoosenB": "智能化",
+  "ChoosenC": "全面化",
+  "ChoosenD": "现代化",
+  "ID": 543,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势是军队向小型化、一体化和（&nbsp;）方向发展。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "缩小",
+  "ChoosenB": "减弱",
+  "ChoosenC": "增加",
+  "ChoosenD": "发展",
+  "ID": 544,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势不断拓宽体现在战争的暴力性（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "具体",
+  "ChoosenB": "清楚",
+  "ChoosenC": "模糊",
+  "ChoosenD": "分明",
+  "ID": 545,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势是信息化战争的层次更加（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "多元化",
+  "ChoosenB": "一体化",
+  "ChoosenC": "立体化",
+  "ChoosenD": "边缘化",
+  "ID": 546,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的发展趋势是信息化战争的主体（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "消耗敌人",
+  "ChoosenB": "打击敌人",
+  "ChoosenC": "消弱敌人",
+  "ChoosenD": "战胜敌人",
+  "ID": 547,
+  "Mode": "sig",
+  "QuestionStr": "机械化战争的制胜理念是（&nbsp;）、摧毁敌人，大量歼灭敌人的有生力量。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "摧毁敌人",
+  "ChoosenB": "打击敌人",
+  "ChoosenC": "消弱敌人",
+  "ChoosenD": "战胜敌人",
+  "ID": 548,
+  "Mode": "sig",
+  "QuestionStr": "机械化战争的制胜理念是消耗敌人、（&nbsp;），大量歼灭敌人的有生力量。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "有生力量",
+  "ChoosenB": "主要力量",
+  "ChoosenC": "绝对力量",
+  "ChoosenD": "后备力量",
+  "ID": 549,
+  "Mode": "sig",
+  "QuestionStr": "机械化战争的制胜理念是消耗敌人、摧毁敌人，大量歼灭敌人的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "打击敌人",
+  "ChoosenB": "摧毁敌人",
+  "ChoosenC": "控制敌人",
+  "ChoosenD": "消灭敌人",
+  "ID": 550,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的制胜理念是（&nbsp;）、瘫痪敌人，通过破击敌人作战体系，达到巧战而屈人之兵的目的。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "打击敌人",
+  "ChoosenB": "摧毁敌人",
+  "ChoosenC": "瘫痪敌人",
+  "ChoosenD": "消灭敌人",
+  "ID": 551,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的制胜理念是控制敌人、（&nbsp;），通过破击敌人作战体系，达到巧战而屈人之兵的目的。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "作战计划",
+  "ChoosenB": "作战目标",
+  "ChoosenC": "作战体系",
+  "ChoosenD": "作战指挥",
+  "ID": 552,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的制胜理念是控制敌人、瘫痪敌人，通过破击敌人（&nbsp;），达到巧战而屈人之兵的目的。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "制胜",
+  "ChoosenB": "取胜",
+  "ChoosenC": "屈人之兵",
+  "ChoosenD": "屠城",
+  "ID": 553,
+  "Mode": "sig",
+  "QuestionStr": "信息化战争的制胜理念是控制敌人、瘫痪敌人，通过破击敌人作战体系，达到巧战而（&nbsp;）的目的。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "信息建设",
+  "ChoosenB": "高技术建设",
+  "ChoosenC": "信息基础",
+  "ChoosenD": "信息",
+  "ID": 554,
+  "Mode": "sig",
+  "QuestionStr": "在信息时代,国家的(&nbsp;)建设是国家战略能力的重要组成部分.",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "军队",
+  "ChoosenB": "财富",
+  "ChoosenC": "各种力量",
+  "ChoosenD": "综合能力",
+  "ID": 555,
+  "Mode": "sig",
+  "QuestionStr": "国家战略能力是指一个国家在需要进行战争或应对突发事件时,所能调动的（&nbsp;）的总称.",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "军队",
+  "ChoosenB": "武器",
+  "ChoosenC": "人才",
+  "ChoosenD": "综合国力",
+  "ID": 556,
+  "Mode": "sig",
+  "QuestionStr": "（&nbsp;）是强国之本，决定未来信息化战争胜负的是高素质国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "立国之本",
+  "ChoosenB": "基础",
+  "ChoosenC": "强国兴军之本",
+  "ChoosenD": "根本",
+  "ID": 557,
+  "Mode": "sig",
+  "QuestionStr": "人才是（&nbsp;），决定未来信息化战争胜负的是高素质国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "强能力",
+  "ChoosenB": "彪悍",
+  "ChoosenC": "高素质",
+  "ChoosenD": "果断",
+  "ID": 558,
+  "Mode": "sig",
+  "QuestionStr": "人才是强国之本，决定未来信息化战争胜负的是（&nbsp;）国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "高技术战争",
+  "ChoosenB": "热兵器胜负",
+  "ChoosenC": "信息化战争",
+  "ChoosenD": "冷兵器胜负",
+  "ID": 559,
+  "Mode": "sig",
+  "QuestionStr": "人才是强国之本，决定未来（&nbsp;）胜负的是高素质国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "建设",
+  "ChoosenB": "服务",
+  "ChoosenC": "主导",
+  "ChoosenD": "中心",
+  "ID": 560,
+  "Mode": "sig",
+  "QuestionStr": "加速推进国防和军队信息化建设的进程首先要树立信息（&nbsp;）的思想。",
+  "Unit": 5
+}, {
+  "Answer": "A",
+  "ChoosenA": "跨越式",
+  "ChoosenB": "高速",
+  "ChoosenC": "主动",
+  "ChoosenD": "积极",
+  "ID": 561,
+  "Mode": "sig",
+  "QuestionStr": "加速推进国防和军队信息化建设的进程其次要实现我军信息化建设的（&nbsp;）发展。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "军队",
+  "ChoosenB": "武器装备",
+  "ChoosenC": "装备",
+  "ChoosenD": "武器",
+  "ID": 562,
+  "Mode": "sig",
+  "QuestionStr": "我军信息化建设要抓住三个重点，一是要大力发展信息化（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "高技术",
+  "ChoosenB": "数字化",
+  "ChoosenC": "精密化",
+  "ChoosenD": "核武器",
+  "ID": 563,
+  "Mode": "sig",
+  "QuestionStr": "我军信息化建设要抓住三个重点，二是要大力推进（&nbsp;）部队建设。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "军队",
+  "ChoosenB": "武装",
+  "ChoosenC": "科技",
+  "ChoosenD": "战场",
+  "ID": 564,
+  "Mode": "sig",
+  "QuestionStr": "我军信息化建设要抓住三个重点，三是要大力加强数字化（&nbsp;）建设。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "重要特征",
+  "ChoosenB": "突出特征",
+  "ChoosenC": "主要特征",
+  "ChoosenD": "建军原则",
+  "ID": 565,
+  "Mode": "sig",
+  "QuestionStr": "“历久远而不衰，临绝地而再造，逢机遇而勃发”这不仅是中华民族的伟大精神，也是中国军队的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "制造",
+  "ChoosenB": "提供",
+  "ChoosenC": "决定",
+  "ChoosenD": "形成",
+  "ID": 566,
+  "Mode": "sig",
+  "QuestionStr": "战争形态是人类社会经济形态的产物。因为人们从事战争的工具和手段，是由特定时代的社会经济形态所提供和（&nbsp;）的。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "青铜器",
+  "ChoosenB": "铁器",
+  "ChoosenC": "冷兵器",
+  "ChoosenD": "弓箭",
+  "ID": 567,
+  "Mode": "sig",
+  "QuestionStr": "农业时代的手工生产方式，决定了战争能量的释放形式主要依靠人的体能，战争所使用的的武器主要是（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "冷兵器",
+  "ChoosenB": "火器",
+  "ChoosenC": "机械化武器",
+  "ChoosenD": "热兵器",
+  "ID": 568,
+  "Mode": "sig",
+  "QuestionStr": "工业时代的机器大工业生产方式，决定了热能成为战争能量的释放形式，战争所使用的武器为（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "100",
+  "ChoosenB": "200",
+  "ChoosenC": "300",
+  "ChoosenD": "400",
+  "ID": 569,
+  "Mode": "sig",
+  "QuestionStr": "从冷兵器战争演变到机械化战争，完成这场军事变革的进程持续了（&nbsp;）余年。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "60",
+  "ChoosenB": "70",
+  "ChoosenC": "80",
+  "ChoosenD": "90",
+  "ID": 570,
+  "Mode": "sig",
+  "QuestionStr": "20世纪（&nbsp;）年代以来先后发生的海湾战争、科索沃战争、阿富汗战争和伊拉克战争，是人类战争史上具有划时代意义、承前启后作用的战争。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "武器装备",
+  "ChoosenB": "个人装备",
+  "ChoosenC": "交通装备",
+  "ChoosenD": "数字装备",
+  "ID": 571,
+  "Mode": "sig",
+  "QuestionStr": "单兵数字化装备是指士兵在数字化战场上使用的（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "设计",
+  "ChoosenB": "指挥",
+  "ChoosenC": "改变",
+  "ChoosenD": "执行",
+  "ID": 572,
+  "Mode": "sig",
+  "QuestionStr": "C4KISR系统是战场（&nbsp;）、控制、通信、计算机、杀伤、情报、监视和侦查系统的简称。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "1",
+  "ChoosenB": "2",
+  "ChoosenC": "3",
+  "ChoosenD": "4",
+  "ID": 573,
+  "Mode": "sig",
+  "QuestionStr": "在飞机问世以前人类的战场主要是（&nbsp;）维战场。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "二维",
+  "ChoosenB": "三维",
+  "ChoosenC": "四维",
+  "ChoosenD": "五维",
+  "ID": 574,
+  "Mode": "sig",
+  "QuestionStr": "飞机的问世使人类作战空间发生了第一次革命性变化，战场发展成为（&nbsp;）立体战场。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "三",
+  "ChoosenB": "四",
+  "ChoosenC": "五",
+  "ChoosenD": "六",
+  "ID": 575,
+  "Mode": "sig",
+  "QuestionStr": "电磁空间是信息空间的重要组成部分。电磁战场被称为“第（&nbsp;）维战场”，是信息化战争的重要作战空间。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "心理空间",
+  "ChoosenB": "思维空间",
+  "ChoosenC": "发展空间",
+  "ChoosenD": "想象空间",
+  "ID": 576,
+  "Mode": "sig",
+  "QuestionStr": "心理空间特别是决策者的（&nbsp;）是信息化战争的重要作战空间。",
+  "Unit": 5
+}, {
+  "Answer": "C",
+  "ChoosenA": "条件",
+  "ChoosenB": "保证",
+  "ChoosenC": "前提",
+  "ChoosenD": "结果",
+  "ID": 577,
+  "Mode": "sig",
+  "QuestionStr": "精确侦查、定位和控制是实现精确打击的（&nbsp;）和基础。",
+  "Unit": 5
+}, {
+  "Answer": "B",
+  "ChoosenA": "热兵器",
+  "ChoosenB": "机械化",
+  "ChoosenC": "核武器",
+  "ChoosenD": "太空",
+  "ID": 578,
+  "Mode": "sig",
+  "QuestionStr": "从世界范围看，战争形态正处在一个从（&nbsp;）战争向信息化战争过渡的转型期。",
+  "Unit": 5
+}, {
+  "Answer": "D",
+  "ChoosenA": "C3",
+  "ChoosenB": "C3I",
+  "ChoosenC": "EWC3I",
+  "ChoosenD": "C4KISR",
+  "ID": 579,
+  "Mode": "sig",
+  "QuestionStr": "指挥控制手段的高度自动化和智能化的标志是（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "经济",
+  "ChoosenB": "科技",
+  "ChoosenC": "生产力水平",
+  "ChoosenD": "生产方式",
+  "ID": 738,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争是信息时代(&nbsp;)在战争领域的客观反映。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "徒手",
+  "ChoosenB": "冷兵器",
+  "ChoosenC": "热兵器或机械化",
+  "ChoosenD": "信息化",
+  "ID": 739,
+  "Mode": "mul",
+  "QuestionStr": "自战争产生以来，我们已经经历了游牧社会的(&nbsp;)&nbsp;战争&nbsp;；农业社会的(&nbsp;)&nbsp;战争，工业社会的(&nbsp;)&nbsp;战争,信息社会的（&nbsp;）战争。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "信息化现役部队",
+  "ChoosenB": "信息化预备役部队",
+  "ChoosenC": "信息化武装警察",
+  "ChoosenD": "信息化民兵",
+  "ID": 740,
+  "Mode": "mul",
+  "QuestionStr": "信息化武装力量由（&nbsp;）组成。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "信息化弹药",
+  "ChoosenB": "信息化作战平台",
+  "ChoosenC": "军用智能机器人",
+  "ChoosenD": "单兵数字化装备",
+  "ID": 741,
+  "Mode": "mul",
+  "QuestionStr": "信息化武器装备主要由(&nbsp;)等组成。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "指挥、控制",
+  "ChoosenB": "通信、计算机",
+  "ChoosenC": "情报、侦察",
+  "ChoosenD": "监视、杀伤",
+  "ID": 742,
+  "Mode": "mul",
+  "QuestionStr": "C4ISR系统是（&nbsp;）系统的简称。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "精确战、空间战",
+  "ChoosenB": "网络战、&nbsp;电子战",
+  "ChoosenC": "情报战",
+  "ChoosenD": "心理战",
+  "ID": 743,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争也有其特定的作战样式，主要有：(&nbsp;)等",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "电子侦察",
+  "ChoosenB": "电子进攻",
+  "ChoosenC": "电子防御",
+  "ChoosenD": "电子伪装",
+  "ID": 744,
+  "Mode": "mul",
+  "QuestionStr": "电子战主要包括（&nbsp;）三个部分。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "战争目的有限",
+  "ChoosenB": "战争的高效率",
+  "ChoosenC": "战争的高消耗",
+  "ChoosenD": "战争的残酷",
+  "ID": 745,
+  "Mode": "mul",
+  "QuestionStr": "作战行动的时间呈短暂化趋势的主要原因：（&nbsp;）",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "精确动员、精确选择",
+  "ChoosenB": "精确使用、精确打击",
+  "ChoosenC": "精确评估",
+  "ChoosenD": "精确定位",
+  "ID": 746,
+  "Mode": "mul",
+  "QuestionStr": "作战效果精确化包括：（&nbsp;）",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "战场空间多维化；作战要素一体化",
+  "ChoosenB": "作战行动短暂化；作战行动实时化",
+  "ChoosenC": "作战样式多样化",
+  "ChoosenD": "作战效果精确化",
+  "ID": 747,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争特点主要有(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "心理宣传",
+  "ChoosenB": "心理欺诈",
+  "ChoosenC": "心理威慑",
+  "ChoosenD": "心理恐怖",
+  "ID": 748,
+  "Mode": "mul",
+  "QuestionStr": "心理战最基本的手段主要有(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "电子摧毁与反摧毁",
+  "ChoosenB": "电子干扰与反干扰",
+  "ChoosenC": "电子侦听与反侦听",
+  "ChoosenD": "电子侦查与反侦查",
+  "ID": 749,
+  "Mode": "mul",
+  "QuestionStr": "电子战是以（&nbsp;）为基本内容。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "陆、海",
+  "ChoosenB": "空、天",
+  "ChoosenC": "信息",
+  "ChoosenD": "认知",
+  "ID": 750,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争是指信息化军队在（&nbsp;）等多维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "机械化",
+  "ChoosenB": "半机械化",
+  "ChoosenC": "部分信息化",
+  "ChoosenD": "信息化",
+  "ID": 751,
+  "Mode": "mul",
+  "QuestionStr": "我军的信息技术方面在现有装备上仍处在（&nbsp;）的发展阶段。",
+  "Unit": 5
+}, {
+  "Answer": "ABD",
+  "ChoosenA": "信息",
+  "ChoosenB": "信息化武器装备平台",
+  "ChoosenC": "智能化武器装备平台",
+  "ChoosenD": "智能弹药",
+  "ID": 752,
+  "Mode": "mul",
+  "QuestionStr": "（&nbsp;）使诸作战单元实现了网络化、一体化。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "信息化武装力量",
+  "ChoosenB": "信息化武器装备",
+  "ChoosenC": "信息化指挥系统",
+  "ChoosenD": "机械化指挥系统",
+  "ID": 753,
+  "Mode": "mul",
+  "QuestionStr": "（&nbsp;）成为信息化战争力量构成的基本要素。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "传感",
+  "ChoosenB": "定位",
+  "ChoosenC": "识别",
+  "ChoosenD": "分辨",
+  "ID": 754,
+  "Mode": "mul",
+  "QuestionStr": "信息化现役部队广泛采用(&nbsp;)技术。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "侦察情报系统",
+  "ChoosenB": "数字通信系统",
+  "ChoosenC": "指挥控制系统",
+  "ChoosenD": "电子战系统",
+  "ID": 755,
+  "Mode": "mul",
+  "QuestionStr": "信息化现役部队具有先进的信息探测与获取能力，将（&nbsp;）相结合，各级指挥员能够清楚地掌握交战双方作战部署和作战企图。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "声",
+  "ChoosenB": "像",
+  "ChoosenC": "图",
+  "ChoosenD": "文",
+  "ID": 756,
+  "Mode": "mul",
+  "QuestionStr": "信息化现役部队的数字通信网络传递（&nbsp;）协同动作以最快的速度形成战斗力。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "战斗",
+  "ChoosenB": "战斗支援",
+  "ChoosenC": "战斗保障",
+  "ChoosenD": "战斗分析",
+  "ID": 757,
+  "Mode": "mul",
+  "QuestionStr": "信息化现役部队能够建立起可靠的战场指挥信息网络，从而把（&nbsp;）力量联成一体。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "数字通信系统",
+  "ChoosenB": "后勤技术指挥控制系统",
+  "ChoosenC": "自动化指挥系统",
+  "ChoosenD": "计算机系统",
+  "ID": 758,
+  "Mode": "mul",
+  "QuestionStr": "信息化现役部队利用（&nbsp;）可以提高后勤技术保障的时效性和灵活性。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "侦察",
+  "ChoosenB": "干扰",
+  "ChoosenC": "欺骗",
+  "ChoosenD": "识别",
+  "ID": 759,
+  "Mode": "mul",
+  "QuestionStr": "信息化作战平台装有多种信息传感设备以便探测敌方目标，为实施精确打击提供信息，有计算机系统及联网能力，还有（&nbsp;）功能。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "战场突击",
+  "ChoosenB": "战场侦察",
+  "ChoosenC": "战场三防",
+  "ChoosenD": "扫雷",
+  "ID": 760,
+  "Mode": "mul",
+  "QuestionStr": "军用智能机器人按用途主要有（&nbsp;）机器人等。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "部队调动",
+  "ChoosenB": "导弹发射",
+  "ChoosenC": "飞机起飞",
+  "ChoosenD": "舰艇出航",
+  "ID": 761,
+  "Mode": "mul",
+  "QuestionStr": "传感系统主要任务是监视敌方行动，如（&nbsp;）等。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "地面部队",
+  "ChoosenB": "海上舰艇",
+  "ChoosenC": "空中飞机",
+  "ChoosenD": "海下潜艇",
+  "ID": 762,
+  "Mode": "mul",
+  "QuestionStr": "导航系统通过导航卫星与导航雷达向（&nbsp;）通报它们与目标的准确位置。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "数字化军队",
+  "ChoosenB": "太空部队",
+  "ChoosenC": "C信息化战场",
+  "ChoosenD": "新作战理论；智能武器",
+  "ID": 763,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争的主要标志是（&nbsp;）的出现。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "外层空间",
+  "ChoosenB": "电磁空间",
+  "ChoosenC": "网络空间",
+  "ChoosenD": "多维空间",
+  "ID": 764,
+  "Mode": "mul",
+  "QuestionStr": "信息技术渗透到武器装备中去，使战场范围由陆、海、空扩展到（&nbsp;）形成了信息化战场。",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "信息",
+  "ChoosenB": "信息系统",
+  "ChoosenC": "信息化武器装备",
+  "ChoosenD": "信息化弹药",
+  "ID": 765,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争是指信息化军队在陆、海、空、天、信息、认知等多维空间，运用（&nbsp;）进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "AB",
+  "ChoosenA": "导航卫星",
+  "ChoosenB": "导航雷达",
+  "ChoosenC": "导航飞机",
+  "ChoosenD": "导航天线",
+  "ID": 766,
+  "Mode": "mul",
+  "QuestionStr": "导航系统通过（&nbsp;）向地面部队、海上舰艇、空中飞机通报它们与目标的准确位置。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "一体化头盔",
+  "ChoosenB": "单兵计算机和无线电",
+  "ChoosenC": "武器接口",
+  "ChoosenD": "防护服，微气候冷却",
+  "ID": 767,
+  "Mode": "mul",
+  "QuestionStr": "单兵数字化装备主要有（&nbsp;）分系统。",
+  "Unit": 5
+}, {
+  "Answer": "ABCD",
+  "ChoosenA": "拦截导弹",
+  "ChoosenB": "攻击卫星",
+  "ChoosenC": "天对地攻击",
+  "ChoosenD": "空间作战平台攻防",
+  "ID": 768,
+  "Mode": "mul",
+  "QuestionStr": "空间战的作战样式有（&nbsp;）。",
+  "Unit": 5
+}, {
+  "Answer": "ACD",
+  "ChoosenA": "战争的表现形式不断拓宽",
+  "ChoosenB": "破坏性越来越强，可造成全局毁灭性打击",
+  "ChoosenC": "战争的威力极大提升",
+  "ChoosenD": "军队将向小型化，一体化和智能化方向发展",
+  "ID": 769,
+  "Mode": "mul",
+  "QuestionStr": "信息化战争的发展趋势是（&nbsp;）",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "战争的暴力性减弱",
+  "ChoosenB": "战争的层次更加模糊",
+  "ChoosenC": "战争的主体多元化",
+  "ChoosenD": "战争攻击目标更加明确",
+  "ID": 770,
+  "Mode": "mul",
+  "QuestionStr": "在信息化战争发展趋势中，战争的表现形式不断拓宽主要体现在(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "AB",
+  "ChoosenA": "将常规作战效能推到极致",
+  "ChoosenB": "新概念武器的使用使作战效能具有亚核效果",
+  "ChoosenC": "高新武器的研发使战争具有毁灭的效果",
+  "ChoosenD": "打击目标更加精确，准确性极大提高",
+  "ID": 771,
+  "Mode": "mul",
+  "QuestionStr": "在信息化战争发展趋势中，战争的威力极大提升主要体现在(&nbsp;)",
+  "Unit": 5
+}, {
+  "Answer": "ABC",
+  "ChoosenA": "小型化",
+  "ChoosenB": "一体化",
+  "ChoosenC": "智能化",
+  "ChoosenD": "多元化",
+  "ID": 772,
+  "Mode": "mul",
+  "QuestionStr": "在信息化战争发展趋势中，军队将向(&nbsp;)方向发展",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 975,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是信息时代的基本战争形态,是军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 976,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是信息时代的基本战争形态,是信息化军队在陆、海、空、天、信息、心理、认知等七维空间，运用信息、信息系统和信息化武器装备进行的战争。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 977,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是人类社会政治、经济、科学技术和战争实践发展到一定阶段的必经阶段。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 978,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是人类社会政治、经济、科学技术和战争实践发展到一定阶段的必然产物。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 979,
+  "Mode": "jud",
+  "QuestionStr": "生产力的发展是信息化战争产生的直接动因。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 980,
+  "Mode": "jud",
+  "QuestionStr": "国家战略能力是指一个国家在需要进行战争或应对突发事件时,所能调动的各种力量的总称。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 981,
+  "Mode": "jud",
+  "QuestionStr": "国家战略能力是指一个国家在需要进行战争或应对突发事件时,所能调动的综合力量的总称。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 982,
+  "Mode": "jud",
+  "QuestionStr": "人才是强国兴军之本，决定未来信息化战争胜负的是高素质国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 983,
+  "Mode": "jud",
+  "QuestionStr": "人才是立国之本，决定未来信息化战争胜负的是高素质国防和军队信息化人才。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 984,
+  "Mode": "jud",
+  "QuestionStr": "加速推进国防和军队信息化建设的进程首先要树立信息主导的思想。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 985,
+  "Mode": "jud",
+  "QuestionStr": "加速推进国防和军队信息化建设的进程其次要实现我军信息化建设的飞跃式发展。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 986,
+  "Mode": "jud",
+  "QuestionStr": "加速推进国防和军队信息化建设的进程其次要实现我军信息化建设的跨越式发展。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 987,
+  "Mode": "jud",
+  "QuestionStr": "我军信息化建设要抓住三个重点，一是要大力发展信息化武器装备。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 988,
+  "Mode": "jud",
+  "QuestionStr": "“历久远而不衰，临绝地而再造，逢机遇而勃发”这不仅是中华民族的伟大精神，也是中国军队的突出特征。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 989,
+  "Mode": "jud",
+  "QuestionStr": "农业时代的手工生产方式，决定了战争能量的释放形式主要依靠人的体能，战争所使用的的武器主要是弓箭。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 990,
+  "Mode": "jud",
+  "QuestionStr": "农业时代的手工生产方式，决定了战争能量的释放形式主要依靠人的体能，战争所使用的的武器主要是冷兵器。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 991,
+  "Mode": "jud",
+  "QuestionStr": "工业时代的机器大工业生产方式，决定了热能成为战争能量的释放形式，战争所使用的武器为热兵器。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 992,
+  "Mode": "jud",
+  "QuestionStr": "工业时代的机器大工业生产方式，决定了热能成为战争能量的释放形式，战争所使用的武器为机械化武器。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 993,
+  "Mode": "jud",
+  "QuestionStr": "战争形态是人类社会政治形态的产物.",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 994,
+  "Mode": "jud",
+  "QuestionStr": "战争形态是人类社会经济形态的产物.",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 995,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是社会经济形态发展的必然结果.",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 996,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是科学技术发展的必然结果.",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 997,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争是自然技术发展的必然结果.",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 998,
+  "Mode": "jud",
+  "QuestionStr": "高技术的发展是信息化战争产生的直接动因",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 999,
+  "Mode": "jud",
+  "QuestionStr": "近年来局部战争实践是信息化战争产生的基础.",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 1000,
+  "Mode": "jud",
+  "QuestionStr": "近年来局部战争实践是信息化战争产生的原因.",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "",
+  "ChoosenB": "",
+  "ChoosenC": "",
+  "ChoosenD": "",
+  "ID": 1001,
+  "Mode": "jud",
+  "QuestionStr": "机械化战争的制胜理念是消耗敌人、摧毁敌人、大量歼灭敌人的有生力量.",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1002,
+  "Mode": "jud",
+  "QuestionStr": "机械化战争的制胜理念是消耗敌人、摧毁敌人、打击敌人的自信心.<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1003,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的制胜理念是控制敌人、瘫痪敌人,通过破坏敌人作战体系,达到巧战而屈人之兵的目的.<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1004,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的制胜理念是打击敌人、瘫痪敌人,通过破坏敌人作战体系,达到巧战而屈人之兵的目的.",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1005,
+  "Mode": "jud",
+  "QuestionStr": "在信息化战争的发展趋势中，战争的表现形式不断拓宽主要体现在战争的暴力性减弱，战争的层次更清楚，战争的主题多元化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1006,
+  "Mode": "jud",
+  "QuestionStr": "在信息化战争的发展趋势中，战争的表现形式不断拓宽主要体现在战争的暴力性减弱，战争的层次更加模糊，战争的主题多元化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1007,
+  "Mode": "jud",
+  "QuestionStr": "在信息化战争的发展趋势中，战争的表现形式不断拓宽主要体现在战争的暴力性减弱，战争的层次更加模糊，战争的主题单一化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1008,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的发展趋势是战争的表现形式不断拓宽，战争的威力极大提升，军队将向小型化、一体化和智能化方向发展。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1009,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的发展趋势是战争的表现形式不断拓宽，战争的破坏力极大提升，军队将向小型化、一体化和智能化方向发展。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1010,
+  "Mode": "jud",
+  "QuestionStr": "在信息化战争的发展趋势中，军队将向小型化、一体化和智能化方向发展。<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1011,
+  "Mode": "jud",
+  "QuestionStr": "在信息化战争的发展趋势中，军队将向精确化、一体化和智能化方向发展。<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1012,
+  "Mode": "jud",
+  "QuestionStr": "我国的国防建设要大力加强国家信息基础建设、树立信息时代国防建设的新理念、努力培养国防信息化人才队伍、加速推进国防和军队信息化建设进程。<br\/>",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1013,
+  "Mode": "jud",
+  "QuestionStr": "信息对战争影响的关键是准确获得战场信息并把信息及时用于决策和控制。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1014,
+  "Mode": "jud",
+  "QuestionStr": "信息对战争影响的关键是准确获得战场信息并把信息及时用于作战指挥。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1015,
+  "Mode": "jud",
+  "QuestionStr": "科学技术在军事领域的运用，尤其物化为战争“手臂”，是引起战争形态发生深刻变革的根本原因。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1016,
+  "Mode": "jud",
+  "QuestionStr": "科学技术在军事领域的运用，尤其物化为战争“手臂”，是引起战争形态发生深刻变革的重要原因。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1017,
+  "Mode": "jud",
+  "QuestionStr": "作战空间随着科学技术和武器装备的发展逐渐出现日益拓展的趋向。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1018,
+  "Mode": "jud",
+  "QuestionStr": "作战空间随着科学技术和武器装备的发展逐渐出现目标精确的趋向。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1019,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争中，多层次、全方位、全时空的情报、侦查和监视网络的支持下，使用大量的精确制导武器，使各种作战行动的精确化程度越来越高。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1020,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争中，多层次、全方位、全时空的情报、侦查和监视网络的支持下，使用大量的精确制导武器，使各种作战行动的破坏力越来越强。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1021,
+  "Mode": "jud",
+  "QuestionStr": "作战节奏快速化是指战争信息流动加快，作战周期缩短；战争的突然性增大，时效性明显提高；广泛实施精确作战，毁伤效能剧增。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1022,
+  "Mode": "jud",
+  "QuestionStr": "作战节奏快速化是指战争速度加快，作战周期缩短；战争的突然性增大，时效性明显提高；广泛实施精确作战，毁伤效能剧增。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1023,
+  "Mode": "jud",
+  "QuestionStr": "战节奏快速化是指战争信息流动加快，作战周期缩短；战争的突然性增大，时效性明显提高；广泛核武器，毁伤效能剧增。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1024,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：信息资源主导化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1025,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：武器装备高精化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1026,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：武器装备信息化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1027,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战空间多维化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1028,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战空间立体化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1029,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战节奏快速化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1030,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战节奏突然化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1031,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战要素一体化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1032,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战要素独立化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1033,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战指挥扁平化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1034,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战指挥程序化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1035,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战行动精确化。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1036,
+  "Mode": "jud",
+  "QuestionStr": "信息化战争的基本特征之一是：作战行动一律化。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1037,
+  "Mode": "jud",
+  "QuestionStr": "信息对战争影响的关键是要准确获得战场信息并把信息及时用于决策和控制。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1038,
+  "Mode": "jud",
+  "QuestionStr": "信息对战争影响的关键是要准确获得战场信息并把信息进行整理分析。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1039,
+  "Mode": "jud",
+  "QuestionStr": "信息武器系统，包括软杀伤型信息武器和硬杀伤型信息武器。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1040,
+  "Mode": "jud",
+  "QuestionStr": "信息系统的软杀伤型信息武器是指以计算机病毒武器为代表的网络攻击型信息武器和以电子战为代表的电子攻击性信息武器。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1041,
+  "Mode": "jud",
+  "QuestionStr": "信息系统的软杀伤型信息武器是指以计算机病毒武器为代表的网络攻击型信息武器和以卫星战为代表的卫星攻击性信息武器。",
+  "Unit": 5
+}, {
+  "Answer": "是",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1042,
+  "Mode": "jud",
+  "QuestionStr": "信息系统的硬杀伤型信息武器主要是指精确制导武器和各种信息化作战平台",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1043,
+  "Mode": "jud",
+  "QuestionStr": "信息系统的硬杀伤型信息武器主要是指精确制导武器和核武器。&nbsp;",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1044,
+  "Mode": "jud",
+  "QuestionStr": "我国的国防建设要大力加强高端信息技术、树立信息时代国防建设的新理念、努力培养国防信息化人才队伍、加速推进国防和军队信息化建设进程。",
+  "Unit": 5
+}, {
+  "Answer": "否",
+  "ChoosenA": "&nbsp;",
+  "ChoosenB": "&nbsp;",
+  "ChoosenC": "&nbsp;",
+  "ChoosenD": "&nbsp;",
+  "ID": 1045,
+  "Mode": "jud",
+  "QuestionStr": "我国的国防建设要大力加强国家信息基础建设、树立信息时代国防建设的新理念、努力培养国防信息化人才队伍、加速推进国防和民用信息化建设进程。",
+  "Unit": 5
+}]
