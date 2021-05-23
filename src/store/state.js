@@ -89,8 +89,13 @@ export default {
   warning: '',
 
   // 模态框
-  isModel: false,
-  modelType: '',
+  isModal: false,
+  showAppModal: false,
+  modalType: '',
+
+  showAppLoading: false,
+  showAlert: false,
+  alertMsg: "卡片答题模式已开启",
 
   totalData: {},
 

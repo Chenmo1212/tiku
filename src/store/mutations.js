@@ -129,10 +129,26 @@ export default {
   },
 
   // 设置模态框
-  SET_MODEL(state, type) {
-    // console.log("模式框")
-    state.isModel = !state.isModel;
-    state.modelType = type;
+  SET_MODAL(state, type) {
+    state.isModal = true;
+    state.modalType = type;
+  },
+  // 设置模态框隐藏
+  SET_MODAL_HIDE(state) {
+    state.isModal = false;
+  },
+  // 显示app的模态框
+  SET_APP_MODAL(state, bool) {
+    state.showAppModal = bool;
+  },
+  // 显示app的loading
+  SET_APP_LOADING(state, bool) {
+    state.showAppLoading = bool;
+  },
+  // 显示app的alert
+  SET_APP_ALERT(state, msg) {
+    state.showAlert = true;
+    state.alertMsg = msg;
   },
 
   // 设置全屏
@@ -199,8 +215,8 @@ export default {
     state.totalData["default.watch.currentMusicBasicData"] = state.currentMusicBasicData;
     // state.totalData["isAlert"] = state.isAlert;
     // state.totalData["warning"] = state.warning;
-    // state.totalData["isModel"] = state.isModel;
-    // state.totalData["modelType"] = state.modelType;
+    // state.totalData["isModal"] = state.isModal;
+    // state.totalData["modalType"] = state.modalType;
   },
 
   // 导入数据
@@ -229,8 +245,8 @@ export default {
     state.currentMusicBasicData = obj["default.watch.currentMusicBasicData"];
     // state.isAlert = obj["isAlert"];
     // state.warning = obj["warning"];
-    // state.isModel = obj["isModel"];
-    // state.modelType = obj["modelType"];
+    // state.isModal = obj["isModal"];
+    // state.modalType = obj["modalType"];
   },
 
 }

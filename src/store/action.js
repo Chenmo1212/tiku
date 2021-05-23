@@ -94,8 +94,24 @@ export default {
   },
 
   // 设置模态框
-  setModel({commit}, type) {
-    commit('SET_MODEL', type)
+  setModal({commit}, type) {
+    commit('SET_MODAL', type)
+  },
+  // 设置模态框隐藏
+  setModalHide({commit}) {
+    commit('SET_MODAL_HIDE')
+  },
+  // 显示app模态框
+  setAppModal({commit}, bool) {
+    commit('SET_APP_MODAL', bool)
+  },
+  // 显示app Loading
+  setAppLoading({commit}, bool) {
+    commit('SET_APP_LOADING', bool)
+  },
+  // 显示app alert
+  setAlertMsg({commit}, Msg) {
+    commit('SET_APP_ALERT', Msg)
   },
 
   // 设置全屏

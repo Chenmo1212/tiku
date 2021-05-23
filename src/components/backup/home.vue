@@ -67,9 +67,9 @@
           <h3>Little Cookie <br>更新说明({{ version }})</h3>
           <!--          <h3>Little Cookie <br>维护ing</h3>-->
         </div>
-        <div class="msg-model">
+        <div class="msg-modal">
           <div class="text">
-            <p v-for="item in updateLogsList[0].content">{{item}}</p>
+            <p v-for="item in updateLogsList[0].content">{{ item }}</p>
           </div>
           <div class="text" style="text-align: center;">
             <router-link to="/timeline" style="color:#599efb;">查看更新日志</router-link>
@@ -422,7 +422,7 @@
         }
       }
 
-      .msg-model {
+      .msg-modal {
         text-align: left;
       }
     }

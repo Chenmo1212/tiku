@@ -25,94 +25,8 @@
     </div>
 
     <!--模态框-->
-    <div class="modal" v-if="showModel">
-      <div class="bg" @click="hiddenModel"></div>
-      <div class="content a-fadeinB">
-        <div class="close-icon" @click="hiddenModel"><i class="fa fa-times" aria-hidden="true"/></div>
-        <div class="title"><span>{{ modelTit }}</span></div>
-
-        <!--音乐模态框-->
-        <div class="music-model" v-if="musicModel">
-          <div class="text" v-html="modelMsg"></div>
-          <div class="input">
-            <label>
-              <input type="text" class="form__input" placeholder="网易云歌单ID，例如：2111679838" v-model="songListInput"/>
-            </label>
-          </div>
-          <div class="submit-btn" @click="handleSongListId">
-            <i class="fa fa-send-o"/>
-            <span>提交</span>
-          </div>
-        </div>
-
-        <!--导入数据模态框-->
-        <div class="import-model" v-if="dataModel">
-          <div class="input">
-            <label>
-              <input type="text" class="form__input" placeholder="在此处导入您的数据" v-model="dataInput">
-            </label>
-          </div>
-          <div class="btn-group">
-            <div class="import-btn" @click="importData">
-              <i class="fa fa-sign-in"/>
-              <span>导入</span>
-            </div>
-            <div class="cancel-btn" @click="exportData">
-              <i class="fa fa-sign-out"/>
-              <span>导出</span>
-            </div>
-          </div>
-        </div>
-
-        <!--清空数据模态框-->
-        <div class="clear-model" v-if="clearModel">
-          <div class="text">{{ modelMsg }}</div>
-          <div class="btn-group">
-            <div class="btn submit" @click="deleteLocalStorage">
-              <span>确定</span>
-            </div>
-            <div class="btn">
-              <span>取消</span>
-            </div>
-          </div>
-        </div>
-
-        <!--刷新网页模态框-->
-        <div class="fresh-model" v-if="freshModel">
-          <div class="text">{{ modelMsg }}</div>
-          <div class="submit-btn" @click="freshPage">
-            <i class="fa fa-send-o"/>
-            <span>刷新</span>
-          </div>
-        </div>
-
-        <!--提交试卷模态框-->
-        <div class="clear-model submitExam-model" v-if="submitExamModel">
-          <div class="text">{{ modelMsg }}</div>
-          <div class="btn-group">
-            <div class="btn submit" @click="clickSubmitExamBtn">
-              <span>确定</span>
-            </div>
-            <div class="btn cancel-btn" @click="hiddenModel()">
-              <span>取消</span>
-            </div>
-          </div>
-        </div>
-
-        <!--返回主页模态框-->
-        <div class="clear-model submitExam-model" v-if="backHomeModel">
-          <div class="text">{{ modelMsg }}</div>
-          <div class="btn-group">
-            <div class="btn submit" @click="backHome()">
-              <span>确定</span>
-            </div>
-            <div class="btn cancel-btn" @click="hiddenModel()">
-              <span>取消</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="modal" v-show="showAppModal">
+      <modal-vue ref="modal"/>
     </div>
 
     <FloatBall :text="'哈哈'"/>
@@ -124,7 +38,7 @@
     </div>
 
     <!--loading-->
-    <div class="loading-box" v-if="showLoading">
+    <div class="loading-box" v-if="showAppLoading">
       <div class="bg"></div>
       <div class="loading-content a-fadeinB">
         <div class="svg">
@@ -152,11 +66,13 @@
 <script>
 import {mapState, mapActions} from 'vuex'
 import FloatBall from '@/components/tool/ball';
+import modalVue from '@/components/modal/modal';
 
 export default {
   name: 'App',
   components: {
-    FloatBall
+    FloatBall,
+    modalVue,
   },
   data() {
     return {
@@ -172,21 +88,6 @@ export default {
       //   'http://music.163.com/song/media/outer/url?id=440353010.mp3',
       // ],
       progressBegin: 0,
-
-      showAlert: false,
-      showLoading: false,
-
-      dataInput: null,
-
-      showModel: false,
-      musicModel: false,
-      dataModel: false,
-      clearModel: false,
-      freshModel: false,
-      submitExamModel: false,
-      backHomeModel: false,
-      modelTit: "提示",
-      modelMsg: "您可以在此处替换成您的歌单",
 
       // 音乐歌单id
       // songListId: '2111679838',
@@ -204,15 +105,17 @@ export default {
       'themeMode',
       'warning',
       'isAlert',
-      'isModel',
-      'isLoading',
-      'modelType',
+      'isModal',
+      'showAppLoading',
+      'modalType',
       'totalData',
       'songListId',
       'currentMemory',
       'musicPlayActive',
       'currentMusicBasicData',
       'musicList',
+      'showAppModal',
+      'showAlert',
     ]),
   },
   mounted() {
@@ -229,6 +132,39 @@ export default {
     // document.getElementById('app').style.display = 'block';
     // document.getElementById('appLoading').style.display = 'none';
   },
+  watch: {
+    musicStatus() {   // 音乐播放状态发生改变（暂停，播放）
+      console.log("music status change");
+      // console.log(this.musicStatus);
+      let audio = document.getElementById('media');
+      if (this.musicStatus) {
+        setTimeout(() => {
+          audio.play();
+        }, 150);
+      } else {
+        setTimeout(() => {
+          audio.pause();// 暂停
+        }, 150);
+      }
+    },
+
+    isAlert() {
+      // console.log("有变化");
+      if (this.showAlert) {
+        this.alertMsg = this.warning;
+        return;
+      }
+      this.handleShowAlert(this.warning);
+    },
+
+    isModal() {
+      this.handleShowModal(this.modalType);
+    },
+
+    isLoading() {
+      this.$ref.modal.handleShowLoading();
+    }
+  },
   methods: {
     ...mapActions([
       'setCurrentBasicData',
@@ -240,171 +176,9 @@ export default {
       'setMusicStatus',
       'setSubmitExamStatus',
       'setExamStatus',
+      'setAppModal',
+      'setAppAlert',
     ]),
-
-    /**
-     * 隐藏模态框
-     */
-    hiddenModel() {
-      this.showModel = false;
-      this.musicModel = false;
-      this.dataModel = false;
-      this.clearModel = false;
-      this.dataInput = "";
-    },
-
-    clickSubmitExamBtn() {
-      this.setSubmitExamStatus(true);
-      this.hiddenModel();
-    },
-
-    /**
-     * 清空本地存储
-     */
-    deleteLocalStorage() {
-      this.hiddenModel();
-      this.handleShowLoading();
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        localStorage.clear();
-        location.href = 'https://tiku.chenmo1212.cn?f=clear';
-        clearTimeout(timeId);
-      }, 4000);
-    },
-
-    /**
-     * 导出数据
-     */
-    exportData() {
-      const that = this;
-      this.setExportTotalData();
-      this.handleShowLoading();
-      this.hiddenModel();
-      this.handleShowLoading();
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        that.handleShowAlert("数据已导出到剪切板");
-        that.hiddenModel();
-        // console.log(that.totalData);
-        that.setClipboard(JSON.stringify(that.totalData));
-        clearTimeout(timeId);
-      }, 3000);
-    },
-
-    /**
-     * 导入数据
-     */
-    importData() {
-      const that = this;
-      console.log(that.themeMode);
-      console.log(that.dataInput.indexOf('currentMemory') < 0);
-      console.log(that.dataInput.indexOf("selectedProject") < 0);
-
-      if (that.dataInput.indexOf('currentMemory') > 0 && that.dataInput.indexOf("selectedProject") > 0 && that.dataInput.indexOf("selectedChapter") > 0) {
-        this.handleShowLoading();
-        this.setImportTotalData(JSON.parse(that.dataInput));
-        let data = that.dataInput;
-        this.hiddenModel();
-        console.log(JSON.parse(data));
-
-        // 切换主题
-        if (JSON.parse(data).themeMode === 'light') {
-          window.document.documentElement.setAttribute("data-theme", "light");
-        } else if (JSON.parse(data).themeMode === 'dark') {
-          window.document.documentElement.setAttribute("data-theme", 'dark');
-        }
-
-        // 所有数据存入本地
-        localStorage.setItem("cardMode", JSON.stringify(JSON.parse(data).cardMode));
-        localStorage.setItem("currentMemory", JSON.stringify(JSON.parse(data).currentMemory));
-        localStorage.setItem("currentMusicBasicData", JSON.stringify(JSON.parse(data).currentMusicBasicData));
-        localStorage.setItem("isCheckIn", JSON.stringify(JSON.parse(data).isCheckIn));
-        localStorage.setItem("isFullScreen", JSON.stringify(JSON.parse(data).isFullScreen));
-        localStorage.setItem("isStick", JSON.stringify(JSON.parse(data).isStick));
-        localStorage.setItem("selectedAnswer", JSON.stringify(JSON.parse(data).selectedAnswer));
-        localStorage.setItem("selectedChapter", JSON.stringify(JSON.parse(data).selectedChapter));
-        localStorage.setItem("selectedProject", JSON.stringify(JSON.parse(data).selectedProject));
-        localStorage.setItem("songListId", JSON.stringify(JSON.parse(data).songListId));
-        localStorage.setItem("themeColor", JSON.stringify(JSON.parse(data).themeColor));
-        localStorage.setItem("themeMode", JSON.stringify(JSON.parse(data).themeMode));
-
-        clearTimeout(timeId);
-        let timeId = setTimeout(function () {
-          that.handleShowAlert("数据已导入");
-          that.hiddenModel();
-          that.dataInput = "";
-          clearTimeout(timeId);
-        }, 3000);
-
-      } else {
-        this.handleShowAlert("您的数据输入有误");
-        console.log("假数据");
-        this.hiddenModel();
-      }
-    },
-
-    /**
-     * 刷新网页
-     */
-    freshPage() {
-      location.reload();
-    },
-
-    /**
-     * 复制到剪切板
-     */
-    setClipboard(value) {
-      let transfer = document.createElement('input');
-      document.body.appendChild(transfer);
-      transfer.value = value;  // 这里表示想要复制的内容
-      transfer.focus();
-      transfer.select();
-      if (document.execCommand('copy')) {
-        document.execCommand('copy');
-      }
-      transfer.blur();
-      console.log('复制成功');
-      document.body.removeChild(transfer);
-    },
-
-    /**
-     * 更改音乐歌单
-     */
-    handleSongListId(searchString) {
-      const that = this;
-      let reg = /[1-9][0-9]*/g;
-      let songIdList = this.songListInput.match(reg);
-      // console.log(songIdList)
-      let id = null;
-      // http://music.163.com/playlist/899755273/579065427/?userid=579065427
-      if (this.songListInput.indexOf('?userid=') >= 0) {
-        id = songIdList[1]
-      } else if (this.songListInput.indexOf('playlist?id=') >= 0) {
-        id = songIdList[1]
-      } else if (this.songListId === null) {
-        id = songIdList[0]
-      }
-      if (!this.songListInput) {
-        this.setWarning("歌单id不得为空");
-        return
-      }
-      if (id === null) {
-        this.setWarning("格式错误，请重试！");
-        this.songListInput = '';
-        return
-      }
-      this.hiddenModel();
-      this.setSongListId(id);
-      localStorage.setItem('songListId', JSON.stringify(this.songListId));
-
-      this.handleShowLoading();
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        that.handleShowAlert("歌单更改成功, 请刷新页面");
-        that.handleShowModel('fresh');
-        clearTimeout(timeId)
-      }, 3000)
-    },
 
     // 下一首
     nextSong() {
@@ -460,118 +234,26 @@ export default {
       });
     },
 
-    /**
-     * 显示提示
-     * @param warning： 提示内容
-     */
-    handleShowAlert(warning) {
-      const that = this;
-      this.showAlert = true;
-      this.alertMsg = warning;
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        that.showAlert = false;
-        clearTimeout(timeId)
-      }, 4000)
-    },
-
     // 显示通知
-    handleShowModel(type) {
-      // 初始化
-      this.musicModel = false;
-      this.dataModel = false;
-      this.clearModel = false;
-      this.freshModel = false;
-      this.submitExamModel = false;
-      this.backHomeModel = false;
-
-      if (type === 'music') {
-        this.musicModel = true;
-        this.modelTit = "更换歌单";
-        this.modelMsg = '您可以在此处替换成您的歌单 <br> <span style="text-align: left; display: block; margin-top: 5px;">1. 网易云歌单ID，例如：2111679838 <br> 2. 歌单分享链接，例如：http://music...</span>';
-      } else if (type === 'data') {
-        this.dataModel = true;
-        this.modelTit = "导入 / 导出数据";
-      } else if (type === 'clear') {
-        this.clearModel = true;
-        this.modelTit = "清空所有数据";
-        this.modelMsg = '要清空所有信息吗？操作不可恢复！';
-      } else if (type === 'fresh') {
-        this.freshModel = true;
-        this.modelTit = "请刷新页面";
-        this.modelMsg = '歌单更换成功，请刷新页面';
-      } else if (type === 'submitExam') {
-        this.submitExamModel = true;
-        this.modelTit = "提交试卷";
-        this.modelMsg = '确定要提交试卷吗？提交之后不可更改！';
-      } else if (type === 'backHome') {
-        this.backHomeModel = true;
-        this.modelTit = "返回主页";
-        this.modelMsg = '考试结果不会保存，确定要返回主页吗？';
-      }
-      this.showModel = true;
+    handleShowModal(type) {
+      this.$refs.modal.handleShowModal(type);
+      this.setAppModal(true)
     },
-
-    // 显示加载条
-    handleShowLoading() {
-      const that = this;
-      this.showLoading = true;
-      clearTimeout(timeId);
-      let timeId = setTimeout(function () {
-        that.showLoading = false;
-        clearTimeout(timeId);
-      }, 3000)
-    },
-    backHome() {
-      // console.log("remove")
-      this.$router.push({name: 'home', replace: true});
-      this.setExamStatus(false)
-      this.hiddenModel()
-      localStorage.removeItem('tiku_examData');
-      if(typeof(localStorage.examTimeObj) !== 'undefined'){
-        clearInterval(JSON.parse(localStorage.examTimeObj).timer)
-      }
-      localStorage.removeItem('examTimeObj');
-      localStorage.removeItem('totalScore');
-      localStorage.removeItem('typeScore');
-    },
-  },
-
-  watch: {
-    musicStatus() {   // 音乐播放状态发生改变（暂停，播放）
-      console.log("music status change");
-      // console.log(this.musicStatus);
-      let audio = document.getElementById('media');
-      if (this.musicStatus) {
-        setTimeout(() => {
-          audio.play();
-        }, 150);
-      } else {
-        setTimeout(() => {
-          audio.pause();// 暂停
-        }, 150);
-      }
-    },
-
-    isAlert() {
-      // console.log("有变化");
-      if (this.showAlert) {
-        this.alertMsg = this.warning;
-        return;
-      }
-      this.handleShowAlert(this.warning);
-    },
-
-    isModel() {
-      // console.log("app");
-      this.handleShowModel(this.modelType);
-    },
-
-    isLoading() {
-      this.handleShowLoading();
-    },
-
-  },
+    //   backHome() {
+    //     // console.log("remove")
+    //     this.$router.push({name: 'home', replace: true});
+    //     this.setExamStatus(false)
+    //     this.hiddenModal()
+    //     localStorage.removeItem('tiku_examData');
+    //     if(typeof(localStorage.examTimeObj) !== 'undefined'){
+    //       clearInterval(JSON.parse(localStorage.examTimeObj).timer)
+    //     }
+    //     localStorage.removeItem('examTimeObj');
+    //     localStorage.removeItem('totalScore');
+    //     localStorage.removeItem('typeScore');
+    //   },
+    // },
+  }
 }
 </script>
 
@@ -588,7 +270,7 @@ export default {
     --secondary: #A7A9AA;
   }
 
-  .modal {
+  .Modal {
     color: #BF8A10 !important;
 
     .form__input,
@@ -596,7 +278,7 @@ export default {
       box-shadow: inset 2px 2px 3px -2px rgba(0, 0, 0, 0.3), inset -2px -2px 3px 0px rgba(80, 80, 80, 0.5) !important;
     }
 
-    .content .clear-model.submitExam-model {
+    .content .clear-modal.submitExam-modal {
       .submit {
         background: linear-gradient(90deg, #D43C0B, #BF8A10) !important;
       }
@@ -610,8 +292,8 @@ export default {
       box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.05), 2px 2px 5px rgba(0, 0, 0, 0.65) !important;
     }
 
-    .clear-model .submit,
-    .submitExam-model .submit {
+    .clear-modal .submit,
+    .submitExam-modal .submit {
       background-color: #26282b !important;
       color: #fff;
     }
@@ -729,134 +411,6 @@ html, body {
 
     .text {
       height: 20%;
-    }
-  }
-}
-
-/* MODAL */
-.modal {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  z-index: 999;
-  overflow: hidden;
-
-  .bg {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-
-  .content {
-    position: absolute;
-    width: calc(80% - 10%);
-    /*background-color: #f4f6f8;*/
-    @include background("detail_bg_color1");
-    left: 10%;
-    top: 25%;
-    border-radius: 2%;
-    padding: 3% 5%;
-
-    .close-icon {
-      position: absolute;
-      right: 5%;
-    }
-
-    .title {
-      margin: 5% 0 10%;
-      font-weight: 700;
-
-      span {
-        padding: 10px 20px;
-        border-radius: 5px;
-        box-shadow: inset 5px 5px 10px #eaecee, inset -5px -5px 10px #feffff;
-      }
-    }
-
-    .text {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .input {
-      margin: 20px 0;
-    }
-
-    .form__input {
-      width: calc(100% - 10px);
-      height: 40px;
-      margin: 4px 0;
-      padding-left: 10px;
-      font-size: 13px;
-      letter-spacing: .15px;
-      outline: none;
-      font-family: 'Montserrat', sans-serif;
-      @include background("detail_bg_color1");
-      transition: .25s ease;
-      border-radius: 8px;
-      border: 1px solid;
-      @include border_color('border_color1');
-      box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
-    }
-
-    i {
-      padding-right: 5px;
-    }
-
-    .submit-btn {
-      border: 1px solid;
-      @include border_color('border_color1');
-      width: 60%;
-      height: 36px;
-      margin: 0 auto;
-      border-radius: 5px;
-      box-shadow: 2px 2px 4px #d1d9e6, -2px -2px 4px #f9f9f9;
-      justify-self: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: .3s ease;
-      color: #599efb;
-
-      &:active {
-        box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
-      }
-    }
-
-    .btn-group {
-      display: flex;
-      color: #599efb;
-
-      .import-btn {
-        @extend .submit-btn;
-        width: 40%;
-      }
-
-      .cancel-btn {
-        @extend .submit-btn;
-        width: 40%;
-      }
-    }
-
-    .clear-model {
-      .btn {
-        @extend .submit-btn;
-        width: 40%;
-      }
-
-      .submit {
-        background-color: #9ee3fb;
-        color: #fff;
-      }
-    }
-
-    .submitExam-model .submit {
-      background: linear-gradient(-90deg, #38d1bf, #00b0ff);
-      color: #fff;
     }
   }
 }

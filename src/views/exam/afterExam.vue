@@ -155,11 +155,11 @@ export default {
     ...mapActions([
       'setWarning',
       'setExamStatue',
-      'setModel',
+      'setModal',
     ]),
 
     backHome() {
-      this.setModel('backHome')
+      this.setModal('backHome')
     },
 
     toExamOverview() {

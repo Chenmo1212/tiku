@@ -240,7 +240,7 @@ export default {
       'setExamStatus',
       'setAutoStick',
       'setAutoCheck',
-      'setModel',
+      'setModal',
       'setSubmitExamStatus',
     ]),
 
@@ -265,7 +265,7 @@ export default {
     // 提交试卷
     clickSubmitBtn() {
       if (!this.examDoneStatus) { // 考试在继续
-        this.setModel('submitExam');  // 显示模态框等待用户操作
+        this.setModal('submitExam');  // 显示模态框等待用户操作
       } else {
         // 跳转考试结束页面
         this.$router.push({

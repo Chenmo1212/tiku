@@ -35,7 +35,7 @@
           <h3>Little Cookie <br>更新说明({{ version }})</h3>
           <!--          <h3>Little Cookie <br>维护ing</h3>-->
         </div>
-        <div class="msg-model">
+        <div class="msg-modal">
           <div class="text">
             <p v-for="item in updateLogsList[0].content" v-html="item"/>
           </div>
@@ -421,7 +421,7 @@
         }
       }
 
-      .msg-model {
+      .msg-modal {
         text-align: left;
       }
 

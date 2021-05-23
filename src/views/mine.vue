@@ -125,7 +125,7 @@
         'setTikuMode',
         'setThemeMode',
         'setWarning',
-        'setModel',
+        'setModal',
         'setFullScreen',
       ]),
 
