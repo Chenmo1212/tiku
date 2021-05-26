@@ -104,6 +104,15 @@ export default {
   showUpdateModal: true,
   updateLogsList: [
     {
+      date: '2021-05-26',
+      version: 'version: 1.2.8',
+      content: [
+        '更新了军理题库~',
+        '更新了近代史题库~',
+        '更新了马克思题库~',
+        '增加了题目收藏功能，题目可以收藏啦~',
+        '反馈功能这次真的可以用了！！！求反馈',]
+    }, {
       date: '2021-05-22',
       version: 'version: 1.2.7',
       content: ['再次诈尸更新！！！',
