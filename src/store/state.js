@@ -94,8 +94,8 @@ export default {
   modalType: '',
 
   showAppLoading: false,
-  showAlert: false,
-  alertMsg: "卡片答题模式已开启",
+  // showAlert: false,
+  // alertMsg: "卡片答题模式已开启",
 
   totalData: {},
 

@@ -124,8 +124,20 @@ export default {
 
   // 设置提示
   SET_WARNING(state, msg) {
-    state.isAlert = !state.isAlert;
-    state.warning = msg;
+    if (msg === '') {
+      state.isAlert = false;
+    } else {
+      if (state.isAlert) {
+        clearTimeout(timeId)
+      } else {
+        state.isAlert = true;
+        var timeId = setTimeout(function () {
+          state.isAlert = false;
+          clearTimeout(timeId)
+        }, 3000)
+      }
+      state.warning = msg;
+    }
   },
 
   // 设置模态框
@@ -133,27 +145,30 @@ export default {
     state.isModal = true;
     state.modalType = type;
   },
+
   // 设置模态框隐藏
   SET_MODAL_HIDE(state) {
     state.isModal = false;
   },
+
   // 显示app的模态框
   SET_APP_MODAL(state, bool) {
     state.showAppModal = bool;
   },
+
   // 显示app的loading
   SET_APP_LOADING(state, bool) {
     state.showAppLoading = bool;
   },
-  // 显示app的alert
-  SET_APP_ALERT(state, msg) {
-    state.showAlert = true;
-    state.alertMsg = msg;
-  },
-  // 设置Alert隐藏
-  SET_ALERT_HIDE(state) {
-    state.showAlert = false;
-  },
+  // // 显示app的alert
+  // SET_APP_ALERT(state, msg) {
+  //   state.showAlert = true;
+  //   state.alertMsg = msg;
+  // },
+  // // 设置Alert隐藏
+  // SET_ALERT_HIDE(state) {
+  //   state.showAlert = false;
+  // },
 
   // 设置全屏
   SET_FULL_SCREEN(state, bool) {

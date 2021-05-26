@@ -5,7 +5,7 @@
 
     <audio id="media" preload="auto" :src="currentMusicBasicData.url" @timeupdate="timeupdate"/>
 
-    <div class="alert a-fadeinB" v-if="showAlert">
+    <div class="alert a-fadeinB" v-if="isAlert">
       <alert-vue></alert-vue>
     </div>
 
@@ -31,26 +31,7 @@
 
     <!--loading-->
     <div class="loading-box" v-if="showAppLoading">
-      <div class="bg"></div>
-      <div class="loading-content a-fadeinB">
-        <div class="svg">
-          <svg class="tea" width="37" height="48" viewbox="0 0 37 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M27.0819 17H3.02508C1.91076 17 1.01376 17.9059 1.0485 19.0197C1.15761 22.5177 1.49703 29.7374 2.5 34C4.07125 40.6778 7.18553 44.8868 8.44856 46.3845C8.79051 46.79 9.29799 47 9.82843 47H20.0218C20.639 47 21.2193 46.7159 21.5659 46.2052C22.6765 44.5687 25.2312 40.4282 27.5 34C28.9757 29.8188 29.084 22.4043 29.0441 18.9156C29.0319 17.8436 28.1539 17 27.0819 17Z"
-              stroke="var(--secondary)" stroke-width="2"/>
-            <path
-              d="M29 23.5C29 23.5 34.5 20.5 35.5 25.4999C36.0986 28.4926 34.2033 31.5383 32 32.8713C29.4555 34.4108 28 34 28 34"
-              stroke="var(--secondary)" stroke-width="2"/>
-            <path id="teabag" fill="var(--secondary)" fill-rule="evenodd" clip-rule="evenodd"
-                  d="M16 25V17H14V25H12C10.3431 25 9 26.3431 9 28V34C9 35.6569 10.3431 37 12 37H18C19.6569 37 21 35.6569 21 34V28C21 26.3431 19.6569 25 18 25H16ZM11 28C11 27.4477 11.4477 27 12 27H18C18.5523 27 19 27.4477 19 28V34C19 34.5523 18.5523 35 18 35H12C11.4477 35 11 34.5523 11 34V28Z"/>
-            <path id="steamL" d="M17 1C17 1 17 4.5 14 6.5C11 8.5 11 12 11 12" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" stroke="var(--secondary)"/>
-            <path id="steamR" d="M21 6C21 6 21 8.22727 19 9.5C17 10.7727 17 13 17 13" stroke="var(--secondary)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class='text'>loading...</div>
-      </div>
+      <loading-vue></loading-vue>
     </div>
   </div>
 </template>
@@ -60,6 +41,7 @@ import {mapState, mapActions} from 'vuex'
 import FloatBall from '@/components/tool/ball';
 import modalVue from '@/components/modal/modal';
 import alertVue from '@/components/alert/alert';
+import loadingVue from '@/components/loading/loading';
 
 export default {
   name: 'App',
@@ -67,6 +49,7 @@ export default {
     FloatBall,
     modalVue,
     alertVue,
+    loadingVue,
   },
   data() {
     return {
@@ -109,13 +92,9 @@ export default {
       'musicList',
       'showAppModal',
       'showUpdateModal',
-      'showAlert',
     ]),
   },
   mounted() {
-
-    console.log(this.showAppModal || this.showUpdateModal)
-    console.log(this.showUpdateModal)
 
     // 获取本地歌单
     if (typeof (localStorage.songListId) !== 'undefined') {
@@ -145,21 +124,6 @@ export default {
       }
     },
 
-    isAlert() {
-      // console.log("有变化App");
-      const that = this;
-      if (this.showAlert) {
-        this.setAlertMsg(this.warning);
-        clearTimeout(timeId)
-        return;
-      }
-      this.setAlertMsg(this.warning);
-      let timeId = setTimeout(function () {
-        that.setAlertHide();
-        clearTimeout(timeId)
-      }, 3000)
-    },
-
     isModal() {
       this.handleShowModal(this.modalType);
     },
@@ -180,8 +144,6 @@ export default {
       'setSubmitExamStatus',
       'setExamStatus',
       'setAppModal',
-      'setAlertMsg',
-      'setAlertHide',
     ]),
 
     // 下一首
@@ -337,86 +299,6 @@ html, body {
   width: 100%;
   top: 0;
   z-index: 999;
-
-  .chip {
-    width: 100%;
-    /*background-color: #fff;*/
-    @include background("app_bg_color1");
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /*<!--box-shadow: 5px 5px 6px #d1d3db, -5px -5px 6px #f4f4f6;-->*/
-    @include app_box_shadow(app_shadow_color1, app_shadow_color2)
-  }
-
-  .chip__icon {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 1rem;
-    margin: 0 0 0 .2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include font_color("app_font_color1");
-  }
-
-  .chip p {
-    font-size: .9rem;
-    color: #9baacf;
-  }
-
-  .chip__close {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    /*margin: 0 .5rem;*/
-    /*display: flex;*/
-    color: #bec8e4;
-    cursor: pointer;
-  }
-}
-
-/*loading*/
-.loading-box {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  z-index: 999;
-  overflow: hidden;
-
-  .bg {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-
-  .loading-content {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    @include background("app_bg_color1");
-    left: calc(45% - 50px);
-    top: 30%;
-    border-radius: 2%;
-    padding: 3% 5%;
-    z-index: 1000;
-
-    .svg {
-      height: 80%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .text {
-      height: 20%;
-    }
-  }
 }
 
 .a-fadeinB {

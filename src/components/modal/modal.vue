@@ -304,11 +304,10 @@ export default {
      */
     handleShowAlert(warning) {
       const that = this;
-      // this.setAppAlert(true);
-      this.setAlertMsg(warning);
+      this.setWarning(warning);
       clearTimeout(timeId);
       let timeId = setTimeout(function () {
-        that.showAlert = false;
+        that.isAlert = false;
         clearTimeout(timeId)
       }, 4000)
     },

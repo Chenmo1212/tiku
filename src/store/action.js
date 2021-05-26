@@ -97,26 +97,32 @@ export default {
   setModal({commit}, type) {
     commit('SET_MODAL', type)
   },
+
   // 设置模态框隐藏
   setModalHide({commit}) {
     commit('SET_MODAL_HIDE')
   },
+
   // 显示app模态框
   setAppModal({commit}, bool) {
     commit('SET_APP_MODAL', bool)
   },
+
   // 显示app Loading
   setAppLoading({commit}, bool) {
     commit('SET_APP_LOADING', bool)
   },
-  // 显示app alert
-  setAlertMsg({commit}, Msg) {
-    commit('SET_APP_ALERT', Msg)
-  },
-// 设置Alert隐藏
-  setAlertHide({commit}) {
-    commit('SET_ALERT_HIDE')
-  },
+
+  // // 显示app alert
+  // setAlertMsg({commit}, Msg) {
+  //   commit('SET_APP_ALERT', Msg)
+  // },
+
+  // 设置Alert隐藏
+  // setAlertHide({commit}) {
+  //   commit('SET_ALERT_HIDE')
+  // },
+
   // 设置全屏
   setFullScreen({commit}, bool) {
     commit('SET_FULL_SCREEN', bool)
