@@ -150,6 +150,10 @@ export default {
     state.showAlert = true;
     state.alertMsg = msg;
   },
+  // 设置Alert隐藏
+  SET_ALERT_HIDE(state) {
+    state.showAlert = false;
+  },
 
   // 设置全屏
   SET_FULL_SCREEN(state, bool) {

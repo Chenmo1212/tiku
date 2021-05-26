@@ -6,15 +6,7 @@
     <audio id="media" preload="auto" :src="currentMusicBasicData.url" @timeupdate="timeupdate"/>
 
     <div class="alert a-fadeinB" v-if="showAlert">
-      <div class="chip">
-        <div class="chip__icon">
-          <i class="fa fa-bell-o" aria-hidden="true"/>
-        </div>
-        <p>{{ alertMsg }}</p>
-        <div class="chip__close" @click="showAlert = false">
-          <i class="fa fa-close"/>
-        </div>
-      </div>
+      <alert-vue></alert-vue>
     </div>
 
     <!--遮罩层-->
@@ -67,12 +59,14 @@
 import {mapState, mapActions} from 'vuex'
 import FloatBall from '@/components/tool/ball';
 import modalVue from '@/components/modal/modal';
+import alertVue from '@/components/alert/alert';
 
 export default {
   name: 'App',
   components: {
     FloatBall,
     modalVue,
+    alertVue,
   },
   data() {
     return {
@@ -96,7 +90,6 @@ export default {
 
       isWelcome: false,
 
-      alertMsg: "卡片答题模式已开启",
     }
   },
   computed: {
@@ -149,12 +142,18 @@ export default {
     },
 
     isAlert() {
-      // console.log("有变化");
+      // console.log("有变化App");
+      const that = this;
       if (this.showAlert) {
-        this.alertMsg = this.warning;
+        this.setAlertMsg(this.warning);
+        clearTimeout(timeId)
         return;
       }
-      this.handleShowAlert(this.warning);
+      this.setAlertMsg(this.warning);
+      let timeId = setTimeout(function () {
+        that.setAlertHide();
+        clearTimeout(timeId)
+      }, 3000)
     },
 
     isModal() {
@@ -177,7 +176,8 @@ export default {
       'setSubmitExamStatus',
       'setExamStatus',
       'setAppModal',
-      'setAppAlert',
+      'setAlertMsg',
+      'setAlertHide',
     ]),
 
     // 下一首

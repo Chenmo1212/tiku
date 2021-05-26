@@ -113,7 +113,10 @@ export default {
   setAlertMsg({commit}, Msg) {
     commit('SET_APP_ALERT', Msg)
   },
-
+// 设置Alert隐藏
+  setAlertHide({commit}) {
+    commit('SET_ALERT_HIDE')
+  },
   // 设置全屏
   setFullScreen({commit}, bool) {
     commit('SET_FULL_SCREEN', bool)
