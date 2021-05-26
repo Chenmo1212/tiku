@@ -5,12 +5,17 @@
         <div class="circle" :style="{color: chapterColor}">
           <i class="fa fa-angle-left" aria-hidden="true" @click="backChapter"/>
         </div>
-        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}" class="pageName">{{projectName}} - {{chapterName}}</span>
+        <div class="page-title" @click="exitFull()">章节背题 | <span :style="{color: chapterColor}"
+                                                                 class="pageName">{{ projectName }} - {{ chapterName }}</span>
         </div>
       </div>
-      <div class="full-screen" :style="{color: chapterColor}">
-        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"/></span>
-        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"/></span>
+      <!--      <div class="full-screen" :style="{color: chapterColor}">-->
+      <!--        <span @click="setScreen" v-if="!ifFullScreen"><i class="fa fa-expand"/></span>-->
+      <!--        <span @click="exitFull" v-if="ifFullScreen"><i class="fa fa-compress"/></span>-->
+      <!--      </div>-->
+      <div class="favourite active" :style="{color: chapterColor}" @click="setFavourite(1)">
+        <svg-icon iconClass="star_fill" v-if="isFavourite" :style="{fill: chapterColor}"/>
+        <svg-icon iconClass="star" v-else :style="{fill: chapterColor}"/>
       </div>
     </div>
     <div id="board">
@@ -149,8 +154,11 @@
         gapIndex: 0,
         itemIndex: null,               // 题目序号
         currentType: null,             // 题目类型
-
+        currentTypeIndex: 0,             // 题目类型的序号0,1,2,3
         selectedChapter: '',
+
+        isFavourite: false,             // 是否收藏这个题
+
         // isStick: false,                // 固定显示答案
         // isCheckIn: false,                // 自动检查答案
       }
@@ -173,7 +181,6 @@
 
       let selectedChapter = JSON.parse(localStorage.selectedChapter);
       this.selectedChapter = selectedChapter;
-
       this.totalCardArr = selectedChapter.data;
 
       // 直接跳转题目
@@ -193,11 +200,12 @@
         // 匹配用户答案
         for (let i = 0; i < ansArr.length; i++) {
           if (ansArr[i].index === newIndex) {
-            if (Array.isArray(ansArr[i].userAns)) {
+            if (Array.isArray(ansArr[i].userAns)) {  // 根据用户选项是数组还是数字来判断是多选题还是单选题
               this.checkedList = ansArr[i].userAns
             } else {
               this.checkIndex = ansArr[i].userAns;
             }
+            this.isFavourite = ansArr[i].isFavourite;  // 题目是否已经收藏
           }
         }
         isOverview = true;
@@ -205,20 +213,16 @@
 
       // 处理主题色
       this.chapterColor = JSON.parse(localStorage.themeColor);
-
-      if (isOverview) {
+      if (isOverview) {  // 题目总览中直接跳转
         if (this.totalCardArr.length - newIndex > 10) {
           this.cardArr = this.totalCardArr.slice(newIndex, newIndex + 10);
         } else {
           this.cardArr = this.totalCardArr.slice(newIndex);
         }
-      } else {
-
+      } else {  // 答题页面直接刷新
         let projectId = selectedChapter.id;
         let chapterIndex = selectedChapter.index;
         let localIndex = JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex].currentIndex;
-        // console.log("localIndex", JSON.parse(localStorage.projectBasicData)[projectId].content[chapterIndex]);
-        // console.log("localIndex", localIndex);
 
         // 懒加载，先加载10个
         if (this.totalCardArr.length > 10) {
@@ -323,6 +327,63 @@
           return {}
         }
       },
+
+
+      /**
+       * 设置题目的激活状态
+       * @param index 类型
+       */
+      setFavourite(index) {
+        if (index === 1) this.isFavourite = !this.isFavourite;
+        if (index === 2) this.isFavourite = false;
+        if (index === 3) this.isFavourite = true;
+
+        let projectId = this.selectedProject.id;         // 科目id
+        let chapterIndex = this.selectedChapter.index;   // 章节下标
+        let userAns = this.userAns;            // 用户答案
+
+        let tempArr = null;
+        if (typeof (localStorage.selectedAnswer) === 'undefined') {
+          tempArr = this.selectedAnswer[projectId][chapterIndex][this.currentType];
+        } else {
+          tempArr = JSON.parse(localStorage.selectedAnswer)[projectId][chapterIndex][this.currentType];
+        }
+
+        let tempObj = {};
+        tempObj['index'] = this.questionIndex;
+        tempObj['userAns'] = userAns;
+        tempObj['isFavourite'] = this.isFavourite;
+        let obj = this.isHasObj(tempArr, this.questionIndex);
+        if (obj.flag) {
+          // 科目id-章节下标-题目下标-用户答案
+          this.setSelectedAnswer({
+            projectId: projectId,
+            chapterIndex: chapterIndex,
+            quesObj: tempObj,
+            quesType: this.currentTypeIndex,
+            isReplace: true,
+            replaceIndex: obj.index
+          });
+        } else {
+          // 科目id-章节下标-题目下标-用户答案
+          this.setSelectedAnswer({
+            projectId: projectId,
+            chapterIndex: chapterIndex,
+            quesObj: tempObj,
+            quesType: this.currentTypeIndex,
+            isReplace: false,
+          });
+        }
+
+        localStorage.setItem('selectedAnswer', JSON.stringify(this.selectedAnswer));
+      },
+
+      /**
+       * 判断选项是否激活
+       * @param answerIndex 选项下标
+       * @param type 问题类型
+       * @returns {*} 返回颜色类
+       */
       getActiveStyle(answerIndex, type) {
         if (this.currentType === null) {
           if (type === 0) this.currentType = 'sigArr';
@@ -357,38 +418,6 @@
 
       toOverview() {
         this.$router.push({name: 'overview'})
-      },
-
-      setScreen() {
-        let ele = document.body;
-        if (ele.requestFullscreen) {
-          ele.requestFullscreen();
-        } else if (ele.mozRequestFullScreen) {
-          ele.mozRequestFullScreen();
-        } else if (ele.webkitRequestFullscreen) {
-          ele.webkitRequestFullscreen();
-        } else if (ele.msRequestFullscreen) {
-          ele.msRequestFullscreen();
-        }
-        this.setFullScreen(true);
-        this.ifFullScreen = true;
-        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
-      },
-      exitFull() {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen();
-        } else {
-          window.parent.showTopBottom();
-        }
-        this.setFullScreen(false);
-        this.ifFullScreen = false;
-        localStorage.setItem('isFullScreen', JSON.parse(this.ifFullScreen));
       },
       isFinished() {
         // 重新渲染v-for
@@ -1044,6 +1073,18 @@
         width: 80%;
         margin-left: 2%;
         text-align: left;
+      }
+    }
+
+    .favourite {
+      float: right;
+      width: 14%;
+      height: 100%;
+
+      .svg-icon {
+        height: 100%;
+        width: 50%;
+        max-width: 30px;
       }
     }
 

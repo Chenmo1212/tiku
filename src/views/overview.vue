@@ -307,9 +307,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
 
       .circle {
+        position: relative;
         height: 40px;
         width: 40px;
         line-height: 40px;
@@ -331,7 +331,7 @@ export default {
         width: 15px;
         height: 50%;
         position: absolute;
-        right: 12px;
+        right: 0;
         bottom: 0;
       }
     }

@@ -29,15 +29,15 @@
           </label>
         </div>
       </div>
-      <div class="item">
-        <i class="fa fa-clone left"/>
-        <span>卡片模式</span>
-        <span class="switch-container">
-         <label class="switch" @click="handleTikuMode">
-          <input type="checkbox" :checked="cardMode">
-        </label>
-        </span>
-      </div>
+      <!--      <div class="item">-->
+      <!--        <i class="fa fa-clone left"/>-->
+      <!--        <span>卡片模式</span>-->
+      <!--        <span class="switch-container">-->
+      <!--         <label class="switch" @click="handleTikuMode">-->
+      <!--          <input type="checkbox" :checked="cardMode">-->
+      <!--        </label>-->
+      <!--        </span>-->
+      <!--      </div>-->
       <div class="item">
         <i class="fa fa-expand left"/>
         <span>全屏模式</span>

@@ -103,7 +103,7 @@ export default {
   },
 
   // 激活音乐控件
-  SET_AUDIO_ACTIVE(state, bool){
+  SET_AUDIO_ACTIVE(state, bool) {
     state.musicPlayActive = bool;
   },
 
@@ -181,12 +181,12 @@ export default {
   },
 
   // 设置期末考试状态
-  SET_EXAM_STATUS(state, bool){
+  SET_EXAM_STATUS(state, bool) {
     state.examDoneStatus = bool;
   },
 
   // 设置提交考试状态
-  SET_SUBMIT_EXAM_STATUS(state, bool){
+  SET_SUBMIT_EXAM_STATUS(state, bool) {
     state.submitExamStatus = bool;
   },
 

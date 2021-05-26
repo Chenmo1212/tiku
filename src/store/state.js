@@ -101,6 +101,7 @@ export default {
 
   todoData: null,
 
+  showUpdateModal: true,
   updateLogsList: [
     {
       date: '2021-05-22',

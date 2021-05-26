@@ -231,7 +231,6 @@ export default {
       this.itemIndex = this.$route.params.id;
       this.currentType = this.$route.params.type.slice(0, 3) + 'Arr';
       newIndex = this.$route.params.id - 1;
-      // console.log("下标", newIndex);
       // console.log(this.selectedAnswer);
       // console.log(this.selectedChapter);
 
@@ -241,7 +240,6 @@ export default {
       let type = this.$route.params.type.slice(0, 3) + 'Arr';
       let ansArr = this.selectedAnswer[projectId][chapterIndex][type];
 
-      console.log(ansArr)
       // 匹配用户答案
       for (let i = 0; i < ansArr.length; i++) {
         if (ansArr[i].index === newIndex) {
@@ -326,7 +324,6 @@ export default {
       'selectedAnswer',
       'currentMemory',
       'projectBasicData',
-      'isFullscreen',
       'isStick',
       'isCheckIn',
       'closeCheckOfMul',

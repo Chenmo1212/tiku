@@ -1,7 +1,7 @@
 <template>
   <div class="Modal" v-if="isModal">
     <div class="bg" @click="hiddenModal"></div>
-    <div class="content a-fadeinB">
+    <div class="content a-fadeinB" v-if="!updateModal">
       <div class="close-icon" @click="hiddenModal"><i class="fa fa-times" aria-hidden="true"/></div>
       <div class="title"><span>{{ modalTit }}</span></div>
 
@@ -87,6 +87,22 @@
       </div>
 
     </div>
+    <div class="content a-fadeinB" v-if="updateModal">
+      <div class="title">
+        <svg-icon iconClass="having_fun"/>
+        <h3>Little Cookie <br>更新说明({{ version }})</h3>
+        <!--          <h3>Little Cookie <br>维护ing</h3>-->
+      </div>
+      <div class="msg-modal">
+        <div class="text">
+          <p v-for="item in updateLogsList[0].content" v-html="item"/>
+        </div>
+        <div class="submit-btn" @click="hiddenUpdateModal"><i class="fa fa-send-o"/> <span>朕知道了</span></div>
+        <div class="text show-log" style="text-align: center;">
+          <router-link to="/timeline" style="color:#a9ceff;">查看更新日志</router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -104,10 +120,16 @@ export default {
       freshModal: false,
       submitExamModal: false,
       backHomeModal: false,
+      updateModal: false,
       modalTit: "提示",
       modalMsg: "您可以在此处替换成您的歌单",
       dataInput: null,
+
+      version: '1.2.5',
     }
+  },
+  created() {
+    this.version = this.updateLogsList[0].version.slice(9)
   },
   computed: {
     ...mapState([
@@ -115,6 +137,7 @@ export default {
       'isModal',
       'modalType',
       'totalData',
+      'updateLogsList',
     ]),
   },
   methods: {
@@ -156,6 +179,12 @@ export default {
       localStorage.removeItem('examTimeObj');
       localStorage.removeItem('totalScore');
       localStorage.removeItem('typeScore');
+    },
+    hiddenUpdateModal() {
+      localStorage.setItem('isShowUpdateModal', JSON.stringify({res: false}));
+      localStorage.setItem('tiku_version', this.version);
+      this.updateModal = false;
+      this.setModalHide()
     },
     /**
      * 刷新网页
@@ -365,6 +394,8 @@ export default {
         this.backHomeModal = true;
         this.modalTit = "返回主页";
         this.modalMsg = '考试结果不会保存，确定要返回主页吗？';
+      } else if (type === 'update') {
+        this.updateModal = true;
       }
     },
   }
@@ -374,7 +405,7 @@ export default {
 <style scoped lang="scss">
 @import "../../scss/_handle";
 /* MODAL */
-.Modal {
+.modal {
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -497,6 +528,30 @@ export default {
     .submitExam-modal .submit {
       background: linear-gradient(-90deg, #38d1bf, #00b0ff);
       color: #fff;
+    }
+  }
+}
+
+.update_modal {
+  .content {
+    top: 15%;
+
+    .title {
+      position: relative;
+      width: 80%;
+      left: 10%;
+
+      .svg-icon {
+        width: 100%;
+      }
+    }
+
+    .msg-modal {
+      text-align: left;
+    }
+
+    .show-log {
+      margin: 10px 0 0 0;
     }
   }
 }

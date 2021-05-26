@@ -17,7 +17,7 @@
     </div>
 
     <!--模态框-->
-    <div class="modal" v-show="showAppModal">
+    <div class="modal" v-show="showAppModal ">
       <modal-vue ref="modal"/>
     </div>
 
@@ -108,10 +108,14 @@ export default {
       'currentMusicBasicData',
       'musicList',
       'showAppModal',
+      'showUpdateModal',
       'showAlert',
     ]),
   },
   mounted() {
+
+    console.log(this.showAppModal || this.showUpdateModal)
+    console.log(this.showUpdateModal)
 
     // 获取本地歌单
     if (typeof (localStorage.songListId) !== 'undefined') {

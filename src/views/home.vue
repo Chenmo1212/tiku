@@ -27,25 +27,6 @@
     </div>
 
     <!--  更新提示框  -->
-    <div class="modal update_modal" v-if="isShowUpdateModal">
-      <div class="bg"></div>
-      <div class="content a-fadeinB">
-        <div class="title">
-          <svg-icon iconClass="having_fun"/>
-          <h3>Little Cookie <br>更新说明({{ version }})</h3>
-          <!--          <h3>Little Cookie <br>维护ing</h3>-->
-        </div>
-        <div class="msg-modal">
-          <div class="text">
-            <p v-for="item in updateLogsList[0].content" v-html="item"/>
-          </div>
-          <div class="submit-btn" @click="hiddenUpdateModal"><i class="fa fa-send-o"/> <span>朕知道了</span></div>
-          <div class="text show-log" style="text-align: center;">
-            <router-link to="/timeline" style="color:#a9ceff;">查看更新日志</router-link>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -74,32 +55,30 @@
         pageIndex: 1,
         showBeginBtn: true,
         isShowDrawer: true,
-        isShowUpdateModal: true,
         version: '1.2.5',
       }
     },
     created() {
       localStorage.setItem("toHome", JSON.stringify(true))  // 路由守卫
 
-      this.version = this.updateLogsList[0].version.slice(9)
-
       // if (this.themeMode === "dark") window.document.documentElement.setAttribute("data-theme", this.themeMode);
     },
     mounted() {
+      this.version = this.updateLogsList[0].version.slice(9)
       // 更新提示框是否已经隐藏
       if (typeof (localStorage.tiku_version) !== 'undefined') {
         if (localStorage.tiku_version !== this.version) {
           localStorage.removeItem('isShowUpdateModal');
           localStorage.setItem('tiku_version', this.version)
+          this.setModal('update')
         }
-      }
-      if (typeof (localStorage.tiku_version) === 'undefined') {
+      } else {
         localStorage.setItem('tiku_version', '1.0.0')
       }
-      if (typeof (localStorage.isShowUpdateModal) !== 'undefined') {
-        if (!JSON.parse(localStorage.isShowUpdateModal)) {
-          this.isShowUpdateModal = false
-        }
+      // 根据本地是否有更新显示框判断是否显示提示框
+      if (typeof (localStorage.isShowUpdateModal) === 'undefined') {  // 第一次加载，存入是否显示更新提示框的判断条件，默认值为显示
+        localStorage.setItem('isShowUpdateModal', JSON.stringify({res: true}));
+        this.setModal('update')
       }
 
       // console.clear();
@@ -153,6 +132,7 @@
         'selectedAnswer',
         'themeMode',
         'isFullScreen',
+        'showAppModal',
         'updateLogsList',
       ])
     },
@@ -166,6 +146,8 @@
         'setWarning',
         'setFullScreen',
         'setAudioActive',
+        'setModalHide',
+        'setModal',
       ]),
 
       showDrawer() {
@@ -177,12 +159,6 @@
         main.classList.toggle("inactive");
         btn.classList.toggle("active");
         this.isShowDrawer = !this.isShowDrawer;
-      },
-
-      hiddenUpdateModal() {
-        localStorage.setItem('isShowUpdateModal', JSON.stringify(false));
-        localStorage.setItem('tiku_version', this.version);
-        this.isShowUpdateModal = false;
       },
 
       /**
@@ -405,30 +381,6 @@
     margin: 0;
     padding: 0;
     /*overflow: hidden;*/
-  }
-
-  .update_modal {
-    .content {
-      top: 15%;
-
-      .title {
-        position: relative;
-        width: 80%;
-        left: 10%;
-
-        .svg-icon {
-          width: 100%;
-        }
-      }
-
-      .msg-modal {
-        text-align: left;
-      }
-
-      .show-log {
-        margin: 10px 0 0 0;
-      }
-    }
   }
 
   .header {
