@@ -16,7 +16,7 @@
           <div class="neumorphic-image-wrapper turn"
                :class="musicStatus ? '' : 'paused'"
                @click="setWarning('这里什么都没有哦~')">
-            <img :src="currentMusicMsg.cover"
+            <img :src="currentMusicMsg.cover ? currentMusicMsg.cover : 'https://p1.music.126.net/qokD0Oll2Yh17c1GwJFK1w==/109951167152480861.jpg' "
                  style="max-height: 100%; transform: translateX(-50%); margin-left: 50%;" alt="封面"/>
           </div>
           <div class="neumorphic-text neumorphic-text_title text-center mt-5"><a :href="url" target="_blank">{{currentMusicMsg.name}}</a>
@@ -57,6 +57,7 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
+  import debug from "debug";
 
   export default {
     name: "music",
@@ -77,7 +78,7 @@
         artists: '',
         cover: 'https://p3.music.126.net/QGb9Vtyw7qHS00uEvPfM6g==/843325418547559.jpg?param=300y300',
         url: '',
-        currentMusicMsg: null,
+        currentMusicMsg: {cover: "https://p3.music.126.net/QGb9Vtyw7qHS00uEvPfM6g==/843325418547559.jpg?param=300y300"},
 
         fromRouterName: "home",
 
@@ -85,13 +86,11 @@
       }
     },
     created() {
-      // debugger
       if (typeof (localStorage.currentMusicBasicData) === 'undefined') {
         console.log("第一次不从首页进，直接修改网址的吧")
         // this.currentMusicMsg = this.currentMusicBasicData;
         // localStorage.setItem("currentMusicBasicData", JSON.stringify(this.currentMusicBasicData));
       } else {
-        console.log(JSON.parse(localStorage.currentMusicBasicData));
         this.currentMusicMsg = JSON.parse(localStorage.currentMusicBasicData);
         this.isLocal = true;
       }
@@ -162,7 +161,7 @@
             let tempIndex = 0;
             if (that.isLocal) {
               let temp = JSON.parse(localStorage.currentMusicBasicData);
-              tempIndex = temp.index;
+              tempIndex = temp.index || 0;
             } else {
               tempIndex = 0;
             }
@@ -181,16 +180,16 @@
        */
       fetch163Playlist(playlistId) {
         return new Promise((ok) => {
-          fetch(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
+          fetch(`http://1.117.97.239:5000/playlist/track/all?id=${playlistId}`)
             .then(response => response.json())
             .then(data => {
               const arr = [];
-              data.playlist.trackIds.map(function (value) {
+              data.songs.map(function (value) {
                 arr.push(value.id);
               });
               return arr;
             })
-            .then(this.fetch163Songs)
+            .then(this.fetch163SongDetail)
             .then(ok)
             .catch(err => {
               // that.isWelcome = false;
@@ -198,7 +197,8 @@
             });
         });
       },
-      fetch163Songs(Ids) {
+      fetch163SongDetail(Ids) {
+        const that = this
         return new Promise(function (ok, err) {
           let ids;
           switch (typeof Ids) {
@@ -216,20 +216,55 @@
               err(new Error('Please enter array or number'));
               return;
           }
-          fetch(`https://v1.hitokoto.cn/nm/summary/${ids.join(',')}?lyric=true&common=true`)
+          fetch(`http://1.117.97.239:5000/song/detail?ids=${ids.join(',')}`)
             .then(response => response.json())
             .then(data => {
               let songs = [];
               data.songs.map(function (song) {
                 songs.push({
                   name: song.name,
-                  url: song.url,
-                  artists: song.artists.join('/'),
-                  album: song.album.name,
-                  cover: song.album.picture,
-                  lrc: song.lyric
+                  artists: song.ar.map(e=>e.name).join(","),
+                  album: song.al.name,
+                  cover: song.al.picUrl,
+                  lrc: "",
+                  id: song.id,
                 });
               });
+              return songs;
+            })
+            .then(that.fetch163SongUrl)
+            .then(ok)
+            .catch(err => {
+              alert("出错了3" + err)
+            });
+        });
+      },
+      fetch163SongUrl(songs) {
+        return new Promise(function (ok, err) {
+          let ids;
+          switch (typeof songs) {
+            case 'number':
+              ids = [songs];
+              break;
+            case 'object':
+              if (!Array.isArray(songs)) {
+                err(new Error('Please enter array or number'));
+                return;
+              }
+              ids = songs.map(e => e.id);
+              break;
+            default:
+              err(new Error('Please enter array or number'));
+              return;
+          }
+          fetch(`http://1.117.97.239:5000/song/url/v1?id=${ids.join(',')}&level=exhigh`)
+            .then(response => response.json())
+            .then(data => {
+              data.data.forEach((val, i) => {
+                songs[i].url = val.url
+                songs[i].index = 0
+              });
+              console.log(songs[0])
               return songs;
             })
             .then(ok)
