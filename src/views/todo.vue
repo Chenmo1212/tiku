@@ -696,9 +696,10 @@
   .todo-list li {
     margin-bottom: 15px;
     height: 60px;
+    padding: 0 2%;
+    width: 96%;
     line-height: 60px;
     text-align: left;
-    padding: 0 15px;
     color: #6c7885;
     display: flex;
     align-items: center;
@@ -708,8 +709,8 @@
     box-shadow: 2px 2px 5px #c1d3ea, -2px -2px 5px white, -0.4px -0.4px 0.4px white;
 
     .todo {
-      min-width: 80%;
-      max-width: 90%;
+      padding: 0 15px;
+      width: 100%;
       position: relative;
       display: flex;
       justify-content: center;
@@ -739,9 +740,7 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        left: -4%;
-        width: 100%;
-        height: 60px;
+        left: 0;
         margin: auto;
         fill: none;
         stroke: #599efb;
