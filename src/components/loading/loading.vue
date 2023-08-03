@@ -36,7 +36,6 @@ export default {
 /*loading*/
 .bg {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
   width: 100%;
   top: 0;
