@@ -80,7 +80,7 @@
     </div>
     <footer>
       <!--      <p class="app"><a href="https://tiku.chenmo1212.cn/app.apk" target="_blank">点我下载app</a></p>-->
-      <p class="copyright">Copyright © 2020 <a href="https://www.chenmo1212.cn/?from=tiku">ChenMo1212</a></p>
+      <p class="copyright">Copyright © 2020-2023 <a href="https://www.chenmo1212.cn/?from=tiku">ChenMo1212</a></p>
     </footer>
   </div>
 </template>
@@ -133,18 +133,19 @@
        * 设置水波纹效果
        */
       playBtnWave(e) {
-        console.log("pause");
-        const play = document.querySelector('.play');
-        const pause = document.querySelector('.pause');
-        const playBtn = document.querySelector('.circle__btn');
-        const wave1 = document.querySelector('.circle__back-1');
-        const wave2 = document.querySelector('.circle__back-2');
-        e.preventDefault();
-        pause.classList.toggle('visibility');
-        play.classList.toggle('visibility');
-        playBtn.classList.toggle('shadow');
-        wave1.classList.toggle('paused');
-        wave2.classList.toggle('paused');
+        // console.log("pause");
+        // const play = document.querySelector('.play');
+        // const pause = document.querySelector('.pause');
+        // const playBtn = document.querySelector('.circle__btn');
+        // const wave1 = document.querySelector('.circle__back-1');
+        // const wave2 = document.querySelector('.circle__back-2');
+        // e.preventDefault();
+        // pause.classList.toggle('visibility');
+        // play.classList.toggle('visibility');
+        // playBtn.classList.toggle('shadow');
+        // wave1.classList.toggle('paused');
+        // wave2.classList.toggle('paused');
+        location.href="https://www.chenmo1212.cn?f=tiku"
       },
       /**
        * 设置全屏
@@ -353,8 +354,8 @@
         margin-top: 40px;
 
         .typing-demo {
-          width: 24ch;
-          animation: typing 3s steps(24), blink 0.5s step-end infinite alternate;
+          width: 26ch;
+          animation: typing 3s steps(26), blink 0.5s step-end infinite alternate;
           white-space: nowrap;
           overflow: hidden;
           border-right: 3px solid;
