@@ -565,7 +565,7 @@
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 100px auto 10px;
+    margin: 8% auto 10px;
     border: 5px solid var(--back-color);
     box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
   }

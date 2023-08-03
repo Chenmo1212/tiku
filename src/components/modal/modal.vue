@@ -125,6 +125,7 @@ export default {
       modalMsg: "您可以在此处替换成您的歌单",
       dataInput: null,
 
+      songListInput: this.songListId,
       version: '1.2.5',
     }
   },
@@ -138,6 +139,7 @@ export default {
       'modalType',
       'totalData',
       'updateLogsList',
+      'songListId'
     ]),
   },
   methods: {
@@ -271,6 +273,8 @@ export default {
         id = songIdList[1]
       } else if (this.songListId === null) {
         id = songIdList[0]
+      } else {
+        id = this.songListInput
       }
       if (!this.songListInput) {
         this.setWarning("歌单id不得为空");
@@ -418,6 +422,7 @@ export default {
     height: 100%;
     width: 100%;
     top: 0;
+    z-index: 10;
   }
 
   .content {
@@ -429,6 +434,7 @@ export default {
     top: 10vh;
     border-radius: 2%;
     padding: 3% 5%;
+    z-index: 11;
 
     .close-icon {
       position: absolute;
