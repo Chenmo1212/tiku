@@ -83,6 +83,8 @@
         fromRouterName: "home",
 
         isLocal: false,   // 是否存储在本地
+
+        baseMusicApi: "https://api.chenmo1212.cn/music"
       }
     },
     created() {
@@ -179,8 +181,9 @@
        * @param playlistId 歌单id
        */
       fetch163Playlist(playlistId) {
+        const that = this;
         return new Promise((ok) => {
-          fetch(`http://1.117.97.239:5000/playlist/track/all?id=${playlistId}`)
+          fetch(`${that.baseMusicApi}/playlist/track/all?id=${playlistId}`)
             .then(response => response.json())
             .then(data => {
               const arr = [];
@@ -216,7 +219,7 @@
               err(new Error('Please enter array or number'));
               return;
           }
-          fetch(`http://1.117.97.239:5000/song/detail?ids=${ids.join(',')}`)
+          fetch(`${that.baseMusicApi}/song/detail?ids=${ids.join(',')}`)
             .then(response => response.json())
             .then(data => {
               let songs = [];
@@ -228,6 +231,7 @@
                   cover: song.al.picUrl,
                   lrc: "",
                   id: song.id,
+                  index: 0,
                 });
               });
               return songs;
@@ -240,6 +244,7 @@
         });
       },
       fetch163SongUrl(songs) {
+        const that = this;
         return new Promise(function (ok, err) {
           let ids;
           switch (typeof songs) {
@@ -257,14 +262,13 @@
               err(new Error('Please enter array or number'));
               return;
           }
-          fetch(`http://1.117.97.239:5000/song/url/v1?id=${ids.join(',')}&level=exhigh`)
+          fetch(`${that.baseMusicApi}/song/url/v1?id=${ids.join(',')}&level=exhigh`)
             .then(response => response.json())
             .then(data => {
               data.data.forEach((val, i) => {
-                songs[i].url = val.url
-                songs[i].index = 0
+                let tmp = songs.find(e => e.id === val.id);
+                if (tmp) tmp.url = val.url;
               });
-              console.log(songs[0])
               return songs;
             })
             .then(ok)
@@ -548,12 +552,12 @@
   .neumorphic-text_title {
     font-size: 20px;
     color: var(--title-color);
+    margin-top: 30px;
   }
 
   .neumorphic-card__body {
-    padding: 10% 0 0;
     position: relative;
-    height: calc(81vh - 60px);
+    height: calc(90vh - 60px);
   }
 
   .neumorphic-image-wrapper {
@@ -561,7 +565,7 @@
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto 10px;
+    margin: 100px auto 10px;
     border: 5px solid var(--back-color);
     box-shadow: -5px -5px 5px white, 5px 5px 5px rgba(0, 0, 0, 0.1);
   }
@@ -749,18 +753,13 @@
 
   @media screen and (min-width: 1175px) {
     .neumorphic-card {
-      .d-flex {
-        margin-top: 5%;
+      .neumorphic-card__body {
+        padding: 3% 0 0;
       }
-
       .neumorphic-image-wrapper {
-        margin: 10% auto;
+        margin: 3% auto;
         width: 300px;
         height: 300px;
-      }
-
-      .neumorphic-text_title {
-        margin: 15% auto 3%;
       }
 
       .neumorphic-text_author {
