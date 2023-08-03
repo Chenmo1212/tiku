@@ -426,7 +426,7 @@ export default {
     /*background-color: #f4f6f8;*/
     @include background("detail_bg_color1");
     left: 10%;
-    top: 25%;
+    top: 10vh;
     border-radius: 2%;
     padding: 3% 5%;
 
